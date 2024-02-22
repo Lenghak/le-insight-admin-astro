@@ -1,18 +1,18 @@
 ---
 import { H1 } from "@/common/components/ui/h1";
-import { P } from "@/common/components/ui/p";
 import { BackButton } from "@/modules/error/components/back-button";
 
+import { Muted } from "@/common/components/ui/muted";
 import RootLayout from "@/common/layouts/root-layout.astro";
 ---
 
 <RootLayout title="Le-Insight | 500">
-  <main class="flex h-screen flex-col items-center justify-center">
+  <main class="flex h-screen flex-col items-center justify-center space-y-8">
     <H1 className="text-7xl underline lg:text-9xl">500</H1>
-    <P className="max-w-sm text-center">
-      Internal Server Error! Looks like there is a problem with our server. Please try again
-      later.
-    </P>
+    <Muted className="max-w-sm text-center">
+      Internal Server Error! Looks like there is a problem with our server.
+      Please try again later.
+    </Muted>
 
     <div class="mt-8 flex flex-row items-center justify-center gap-4">
       <BackButton client:load />

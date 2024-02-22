@@ -15,8 +15,11 @@ export default {
     },
     extend: {
       screens: {
-        xs: "425px",
         ...defaultTheme.screens,
+        xs: "475px",
+        "3xl": "1600px",
+        "4xl": "1800px",
+        "5xl": "1900px",
       },
       fontFamily: {
         sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
