@@ -1,0 +1,77 @@
+---
+import "@/styles/globals.css";
+import "@fontsource-variable/open-sans";
+import { Toaster as SonnerToaster } from "@/common/components/ui/sonner";
+import { Toaster } from "@/common/components/ui/toaster";
+
+interface Props {
+  title: string;
+}
+---
+
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>
+
+<html lang="en">
+  <head>
+    <slot name="head" />
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      href="/svg/logo-dark.svg"
+      media="(prefers-color-scheme: dark)"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <link
+      rel="icon"
+      href="/svg/logo-light.svg"
+      media="(prefers-color-scheme:light)"
+      sizes="any"
+      type="image/svg+xml"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <title>{Astro.props.title}</title>
+    <meta
+      name="description"
+      content="Le-Insight is a dynamic knowledge sharing platform that serves as a hub for writers, experts, and enthusiasts to share their insights, experiences, and expertise with a global audience. With its intuitive interface and user-friendly features, Le-Insight empowers individuals to publish, discover, and engage with high-quality articles spanning a wide range of topics. Whether you're passionate about technology, business, arts, or any other subject, Le-Insight provides a vibrant community where users can explore thought-provoking content, connect with like-minded individuals, and foster meaningful discussions."
+    />
+    <meta
+      name="keywords"
+      content="Article, Newsletter, Journal, Tutorial"
+    />
+  </head>
+  <body>
+    <slot />
+    <SonnerToaster client:load />
+    <Toaster client:load />
+  </body>
+</html>
