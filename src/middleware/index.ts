@@ -2,8 +2,6 @@ import type { APIContext, MiddlewareNext } from "astro";
 import * as middleware from "astro/virtual-modules/middleware.js";
 import { getSession } from "auth-astro/server";
 
-//  async function cors(context: APIContext, next: MiddlewareNext) {}
-
 async function auth(context: APIContext, next: MiddlewareNext) {
   const currentPathname = context.url.pathname;
   const isAuthPath = currentPathname.startsWith("/auth");
@@ -25,4 +23,11 @@ async function auth(context: APIContext, next: MiddlewareNext) {
   return await next();
 }
 
-export const onRequest = middleware.sequence(auth);
+async function dashboard(context: APIContext, next: MiddlewareNext) {
+  if (context.url.pathname === "/dashboard")
+    return context.redirect("/dashboard/users");
+
+  return await next();
+}
+
+export const onRequest = middleware.sequence(auth, dashboard);
