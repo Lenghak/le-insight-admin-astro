@@ -15,10 +15,12 @@ import { Muted } from "@/common/components/ui/muted";
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { useState } from "react";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+import useSignInService from "../hooks/use-sign-in-service";
 
 const SignUpFormSchema = z.object({
   firstName: z.string().trim().min(1, "Enter your first name"),
@@ -41,12 +43,25 @@ export default function SignUpForm() {
   });
 
   const [isPasswordShowed, setShowPassword] = useState(false);
-  const { mutate: signUp } = useSignUpService();
+  const {
+    mutate: signUp,
+    isPending: isSigningUp,
+    isSuccess: isSignUpSuccess,
+  } = useSignUpService();
+  const { mutate: signIn } = useSignInService();
+
+  useEffect(() => {
+    if (isSignUpSuccess) {
+      signIn({
+        email: form.getValues().email,
+        password: form.getValues().password,
+      });
+    }
+  }, [isSignUpSuccess]);
 
   return (
     <Form {...form}>
       <form
-        method="POST"
         onSubmit={form.handleSubmit((values) => signUp(values))}
         className="w-full space-y-2"
       >
@@ -56,10 +71,17 @@ export default function SignUpForm() {
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">First Name</FormLabel>
+                <FormLabel
+                  className="font-semibold"
+                  htmlFor="firstname-field"
+                >
+                  First Name
+                </FormLabel>
                 <FormControl>
                   <Input
+                    id="firstname-field"
                     placeholder="e. g. John"
+                    autoComplete="on"
                     {...field}
                   />
                 </FormControl>
@@ -73,10 +95,17 @@ export default function SignUpForm() {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold">Last Name</FormLabel>
+                <FormLabel
+                  className="font-semibold"
+                  htmlFor="lastname-field"
+                >
+                  Last Name
+                </FormLabel>
                 <FormControl>
                   <Input
+                    id="lastname-field"
                     placeholder="e.g. Doe"
+                    autoComplete="on"
                     {...field}
                   />
                 </FormControl>
@@ -91,10 +120,17 @@ export default function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Email</FormLabel>
+              <FormLabel
+                className="font-semibold"
+                htmlFor="email-field"
+              >
+                Email
+              </FormLabel>
               <FormControl>
                 <Input
+                  id="email-field"
                   placeholder="someone@example.com"
+                  autoComplete="on"
                   {...field}
                 />
               </FormControl>
@@ -107,10 +143,11 @@ export default function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Password</FormLabel>
+              <FormLabel className="font-semibold" htmlFor="password-field">Password</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
+                    id="password-field"
                     placeholder="Enter a password"
                     className="pr-12"
                     type={isPasswordShowed ? "text" : "password"}
@@ -151,10 +188,17 @@ export default function SignUpForm() {
         </Muted>
 
         <Button
-          type="submit"
-          className="w-full rounded-md font-bold"
+          type={isSigningUp ? "button" : "submit"}
+          disabled={isSigningUp}
+          className={cn(
+            "w-full gap-0 rounded-md font-bold transition-all",
+            isSigningUp && "gap-4",
+          )}
         >
-          Sign Up
+          <Loader2Icon
+            className={cn("size-0 animate-spin", isSigningUp && "size-4")}
+          />
+          <span>Sign Up</span>
         </Button>
       </form>
     </Form>

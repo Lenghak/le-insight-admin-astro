@@ -1,33 +1,6 @@
-import type { APIContext, MiddlewareNext } from "astro";
 import * as middleware from "astro/virtual-modules/middleware.js";
-import { getSession } from "auth-astro/server";
 
-async function auth(context: APIContext, next: MiddlewareNext) {
-  const currentPathname = context.url.pathname;
-  const isAuthPath = currentPathname.startsWith("/auth");
-  const isConfirmPath = currentPathname === "/auth/confirm-email";
+import auth from "./auth";
+import cors from "./cors";
 
-  const session = await getSession(context.request);
-  const isUserLoggedIn = session?.user;
-  const isEmailVerified = !!session?.user.confirmed_at;
-
-  if (isConfirmPath && isEmailVerified) {
-    return context.redirect("/");
-  }
-
-  // check if the user has already logged in
-  if (isAuthPath && !isConfirmPath && isUserLoggedIn) {
-    return context.redirect("/");
-  }
-
-  return await next();
-}
-
-async function dashboard(context: APIContext, next: MiddlewareNext) {
-  if (context.url.pathname === "/dashboard")
-    return context.redirect("/dashboard/users");
-
-  return await next();
-}
-
-export const onRequest = middleware.sequence(auth, dashboard);
+export const onRequest = middleware.sequence(cors, auth);

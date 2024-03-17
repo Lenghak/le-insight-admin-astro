@@ -12,6 +12,7 @@ import {
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
 
+import { cn } from "@/common/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -44,10 +45,12 @@ export default function ForgotPasswordForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold">Email</FormLabel>
+              <FormLabel className="font-semibold" htmlFor="email-field">Email</FormLabel>
               <FormControl>
                 <Input
+                  id="email-field"
                   placeholder="Enter email address"
+                  autoComplete="on"
                   {...field}
                 />
               </FormControl>
@@ -73,11 +76,11 @@ export default function ForgotPasswordForm() {
         {!isSuccess && (
           <Button
             type={isPending ? "button" : "submit"}
-            className="w-full rounded-md font-bold"
             disabled={isPending}
+            className={cn("w-full rounded-md font-bold transition-all gap-0", isPending && "gap-4")}
           >
-            {isPending ? <Loader2Icon className="size-4 animate-spin" /> : null}
-            Send Link to Email
+            <Loader2Icon className={cn("size-0 animate-spin", isPending && "size-4")} />
+            <span>Reset Password</span>
           </Button>
         )}
       </form>
