@@ -123,7 +123,7 @@ export function ResizeControls({
       const startX = mouseDownEvent.clientX;
       const startWidth = size.width;
       const minWidth = minResizeWidth;
-      const maxWidth = Math.min(element.maxWidth, maxResizeWidth as number);
+      const maxWidth = Math.min(element.maxWidth, maxResizeWidth);
       /**
        * Handle resize dragging through an event handler on mouseMove on the
        * document.
@@ -139,7 +139,7 @@ export function ResizeControls({
         /**
          * Constrain the proposed with between min, max and original width
          */
-        const nextWidth = Math.min(maxWidth, Math.max(minWidth as number, proposedWidth));
+        const nextWidth = Math.min(maxWidth, Math.max(minWidth, proposedWidth));
 
         const currentSize = resizeInWidth(
           { width: element.maxWidth, height: element.maxHeight },
