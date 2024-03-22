@@ -44,12 +44,15 @@ export default function SideNav({
                   <a
                     href={link.link}
                     aria-disabled={link.isDisabled}
+                    data-state={
+                      link.variant === "secondary" ? "active" : "inactive"
+                    }
                     className={cn(
                       buttonVariants({
                         variant: link.variant,
                         size: isCollapsed ? "icon" : "default",
                       }),
-                      "h-10 w-10 aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground",
+                      "h-10 w-10 font-medium hover:bg-background aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:bg-background",
                     )}
                   >
                     <link.icon
@@ -67,7 +70,7 @@ export default function SideNav({
                 >
                   {link.title}
                   {link.label && (
-                    <span className="ml-auto text-muted-foreground">
+                    <span className="ml-auto text-muted-foreground font-medium">
                       {link.label}
                     </span>
                   )}
@@ -78,13 +81,14 @@ export default function SideNav({
             <a
               href={link.link}
               aria-disabled={link.isDisabled}
+              data-state={link.variant === "secondary" ? "active" : "inactive"}
               key={index}
               className={cn(
                 buttonVariants({
                   variant: link.variant,
                   size: isCollapsed ? "icon" : "default",
                 }),
-                "gap-4 px-4 aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground max-md:h-10 max-md:w-10 md:justify-start md:px-4",
+                "gap-4 px-4 font-medium hover:bg-background aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:bg-background data-[state=active]:font-bold max-md:h-10 max-md:w-10 md:justify-start md:px-4",
               )}
             >
               <link.icon className={cn("h-4 min-h-4 w-4 min-w-4")} />

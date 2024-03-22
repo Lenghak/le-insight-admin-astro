@@ -10,7 +10,6 @@ import {
   FormMessage,
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
-import { Muted } from "@/common/components/ui/muted";
 
 import { cn } from "@/common/lib/utils";
 
@@ -120,19 +119,6 @@ export default function SignInForm() {
           <Loader2Icon className={cn("size-0 animate-spin", isSigningIn && "size-4")} />
           <span>Sign In</span>
         </Button>
-
-        <Muted className="text-center">
-          Don&apos;t have an account?{" "}
-          <a
-            href="/auth/sign-up"
-            className={cn(
-              buttonVariants({ size: "sm", variant: "link" }),
-              "font-bold",
-            )}
-          >
-            Create One
-          </a>
-        </Muted>
       </form>
     </Form>
   );

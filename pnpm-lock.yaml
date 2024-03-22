@@ -267,6 +267,9 @@ dependencies:
   '@udecode/plate-trailing-block':
     specifier: ^31.0.0
     version: 31.0.0(@udecode/plate-common@31.0.0)(react-dom@18.2.0)(react@18.2.0)(slate-history@0.100.0)(slate-hyperscript@0.100.0)(slate-react@0.102.0)(slate@0.102.0)
+  '@uidotdev/usehooks':
+    specifier: ^2.4.1
+    version: 2.4.1(react-dom@18.2.0)(react@18.2.0)
   astro:
     specifier: ^4.5.8
     version: 4.5.8(@types/node@20.11.30)(typescript@5.4.3)
@@ -4813,6 +4816,17 @@ packages:
 
   /@udecode/utils@31.0.0:
     resolution: {integrity: sha512-06JTl1UAm3mzLLAx8hdMUFw4XRQG727z9JoJ9PeBnmFb9q4Cg3DdmbFnhVJMrBPWlyOwoHtPrBjnanTFeiP36Q==}
+    dev: false
+
+  /@uidotdev/usehooks@2.4.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-1I+RwWyS+kdv3Mv0Vmc+p0dPYH0DTRAo04HLyXReYBL9AeseDWUJyi4THuksBJcu9F0Pih69Ak150VDnqbVnXg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@ungap/structured-clone@1.2.0:

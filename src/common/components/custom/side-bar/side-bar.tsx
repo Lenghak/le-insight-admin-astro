@@ -3,7 +3,7 @@ import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
-import { $isCollapsed } from "@/common/stores/side-bar-store";
+import { $sidebar } from "@/common/stores/side-bar-store";
 import { useStore } from "@nanostores/react";
 import {
   ActivityIcon,
@@ -19,7 +19,6 @@ import {
   SwatchBookIcon,
   UsersIcon,
 } from "lucide-react";
-
 import SideNav from "./side-nav";
 
 export default function SideBar({
@@ -29,12 +28,14 @@ export default function SideBar({
   className?: string;
   pathname: string;
 }) {
-  const isCollapsed = useStore($isCollapsed);
+  const { isCollapsed } = useStore($sidebar);
+
+
   return (
     <div
       className={cn(
         "relative row-span-full w-16 bg-card transition-all ease-in-out md:w-56",
-        isCollapsed && "md:w-16",
+        isCollapsed ? "md:w-16" : "",
         className,
       )}
     >

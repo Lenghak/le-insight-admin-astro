@@ -26,20 +26,21 @@ export default function useSignInService() {
                   "The email and password are invalid. Please check and try again.",
               });
           })
-          .catch((err) =>
+          .catch((err) => {
             toast.error(
               err instanceof AxiosError && err.response?.status === 401
                 ? "Incorrect Email or Password"
-                : "Sign In Failed",
+                : "Sign in failed",
               {
                 duration: 10 * 1000,
                 description:
                   err instanceof AxiosError && err.response?.status === 401
                     ? "The email and password are invalid. Please check and try again."
                     : "There was a technical problem while signing you in. Please try again later.",
-              },
-            ),
-          ),
+              }
+            )
+          },
+          )
     },
 
     queryClient,

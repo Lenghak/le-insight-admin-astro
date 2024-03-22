@@ -3,18 +3,20 @@ import DashboardHeader from "@/common/components/custom/dashboard/dashboard-head
 import SideBar from "@/common/components/custom/side-bar/side-bar";
 import RootLayout from "@/common/layouts/root-layout.astro";
 
+export const prerender = false;
+
 const pathname = Astro.url.pathname;
 ---
 
 <RootLayout title="Le-Insight | Dashboard">
   <main class="grid h-full grid-cols-[auto,_1fr] grid-rows-[auto,_1fr] bg-card">
     <SideBar
-      client:load
+      client:only="react"
       pathname={pathname}
       className="w-full"
     />
 
-    <DashboardHeader client:load />
+    <DashboardHeader client:only="react" />
 
     <section class="h-full w-full pb-4 pr-4">
       <section

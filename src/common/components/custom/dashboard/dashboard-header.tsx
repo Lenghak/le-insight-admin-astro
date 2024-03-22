@@ -4,12 +4,13 @@ import { Button } from "@/common/components/ui/button";
 import { Input } from "@/common/components/ui/input";
 import { Separator } from "@/common/components/ui/separator";
 
-import { $isCollapsed, setCollapsed } from "@/common/stores/side-bar-store";
+import { $sidebar, setCollapsed } from "@/common/stores/side-bar-store";
 import { useStore } from "@nanostores/react";
 import { MenuIcon, SearchIcon } from "lucide-react";
 
 export default function DashboardHeader() {
-  const isCollapsed = useStore($isCollapsed);
+
+  const { isCollapsed } = useStore($sidebar);
 
   return (
     <header className="relative flex h-16 w-full flex-row items-center justify-center gap-4 bg-card px-2">
@@ -30,7 +31,7 @@ export default function DashboardHeader() {
         <Input
           type="text"
           placeholder="Search Le-Insight"
-          className="w-full rounded-full border-0 pl-12 placeholder:ml-12 placeholder:text-center"
+          className="w-full rounded-full bg-background border-0 pl-12 placeholder:ml-12 placeholder:text-center"
         />
 
         <SearchIcon className="absolute left-4 h-4 w-4 text-muted-foreground" />
