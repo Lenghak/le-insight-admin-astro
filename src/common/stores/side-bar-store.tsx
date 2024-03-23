@@ -1,8 +1,6 @@
-import { persistentMap } from "@nanostores/persistent";
+import { map } from "nanostores";
 
-export const $sidebar = persistentMap<{ isCollapsed: boolean }>("side-bar", { isCollapsed: true }, {
-  encode: JSON.stringify,
-  decode: JSON.parse,
-});
+export const $sidebar = map<{ isCollapsed: boolean }>({ isCollapsed: true });
 
-export const setCollapsed = (value: boolean) => $sidebar.set({ isCollapsed: value });
+export const setCollapsed = (value: boolean) =>
+  $sidebar.set({ isCollapsed: value });

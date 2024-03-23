@@ -16,18 +16,23 @@ import {
   DropdownMenuTrigger,
 } from "@/common/components/ui/dropdown-menu";
 
+import { useIsClient } from "@uidotdev/usehooks";
 import { CreditCard, Keyboard, LogOut, Settings, User } from "lucide-react";
 
 export default function ProfileDropdown() {
   const { mutate: signOut } = useSignOutService();
   const { data: res } = useSessionService();
 
+  const isClient = useIsClient();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage />
-          <AvatarFallback>{res?.data?.user?.first_name[0]}</AvatarFallback>
+          <AvatarFallback>
+            {isClient && (res?.data?.user?.first_name[0] ?? "?")}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-4 w-56">
