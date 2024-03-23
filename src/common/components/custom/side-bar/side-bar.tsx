@@ -19,6 +19,7 @@ import {
   SwatchBookIcon,
   UsersIcon,
 } from "lucide-react";
+
 import SideNav from "./side-nav";
 
 export default function SideBar({
@@ -30,9 +31,8 @@ export default function SideBar({
 }) {
   const { isCollapsed } = useStore($sidebar);
 
-
   return (
-    <div
+    <aside
       className={cn(
         "relative row-span-full w-16 bg-card transition-all ease-in-out md:w-56",
         isCollapsed ? "md:w-16" : "",
@@ -159,6 +159,6 @@ export default function SideBar({
           },
         ]}
       />
-    </div>
+    </aside>
   );
 }

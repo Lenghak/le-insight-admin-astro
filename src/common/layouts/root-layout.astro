@@ -24,8 +24,12 @@ interface Props {
 
   if (typeof localStorage !== "undefined") {
     const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
+      const isDark = getThemePreference() === "dark";
+
+      if (isDark && !document.documentElement.classList.contains("dark")) {
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+      }
     });
     observer.observe(document.documentElement, {
       attributes: true,
