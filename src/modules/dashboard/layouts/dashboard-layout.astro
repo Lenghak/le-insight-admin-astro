@@ -11,14 +11,14 @@ const pathname = Astro.url.pathname;
 <RootLayout title="Le-Insight | Dashboard">
   <main class="grid h-full grid-cols-[auto,_1fr] grid-rows-[auto,_1fr] bg-card">
     <SideBar
-      client:only="react"
+      client:load
       transition:persist
       pathname={pathname}
       className="w-full"
     />
 
     <DashboardHeader
-      client:only="react"
+      client:load
       transition:persist
     />
 

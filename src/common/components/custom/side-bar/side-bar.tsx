@@ -1,10 +1,12 @@
 import Logo from "@/common/components/custom/logo";
+import SidebarSkeleton from "@/common/components/custom/side-bar/side-bar-skeleton";
 import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
 import { $sidebar } from "@/common/stores/side-bar-store";
 import { useStore } from "@nanostores/react";
+import { useIsClient } from "@uidotdev/usehooks";
 import {
   ActivityIcon,
   AlertCircleIcon,
@@ -30,6 +32,10 @@ export default function SideBar({
   pathname: string;
 }) {
   const isCollapsed = useStore($sidebar);
+
+  const isClient = useIsClient();
+
+  if (!isClient) return <SidebarSkeleton />;
 
   return (
     <aside
