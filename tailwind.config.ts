@@ -22,7 +22,9 @@ export default {
         "5xl": "1900px",
       },
       fontFamily: {
+        ...defaultTheme.fontFamily,
         sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
+        // monospace: ["Roboto Mono Variable", defaultTheme.fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",

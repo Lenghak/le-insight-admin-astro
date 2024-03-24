@@ -1,5 +1,6 @@
 import {
   Breadcrumb,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -30,30 +31,74 @@ export default function DashboardTitle({
       <H3 className="font-extrabold">{title}</H3>
       <Breadcrumb>
         <BreadcrumbList className="font-medium">
-          {links.map((link, index) => (
-            <Fragment key={index}>
+          {links.length < 4 ? (
+            links.map((link, index) => (
+              <Fragment key={index}>
+                <BreadcrumbItem>
+                  <BreadcrumbLink
+                    href={
+                      index === 0
+                        ? "/" + links[0]
+                        : links.slice(0, index - 1).join("/")
+                    }
+                    className={cn(
+                      "capitalize",
+                      index === links.length - 1 && "font-bold text-foreground",
+                    )}
+                  >
+                    {link}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                {index !== links.length - 1 && (
+                  <BreadcrumbSeparator>
+                    <SlashIcon />
+                  </BreadcrumbSeparator>
+                )}
+              </Fragment>
+            ))
+          ) : (
+            <Fragment>
               <BreadcrumbItem>
                 <BreadcrumbLink
-                  href={
-                    index === 0
-                      ? "/" + links[0]
-                      : links.slice(0, index - 1).join("/")
-                  }
-                  className={cn(
-                    "capitalize",
-                    index === links.length - 1 && "font-bold text-foreground",
-                  )}
+                  href={"/" + links[0]}
+                  className={cn("capitalize")}
                 >
-                  {link}
+                  {links[0]}
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              {index !== links.length - 1 && (
-                <BreadcrumbSeparator>
-                  <SlashIcon />
-                </BreadcrumbSeparator>
-              )}
+              <BreadcrumbSeparator>
+                <SlashIcon />
+              </BreadcrumbSeparator>
+
+              <BreadcrumbItem>
+                <a href={links.slice(0, links.length - 3).join("/")}>
+                  <BreadcrumbEllipsis />
+                </a>
+              </BreadcrumbItem>
+
+              <BreadcrumbSeparator>
+                <SlashIcon />
+              </BreadcrumbSeparator>
+
+              <BreadcrumbLink
+                href={links.slice(0, links.length - 2).join("/")}
+                className={cn("capitalize")}
+              >
+                {links[links.length - 2]}
+              </BreadcrumbLink>
+
+              <BreadcrumbSeparator>
+                <SlashIcon />
+              </BreadcrumbSeparator>
+
+              <BreadcrumbLink
+                href={links.slice(0, links.length - 1).join("/")}
+                className={cn("capitalize")}
+              >
+                {links[links.length - 1]}
+              </BreadcrumbLink>
             </Fragment>
-          ))}
+          )}
         </BreadcrumbList>
       </Breadcrumb>
     </div>

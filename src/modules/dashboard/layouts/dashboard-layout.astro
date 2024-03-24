@@ -1,11 +1,20 @@
 ---
 import DashboardHeader from "@/common/components/custom/dashboard/dashboard-header";
+import DashboardTitle from "@/common/components/custom/dashboard/dashboard-title";
 import SideBar from "@/common/components/custom/side-bar/side-bar";
 import RootLayout from "@/common/layouts/root-layout.astro";
+import DataButtons from "@/modules/dashboard/composites/data-buttons";
 
 export const prerender = false;
 
-const pathname = Astro.url.pathname;
+interface Props {
+  dashboardTitle: string;
+}
+
+const url = Astro.url;
+const pathname = url.pathname;
+
+const { dashboardTitle } = Astro.props;
 ---
 
 <RootLayout title="Le-Insight | Dashboard">
@@ -26,6 +35,15 @@ const pathname = Astro.url.pathname;
       <section
         class="h-full w-full space-y-6 overflow-x-auto rounded-xl bg-background p-6"
       >
+        <section class="flex items-center justify-between">
+          <DashboardTitle
+            title={dashboardTitle}
+            url={url}
+          />
+
+          <DataButtons />
+        </section>
+
         <slot />
       </section>
     </section>
