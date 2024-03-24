@@ -55,7 +55,7 @@ export default function SideBar({
         <Logo />
       </a>
 
-      <Separator className="mx-auto h-[0.03rem] w-4/5" />
+      <Separator className="mx-auto w-4/5" />
 
       <SideNav
         pathname={pathname}
@@ -106,7 +106,7 @@ export default function SideBar({
         ]}
       />
 
-      <Separator className="mx-auto h-[0.03rem] w-4/5" />
+      <Separator className="mx-auto w-4/5" />
 
       <SideNav
         pathname={pathname}
@@ -136,7 +136,7 @@ export default function SideBar({
         ]}
       />
 
-      <Separator className="mx-auto h-[0.03rem] w-4/5" />
+      <Separator className="mx-auto w-4/5" />
 
       <SideNav
         pathname={pathname}

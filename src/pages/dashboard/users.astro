@@ -1,5 +1,20 @@
 ---
+import DashboardTitle from "@/common/components/custom/dashboard/dashboard-title";
+import DataButtons from "@/modules/dashboard/composites/data-buttons";
 import DashboardLayout from "@/modules/dashboard/layouts/dashboard-layout.astro";
+
+export const prerender = false;
+
+const url = Astro.url;
 ---
 
-<DashboardLayout> ... </DashboardLayout>
+<DashboardLayout>
+  <section class="flex items-center justify-between">
+    <DashboardTitle
+      title="User"
+      url={url}
+    />
+
+    <DataButtons />
+  </section>
+</DashboardLayout>
