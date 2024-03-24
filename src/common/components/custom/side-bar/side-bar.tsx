@@ -29,7 +29,7 @@ export default function SideBar({
   className?: string;
   pathname: string;
 }) {
-  const { isCollapsed } = useStore($sidebar);
+  const isCollapsed = useStore($sidebar);
 
   return (
     <aside

@@ -5,9 +5,9 @@ import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
+import ModeToggle from "@/common/components/custom/theme";
 import { H1 } from "@/common/components/ui/h1";
 import { ChevronLeftIcon, DotIcon } from "lucide-react";
-import ModeToggle from "@/common/components/custom/theme";
 
 interface Props {
   title: string;
@@ -94,7 +94,7 @@ const { title, description, className, hideSignIn } = Astro.props;
     >
       <Separator
         orientation="vertical"
-        className="h-full w-[0.031rem] bg-foreground"
+        className="h-full w-[1px] bg-foreground"
       />
 
       <div class="flex w-fit flex-col items-start justify-center">
@@ -103,7 +103,7 @@ const { title, description, className, hideSignIn } = Astro.props;
 
       <Separator
         orientation="vertical"
-        className="h-full w-[0.031rem] bg-foreground"
+        className="h-full w-[1px] bg-foreground"
       />
     </div>
   </section>

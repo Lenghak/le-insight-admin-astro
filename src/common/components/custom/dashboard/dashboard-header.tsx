@@ -9,8 +9,7 @@ import { useStore } from "@nanostores/react";
 import { MenuIcon, SearchIcon } from "lucide-react";
 
 export default function DashboardHeader() {
-
-  const { isCollapsed } = useStore($sidebar);
+  const isCollapsed = useStore($sidebar);
 
   return (
     <header className="relative flex h-16 w-full flex-row items-center justify-center gap-4 bg-card px-2">
@@ -31,7 +30,7 @@ export default function DashboardHeader() {
         <Input
           type="text"
           placeholder="Search Le-Insight"
-          className="w-full rounded-full bg-background border-0 pl-12 placeholder:ml-12 placeholder:text-center"
+          className="w-full rounded-full border-0 bg-background pl-12 placeholder:ml-12 placeholder:text-center"
         />
 
         <SearchIcon className="absolute left-4 h-4 w-4 text-muted-foreground" />

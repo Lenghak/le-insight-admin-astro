@@ -294,6 +294,9 @@ dependencies:
   embla-carousel-react:
     specifier: 8.0.0
     version: 8.0.0(react@18.2.0)
+  jotai:
+    specifier: ^2.7.1
+    version: 2.7.1(@types/react@18.2.69)(react@18.2.0)
   lodash:
     specifier: ^4.17.21
     version: 4.17.21

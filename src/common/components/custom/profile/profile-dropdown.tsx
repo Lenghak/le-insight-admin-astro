@@ -30,7 +30,7 @@ export default function ProfileDropdown() {
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage />
-          <AvatarFallback>
+          <AvatarFallback className="bg-background">
             {isClient && (res?.data?.user?.first_name[0] ?? "?")}
           </AvatarFallback>
         </Avatar>
