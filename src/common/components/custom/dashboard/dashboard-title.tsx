@@ -42,7 +42,7 @@ export default function DashboardTitle({
                         : links.slice(0, index - 1).join("/")
                     }
                     className={cn(
-                      "capitalize",
+                      "capitalize underline-offset-4 hover:underline",
                       index === links.length - 1 && "font-bold text-foreground",
                     )}
                   >
@@ -82,7 +82,7 @@ export default function DashboardTitle({
 
               <BreadcrumbLink
                 href={links.slice(0, links.length - 2).join("/")}
-                className={cn("capitalize")}
+                className={cn("capitalize underline-offset-4 hover:underline")}
               >
                 {links[links.length - 2]}
               </BreadcrumbLink>
@@ -93,7 +93,7 @@ export default function DashboardTitle({
 
               <BreadcrumbLink
                 href={links.slice(0, links.length - 1).join("/")}
-                className={cn("capitalize")}
+                className={cn("capitalize underline-offset-4 hover:underline")}
               >
                 {links[links.length - 1]}
               </BreadcrumbLink>

@@ -23,6 +23,7 @@ export default defineConfig({
             attributes: {
               first_name: profile?.attributes["first_name"] as string | null,
               last_name: profile?.attributes["last_name"] as string | null,
+              image_url: profile?.attributes["image_url"] as string | null,
               ...res.data.data.attributes,
             },
             ...res.data.meta,

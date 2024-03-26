@@ -26,7 +26,7 @@ export default function DashboardHeader() {
       </Button>
 
       {/* Search  */}
-      <div className="absolute flex w-full max-w-md items-center justify-center">
+      <div className="absolute flex w-full max-w-md items-center justify-center opacity-0 transition-all md:opacity-100">
         <Input
           type="text"
           placeholder="Search Le-Insight"

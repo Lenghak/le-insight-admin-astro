@@ -5,6 +5,7 @@ declare module "@auth/core/types" {
     user: {
       type: string;
       id: string;
+      image_url: string;
       profile_id: string;
       phone: string;
       email: string;
