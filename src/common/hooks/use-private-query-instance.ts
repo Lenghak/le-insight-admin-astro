@@ -5,8 +5,10 @@ import {
   createQueryInstance,
   getPublicQueryInstance,
 } from "@/common/stores/api-store";
+import { signOut } from "auth-astro/client";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function usePrivateQueryInstance() {
   const { data: session } = useSessionService();
@@ -32,11 +34,19 @@ export default function usePrivateQueryInstance() {
           if (err.response?.status === 401 && !prevConf?.sent) {
             prevConf.sent = true;
 
-            const { data: res } = await refreshToken(
+            const { data: res, status: refreshStatus } = await refreshToken(
               createQueryInstance({
                 headers: { Authorization: `Bearer ${tokens?.rt}` },
               }),
             );
+
+            if (refreshStatus >= 400 && refreshStatus < 500) {
+              toast.info("Your session has expired.");
+
+              signOut()
+                .then((res) => res)
+                .catch((_) => {});
+            }
 
             // @ts-expect-error session.data is probably null
             session.data.tokens = res.data.attributes;

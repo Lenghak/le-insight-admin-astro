@@ -45,6 +45,7 @@ declare module "@auth/core/jwt" {
       banned_until: string;
       deleted_at: string;
       invited_at: string;
+      image_url: string;
       confirmed_at: string;
       confirmation_sent_at: string;
       created_at: string;

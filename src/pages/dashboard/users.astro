@@ -1,7 +1,23 @@
 ---
 import DashboardLayout from "@/modules/dashboard/layouts/dashboard-layout.astro";
+import UsersTable from "@/modules/dashboard/subs/users/composites/users-table";
 
 export const prerender = false;
+
+const searchParams = Astro.url.searchParams;
+const limit = searchParams.get("limit");
+const q = searchParams.get("q");
+const page = searchParams.get("page");
 ---
 
-<DashboardLayout dashboardTitle="Users" />
+<DashboardLayout dashboardTitle="Users">
+  <!-- Tabs -->
+
+  <!-- Tables -->
+  <UsersTable
+    client:load
+    limit={parseInt(limit ?? "10")}
+    page={parseInt(page ?? "1")}
+    q={q ?? undefined}
+  />
+</DashboardLayout>
