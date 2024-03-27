@@ -1,5 +1,6 @@
 import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
 
+import ProfileBadge from "@/common/components/custom/profile/profile-badge";
 import { DataTableColumnHeader } from "@/common/components/custom/table";
 import { Button } from "@/common/components/ui/button";
 import { Checkbox } from "@/common/components/ui/checkbox";
@@ -52,22 +53,24 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
       `${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`,
   },
   {
-    accessorKey: "profile.first_name",
+    accessorKey: "profile",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="First Name"
+        title="Profile"
       />
     ),
-  },
-  {
-    accessorKey: "profile.last_name",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Last Name"
-      />
-    ),
+    cell: ({ row }) => {
+      const data = row.original;
+      return (
+        <ProfileBadge
+          email={data.email}
+          firstName={data.profile.first_name}
+          lastName={data.profile.last_name}
+          imageURL={data.profile.image_url ?? undefined}
+        />
+      );
+    },
   },
   {
     accessorKey: "profile.sex",
@@ -112,7 +115,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Created Date"
+        title="Cre. Date"
       />
     ),
     cell: ({ getValue }) =>
@@ -127,7 +130,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Updated Date"
+        title="Up. Date"
       />
     ),
     cell: ({ getValue }) =>

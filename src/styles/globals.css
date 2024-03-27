@@ -118,11 +118,11 @@
   }
   
   html {
-    @apply w-screen h-full flex items-start justify-center flex-col
+    @apply w-dvw h-dvh flex items-start justify-center flex-col
   }
 
   body {
-    @apply bg-background text-foreground h-dvh w-screen overflow-hidden font-sans scroll-smooth relative;
+    @apply bg-background text-foreground h-full w-full overflow-hidden font-sans scroll-smooth relative;
     font-feature-settings:
       'rlig' 1,
       'calt' 1;

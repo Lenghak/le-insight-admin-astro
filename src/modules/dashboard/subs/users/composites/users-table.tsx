@@ -12,11 +12,10 @@ export default function UsersTable({ ...props }: UsersTableProps) {
   const users = res?.data?.data;
 
   return (
-    <section className="mt-4">
-      <DataTable
-        columns={userColumns}
-        data={users ?? []}
-      />
-    </section>
+    <DataTable
+      columns={userColumns}
+      data={users ?? []}
+      className="mt-4 w-full"
+    />
   );
 }

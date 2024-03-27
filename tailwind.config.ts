@@ -26,6 +26,10 @@ export default {
         sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
         // monospace: ["Roboto Mono Variable", defaultTheme.fontFamily.mono],
       },
+      fontSize: {
+        ...defaultTheme.fontSize,
+        xxs: ["0.5rem", "1rem"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

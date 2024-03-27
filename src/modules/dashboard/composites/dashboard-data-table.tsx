@@ -7,6 +7,8 @@ import {
   TableRow,
 } from "@/common/components/ui/table";
 
+import { cn } from "@/common/lib/utils";
+
 import {
   type ColumnDef,
   flexRender,
@@ -18,10 +20,12 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  className?: string;
 }
 
 export default function DataTable<TData, TValue>({
   columns,
+  className,
   data,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
@@ -32,7 +36,7 @@ export default function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border bg-card">
+    <div className={cn("w-dvw rounded-md border bg-card", className)}>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

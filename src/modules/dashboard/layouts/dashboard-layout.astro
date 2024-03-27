@@ -1,9 +1,9 @@
 ---
-import DashboardHeader from "@/modules/dashboard/composites/dashboard-header";
-import DashboardTitle from "@/modules/dashboard/composites/dashboard-title";
 import SideBar from "@/common/components/custom/side-bar/side-bar";
 import RootLayout from "@/common/layouts/root-layout.astro";
 import DataButtons from "@/modules/dashboard/composites/dashboard-data-buttons";
+import DashboardHeader from "@/modules/dashboard/composites/dashboard-header";
+import DashboardTitle from "@/modules/dashboard/composites/dashboard-title";
 
 export const prerender = false;
 
@@ -18,7 +18,9 @@ const { dashboardTitle } = Astro.props;
 ---
 
 <RootLayout title="Le-Insight | Dashboard">
-  <main class="grid h-full grid-cols-[auto,_1fr] grid-rows-[auto,_1fr] bg-card">
+  <main
+    class="grid h-full w-screen grid-cols-[auto,_1fr] grid-rows-[auto,_1fr] bg-card"
+  >
     <SideBar
       client:load
       transition:persist
@@ -31,21 +33,19 @@ const { dashboardTitle } = Astro.props;
       transition:persist
     />
 
-    <section class="h-full w-full pb-4 pr-4">
-      <section
-        class="h-full w-full space-y-6 overflow-x-auto rounded-xl bg-background p-6"
-      >
-        <section class="flex items-center justify-between">
-          <DashboardTitle
-            title={dashboardTitle}
-            url={url}
-          />
+    <section
+      class="h-full w-full space-y-6 overflow-x-auto rounded-xl bg-background p-6 pb-4 pr-4"
+    >
+      <section class="flex items-center justify-between">
+        <DashboardTitle
+          title={dashboardTitle}
+          url={url}
+        />
 
-          <DataButtons />
-        </section>
-
-        <slot />
+        <DataButtons />
       </section>
+
+      <slot />
     </section>
   </main>
 </RootLayout>
