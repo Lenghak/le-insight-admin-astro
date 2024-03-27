@@ -10,11 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/common/components/ui/dropdown-menu";
 
+import formatDate from "@/common/lib/date/format-date";
+
 import { type ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontalIcon } from "lucide-react";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 
 export const userColumns: ColumnDef<UsersTableType>[] = [
   {
@@ -27,7 +26,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
-        className="h-[1.125rem] w-[1.125rem] rounded-full [&>*>svg]:h-3 [&>span>svg]:w-3"
+        className="h-[1.125rem] w-[1.125rem] rounded-full border-input [&>*>svg]:h-3 [&>span>svg]:w-3"
       />
     ),
     cell: ({ row }) => (
@@ -35,7 +34,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="h-[1.125rem] w-[1.125rem] rounded-full [&>*>svg]:h-3 [&>span>svg]:w-3"
+        className="h-[1.125rem] w-[1.125rem] rounded-full border-input [&>*>svg]:h-3 [&>span>svg]:w-3"
       />
     ),
     enableSorting: false,
@@ -49,6 +48,8 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="ID"
       />
     ),
+    cell: ({ getValue }) =>
+      `${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`,
   },
   {
     accessorKey: "profile.first_name",
@@ -103,7 +104,8 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Phone"
       />
     ),
-    cell: ({ getValue }) => getValue() ?? "-",
+    cell: ({ getValue }) =>
+      getValue() ?? <span className="inline-block w-full text-center">-</span>,
   },
   {
     accessorKey: "created_at",
@@ -113,7 +115,12 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Created Date"
       />
     ),
-    cell: ({ getValue }) => getValue() ?? "-",
+    cell: ({ getValue }) =>
+      getValue() ? (
+        formatDate(getValue() as string)
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
   },
   {
     accessorKey: "updated_at",
@@ -123,7 +130,12 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Updated Date"
       />
     ),
-    cell: ({ getValue }) => getValue() ?? "-",
+    cell: ({ getValue }) =>
+      getValue() ? (
+        formatDate(getValue() as string)
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
   },
   {
     id: "actions",

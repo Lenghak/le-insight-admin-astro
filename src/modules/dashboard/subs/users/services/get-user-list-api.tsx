@@ -5,7 +5,7 @@ import type { AxiosInstance, AxiosResponse } from "axios";
 
 import type { PaginationRequestType } from "@/common/types/pagination-type";
 
-export default function getUsersAPI(
+export default async function getUsersAPI(
   pagination: PaginationRequestType,
   queryInstance?: AxiosInstance,
 ) {

@@ -36,11 +36,13 @@ export default function DashboardTitle({
               <Fragment key={index}>
                 <BreadcrumbItem>
                   <BreadcrumbLink
-                    href={
+                    href={`/${
                       index === 0
-                        ? "/" + links[0]
-                        : links.slice(0, index - 1).join("/")
-                    }
+                        ? links[0]
+                        : index === links.length - 1
+                          ? links.join("/")
+                          : links.slice(0, index - 1).join("/")
+                    }`}
                     className={cn(
                       "capitalize underline-offset-4 hover:underline",
                       index === links.length - 1 && "font-bold text-foreground",

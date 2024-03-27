@@ -21,6 +21,8 @@ export default function useGetUsersListService({
         instance,
       ],
       queryFn: async () => await getUsersAPI({ limit, page, q }, instance),
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
     },
     queryClient,
   );
