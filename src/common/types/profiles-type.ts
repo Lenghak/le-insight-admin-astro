@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export const ProfileSexSchema = z.enum(["MALE", "FEMALE", "RNTS"]);
+
 export const ProfilesSchema = z.object({
   type: z.literal("profile"),
   id: z.string().uuid(),
@@ -8,7 +10,10 @@ export const ProfilesSchema = z.object({
   image_url: z.string().nullable(),
   bio: z.string().nullable(),
   gender: z.string().nullable(),
-  sex: z.enum(["MALE", "FEMALE", "RNTS"]),
+  sex: ProfileSexSchema,
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
 });
+
+export type ProfileType = z.infer<typeof ProfilesSchema>;
+export type ProfileSexType = z.infer<typeof ProfileSexSchema>;

@@ -1,3 +1,5 @@
+import { RolesBages } from "@/modules/dashboard/subs/users/constants/role-bage";
+import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
 import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
 
 import ProfileBadge from "@/common/components/custom/profile/profile-badge";
@@ -15,6 +17,9 @@ import formatDate from "@/common/lib/date/format-date";
 
 import { type ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontalIcon } from "lucide-react";
+
+import type { ProfileSexType } from "@/common/types/profiles-type";
+import type { UsersRoleType } from "@/common/types/users-type";
 
 export const userColumns: ColumnDef<UsersTableType>[] = [
   {
@@ -80,6 +85,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Sex"
       />
     ),
+    cell: ({ getValue }) => SexesBages[getValue() as ProfileSexType],
   },
   {
     accessorKey: "email",
@@ -98,6 +104,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Role"
       />
     ),
+    cell: ({ getValue }) => RolesBages[getValue() as UsersRoleType],
   },
   {
     accessorKey: "phone",
