@@ -1,4 +1,5 @@
 ---
+import type { UsersRoleType } from "@/common/types/users-type";
 import DashboardLayout from "@/modules/dashboard/layouts/dashboard-layout.astro";
 import UsersTable from "@/modules/dashboard/subs/users/composites/users-table";
 import UsersTabs from "@/modules/dashboard/subs/users/composites/users-tabs";
@@ -9,6 +10,7 @@ const searchParams = url.searchParams;
 const limit = searchParams.get("limit");
 const q = searchParams.get("q");
 const page = searchParams.get("page");
+const role = searchParams.get("role");
 ---
 
 <DashboardLayout dashboardTitle="Users">
@@ -24,6 +26,7 @@ const page = searchParams.get("page");
     client:only="react"
     limit={parseInt(limit ?? "10")}
     page={parseInt(page ?? "1")}
+    role={role !== "ALL" ? (role as UsersRoleType) : null}
     q={q ?? undefined}
   />
 </DashboardLayout>

@@ -36,9 +36,9 @@ export default function DataTable<TData, TValue>({
   });
 
   return (
-    <div className={cn("w-dvw rounded-md border bg-card", className)}>
+    <div className={cn("h-full w-dvw rounded-md border bg-card", className)}>
       <Table>
-        <TableHeader>
+        <TableHeader className="bg-accent/50">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {

@@ -1,26 +1,28 @@
 import { userKeys } from "@/modules/dashboard/subs/users/constants/query-keys";
 import getUsersAPI from "@/modules/dashboard/subs/users/services/get-user-list-api";
+import type { UsersListRequestType } from "@/modules/dashboard/subs/users/types/users-list-type";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { queryClient } from "@/common/stores/api-store";
 import { useQuery } from "@tanstack/react-query";
 
-import type { PaginationRequestType } from "@/common/types/pagination-type";
-
 export default function useGetUsersListService({
   limit,
   page,
   q,
-}: PaginationRequestType) {
+  role,
+}: UsersListRequestType) {
   const instance = usePrivateQueryInstance();
+
   return useQuery(
     {
       queryKey: [
-        ...userKeys.list(`limit=${limit}&page=${page}q=${q}`),
+        ...userKeys.list(`limit=${limit}&page=${page}q=${q}role=${role}`),
         instance,
       ],
-      queryFn: async () => await getUsersAPI({ limit, page, q }, instance),
+      queryFn: async () =>
+        (await getUsersAPI({ limit, page, q, role }, instance)) ?? null,
       refetchOnReconnect: true,
       refetchOnWindowFocus: true,
     },

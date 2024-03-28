@@ -10,11 +10,11 @@ type UsersTabsProps = {
 const TABS = ["all", "admin", "user"];
 
 export default function UsersTabs({ url }: UsersTabsProps) {
-  const activeTab = url.searchParams.get("tab") ?? "all";
+  const activeTab = url.searchParams.get("role");
   const pathname = url.pathname;
 
   return (
-    <DashboardTabList className="mt-4 border bg-card">
+    <DashboardTabList className="mt-4 w-fit border bg-card">
       {TABS.map((tab) => {
         return (
           <DashboardTab
@@ -22,11 +22,11 @@ export default function UsersTabs({ url }: UsersTabsProps) {
             pathname={pathname}
             link={true}
             href={(() => {
-              url.searchParams.set("tab", tab);
+              url.searchParams.set("role", tab.toUpperCase());
               return url.toString();
             })()}
             activeFn={() =>
-              activeTab === tab ||
+              activeTab === tab.toUpperCase() ||
               (activeTab === "all" && activeTab === undefined)
             }
             className="capitalize data-[state=active]:border"
