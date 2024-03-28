@@ -10,7 +10,8 @@ type UsersTabsProps = {
 const TABS = ["all", "admin", "user"];
 
 export default function UsersTabs({ url }: UsersTabsProps) {
-  const activeTab = url.searchParams.get("role");
+  const role = url.searchParams.get("role");
+  const activeTab = !!role ? role : "ALL";
   const pathname = url.pathname;
 
   return (
@@ -25,10 +26,7 @@ export default function UsersTabs({ url }: UsersTabsProps) {
               url.searchParams.set("role", tab.toUpperCase());
               return url.toString();
             })()}
-            activeFn={() =>
-              activeTab === tab.toUpperCase() ||
-              (activeTab === "all" && activeTab === undefined)
-            }
+            activeFn={() => activeTab === tab.toUpperCase()}
             className="capitalize data-[state=active]:border"
           >
             {tab}

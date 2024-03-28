@@ -17,7 +17,7 @@ interface SideNavProps {
     title: string;
     label?: string;
     icon: LucideIcon;
-    variant: "secondary" | "ghost" | "muted";
+    variant: "default" | "ghost" | "muted";
     link: string;
   }[];
   pathname: string;
@@ -35,7 +35,7 @@ export default function SideNav({
     >
       <nav className="grid gap-3 px-4 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-4 aria-disabled:!text-muted-foreground max-md:justify-center">
         {links.map((link, index) => {
-          link.variant = pathname === link.link ? "secondary" : "ghost";
+          link.variant = pathname === link.link ? "default" : "ghost";
 
           return isCollapsed ? (
             <TooltipProvider key={index}>
@@ -45,14 +45,14 @@ export default function SideNav({
                     href={link.link}
                     aria-disabled={link.isDisabled}
                     data-state={
-                      link.variant === "secondary" ? "active" : "inactive"
+                      link.variant === "default" ? "active" : "inactive"
                     }
                     className={cn(
                       buttonVariants({
                         variant: link.variant,
                         size: isCollapsed ? "icon" : "default",
                       }),
-                      "h-10 w-10 font-semibold hover:bg-background aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:bg-background",
+                      "h-10 w-10 font-semibold aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground",
                     )}
                   >
                     <link.icon className={cn("h-4 w-4")} />
@@ -76,7 +76,7 @@ export default function SideNav({
             <a
               href={link.link}
               aria-disabled={link.isDisabled}
-              data-state={link.variant === "secondary" ? "active" : "inactive"}
+              data-state={link.variant === "default" ? "active" : "inactive"}
               key={index}
               className={cn(
                 buttonVariants({

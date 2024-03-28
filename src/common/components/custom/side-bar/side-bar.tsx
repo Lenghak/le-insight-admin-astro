@@ -66,7 +66,7 @@ export default function SideBar({
             title: "Dashboard",
             link: "/dashboard",
             icon: PieChartIcon,
-            variant: "secondary",
+            variant: "default",
           },
           {
             isDisabled: false,
