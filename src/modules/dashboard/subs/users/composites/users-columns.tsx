@@ -1,22 +1,15 @@
+import UsersActions from "@/modules/dashboard/subs/users/composites/users-actions";
 import { RolesBages } from "@/modules/dashboard/subs/users/constants/role-bage";
 import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
 import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
 
 import ProfileBadge from "@/common/components/custom/profile/profile-badge";
 import { DataTableColumnHeader } from "@/common/components/custom/table";
-import { Button } from "@/common/components/ui/button";
 import { Checkbox } from "@/common/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/common/components/ui/dropdown-menu";
 
 import formatDate from "@/common/lib/date/format-date";
 
 import { type ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontalIcon } from "lucide-react";
 
 import type { ProfileSexType } from "@/common/types/profiles-type";
 import type { UsersRoleType } from "@/common/types/users-type";
@@ -149,33 +142,6 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
   },
   {
     id: "actions",
-    cell: () => {
-      // const payment = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="h-8 w-8 p-0"
-            >
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {/* <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem> */}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: () => <UsersActions />,
   },
 ];
