@@ -11,14 +11,14 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 
 export default function usePrivateQueryInstance() {
-  const { data: session } = useSessionService();
+  const { data: res } = useSessionService();
   const { mutateAsync: refreshToken } = useRefreshTokenService();
 
-  const tokens = session?.data?.tokens;
+  const tokens = res?.data?.session?.tokens;
   const instance = getPublicQueryInstance();
 
   useEffect(() => {
-    if (session?.data?.tokens) {
+    if (res?.data?.session?.tokens) {
       const reqInterceptor = instance.interceptors.request.use((conf) => {
         if (tokens?.at) conf.headers.Authorization = `Bearer ${tokens?.at}`;
         return conf;
@@ -49,7 +49,7 @@ export default function usePrivateQueryInstance() {
             }
 
             // @ts-expect-error session.data is probably null
-            session.data.tokens = res.data.attributes;
+            res.data.tokens = res.data.attributes;
           }
         },
       );
@@ -59,7 +59,7 @@ export default function usePrivateQueryInstance() {
         instance.interceptors.response.eject(resInterceptor);
       };
     }
-  }, [session, tokens]);
+  }, [res, tokens]);
 
   return instance;
 }

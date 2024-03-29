@@ -56,6 +56,7 @@ export default defineConfig({
         at: token.accessToken,
         rt: token.refreshToken,
       };
+
       return {
         ...session,
       };

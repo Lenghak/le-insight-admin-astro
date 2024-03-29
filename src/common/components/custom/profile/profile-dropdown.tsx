@@ -22,7 +22,7 @@ import { InfoIcon, LogOut, Settings, UserIcon } from "lucide-react";
 export default function ProfileDropdown() {
   const { mutate: signOut } = useSignOutService();
   const { data: res } = useSessionService();
-  const user = res?.data?.user;
+  const user = res?.data?.session?.user;
   const isClient = useIsClient();
 
   return (
