@@ -83,7 +83,7 @@ export default function SideNav({
                   variant: link.variant,
                   size: isCollapsed ? "icon" : "default",
                 }),
-                "gap-4 px-4 font-semibold hover:bg-background aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:bg-background data-[state=active]:font-bold max-md:h-10 max-md:w-10 md:justify-start md:px-4",
+                "gap-4 px-4 font-semibold aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:font-bold max-md:h-10 max-md:w-10 md:justify-start md:px-4",
               )}
             >
               <link.icon className={cn("h-4 min-h-4 w-4 min-w-4")} />
