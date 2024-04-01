@@ -328,8 +328,8 @@ dependencies:
     specifier: ^5.6.1
     version: 5.6.1(react-dom@18.2.0)(react@18.2.0)
   react-cookie:
-    specifier: ^7.1.0
-    version: 7.1.0(react@18.2.0)
+    specifier: ^7.1.2
+    version: 7.1.2(react@18.2.0)
   react-day-picker:
     specifier: ^8.10.0
     version: 8.10.0(date-fns@3.6.0)(react@18.2.0)
@@ -354,6 +354,9 @@ dependencies:
   react-lite-youtube-embed:
     specifier: ^2.4.0
     version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
+  react-paginate:
+    specifier: ^8.2.0
+    version: 8.2.0(react@18.2.0)
   react-resizable-panels:
     specifier: ^2.0.16
     version: 2.0.16(react-dom@18.2.0)(react@18.2.0)
@@ -8134,8 +8137,8 @@ packages:
       '@types/nlcst': 1.0.4
     dev: false
 
-  /node-abi@3.56.0:
-    resolution: {integrity: sha512-fZjdhDOeRcaS+rcpve7XuwHBmktS1nS1gzgghwKUQQ8nTy2FdSDr6ZT8k6YhvlJeHmmQMYiT/IH9hfco5zeW2Q==}
+  /node-abi@3.57.0:
+    resolution: {integrity: sha512-Dp+A9JWxRaKuHP35H77I4kCKesDy5HUDEmScia2FyncMTOXASMyg251F5PhFoDA5uqBrDDffiLpbqnrZmNXW+g==}
     engines: {node: '>=10'}
     requiresBuild: true
     dependencies:
@@ -8588,7 +8591,7 @@ packages:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.56.0
+      node-abi: 3.57.0
       pump: 3.0.0
       rc: 1.2.8
       simple-get: 4.0.1
@@ -8776,15 +8779,15 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-cookie@7.1.0(react@18.2.0):
-    resolution: {integrity: sha512-n2+Gt07/xxuShXary+SImk1sw5l7a1UguQOQEN55YewEW5LoA0opbR4nbeo8sY6OYwR37iCFJtqJ0AGEywqAtg==}
+  /react-cookie@7.1.2(react@18.2.0):
+    resolution: {integrity: sha512-zmxFrVNLl03OAM8Xnh43cg4Tz9t4K0DRToWuyQcDUf0jHZLugvCA5t3skmcKgG07L11qXltzWWJUFTF97Toj9w==}
     peerDependencies:
       react: '>= 16.3.0'
     dependencies:
       '@types/hoist-non-react-statics': 3.3.5
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
-      universal-cookie: 7.1.0
+      universal-cookie: 7.1.2
     dev: false
 
   /react-day-picker@8.10.0(date-fns@3.6.0)(react@18.2.0):
@@ -8892,6 +8895,15 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-paginate@8.2.0(react@18.2.0):
+    resolution: {integrity: sha512-sJCz1PW+9PNIjUSn919nlcRVuleN2YPoFBOvL+6TPgrH/3lwphqiSOgdrLafLdyLDxsgK+oSgviqacF4hxsDIw==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-refresh@0.14.0:
@@ -10136,8 +10148,8 @@ packages:
       unist-util-visit-parents: 6.0.1
     dev: false
 
-  /universal-cookie@7.1.0:
-    resolution: {integrity: sha512-LCLHwP0whxTqkBYMptW1dzNS0xxIVJmU6c51N5CfPNheVxuJW7fVxPa6MUGX7boUSyOlpMveBO96hMs5Gee6Fg==}
+  /universal-cookie@7.1.2:
+    resolution: {integrity: sha512-GK9ygNUNk+u1umTtFoWItePuIGYy0TEu2w084mfjBpIIg9pikcN18EM6IMt+9VJCyR3uftu3yF2fFUMbwH1Kdw==}
     dependencies:
       '@types/cookie': 0.6.0
       cookie: 0.6.0

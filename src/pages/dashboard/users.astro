@@ -1,16 +1,13 @@
 ---
-import type { UsersRoleType } from "@/common/types/users-type";
-import DashboardLayout from "@/modules/dashboard/layouts/dashboard-layout.astro";
-import UsersTable from "@/modules/dashboard/subs/users/composites/users-table";
-import UsersTabs from "@/modules/dashboard/subs/users/composites/users-tabs";
+import { setURLStore } from "@/common/stores/url-store";
+import DashboardLayout from "@dashboard/layouts/dashboard-layout.astro";
+import UsersTable from "@dashboard/subs/users/composites/users-table";
+import UsersTabs from "@dashboard/subs/users/composites/users-tabs";
 
 export const prerender = false;
 const url = Astro.url;
-const searchParams = url.searchParams;
-const limit = searchParams.get("limit");
-const q = searchParams.get("q");
-const page = searchParams.get("page");
-const role = searchParams.get("role");
+
+setURLStore(url);
 ---
 
 <DashboardLayout dashboardTitle="Users">
@@ -18,15 +15,8 @@ const role = searchParams.get("role");
   <UsersTabs
     client:only="react"
     transition:persist
-    url={url}
   />
 
   <!-- Tables -->
-  <UsersTable
-    client:only="react"
-    limit={parseInt(limit ?? "10")}
-    page={parseInt(page ?? "1")}
-    role={role !== "ALL" ? (role as UsersRoleType) : null}
-    q={q ?? undefined}
-  />
+  <UsersTable client:only="react" />
 </DashboardLayout>

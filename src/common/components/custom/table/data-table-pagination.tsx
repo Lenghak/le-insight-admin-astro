@@ -1,4 +1,5 @@
-import { Button } from "@/common/components/ui/button";
+import { buttonVariants } from "@/common/components/ui/button";
+import { PaginationEllipsis } from "@/common/components/ui/pagination";
 import {
   Select,
   SelectContent,
@@ -7,34 +8,51 @@ import {
   SelectValue,
 } from "@/common/components/ui/select";
 
-import { type Table } from "@tanstack/react-table";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronsLeftIcon,
-  ChevronsRightIcon,
-} from "lucide-react";
+import { cn } from "@/common/lib/utils";
 
-interface DataTablePaginationProps<TData> {
+import { $urlStore, setURLStore } from "@/common/stores/url-store";
+import { useStore } from "@nanostores/react";
+import type { Table } from "@tanstack/react-table";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import ReactPaginate, { type ReactPaginateProps } from "react-paginate";
+
+export type PaginatedItemsProps<TData> = ReactPaginateProps & {
   table: Table<TData>;
-}
+};
 
 export function DataTablePagination<TData>({
+  className,
+  activeClassName,
+  activeLinkClassName,
   table,
-}: DataTablePaginationProps<TData>) {
+  ...props
+}: PaginatedItemsProps<TData>) {
+  const url = useStore($urlStore);
+  const searchParams = url.searchParams;
+
   return (
-    <div className="flex items-center justify-between px-2">
+    <section
+      className={cn("flex items-center justify-between px-4 py-2", className)}
+    >
       <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{" "}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
+        <span className="font-bold">
+          {table.getFilteredSelectedRowModel().rows.length}
+        </span>{" "}
+        of{" "}
+        <span className="font-bold">
+          {table.getFilteredRowModel().rows.length}
+        </span>{" "}
+        row(s) selected.
       </div>
+
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
           <p className="text-sm font-medium">Rows per page</p>
           <Select
-            value={`${table.getState().pagination.pageSize}`}
+            value={`${searchParams.get("limit") ?? "50"}`}
             onValueChange={(value) => {
-              table.setPageSize(Number(value));
+              url.searchParams.set("limit", value);
+              setURLStore(url);
             }}
           >
             <SelectTrigger className="h-8 w-[70px]">
@@ -52,49 +70,50 @@ export function DataTablePagination<TData>({
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-[100px] items-center justify-center text-sm font-medium">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(0)}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className="sr-only">Go to first page</span>
-            <ChevronsLeftIcon className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 p-0"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            <span className="sr-only">Go to previous page</span>
-            <ChevronLeftIcon className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            className="h-8 w-8 p-0"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className="sr-only">Go to next page</span>
-            <ChevronRightIcon className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-            disabled={!table.getCanNextPage()}
-          >
-            <span className="sr-only">Go to last page</span>
-            <ChevronsRightIcon className="h-4 w-4" />
-          </Button>
-        </div>
+
+        <ReactPaginate
+          breakLabel={<PaginationEllipsis />}
+          previousLabel={
+            <div className="flex items-center gap-2">
+              <ChevronLeftIcon className="h-4 w-4" />
+              <span>Previous</span>
+            </div>
+          }
+          previousLinkClassName={cn(
+            buttonVariants({ variant: "outline", size: "sm" }),
+            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground",
+          )}
+          nextLabel={
+            <div className="flex items-center gap-2">
+              <span>Next</span>
+              <ChevronRightIcon className="h-4 w-4" />
+            </div>
+          }
+          nextLinkClassName={cn(
+            buttonVariants({ variant: "outline", size: "sm" }),
+            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground",
+          )}
+          disabledClassName="text-muted-foreground"
+          pageClassName={cn(buttonVariants({ size: "icon", variant: "ghost" }))}
+          pageLinkClassName={cn(
+            "font-semibold w-full h-full flex items-center justify-center rounded-full",
+          )}
+          activeClassName={cn(
+            buttonVariants({
+              size: "icon",
+              variant: "outline",
+            }),
+            "min-w-9 min-h-9 h-9 w-9",
+            activeClassName,
+          )}
+          activeLinkClassName={cn(activeLinkClassName)}
+          pageRangeDisplayed={1}
+          className={cn("flex w-fit items-center justify-center gap-2")}
+          renderOnZeroPageCount={null}
+          forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
+          {...props}
+        />
       </div>
-    </div>
+    </section>
   );
 }

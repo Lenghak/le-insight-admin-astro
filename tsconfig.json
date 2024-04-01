@@ -11,7 +11,9 @@
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@dashboard/*": ["./src/modules/dashboard/*"],
+      "@auth/*": ["./src/modules/auth/*"]
     }
   }
 }
