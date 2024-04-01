@@ -32,22 +32,22 @@ export function DataTablePagination<TData>({
 
   return (
     <section
-      className={cn("flex items-center justify-between px-4 py-2", className)}
+      className={cn("flex items-center justify-between pt-2", className)}
     >
-      <div className="flex-1 text-sm text-muted-foreground">
-        <span className="font-bold">
+      <div className="w-fit rounded-full border bg-card py-2 pl-2 pr-4 text-sm font-semibold text-muted-foreground">
+        <span className="mr-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-background p-2 font-bold text-foreground">
           {table.getFilteredSelectedRowModel().rows.length}
         </span>{" "}
         of{" "}
-        <span className="font-bold">
+        <span className="mx-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-background p-2 font-bold text-foreground">
           {table.getFilteredRowModel().rows.length}
         </span>{" "}
         row(s) selected.
       </div>
 
-      <div className="flex items-center space-x-6 lg:space-x-8">
+      <div className="flex items-center space-x-6 rounded-full border bg-card py-2 pl-4 pr-2 lg:space-x-8">
         <div className="flex items-center space-x-2">
-          <p className="text-sm font-medium">Rows per page</p>
+          <p className="text-sm font-semibold text-muted-foreground">Rows</p>
           <Select
             value={`${searchParams.get("limit") ?? "50"}`}
             onValueChange={(value) => {
@@ -55,7 +55,7 @@ export function DataTablePagination<TData>({
               setURLStore(url);
             }}
           >
-            <SelectTrigger className="h-8 w-[70px]">
+            <SelectTrigger className="h-8 w-[70px] rounded-full font-bold">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
@@ -63,6 +63,7 @@ export function DataTablePagination<TData>({
                 <SelectItem
                   key={pageSize}
                   value={`${pageSize}`}
+                  className="font-semibold"
                 >
                   {pageSize}
                 </SelectItem>
@@ -72,26 +73,27 @@ export function DataTablePagination<TData>({
         </div>
 
         <ReactPaginate
+          className={cn("flex w-fit items-center justify-center gap-2")}
           breakLabel={<PaginationEllipsis />}
           previousLabel={
             <div className="flex items-center gap-2">
               <ChevronLeftIcon className="h-4 w-4" />
-              <span>Previous</span>
+              <span className="sr-only">Previous</span>
             </div>
           }
           previousLinkClassName={cn(
-            buttonVariants({ variant: "outline", size: "sm" }),
-            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground",
+            buttonVariants({ variant: "outline", size: "icon" }),
+            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
           )}
           nextLabel={
             <div className="flex items-center gap-2">
-              <span>Next</span>
+              <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-4 w-4" />
             </div>
           }
           nextLinkClassName={cn(
-            buttonVariants({ variant: "outline", size: "sm" }),
-            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground",
+            buttonVariants({ variant: "outline", size: "icon" }),
+            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
           )}
           disabledClassName="text-muted-foreground"
           pageClassName={cn(buttonVariants({ size: "icon", variant: "ghost" }))}
@@ -108,7 +110,6 @@ export function DataTablePagination<TData>({
           )}
           activeLinkClassName={cn(activeLinkClassName)}
           pageRangeDisplayed={1}
-          className={cn("flex w-fit items-center justify-center gap-2")}
           renderOnZeroPageCount={null}
           forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
           {...props}

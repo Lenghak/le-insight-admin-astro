@@ -101,7 +101,7 @@ export default function DataTable<TData, TValue>({
       <DataTablePagination
         table={table}
         pageCount={1}
-        className="mt-4 rounded-lg border bg-card"
+        className="mt-2"
       />
     </Fragment>
   );
