@@ -13,7 +13,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@dashboard/*": ["./src/modules/dashboard/*"],
-      "@auth/*": ["./src/modules/auth/*"]
+      "@auth/*": ["./src/modules/auth/*"],
+      "@ui/*": ["./src/common/components/ui/*"]
     }
   }
 }

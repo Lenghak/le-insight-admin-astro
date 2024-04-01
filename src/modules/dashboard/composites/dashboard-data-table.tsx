@@ -19,9 +19,12 @@ import {
 } from "@tanstack/react-table";
 import { Fragment } from "react/jsx-runtime";
 
+import type { PaginationMetaType } from "@/common/types/pagination-type";
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  meta?: PaginationMetaType;
   className?: string;
 }
 
@@ -29,6 +32,7 @@ export default function DataTable<TData, TValue>({
   columns,
   className,
   data,
+  meta,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -41,7 +45,7 @@ export default function DataTable<TData, TValue>({
     <Fragment>
       <div
         className={cn(
-          "flex h-full w-dvw flex-col justify-between rounded-md border bg-card",
+          "flex h-full w-dvw flex-col justify-between overflow-hidden rounded-2xl border bg-card",
           className,
         )}
       >
@@ -100,7 +104,7 @@ export default function DataTable<TData, TValue>({
 
       <DataTablePagination
         table={table}
-        pageCount={1}
+        pageCount={(meta?.totalPages ?? 1) - 1}
         className="mt-2"
       />
     </Fragment>

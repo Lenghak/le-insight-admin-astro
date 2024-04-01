@@ -20,7 +20,7 @@ export type PaginatedItemsProps<TData> = ReactPaginateProps & {
   table: Table<TData>;
 };
 
-export function DataTablePagination<TData>({
+export default function DataTablePagination<TData>({
   className,
   activeClassName,
   activeLinkClassName,
@@ -45,40 +45,14 @@ export function DataTablePagination<TData>({
         row(s) selected.
       </div>
 
-      <div className="flex items-center space-x-6 rounded-full border bg-card py-2 pl-4 pr-2 lg:space-x-8">
-        <div className="flex items-center space-x-2">
-          <p className="text-sm font-semibold text-muted-foreground">Rows</p>
-          <Select
-            value={`${searchParams.get("limit") ?? "50"}`}
-            onValueChange={(value) => {
-              url.searchParams.set("limit", value);
-              setURLStore(url);
-            }}
-          >
-            <SelectTrigger className="h-8 w-[70px] rounded-full font-bold">
-              <SelectValue placeholder={table.getState().pagination.pageSize} />
-            </SelectTrigger>
-            <SelectContent side="top">
-              {[10, 20, 30, 40, 50].map((pageSize) => (
-                <SelectItem
-                  key={pageSize}
-                  value={`${pageSize}`}
-                  className="font-semibold"
-                >
-                  {pageSize}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
+      <div className="w-fit rounded-full border bg-card p-2 text-sm font-semibold text-muted-foreground">
         <ReactPaginate
           className={cn("flex w-fit items-center justify-center gap-2")}
           breakLabel={<PaginationEllipsis />}
           previousLabel={
             <div className="flex items-center gap-2">
               <ChevronLeftIcon className="h-4 w-4" />
-              <span className="sr-only">Previous</span>
+              <span>Previous</span>
             </div>
           }
           previousLinkClassName={cn(
@@ -87,7 +61,7 @@ export function DataTablePagination<TData>({
           )}
           nextLabel={
             <div className="flex items-center gap-2">
-              <span className="sr-only">Next</span>
+              <span>Next</span>
               <ChevronRightIcon className="h-4 w-4" />
             </div>
           }
@@ -111,9 +85,35 @@ export function DataTablePagination<TData>({
           activeLinkClassName={cn(activeLinkClassName)}
           pageRangeDisplayed={1}
           renderOnZeroPageCount={null}
-          forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
+          forcePage={parseInt(searchParams.get("page") ?? "-1") - 1}
           {...props}
         />
+      </div>
+
+      <div className="flex items-center space-x-2 rounded-full border bg-card py-2 pl-4 pr-2 lg:space-x-8">
+        <p className="text-sm font-semibold text-muted-foreground">Rows</p>
+        <Select
+          value={`${searchParams.get("limit") ?? "50"}`}
+          onValueChange={(value) => {
+            url.searchParams.set("limit", value);
+            setURLStore(url);
+          }}
+        >
+          <SelectTrigger className="h-8 w-[70px] rounded-full font-bold">
+            <SelectValue placeholder={table.getState().pagination.pageSize} />
+          </SelectTrigger>
+          <SelectContent side="top">
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <SelectItem
+                key={pageSize}
+                value={`${pageSize}`}
+                className="font-semibold"
+              >
+                {pageSize}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </section>
   );

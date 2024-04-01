@@ -1,8 +1,9 @@
 ---
 import { setURLStore } from "@/common/stores/url-store";
+import UsersTabs from "@/modules/dashboard/subs/users/composites/users-tabs";
 import DashboardLayout from "@dashboard/layouts/dashboard-layout.astro";
+import UsersFilters from "@dashboard/subs/users/composites/users-filters";
 import UsersTable from "@dashboard/subs/users/composites/users-table";
-import UsersTabs from "@dashboard/subs/users/composites/users-tabs";
 
 export const prerender = false;
 const url = Astro.url;
@@ -12,10 +13,14 @@ setURLStore(url);
 
 <DashboardLayout dashboardTitle="Users">
   <!-- Tabs -->
-  <UsersTabs
-    client:only="react"
-    transition:persist
-  />
+  <div class="mt-4 flex h-fit items-center justify-between">
+    <UsersFilters client:only="react" />
+
+    <UsersTabs
+      client:only="react"
+      transition:persist
+    />
+  </div>
 
   <!-- Tables -->
   <UsersTable client:only="react" />

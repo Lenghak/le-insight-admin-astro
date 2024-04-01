@@ -7,14 +7,12 @@ import { Fragment } from "react/jsx-runtime";
 
 export default function UsersTable() {
   const { data: res } = useUsersTableHandler();
-
-  const users = res?.data?.data;
-
   return (
     <Fragment>
       <DataTable
         columns={userColumns}
-        data={users ?? []}
+        data={res?.data?.data ?? []}
+        meta={res?.data?.meta?.pagination}
         className="mt-4 w-full"
       />
 

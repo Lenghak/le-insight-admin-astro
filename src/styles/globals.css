@@ -49,19 +49,19 @@
     --background: 0 0% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 9%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 98%;
     
-    --popover: 0 0% 9%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
     
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
     
-    --secondary: 0 0% 9%;
+    --secondary: 0 0% 8%;
     --secondary-foreground: 0 0% 98%;
     
-    --muted: 0 0% 9%;
+    --muted: 0 0% 15%;
     --muted-foreground: 0 0% 63.9%;
     
     --accent: 0 0% 15%;

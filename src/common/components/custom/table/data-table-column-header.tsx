@@ -23,7 +23,7 @@ interface DataTableColumnHeaderProps<TData, TValue>
   title: string;
 }
 
-export function DataTableColumnHeader<TData, TValue>({
+export default function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
@@ -53,7 +53,10 @@ export function DataTableColumnHeader<TData, TValue>({
             )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
+        <DropdownMenuContent
+          align="start"
+          className="font-semibold"
+        >
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
             <ArrowUpIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             Asc

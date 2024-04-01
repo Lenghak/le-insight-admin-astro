@@ -16,6 +16,7 @@ module.exports = {
   ],
   importOrder: [
     "^@/modules/(.*)$",
+    "^@ui/(.*)$",
     "^@/common/layouts/(.*)$",
     "^@/common/components/(.*)$",
     "^@/common/hooks/(.*)$",
