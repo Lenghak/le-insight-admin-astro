@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@/common/components/ui/button";
+import { Button } from "@/common/components/ui/button";
 import {
   Form,
   FormControl,
@@ -58,14 +58,10 @@ export default function DataTableSearch({
                 <div className="group flex w-full max-w-sm items-center justify-center transition-all">
                   <div
                     className={cn(
-                      buttonVariants({
-                        size: "icon",
-                        variant: "default",
-                      }),
-                      "absolute left-0 size-9",
+                      "absolute left-2 flex size-9 items-center justify-center",
                     )}
                   >
-                    <UserSearchIcon className="h-4 w-4" />
+                    <UserSearchIcon className="h-4 w-4 stroke-[3]" />
                   </div>
 
                   <Input

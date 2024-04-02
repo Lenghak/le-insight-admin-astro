@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@ui/button";
+import { Button } from "@ui/button";
 import { Calendar } from "@ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
 
@@ -53,18 +53,15 @@ export function DateTableDatePicker({
             id="date"
             variant={"outline"}
             className={cn(
-              "w-72 justify-start bg-card text-left font-normal",
+              "relative w-72 justify-start bg-card text-left font-normal",
               !date && "text-muted-foreground",
             )}
             size={"sm"}
           >
             <div
-              className={cn(
-                buttonVariants({ size: "icon", variant: "default" }),
-                "left-0 -ml-4 mr-4 size-9",
-              )}
+              className={cn("ml-1 flex size-9 items-center justify-between")}
             >
-              <CalendarIcon className="h-4 w-4" />
+              <CalendarIcon className="h-4 w-4 stroke-[3]" />
             </div>
             {date?.from ? (
               date.to ? (

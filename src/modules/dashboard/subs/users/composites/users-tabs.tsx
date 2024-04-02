@@ -22,7 +22,7 @@ export default function UsersTabs({}: UsersTabsProps) {
 
   return (
     <Suspense fallback={<UserTabsSkeletons />}>
-      <DashboardTabList className="h-9 w-fit divide-x rounded-full border bg-card p-0 *:rounded-none">
+      <DashboardTabList className="h-fit w-fit rounded-full border bg-secondary p-0">
         {TABS.map((tab) => (
           <DashboardTab
             key={tab}
@@ -33,7 +33,7 @@ export default function UsersTabs({}: UsersTabsProps) {
               setURLStore(url);
             }}
             activeFn={() => activeTab === tab.toUpperCase()}
-            className="h-9 rounded-full px-6 text-sm capitalize first:rounded-l-full last:rounded-r-full"
+            className="rounded-full px-6 text-sm capitalize data-[state=active]:text-foreground"
           >
             {tab}
           </DashboardTab>

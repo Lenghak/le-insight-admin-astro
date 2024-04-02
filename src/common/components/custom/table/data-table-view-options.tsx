@@ -22,11 +22,11 @@ export default function DataTableViewOptions<TData>({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="default"
+          variant="outline"
           size="icon"
-          className="ml-auto hidden size-9 lg:flex"
+          className="ml-auto hidden size-9 bg-card lg:flex"
         >
-          <SlidersHorizontalIcon className="h-4 w-4" />
+          <SlidersHorizontalIcon className="h-4 w-4 stroke-[3]" />
 
           <span className="font-semibolf sr-only">View</span>
         </Button>
