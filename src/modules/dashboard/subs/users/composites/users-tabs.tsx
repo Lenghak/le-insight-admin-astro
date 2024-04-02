@@ -1,8 +1,7 @@
 import { $urlStore, setURLStore } from "@/common/stores/url-store";
+import UserTabsSkeletons from "@dashboard/subs/users/components/users-tabs-skeleton";
 import { useStore } from "@nanostores/react";
 import { lazy, Suspense } from "react";
-
-import UserTabsSkeletons from "../components/users-tabs-skeleton";
 
 const DashboardTab = lazy(
   () => import("@dashboard/composites/tabs/dashboard-tab"),
@@ -23,7 +22,7 @@ export default function UsersTabs({}: UsersTabsProps) {
 
   return (
     <Suspense fallback={<UserTabsSkeletons />}>
-      <DashboardTabList className="w-fit rounded-full border bg-card p-0">
+      <DashboardTabList className="h-9 w-fit divide-x rounded-full border bg-card p-0 *:rounded-none">
         {TABS.map((tab) => (
           <DashboardTab
             key={tab}
@@ -34,7 +33,7 @@ export default function UsersTabs({}: UsersTabsProps) {
               setURLStore(url);
             }}
             activeFn={() => activeTab === tab.toUpperCase()}
-            className="h-full rounded-full px-6 capitalize data-[state=active]:border"
+            className="h-9 rounded-full px-6 text-sm capitalize first:rounded-l-full last:rounded-r-full"
           >
             {tab}
           </DashboardTab>

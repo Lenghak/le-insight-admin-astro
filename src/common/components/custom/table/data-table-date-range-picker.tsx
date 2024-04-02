@@ -6,7 +6,7 @@ import { cn } from "@/common/lib/utils";
 
 import { $urlStore, setURLStore } from "@/common/stores/url-store";
 import { useStore } from "@nanostores/react";
-import { addDays, compareDesc, format } from "date-fns";
+import { compareDesc, format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import * as React from "react";
 import { type DateRange } from "react-day-picker";
@@ -27,8 +27,8 @@ export function DateTableDatePicker({
           to: defaultTo,
         }
       : {
-          from: new Date(),
-          to: addDays(new Date(), 30),
+          from: undefined,
+          to: undefined,
         },
   );
 
@@ -53,14 +53,15 @@ export function DateTableDatePicker({
             id="date"
             variant={"outline"}
             className={cn(
-              "w-[300px] justify-start bg-card text-left font-normal",
+              "w-72 justify-start bg-card text-left font-normal",
               !date && "text-muted-foreground",
             )}
+            size={"sm"}
           >
             <div
               className={cn(
                 buttonVariants({ size: "icon", variant: "default" }),
-                "left-0 -ml-4 mr-4 border",
+                "left-0 -ml-4 mr-4 size-9",
               )}
             >
               <CalendarIcon className="h-4 w-4" />
@@ -75,7 +76,7 @@ export function DateTableDatePicker({
                 format(date.from, "LLL dd, y")
               )
             ) : (
-              <span>Pick a date</span>
+              <span className="text-muted-foreground">Pick a date</span>
             )}
           </Button>
         </PopoverTrigger>

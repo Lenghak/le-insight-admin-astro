@@ -13,7 +13,10 @@ export default function DashboardHeader() {
 
   return (
     <header className="relative flex h-16 w-full flex-row items-center justify-center gap-4 bg-card px-2">
-      <Separator className="h-1/2 w-[0.03rem]" />
+      <Separator
+        className="h-1/2"
+        orientation="vertical"
+      />
 
       <Button
         variant="ghost"

@@ -1,3 +1,6 @@
+import UsersFilters from "@/modules/dashboard/subs/users/composites/users-filters";
+import UsersTabs from "@/modules/dashboard/subs/users/composites/users-tabs";
+
 import { DataTablePagination } from "@/common/components/custom/table";
 import {
   Table,
@@ -43,6 +46,11 @@ export default function DataTable<TData, TValue>({
 
   return (
     <Fragment>
+      <div className="mt-4 flex h-fit items-center justify-between gap-6">
+        <UsersTabs />
+        <UsersFilters table={table} />
+      </div>
+
       <div
         className={cn(
           "flex h-full w-dvw flex-col justify-between overflow-hidden rounded-2xl border bg-card",

@@ -13,14 +13,7 @@ setURLStore(url);
 
 <DashboardLayout dashboardTitle="Users">
   <!-- Tabs -->
-  <div class="mt-4 flex h-fit items-center justify-between">
-    <UsersFilters client:only="react" />
-
-    <UsersTabs
-      client:only="react"
-      transition:persist
-    />
-  </div>
+  
 
   <!-- Tables -->
   <UsersTable client:only="react" />

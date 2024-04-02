@@ -34,7 +34,7 @@ export default function DataTablePagination<TData>({
     <section
       className={cn("flex items-center justify-between pt-2", className)}
     >
-      <div className="w-fit rounded-full border bg-card py-2 pl-2 pr-4 text-sm font-semibold text-muted-foreground">
+      <div className="w-fit rounded-full border bg-card py-1 pl-1 pr-4 text-sm font-semibold text-muted-foreground">
         <span className="mr-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-background p-2 font-bold text-foreground">
           {table.getFilteredSelectedRowModel().rows.length}
         </span>{" "}
@@ -45,7 +45,7 @@ export default function DataTablePagination<TData>({
         row(s) selected.
       </div>
 
-      <div className="w-fit rounded-full border bg-card p-2 text-sm font-semibold text-muted-foreground">
+      <div className="w-fit rounded-full border bg-card p-1 text-sm font-semibold text-muted-foreground">
         <ReactPaginate
           className={cn("flex w-fit items-center justify-center gap-2")}
           breakLabel={<PaginationEllipsis />}
@@ -90,7 +90,7 @@ export default function DataTablePagination<TData>({
         />
       </div>
 
-      <div className="flex items-center space-x-2 rounded-full border bg-card py-2 pl-4 pr-2 lg:space-x-8">
+      <div className="flex items-center space-x-2 rounded-full border bg-card py-1 pl-4 pr-1 lg:space-x-4">
         <p className="text-sm font-semibold text-muted-foreground">Rows</p>
         <Select
           value={`${searchParams.get("limit") ?? "50"}`}

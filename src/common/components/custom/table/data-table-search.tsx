@@ -62,7 +62,7 @@ export default function DataTableSearch({
                         size: "icon",
                         variant: "default",
                       }),
-                      "absolute left-0 border",
+                      "absolute left-0 size-9",
                     )}
                   >
                     <UserSearchIcon className="h-4 w-4" />
@@ -71,7 +71,7 @@ export default function DataTableSearch({
                   <Input
                     type="text"
                     placeholder="Search users..."
-                    className="peer w-full rounded-full bg-card px-12 placeholder:ml-12"
+                    className="peer h-9 w-full rounded-full bg-card px-12 placeholder:ml-12"
                     {...field}
                   />
 
