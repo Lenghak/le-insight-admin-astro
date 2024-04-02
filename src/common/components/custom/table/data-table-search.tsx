@@ -73,9 +73,9 @@ export default function DataTableSearch({
 
                   <Button
                     type="submit"
-                    variant={"ghost"}
+                    variant={"default"}
                     size={"icon"}
-                    className="invisible absolute right-0 size-9 hover:visible focus:visible focus-visible:visible group-focus:visible peer-focus:visible peer-focus-visible:visible"
+                    className="invisible absolute right-2 size-6 hover:visible focus:visible focus-visible:visible group-focus:visible peer-focus:visible peer-focus-visible:visible"
                   >
                     <ArrowRightIcon className="size-4" />
                     <span className="sr-only">Enter Search</span>

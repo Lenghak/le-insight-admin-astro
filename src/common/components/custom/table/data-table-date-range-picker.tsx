@@ -2,6 +2,8 @@ import { Button } from "@ui/button";
 import { Calendar } from "@ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
 
+import { Badge } from "@/common/components/ui/badge";
+
 import { cn } from "@/common/lib/utils";
 
 import { $urlStore, setURLStore } from "@/common/stores/url-store";
@@ -40,9 +42,11 @@ export function DateTableDatePicker({
       date.to
         ? url.searchParams.set("to", format(date.to, "MM-dd-yyyy"))
         : url.searchParams.delete("to");
-
-      setURLStore(url);
+    } else {
+      url.searchParams.delete("from");
+      url.searchParams.delete("to");
     }
+    setURLStore(url);
   }, [date]);
 
   return (
@@ -53,7 +57,7 @@ export function DateTableDatePicker({
             id="date"
             variant={"outline"}
             className={cn(
-              "relative w-72 justify-start bg-card text-left font-normal",
+              "relative w-fit justify-start bg-card text-left font-normal",
               !date && "text-muted-foreground",
             )}
             size={"sm"}
@@ -61,19 +65,22 @@ export function DateTableDatePicker({
             <div
               className={cn("ml-1 flex size-9 items-center justify-between")}
             >
-              <CalendarIcon className="h-4 w-4 stroke-[3]" />
+              <CalendarIcon className="h-4 w-4 stroke-[3] text-foreground" />
             </div>
+
             {date?.from ? (
-              date.to ? (
-                <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
-                </>
-              ) : (
-                format(date.from, "LLL dd, y")
-              )
+              <Badge>
+                {date.to ? (
+                  <>
+                    {format(date.from, "LLL dd, y")} -{" "}
+                    {format(date.to, "LLL dd, y")}
+                  </>
+                ) : (
+                  format(date.from, "LLL dd, y")
+                )}
+              </Badge>
             ) : (
-              <span className="text-muted-foreground">Pick a date</span>
+              <span className="pr-2 text-muted-foreground">Pick a date</span>
             )}
           </Button>
         </PopoverTrigger>
