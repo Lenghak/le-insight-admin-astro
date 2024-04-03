@@ -4,7 +4,7 @@ import {
   PaginationMetaSchema,
   PaginationRequestSchema,
 } from "@/common/types/pagination-type";
-import { ProfilesSchema } from "@/common/types/profiles-type";
+import { ProfileSexSchema, ProfilesSchema } from "@/common/types/profiles-type";
 import { UserRoleSchema, UsersSchema } from "@/common/types/users-type";
 
 export const UsersTableSchema = UsersSchema.omit({ type: true }).extend({
@@ -14,7 +14,14 @@ export const UsersTableSchema = UsersSchema.omit({ type: true }).extend({
 });
 
 export const UsersListRequestSchema = PaginationRequestSchema.extend({
-  role: UserRoleSchema.nullable(),
+  role: UserRoleSchema.nullable().optional(),
+  range: z
+    .object({
+      from: z.date(),
+      to: z.date(),
+    })
+    .optional(),
+  "sex[]": z.array(ProfileSexSchema).optional(),
 });
 
 export const UsersListResponseSchema = z.object({

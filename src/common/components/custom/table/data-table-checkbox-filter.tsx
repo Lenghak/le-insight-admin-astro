@@ -24,7 +24,7 @@ type DataTableCheckboxFilterProps = {
   label: React.ReactNode;
   trigger: React.ReactNode;
   checkboxes: {
-    label: string;
+    label: React.ReactNode;
     value: string;
   }[];
   queryName: string;
@@ -92,6 +92,7 @@ export default function DataTableCheckboxFilter({
 
                 setURLStore(url);
               }}
+              className="pl-8"
             >
               {item.label}
             </DropdownMenuCheckboxItem>

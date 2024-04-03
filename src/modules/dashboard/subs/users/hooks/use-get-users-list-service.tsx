@@ -12,17 +12,22 @@ export default function useGetUsersListService({
   page,
   q,
   role,
+  "sex[]": sex,
 }: UsersListRequestType) {
   const instance = usePrivateQueryInstance();
 
   return useQuery(
     {
       queryKey: [
-        ...userKeys.list(`limit=${limit}&page=${page}q=${q}role=${role}`),
+        ...userKeys.list(
+          `limit=${limit}&page=${page}&q=${q}&role=${role}&sex=${sex?.toString()}`,
+        ),
         instance,
+        sex,
       ],
       queryFn: async () =>
-        (await getUsersAPI({ limit, page, q, role }, instance)) ?? null,
+        (await getUsersAPI({ limit, page, q, role, "sex[]": sex }, instance)) ??
+        null,
       refetchOnReconnect: true,
       refetchOnWindowFocus: true,
     },

@@ -90,7 +90,7 @@ export default function DataTablePagination<TData>({
         />
       </div>
 
-      <div className="flex items-center space-x-2 rounded-full border bg-card py-1 pl-4 pr-1 lg:space-x-4">
+      <div className="flex items-center gap-4 rounded-full border bg-card py-1 pl-4 pr-1">
         <p className="text-sm font-semibold text-muted-foreground">Rows</p>
         <Select
           value={`${searchParams.get("limit") ?? "50"}`}

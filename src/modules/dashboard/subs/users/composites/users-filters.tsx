@@ -1,3 +1,5 @@
+import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
+
 import { DataTableViewOptions } from "@/common/components/custom/table";
 import DataTableCheckboxFilter from "@/common/components/custom/table/data-table-checkbox-filter";
 import { DateTableDatePicker } from "@/common/components/custom/table/data-table-date-range-picker";
@@ -12,16 +14,16 @@ interface UsersFiltersProps<TData> {
 
 const usersSexFilters = [
   {
-    label: "Male",
+    label: SexesBages.MALE,
     value: "MALE",
   },
   {
-    label: "Female",
+    label: SexesBages.FEMALE,
     value: "FEMALE",
   },
   {
-    label: "Hidden",
-    value: "RTNS",
+    label: SexesBages.RNTS,
+    value: "RNTS",
   },
 ];
 
@@ -34,7 +36,7 @@ export default function UsersFilters<TData>({
       <DataTableSearch />
 
       <DataTableCheckboxFilter
-        queryName="sex"
+        queryName="sex[]"
         checkboxes={usersSexFilters}
         label="Sex"
         trigger={

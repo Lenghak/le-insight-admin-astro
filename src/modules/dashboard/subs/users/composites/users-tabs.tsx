@@ -33,7 +33,7 @@ export default function UsersTabs({}: UsersTabsProps) {
               setURLStore(url);
             }}
             activeFn={() => activeTab === tab.toUpperCase()}
-            className="relative rounded-full px-6 text-sm capitalize before:invisible before:absolute before:bottom-0 before:h-1 before:w-2 before:self-end before:rounded-full before:bg-primary before:content-[''] data-[state=active]:text-foreground data-[state=active]:before:visible"
+            className="relative rounded-full px-6 text-sm capitalize data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
           >
             {tab}
           </DashboardTab>
