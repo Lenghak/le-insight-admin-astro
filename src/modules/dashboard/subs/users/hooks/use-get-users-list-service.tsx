@@ -19,11 +19,9 @@ export default function useGetUsersListService({
   return useQuery(
     {
       queryKey: [
-        ...userKeys.list(
-          `limit=${limit}&page=${page}&q=${q}&role=${role}&sex=${sex?.toString()}`,
-        ),
-        instance,
+        ...userKeys.list(`limit=${limit}&page=${page}&q=${q}&role=${role}`),
         sex,
+        instance,
       ],
       queryFn: async () =>
         (await getUsersAPI({ limit, page, q, role, "sex[]": sex }, instance)) ??
