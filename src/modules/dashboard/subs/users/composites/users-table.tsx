@@ -1,7 +1,6 @@
 import useUsersTableHandler from "@/modules/dashboard/subs/users/hooks/use-users-table-handler";
 
 import DataTable from "@dashboard/composites/dashboard-data-table";
-import DashboardSheet from "@dashboard/composites/dashboard-sheet";
 import { userColumns } from "@dashboard/subs/users/composites/users-columns";
 import { Fragment } from "react/jsx-runtime";
 
@@ -15,8 +14,6 @@ export default function UsersTable() {
         meta={res?.data?.meta?.pagination}
         className="mt-4 w-full"
       />
-
-      <DashboardSheet />
     </Fragment>
   );
 }

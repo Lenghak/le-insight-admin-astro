@@ -1,3 +1,5 @@
+import { setDashboardSheetOpen } from "@/modules/dashboard/stores/dashboard-sheet-store";
+
 import { Button } from "@/common/components/ui/button";
 import {
   DropdownMenu,
@@ -32,7 +34,10 @@ export default function UsersActions() {
         align="end"
         className="w-48 text-xxs"
       >
-        <DropdownMenuItem className="items-center gap-3 px-3 py-2 font-semibold">
+        <DropdownMenuItem
+          className="items-center gap-3 px-3 py-2 font-semibold"
+          onClick={() => setDashboardSheetOpen(true)}
+        >
           <UsersIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
           View
         </DropdownMenuItem>

@@ -1,8 +1,7 @@
 ---
 import { setURLStore } from "@/common/stores/url-store";
-import UsersTabs from "@/modules/dashboard/subs/users/composites/users-tabs";
+import UsersSheet from "@/modules/dashboard/subs/users/composites/users-sheet";
 import DashboardLayout from "@dashboard/layouts/dashboard-layout.astro";
-import UsersFilters from "@dashboard/subs/users/composites/users-filters";
 import UsersTable from "@dashboard/subs/users/composites/users-table";
 
 export const prerender = false;
@@ -12,9 +11,7 @@ setURLStore(url);
 ---
 
 <DashboardLayout dashboardTitle="Users">
-  <!-- Tabs -->
-  
-
-  <!-- Tables -->
   <UsersTable client:only="react" />
+
+  <UsersSheet client:only="react" />
 </DashboardLayout>

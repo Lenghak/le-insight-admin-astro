@@ -4,6 +4,10 @@ import { ProfilesSchema } from "@/common/types/profiles-type";
 import { createResponseSchema } from "@/common/types/response-type";
 import { UsersSchema } from "@/common/types/users-type";
 
+export const UsersRequestSchema = z.object({
+  userID: z.string().uuid().optional(),
+});
+
 export const UsersResponseSchema = createResponseSchema({
   id: UsersSchema.shape.id,
   type: UsersSchema.shape.type,
@@ -12,4 +16,5 @@ export const UsersResponseSchema = createResponseSchema({
   relationships: ProfilesSchema,
 });
 
+export type UsersRequestType = z.infer<typeof UsersRequestSchema>;
 export type UsersResponseType = z.infer<typeof UsersResponseSchema>;

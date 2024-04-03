@@ -40,7 +40,7 @@ export default function ProfileDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-4 w-auto">
         <DropdownMenuGroup>
-          <DropdownMenuItem className="py-2">
+          <DropdownMenuItem className="px-3 py-2">
             <ProfileBadge
               email={user?.email}
               firstName={user?.first_name}
@@ -50,39 +50,33 @@ export default function ProfileDropdown() {
             />
           </DropdownMenuItem>
         </DropdownMenuGroup>
-
         <DropdownMenuSeparator />
-
         <DropdownMenuGroup>
-          <DropdownMenuItem className="py-2">
+          <DropdownMenuItem className="px-3 py-2">
             <UserIcon className="mr-4 h-4 w-4" />
-            <span className="font-semibold text-muted-foreground">Profile</span>
+            <span className="font-semibold">Profile</span>
           </DropdownMenuItem>
 
-          <DropdownMenuItem className="py-2">
+          <DropdownMenuItem className="px-3 py-2">
             <Settings className="mr-4 h-4 w-4" />
-            <span className="font-semibold text-muted-foreground">
-              Settings
-            </span>
+            <span className="font-semibold">Settings</span>
           </DropdownMenuItem>
 
-          <DropdownMenuItem className="py-2">
+          <DropdownMenuItem className="px-3 py-2">
             <InfoIcon className="mr-4 h-4 w-4" />
-            <span className="font-semibold text-muted-foreground">
-              Helps & Supports
-            </span>
+            <span className="font-semibold">Helps & Supports</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-
         <DropdownMenuSeparator />
-
-        <DropdownMenuItem
-          className="py-2 text-destructive hover:!bg-destructive/5 hover:!text-destructive"
-          onClick={() => signOut()}
-        >
-          <LogOut className="mr-4 h-4 w-4" />
-          <span className="font-bold">Log out</span>
-        </DropdownMenuItem>
+        <DropdownMenuGroup>
+          <DropdownMenuItem
+            className="px-3 py-2 text-destructive hover:!bg-destructive/5 hover:!text-destructive"
+            onClick={() => signOut()}
+          >
+            <LogOut className="mr-4 h-4 w-4" />
+            <span className="font-bold">Log out</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>{" "}
       </DropdownMenuContent>
     </DropdownMenu>
   );
