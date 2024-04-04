@@ -142,6 +142,6 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
   },
   {
     id: "actions",
-    cell: () => <UsersActions />,
+    cell: ({ row }) => <UsersActions row={row} />,
   },
 ];

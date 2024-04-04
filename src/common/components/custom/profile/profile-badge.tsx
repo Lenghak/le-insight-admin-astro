@@ -11,6 +11,8 @@ import { useIsClient } from "@uidotdev/usehooks";
 
 type ProfileBadgeProps = {
   className?: string;
+  avatarClassName?: string;
+  imageClassName?: string;
   imageURL?: string;
   firstName?: string;
   lastName?: string;
@@ -19,6 +21,8 @@ type ProfileBadgeProps = {
 
 export default function ProfileBadge({
   className,
+  imageClassName,
+  avatarClassName,
   email,
   firstName,
   imageURL,
@@ -27,9 +31,12 @@ export default function ProfileBadge({
   const isClient = useIsClient();
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
-      <Avatar className="cursor-pointer">
-        <AvatarImage src={imageURL} />
+    <div className={cn("flex items-center gap-4", className)}>
+      <Avatar className={cn("cursor-pointer", avatarClassName)}>
+        <AvatarImage
+          src={imageURL}
+          className={imageClassName}
+        />
         <AvatarFallback className="bg-background">
           {isClient && (firstName ? firstName[0] : "?")}
         </AvatarFallback>
@@ -42,5 +49,3 @@ export default function ProfileBadge({
     </div>
   );
 }
-
-

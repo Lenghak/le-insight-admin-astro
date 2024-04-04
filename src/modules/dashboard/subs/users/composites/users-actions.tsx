@@ -1,4 +1,5 @@
 import { setDashboardSheetOpen } from "@/modules/dashboard/stores/dashboard-sheet-store";
+import { setUserID } from "@/modules/dashboard/subs/users/stores/users-id-store";
 
 import { Button } from "@/common/components/ui/button";
 import {
@@ -11,6 +12,7 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
+import type { Row } from "@tanstack/react-table";
 import {
   BanIcon,
   MoreHorizontalIcon,
@@ -18,7 +20,9 @@ import {
   UsersIcon,
 } from "lucide-react";
 
-export default function UsersActions() {
+import type { UsersType } from "@/common/types/users-type";
+
+export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,7 +40,10 @@ export default function UsersActions() {
       >
         <DropdownMenuItem
           className="items-center gap-3 px-3 py-2 font-semibold"
-          onClick={() => setDashboardSheetOpen(true)}
+          onClick={() => {
+            setUserID((row.original as UsersType).id);
+            setDashboardSheetOpen(true);
+          }}
         >
           <UsersIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
           View
