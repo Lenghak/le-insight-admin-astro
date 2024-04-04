@@ -18,8 +18,11 @@ import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import React from "react";
 import { Fragment } from "react/jsx-runtime";
 
 import type { PaginationMetaType } from "@/common/types/pagination-type";
@@ -31,17 +34,24 @@ interface DataTableProps<TData, TValue> {
   className?: string;
 }
 
-export default function DataTable<TData, TValue>({
+export default function UsersDataTable<TData, TValue>({
   columns,
   className,
   data,
   meta,
 }: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting,
+    },
   });
 
   return (

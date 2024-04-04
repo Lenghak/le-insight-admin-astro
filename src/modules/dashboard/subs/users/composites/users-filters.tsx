@@ -42,7 +42,7 @@ export default function UsersFilters<TData>({
         trigger={
           <div className="flex items-center gap-4">
             <FilterIcon className="size-4 stroke-[3]" />
-            <span>Sex</span>
+            <span className="pr-1 text-muted-foreground">Sex</span>
           </div>
         }
         className="w-48"

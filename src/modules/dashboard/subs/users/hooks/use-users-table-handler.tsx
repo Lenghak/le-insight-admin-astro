@@ -1,19 +1,12 @@
 import { $urlStore } from "@/common/stores/url-store";
 import useGetUsersListService from "@dashboard/subs/users/hooks/use-get-users-list-service";
-import { useEffect, useState } from "react";
+import { useStore } from "@nanostores/react";
 
 import type { ProfileSexType } from "@/common/types/profiles-type";
 import type { UsersRoleType } from "@/common/types/users-type";
 
 export default function useUsersTableHandler() {
-  const [url, setURLState] = useState($urlStore.get());
-
-  useEffect(() => {
-    const unSub = $urlStore.subscribe((value) => {
-      setURLState(value);
-    });
-    return unSub;
-  }, []);
+  const url = useStore($urlStore);
 
   const role = url.searchParams.get("role") ?? undefined;
   const page = parseInt(url.searchParams.get("page") ?? "1");

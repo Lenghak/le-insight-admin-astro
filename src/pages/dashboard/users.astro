@@ -1,13 +1,9 @@
 ---
-import { setURLStore } from "@/common/stores/url-store";
 import UsersSheet from "@/modules/dashboard/subs/users/composites/users-sheet";
+import UsersTable from "@/modules/dashboard/subs/users/presenters/users-table";
 import DashboardLayout from "@dashboard/layouts/dashboard-layout.astro";
-import UsersTable from "@dashboard/subs/users/composites/users-table";
 
 export const prerender = false;
-const url = Astro.url;
-
-setURLStore(url);
 ---
 
 <DashboardLayout dashboardTitle="Users">
