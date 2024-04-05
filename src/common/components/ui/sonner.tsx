@@ -13,11 +13,15 @@ const Toaster = ({ ...props }: ToasterProps) => {
       closeButton={false}
       toastOptions={{
         classNames: {
-          default: "bg-default group toast text-foreground group-[.toaster]:border-l-4 border-l-primary",
-          warning: "warning group toast group-[.toaster]:text-warning group-[.toaster]:border-l-warning",
+          default:
+            "bg-default group toast text-foreground group-[.toaster]:border-l-4 border-l-primary",
+          warning:
+            "warning group toast group-[.toaster]:text-warning group-[.toaster]:border-l-warning",
           info: "informative group toast group-[.toaster]:text-informative group-[.toaster]:border-l-informative",
-          success: "successive group toast group-[.toaster]:text-successive group-[.toaster]:border-l-successive",
-          error: "destructive group toast group-[.toaster]:text-destructive group-[.toaster]:border-l-destructive",
+          success:
+            "successive group toast group-[.toaster]:text-successive group-[.toaster]:border-l-successive",
+          error:
+            "destructive group toast group-[.toaster]:text-destructive group-[.toaster]:border-l-destructive",
           toast:
             "group toast group-[.toaster]:bg-card group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:font-sans",
           description:
@@ -27,6 +31,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
           cancelButton:
             "group-[.toast]:bg-muted group-[.toast]:text-foreground",
           title: "group-[.toast]:font-bold group-[.toaster]:text-sm",
+          closeButton:
+            "group-[.toaster]:bg-card group-[.toaster]:border [&>svg]:stroke-[3] group-[.toaster]:border-card",
         },
       }}
       {...props}

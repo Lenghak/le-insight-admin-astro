@@ -6,10 +6,11 @@ import {
 import useGetUserService from "@/modules/dashboard/subs/users/hooks/use-get-user-service";
 import { $userIDStore } from "@/modules/dashboard/subs/users/stores/users-id-store";
 
-import { ProfileSkeleton } from "@/common/components/custom/profile";
-import ProfileBadge from "@/common/components/custom/profile/profile-badge";
-import { Muted } from "@/common/components/ui/muted";
-import { Separator } from "@/common/components/ui/separator";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/common/components/ui/avatar";
 
 import { useStore } from "@nanostores/react";
 
@@ -25,31 +26,19 @@ export default function UsersSheet() {
       title="User Detail"
       description="Information about user in detail"
       open={isDashboardSheetOpen}
-      onOpenChange={(open) => setDashboardSheetOpen(open)}
+      onOpenChange={(open: boolean) => setDashboardSheetOpen(open)}
+      hideHeader
     >
-      <Separator orientation="horizontal" />
-
       <section className="mt-6 flex flex-col gap-6">
-        <div className="grid grid-cols-2 grid-rows-[auto]">
-          <div className="flex flex-col">
-            <span className="font-bold">Profile</span>
-            <Muted>User's profile information</Muted>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {user ? (
-              <ProfileBadge
-                avatarClassName="size-14"
-                email={user?.data?.data?.attributes?.email}
-                firstName={profile?.attributes.first_name}
-                lastName={profile?.attributes.last_name}
-                imageURL={profile?.attributes.image_url ?? ""}
-              />
-            ) : (
-              <ProfileSkeleton />
-            )}
-          </div>
-        </div>
+        <Avatar className="size-24 cursor-pointer self-center">
+          <AvatarImage
+            src={profile?.attributes?.image_url ?? ""}
+            alt={profile?.attributes?.first_name}
+          />
+          <AvatarFallback className="bg-background text-3xl font-bold">
+            {profile?.attributes?.first_name[0] ?? "?"}
+          </AvatarFallback>
+        </Avatar>
       </section>
     </DashboardSheet>
   );
