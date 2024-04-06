@@ -6,6 +6,8 @@ import {
   SheetTitle,
 } from "@/common/components/ui/sheet";
 
+import { cn } from "@/common/lib/utils";
+
 import { type DialogProps } from "@radix-ui/react-dialog";
 import type React from "react";
 
@@ -13,6 +15,7 @@ type DashboardSheetProps = React.PropsWithChildren & {
   title: React.ReactNode;
   description: React.ReactNode;
   hideHeader?: boolean;
+  className?: string;
 } & DialogProps;
 
 export default function DashboardSheet({
@@ -20,11 +23,17 @@ export default function DashboardSheet({
   title,
   description,
   hideHeader,
+  className,
   ...props
 }: DashboardSheetProps) {
   return (
     <Sheet {...props}>
-      <SheetContent className="w-full space-y-6 rounded-l-md border bg-card">
+      <SheetContent
+        className={cn(
+          "w-full rounded-l-md border bg-card",
+          className,
+        )}
+      >
         {!hideHeader ? (
           <SheetHeader className="space-y-1">
             <SheetTitle className="font-extrabold">{title}</SheetTitle>

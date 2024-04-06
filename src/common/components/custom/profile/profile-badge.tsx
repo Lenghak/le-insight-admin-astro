@@ -37,7 +37,7 @@ export default function ProfileBadge({
           src={imageURL}
           className={imageClassName}
         />
-        <AvatarFallback className="bg-background">
+        <AvatarFallback className="bg-background font-bold">
           {isClient && (firstName ? firstName[0] : "?")}
         </AvatarFallback>
       </Avatar>
