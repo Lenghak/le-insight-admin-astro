@@ -28,14 +28,9 @@ export default function DashboardSheet({
 }: DashboardSheetProps) {
   return (
     <Sheet {...props}>
-      <SheetContent
-        className={cn(
-          "w-full rounded-l-md border bg-card",
-          className,
-        )}
-      >
+      <SheetContent className={cn("w-full rounded-l-xl bg-card", className)}>
         {!hideHeader ? (
-          <SheetHeader className="space-y-1">
+          <SheetHeader className="space-y-0 rounded-xl bg-card">
             <SheetTitle className="font-extrabold">{title}</SheetTitle>
             <SheetDescription>{description}</SheetDescription>
           </SheetHeader>
