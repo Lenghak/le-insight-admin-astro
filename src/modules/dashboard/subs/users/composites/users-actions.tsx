@@ -1,3 +1,4 @@
+import { setDashboardDialogOpen } from "@/modules/dashboard/stores/dashboard-action-dialog-store";
 import { setDashboardSheetOpen } from "@/modules/dashboard/stores/dashboard-sheet-store";
 
 import { Button } from "@/common/components/ui/button";
@@ -73,7 +74,13 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
             <UsersIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
             View
           </DropdownMenuItem>
-          <DropdownMenuItem className="items-center gap-3 px-3 py-2 font-semibold">
+          <DropdownMenuItem
+            className="items-center gap-3 px-3 py-2 font-semibold"
+            onClick={() => {
+              setUserID((row.original as UsersType).id);
+              setDashboardDialogOpen(true);
+            }}
+          >
             <PencilLineIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
             Edit
           </DropdownMenuItem>

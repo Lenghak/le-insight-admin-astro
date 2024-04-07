@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from "@dashboard/layouts/dashboard-layout.astro";
+import UsersEditForm from "@users/composites/users-edit-form";
 import UsersSheet from "@users/composites/users-sheet";
 import UsersTable from "@users/presenters/users-table";
 
@@ -10,4 +11,6 @@ export const prerender = false;
   <UsersTable client:only="react" />
 
   <UsersSheet client:only="react" />
+
+  <UsersEditForm client:only="react" />
 </DashboardLayout>

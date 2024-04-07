@@ -8,8 +8,8 @@ import {
   $dashboardSheetStore,
   setDashboardSheetOpen,
 } from "@dashboard/stores/dashboard-sheet-store";
+import UsersSheetSection from "@dashboard/subs/users/components/users-sheet-section";
 import { useStore } from "@nanostores/react";
-import { UsersSheetSection } from "@users/components/users-sheet-section";
 import { RolesBages } from "@users/constants/role-bage";
 import { SexesBages } from "@users/constants/sex-badge";
 import useGetUserService from "@users/hooks/use-get-user-service";
