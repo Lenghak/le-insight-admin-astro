@@ -9,7 +9,7 @@ type Props = PropsWithChildren & {
   description: React.ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
-export default function SheetSection({
+export function UsersSheetSection({
   title,
   description,
   children,

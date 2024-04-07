@@ -1,6 +1,3 @@
-import UsersFilters from "@/modules/dashboard/subs/users/composites/users-filters";
-import UsersTabs from "@/modules/dashboard/subs/users/composites/users-tabs";
-
 import { DataTablePagination } from "@/common/components/custom/table";
 import {
   Table,
@@ -22,6 +19,8 @@ import {
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import UsersFilters from "@users/composites/users-filters";
+import UsersTabs from "@users/composites/users-tabs";
 import React from "react";
 import { Fragment } from "react/jsx-runtime";
 

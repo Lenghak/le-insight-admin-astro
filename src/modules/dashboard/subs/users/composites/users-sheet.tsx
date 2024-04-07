@@ -8,12 +8,12 @@ import {
   $dashboardSheetStore,
   setDashboardSheetOpen,
 } from "@dashboard/stores/dashboard-sheet-store";
-import SheetSection from "@dashboard/subs/users/components/users-sheet-section";
-import { RolesBages } from "@dashboard/subs/users/constants/role-bage";
-import { SexesBages } from "@dashboard/subs/users/constants/sex-badge";
-import useGetUserService from "@dashboard/subs/users/hooks/use-get-user-service";
-import { $userIDStore } from "@dashboard/subs/users/stores/users-id-store";
 import { useStore } from "@nanostores/react";
+import { UsersSheetSection } from "@users/components/users-sheet-section";
+import { RolesBages } from "@users/constants/role-bage";
+import { SexesBages } from "@users/constants/sex-badge";
+import useGetUserService from "@users/hooks/use-get-user-service";
+import { $userIDStore } from "@users/stores/users-id-store";
 
 export default function UsersSheet() {
   const userID = useStore($userIDStore);
@@ -31,7 +31,7 @@ export default function UsersSheet() {
       onOpenChange={(open: boolean) => setDashboardSheetOpen(open)}
       className="flex flex-col gap-4 divide-y overflow-y-auto rounded-l-xl border-none sm:max-w-screen-sm"
     >
-      <SheetSection
+      <UsersSheetSection
         title="Profile"
         description="Displayed user's profile badge"
         className="py-8"
@@ -42,9 +42,9 @@ export default function UsersSheet() {
           lastName={profile?.attributes.last_name}
           imageURL={profile?.attributes.image_url ?? ""}
         />
-      </SheetSection>
+      </UsersSheetSection>
 
-      <SheetSection
+      <UsersSheetSection
         title="Identity"
         description="ID associated to the user"
         className="py-8"
@@ -64,9 +64,9 @@ export default function UsersSheet() {
             {profile?.id ?? "-"}
           </InlineBanner>
         </div>
-      </SheetSection>
+      </UsersSheetSection>
 
-      <SheetSection
+      <UsersSheetSection
         title="Personal Information"
         description="Detail info of the selected user"
         className="py-8"
@@ -120,9 +120,9 @@ export default function UsersSheet() {
             {profile?.attributes.bio ?? "-"}
           </InlineBanner>
         </div>
-      </SheetSection>
+      </UsersSheetSection>
 
-      <SheetSection
+      <UsersSheetSection
         title="Period"
         description="Date or time associated information"
         className="py-8"
@@ -200,7 +200,7 @@ export default function UsersSheet() {
               : "-"}
           </InlineBanner>
         </div>
-      </SheetSection>
+      </UsersSheetSection>
     </DashboardSheet>
   );
 }

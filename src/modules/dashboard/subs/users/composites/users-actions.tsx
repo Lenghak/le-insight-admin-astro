@@ -1,5 +1,4 @@
 import { setDashboardSheetOpen } from "@/modules/dashboard/stores/dashboard-sheet-store";
-import { setUserID } from "@/modules/dashboard/subs/users/stores/users-id-store";
 
 import { Button } from "@/common/components/ui/button";
 import {
@@ -14,6 +13,7 @@ import {
 import { cn } from "@/common/lib/utils";
 
 import type { Row } from "@tanstack/react-table";
+import { setUserID } from "@users/stores/users-id-store";
 import {
   BanIcon,
   CopyIcon,
