@@ -1,7 +1,4 @@
-import {
-  setDashboardDialogID,
-  setDashboardDialogOpen,
-} from "@/modules/dashboard/stores/dashboard-action-dialog-store";
+import { setDashboardDialogOpen } from "@/modules/dashboard/stores/dashboard-action-dialog-store";
 import { setDashboardSheetOpen } from "@/modules/dashboard/stores/dashboard-sheet-store";
 
 import { Button } from "@/common/components/ui/button";
@@ -81,11 +78,8 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
             className="items-center gap-3 px-3 py-2 font-semibold"
             onClick={() => {
               setUserID((row.original as UsersType).id);
-              setDashboardDialogID(
-                `User-Edit ${(row.original as UsersType).id}`,
-              );
               setDashboardDialogOpen({
-                id: `User-Edit ${(row.original as UsersType).id}`,
+                id: `USER_EDIT`,
                 isOpen: true,
               });
             }}
@@ -102,6 +96,13 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
             className={cn(
               "items-center gap-3 bg-destructive/15 px-3 py-2 font-bold text-destructive hover:bg-destructive/15",
             )}
+            onClick={() => {
+              setUserID((row.original as UsersType).id);
+              setDashboardDialogOpen({
+                id: `USER_BAN`,
+                isOpen: true,
+              });
+            }}
           >
             <BanIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
             Ban

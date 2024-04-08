@@ -1,3 +1,156 @@
+import { Button, buttonVariants } from "@ui/button";
+import { Calendar } from "@ui/calendar";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
+
+import formatDate from "@/common/lib/date/format-date";
+import { cn } from "@/common/lib/utils";
+
+import {
+  $dashboardDialogStore,
+  setDashboardDialogOpen,
+} from "@dashboard/stores/dashboard-action-dialog-store";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useStore } from "@nanostores/react";
+import useEditUserService from "@users/hooks/use-edit-user-service";
+import useGetUserService from "@users/hooks/use-get-user-service";
+import { $userIDStore } from "@users/stores/users-id-store";
+import { addDays } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const banUserSchema = z.object({
+  bannedAt: z.date({ required_error: "The start of the ban is required" }),
+  bannedUntil: z.date({ required_error: "State the end of the ban" }),
+});
+
 export default function UsersBanForm() {
-  return ;
+  const dialog = useStore($dashboardDialogStore);
+
+  const userID = useStore($userIDStore);
+  const { data: res } = useGetUserService({ userID });
+  const { mutate: editUser } = useEditUserService();
+
+  const user = res?.data?.data;
+
+  const form = useForm({
+    resolver: zodResolver(banUserSchema),
+    defaultValues: {
+      bannedAt: new Date(),
+      bannedUntil: addDays(new Date(), 1),
+    },
+  });
+
+  return (
+    <Dialog
+      open={dialog.isOpen && `USER_BAN` === dialog.id}
+      onOpenChange={(isOpen) =>
+        setDashboardDialogOpen({
+          id: `USER_BAN`,
+          isOpen: isOpen,
+        })
+      }
+    >
+      <DialogContent className="bg-card">
+        <DialogHeader>
+          <DialogTitle className="font-extrabold">Ban User</DialogTitle>
+          <DialogDescription>
+            Set the time for the ban duration. User will be banned after the
+            save.
+          </DialogDescription>
+        </DialogHeader>
+
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit((value) =>
+              editUser({
+                id: user?.id,
+                banned_at: value.bannedAt.toISOString(),
+                banned_until: value.bannedUntil.toISOString(),
+              }),
+            )}
+            className="w-full space-y-8"
+          >
+            <FormField
+              control={form.control}
+              name="bannedUntil"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="font-bold">Ban until</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "pl-3 text-left font-semibold",
+                            !field.value && "text-muted-foreground",
+                          )}
+                        >
+                          {field.value ? (
+                            formatDate(field.value)
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="w-auto p-0"
+                      align="start"
+                    >
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) => date < new Date()}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <DialogFooter className="gap-2">
+              <DialogClose
+                type="reset"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "default" }),
+                  "font-bold",
+                )}
+              >
+                Cancel
+              </DialogClose>
+              <Button
+                type="submit"
+                className="font-bold"
+                variant={"destructive"}
+              >
+                Ban this user
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+  );
 }

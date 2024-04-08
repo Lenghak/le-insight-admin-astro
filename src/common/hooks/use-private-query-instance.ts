@@ -17,8 +17,6 @@ export default function usePrivateQueryInstance() {
   const tokens = session?.data?.session?.tokens;
   const instance = getPublicQueryInstance();
 
-  console.log(session);
-
   useEffect(() => {
     if (session?.data?.session?.tokens) {
       const reqInterceptor = instance.interceptors.request.use((conf) => {

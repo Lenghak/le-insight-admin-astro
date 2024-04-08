@@ -6,6 +6,8 @@ import { queryClient } from "@/common/stores/api-store";
 import { useMutation } from "@tanstack/react-query";
 import postEditUserAPI from "@users/services/post-edit-user-api";
 import type { UserEditRequestType } from "@users/types/users-edit-type";
+import { AxiosError } from "axios";
+import { toast } from "sonner";
 
 export default function useEditUserService() {
   const instance = usePrivateQueryInstance();
@@ -15,6 +17,20 @@ export default function useEditUserService() {
       mutationKey: [...userKeys.detail(`edit`), instance],
       mutationFn: async (data: UserEditRequestType) =>
         await postEditUserAPI(data),
+      onError: (error) => {
+        if (error instanceof AxiosError && error.status === 400)
+          toast.error("Validation Failed", {
+            duration: 10 * 1000,
+            description:
+              "The input in not acceptable. Please check and try again.",
+          });
+        else {
+          toast.error("Banned Failed", {
+            duration: 10 * 1000,
+            description: "The server cannot be banned yesterday.",
+          });
+        }
+      },
     },
     queryClient,
   );

@@ -1,12 +1,3 @@
-import {
-  $dashboardDialogID,
-  $dashboardDialogStore,
-  setDashboardDialogOpen,
-} from "@/modules/dashboard/stores/dashboard-action-dialog-store";
-import { RolesBages } from "@/modules/dashboard/subs/users/constants/role-bage";
-import useGetUserService from "@/modules/dashboard/subs/users/hooks/use-get-user-service";
-import { $userIDStore } from "@/modules/dashboard/subs/users/stores/users-id-store";
-
 import { Button, buttonVariants } from "@ui/button";
 import {
   Dialog,
@@ -35,16 +26,22 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
+import {
+  $dashboardDialogStore,
+  setDashboardDialogOpen,
+} from "@dashboard/stores/dashboard-action-dialog-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
+import { RolesBages } from "@users/constants/role-bage";
 import useEditUserService from "@users/hooks/use-edit-user-service";
+import useGetUserService from "@users/hooks/use-get-user-service";
+import { $userIDStore } from "@users/stores/users-id-store";
 import { useForm } from "react-hook-form";
 
 import { UserRoleSchema, UsersSchema } from "@/common/types/users-type";
 
 export default function UsersEditForm() {
   const dialog = useStore($dashboardDialogStore);
-  const dialogID = useStore($dashboardDialogID);
 
   const userID = useStore($userIDStore);
   const { data: res } = useGetUserService({ userID });
@@ -65,10 +62,10 @@ export default function UsersEditForm() {
 
   return (
     <Dialog
-      open={dialog.isOpen && dialogID === dialog.id}
+      open={dialog.isOpen && `USER_EDIT` === dialog.id}
       onOpenChange={(isOpen) =>
         setDashboardDialogOpen({
-          id: dialog.id,
+          id: `USER_EDIT`,
           isOpen: isOpen,
         })
       }
