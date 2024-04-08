@@ -1,7 +1,15 @@
-import { atom } from "nanostores";
+import { atom, map } from "nanostores";
 
+type DashboardDialogType = {
+  isOpen: boolean;
+  id: string;
+};
+export const $dashboardDialogStore = map<DashboardDialogType>({
+  id: "",
+  isOpen: false,
+});
+export const $dashboardDialogID = atom<string>("");
 
-export const $dashboardDialogStore = atom<boolean>(false);
-
-export const setDashboardDialogOpen = (isOpen: boolean) =>
-  $dashboardDialogStore.set(isOpen);
+export const setDashboardDialogID = (id: string) => $dashboardDialogID.set(id);
+export const setDashboardDialogOpen = ({ id, isOpen }: DashboardDialogType) =>
+  $dashboardDialogStore.set({ id, isOpen });

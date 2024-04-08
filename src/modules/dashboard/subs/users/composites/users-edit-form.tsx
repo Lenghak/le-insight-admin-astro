@@ -1,4 +1,5 @@
 import {
+  $dashboardDialogID,
   $dashboardDialogStore,
   setDashboardDialogOpen,
 } from "@/modules/dashboard/stores/dashboard-action-dialog-store";
@@ -19,16 +20,22 @@ import { cn } from "@/common/lib/utils";
 import { useStore } from "@nanostores/react";
 
 export default function UsersEditForm() {
-  const isDialogOpen = useStore($dashboardDialogStore);
+  const dialog = useStore($dashboardDialogStore);
+  const dialogID = useStore($dashboardDialogID);
 
   return (
     <Dialog
-      open={isDialogOpen}
-      onOpenChange={(isOpen) => setDashboardDialogOpen(isOpen)}
+      open={dialog.isOpen && dialogID === dialog.id}
+      onOpenChange={(isOpen) =>
+        setDashboardDialogOpen({
+          id: dialog.id,
+          isOpen: isOpen,
+        })
+      }
     >
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="bg-card">
         <DialogHeader>
-          <DialogTitle className="font-bold">Edit User</DialogTitle>
+          <DialogTitle className="font-extrabold">Edit User</DialogTitle>
           <DialogDescription>
             Make changes to the user info here. Click save when you're done.
           </DialogDescription>

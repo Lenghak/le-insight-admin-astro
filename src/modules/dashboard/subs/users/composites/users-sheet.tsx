@@ -1,4 +1,8 @@
+import SheetSection from "@/modules/dashboard/subs/users/components/sheet-section";
+
 import { InlineBanner } from "@/common/components/custom/banner";
+import InlineBannerContent from "@/common/components/custom/banner/inline-banner-content";
+import InlineBannerTitle from "@/common/components/custom/banner/inline-banner-title";
 import ProfileBadge from "@/common/components/custom/profile/profile-badge";
 
 import formatDate from "@/common/lib/date/format-date";
@@ -8,7 +12,6 @@ import {
   $dashboardSheetStore,
   setDashboardSheetOpen,
 } from "@dashboard/stores/dashboard-sheet-store";
-import UsersSheetSection from "@dashboard/subs/users/components/users-sheet-section";
 import { useStore } from "@nanostores/react";
 import { RolesBages } from "@users/constants/role-bage";
 import { SexesBages } from "@users/constants/sex-badge";
@@ -31,7 +34,7 @@ export default function UsersSheet() {
       onOpenChange={(open: boolean) => setDashboardSheetOpen(open)}
       className="flex flex-col gap-4 divide-y overflow-y-auto rounded-l-xl border-none sm:max-w-screen-sm"
     >
-      <UsersSheetSection
+      <SheetSection
         title="Profile"
         description="Displayed user's profile badge"
         className="py-8"
@@ -42,165 +45,236 @@ export default function UsersSheet() {
           lastName={profile?.attributes.last_name}
           imageURL={profile?.attributes.image_url ?? ""}
         />
-      </UsersSheetSection>
+      </SheetSection>
 
-      <UsersSheetSection
-        title="Identity"
+      <SheetSection
+        title="Identifiers"
         description="ID associated to the user"
-        className="py-8"
+        className="grid-cols-1 grid-rows-[auto,_1fr] py-8"
       >
-        <div className="flex flex-col gap-8">
-          <InlineBanner
-            title={"Identifier"}
-            className="w-full font-medium"
-          >
-            {user?.id ?? "-"}
+        <div className="flex flex-col gap-8 pt-2">
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Identifier
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.id ?? "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Profile ID"}
-            className="w-full font-medium"
-          >
-            {profile?.id ?? "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Profile
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.id ?? "-"}
+            </InlineBannerContent>
+          </InlineBanner>
+
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Location
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.attributes.location_id ?? "-"}
+            </InlineBannerContent>
           </InlineBanner>
         </div>
-      </UsersSheetSection>
+      </SheetSection>
 
-      <UsersSheetSection
+      <SheetSection
         title="Personal Information"
         description="Detail info of the selected user"
-        className="py-8"
+        className="grid-cols-1 grid-rows-[auto,_1fr] py-8"
       >
-        <div className="flex flex-col gap-8">
-          <InlineBanner
-            title={"Full Name"}
-            className="w-full font-medium"
-          >
-            {profile?.attributes.first_name} {profile?.attributes.last_name}
+        <div className="flex flex-col gap-8 pt-2">
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Full Name
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.attributes.first_name} {profile?.attributes.last_name}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Sex"}
-            className="w-full font-medium"
-          >
-            {profile?.attributes.sex
-              ? SexesBages[profile?.attributes.sex]
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Sex
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.attributes.sex
+                ? SexesBages[profile?.attributes.sex]
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Email"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.email}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Email
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.email}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Role"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.role ? (
-              <div className="w-fit">{RolesBages[user?.attributes.role]}</div>
-            ) : (
-              "-"
-            )}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Role
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.role ? (
+                <div className="w-fit">{RolesBages[user?.attributes.role]}</div>
+              ) : (
+                "-"
+              )}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Phone"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.phone ?? "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Phone
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.phone ?? "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Bio"}
-            className="w-full font-medium"
-          >
-            {profile?.attributes.bio ?? "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Bio
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.attributes.bio ?? "-"}
+            </InlineBannerContent>
+          </InlineBanner>
+
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Bithday
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.attributes.birthday
+                ? formatDate(profile?.attributes.birthday)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
         </div>
-      </UsersSheetSection>
+      </SheetSection>
 
-      <UsersSheetSection
+      <SheetSection
         title="Period"
         description="Date or time associated information"
-        className="py-8"
+        className="grid-cols-1 grid-rows-[auto,_1fr] py-8"
       >
-        <div className="flex flex-col gap-8">
-          <InlineBanner
-            title={"Joined at"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.created_at
-              ? formatDate(user?.attributes.created_at)
-              : "-"}
+        <div className="flex flex-col gap-8 pt-2">
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Joined at
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.created_at
+                ? formatDate(user?.attributes.created_at)
+                : "-"}
+            </InlineBannerContent>
+          </InlineBanner>
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Updated at ~ (User)
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.created_at
+                ? formatDate(user?.attributes.created_at)
+                : "-"}
+            </InlineBannerContent>
+          </InlineBanner>
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Confirmation sent at
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.confirmation_sent_at
+                ? formatDate(user?.attributes.confirmation_sent_at)
+                : "-"}
+            </InlineBannerContent>
+          </InlineBanner>
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Confirmed at
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.confirmed_at
+                ? formatDate(user?.attributes.confirmed_at)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"User updated at"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.updated_at
-              ? formatDate(user?.attributes.updated_at)
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Deleted at
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.deleted_at
+                ? formatDate(user?.attributes.deleted_at)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Confirmation sent at"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.confirmation_sent_at
-              ? formatDate(user?.attributes.confirmation_sent_at)
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Invited at
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.invited_at
+                ? formatDate(user?.attributes.invited_at)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Email confirmed at"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.confirmed_at
-              ? formatDate(user?.attributes.confirmed_at)
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Created at ~ (Profile)
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.created_at
+                ? formatDate(user?.attributes.created_at)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Deleted at"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.deleted_at
-              ? formatDate(user?.attributes.deleted_at)
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Updated at ~ (Profile)
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {profile?.attributes.updated_at
+                ? formatDate(profile?.attributes.updated_at)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Invited at"}
-            className="w-full font-medium"
-          >
-            {user?.attributes.invited_at
-              ? formatDate(user?.attributes.invited_at)
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Banned at
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.banned_at
+                ? formatDate(user?.attributes.banned_at)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
 
-          <InlineBanner
-            title={"Profile created at"}
-            className="w-full font-medium"
-          >
-            {profile?.attributes.created_at
-              ? formatDate(profile?.attributes.created_at)
-              : "-"}
-          </InlineBanner>
-
-          <InlineBanner
-            title={"Profile created at"}
-            className="w-full font-medium"
-          >
-            {profile?.attributes.updated_at
-              ? formatDate(profile?.attributes.updated_at)
-              : "-"}
+          <InlineBanner>
+            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+              Banned Until
+            </InlineBannerTitle>
+            <InlineBannerContent className="w-fit font-bold">
+              {user?.attributes.banned_until
+                ? formatDate(user?.attributes.banned_until)
+                : "-"}
+            </InlineBannerContent>
           </InlineBanner>
         </div>
-      </UsersSheetSection>
+      </SheetSection>
     </DashboardSheet>
   );
 }
