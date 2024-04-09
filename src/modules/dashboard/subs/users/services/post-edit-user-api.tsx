@@ -3,11 +3,13 @@ import type { UserEditRequestType } from "@/modules/dashboard/subs/users/types/u
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance } from "axios";
 
-export default function postEditUserAPI(
-  { id, role }: UserEditRequestType,
+export default function patchEditUserAPI(
+  { id, role, banned_at, banned_until }: UserEditRequestType,
   queryInstance?: AxiosInstance,
 ) {
-  return (queryInstance ?? getPublicQueryInstance()).post(`/users/${id}`, {
+  return (queryInstance ?? getPublicQueryInstance()).patch(`/users/${id}`, {
     role: role,
+    banned_at: banned_at,
+    banned_until: banned_until,
   });
 }

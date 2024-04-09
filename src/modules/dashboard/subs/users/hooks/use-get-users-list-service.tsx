@@ -4,7 +4,8 @@ import type { UsersListRequestType } from "@/modules/dashboard/subs/users/types/
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetUsersListService({
@@ -15,6 +16,7 @@ export default function useGetUsersListService({
   "sex[]": sex,
 }: UsersListRequestType) {
   const instance = usePrivateQueryInstance();
+  const queryClient = useStore($queryClient);
 
   return useQuery(
     {

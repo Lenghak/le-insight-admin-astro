@@ -4,11 +4,13 @@ import type { UsersRequestType } from "@/modules/dashboard/subs/users/types/user
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetUserService({ userID }: UsersRequestType) {
   const instance = usePrivateQueryInstance();
+  const queryClient = useStore($queryClient);
 
   return useQuery(
     {

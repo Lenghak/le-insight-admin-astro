@@ -3,12 +3,14 @@ import postSignOut from "@/modules/auth/services/sign-out-api";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { signOut } from "auth-astro/client";
 
 export default function useSignOutService() {
   const instance = usePrivateQueryInstance();
+  const queryClient = useStore($queryClient);
 
   return useMutation(
     {

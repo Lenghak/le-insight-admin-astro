@@ -5,24 +5,26 @@ import {
   createQueryInstance,
   getPublicQueryInstance,
 } from "@/common/stores/api-store";
-import { signOut } from "auth-astro/client";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect } from "react";
-import { toast } from "sonner";
 
 export default function usePrivateQueryInstance() {
   const { data: session } = useSessionService();
   const { mutateAsync: refreshToken } = useRefreshTokenService();
 
-  const tokens = session?.data?.session?.tokens;
   const instance = getPublicQueryInstance();
 
   useEffect(() => {
-    if (session?.data?.session?.tokens) {
-      const reqInterceptor = instance.interceptors.request.use((conf) => {
-        if (tokens?.at) conf.headers.Authorization = `Bearer ${tokens?.at}`;
-        return conf;
-      });
+    const tokens = session?.data?.tokens;
+
+    if (tokens) {
+      const reqInterceptor = instance.interceptors.request.use(
+        (conf) => {
+          if (tokens?.at) conf.headers.Authorization = `Bearer ${tokens?.at}`;
+          return conf;
+        },
+        (reject) => Promise.reject(reject),
+      );
 
       const resInterceptor = instance.interceptors.response.use(
         (conf) => conf,
@@ -34,25 +36,20 @@ export default function usePrivateQueryInstance() {
           if (err.response?.status === 401 && !prevConf?.sent) {
             prevConf.sent = true;
 
-            const { data: res, status: refreshStatus } = await refreshToken(
+            const { data: res } = await refreshToken(
               createQueryInstance({
                 headers: { Authorization: `Bearer ${tokens?.rt}` },
               }),
             );
 
-            if (refreshStatus >= 400 && refreshStatus < 500) {
-              toast.info("Your session has expired.");
+            tokens.at = res.data.attributes.access_token;
+            tokens.rt = res.data.attributes.refresh_token;
 
-              signOut()
-                .then((res) => res)
-                .catch((_) => {});
-            }
-
-            if (session?.data?.session?.tokens) {
-              session.data.session.tokens.at = res.data.attributes.accessToken;
-              session.data.session.tokens.rt = res.data.attributes.refreshToken;
-            }
+            prevConf.headers.Authorization = `Bearer ${tokens.at}`;
+            return instance(prevConf);
           }
+
+          return Promise.reject(err);
         },
       );
 
@@ -61,7 +58,7 @@ export default function usePrivateQueryInstance() {
         instance.interceptors.response.eject(resInterceptor);
       };
     }
-  }, [session, tokens]);
+  }, [session]);
 
   return instance;
 }

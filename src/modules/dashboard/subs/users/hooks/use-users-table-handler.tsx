@@ -1,6 +1,6 @@
 import { $urlStore } from "@/common/stores/url-store";
-import useGetUsersListService from "@dashboard/subs/users/hooks/use-get-users-list-service";
 import { useStore } from "@nanostores/react";
+import useGetUsersListService from "@users/hooks/use-get-users-list-service";
 
 import type { ProfileSexType } from "@/common/types/profiles-type";
 import type { UsersRoleType } from "@/common/types/users-type";

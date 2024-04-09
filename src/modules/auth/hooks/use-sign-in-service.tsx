@@ -1,13 +1,15 @@
 import { authKeys } from "@/modules/auth/constants/query-keys";
 import type { SignInRequestType } from "@/modules/auth/types/sign-in-schema";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { signIn } from "auth-astro/client";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export default function useSignInService() {
+  const queryClient = useStore($queryClient);
   return useMutation(
     {
       mutationKey: authKeys.operation("sign-in"),
@@ -37,10 +39,9 @@ export default function useSignInService() {
                   err instanceof AxiosError && err.response?.status === 401
                     ? "The email and password are invalid. Please check and try again."
                     : "There was a technical problem while signing you in. Please try again later.",
-              }
-            )
-          },
-          )
+              },
+            );
+          }),
     },
 
     queryClient,

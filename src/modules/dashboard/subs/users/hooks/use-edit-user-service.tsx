@@ -2,21 +2,23 @@ import { userKeys } from "@/modules/dashboard/subs/users/constants/query-keys";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
-import { queryClient } from "@/common/stores/api-store";
+import { $queryClient } from "@/common/stores/api-store";
+import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import postEditUserAPI from "@users/services/post-edit-user-api";
+import patchEditUserAPI from "@users/services/post-edit-user-api";
 import type { UserEditRequestType } from "@users/types/users-edit-type";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export default function useEditUserService() {
   const instance = usePrivateQueryInstance();
-
+  const queryClient = useStore($queryClient);
+  
   return useMutation(
     {
       mutationKey: [...userKeys.detail(`edit`), instance],
       mutationFn: async (data: UserEditRequestType) =>
-        await postEditUserAPI(data),
+        await patchEditUserAPI(data),
       onError: (error) => {
         if (error instanceof AxiosError && error.status === 400)
           toast.error("Validation Failed", {
@@ -25,11 +27,26 @@ export default function useEditUserService() {
               "The input in not acceptable. Please check and try again.",
           });
         else {
-          toast.error("Banned Failed", {
+          toast.error("Editing Failed", {
             duration: 10 * 1000,
-            description: "The server cannot be banned yesterday.",
+            description:
+              "There was a problem while banning this user. Please try again later",
           });
         }
+      },
+      onSuccess: () => {
+        toast.success("Data modified successfully", {
+          duration: 10 * 1000,
+          description:
+            "The new data has been successfully updated. You may see the result shortly.",
+        });
+      },
+      onSettled: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: [...userKeys.all],
+          exact: false,
+          stale: true,
+        });
       },
     },
     queryClient,
