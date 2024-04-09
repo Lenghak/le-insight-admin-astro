@@ -13,7 +13,7 @@ import {
   setDashboardSheetOpen,
 } from "@dashboard/stores/dashboard-sheet-store";
 import { useStore } from "@nanostores/react";
-import { RolesBages } from "@users/constants/role-bage";
+import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
 import { SexesBages } from "@users/constants/sex-badge";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
@@ -123,7 +123,7 @@ export default function UsersSheet() {
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
               {user?.attributes.role ? (
-                <div className="w-fit">{RolesBages[user?.attributes.role]}</div>
+                <div className="w-fit">{rolesBages[user?.attributes.role]}</div>
               ) : (
                 "-"
               )}

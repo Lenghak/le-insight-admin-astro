@@ -13,7 +13,7 @@ import { toast } from "sonner";
 export default function useEditUserService() {
   const instance = usePrivateQueryInstance();
   const queryClient = useStore($queryClient);
-  
+
   return useMutation(
     {
       mutationKey: [...userKeys.detail(`edit`), instance],
@@ -47,6 +47,7 @@ export default function useEditUserService() {
           exact: false,
           stale: true,
         });
+        window.history.replaceState(null, "", location.toString());
       },
     },
     queryClient,

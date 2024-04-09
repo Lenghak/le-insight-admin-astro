@@ -1,5 +1,5 @@
 import UsersActions from "@/modules/dashboard/subs/users/composites/users-actions";
-import { RolesBages } from "@/modules/dashboard/subs/users/constants/role-bage";
+import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
 import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
 import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
 
@@ -97,7 +97,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Role"
       />
     ),
-    cell: ({ getValue }) => RolesBages[getValue() as UsersRoleType],
+    cell: ({ getValue }) => rolesBages[getValue() as UsersRoleType],
   },
   {
     accessorKey: "phone",

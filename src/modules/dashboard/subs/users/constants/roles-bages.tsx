@@ -1,6 +1,6 @@
 import { Badge } from "@/common/components/ui/badge";
 
-export const RolesBages = {
+export const rolesBages = {
   ADMIN: (
     <Badge
       variant={"fair"}

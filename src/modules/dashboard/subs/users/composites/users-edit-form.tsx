@@ -1,3 +1,5 @@
+import { rolesFields } from "@/modules/dashboard/subs/users/constants/roles-fields";
+
 import { Button, buttonVariants } from "@ui/button";
 import {
   Dialog,
@@ -16,13 +18,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@ui/form";
+
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@ui/select";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/common/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/common/components/ui/radio-group";
 
 import { cn } from "@/common/lib/utils";
 
@@ -32,7 +36,6 @@ import {
 } from "@dashboard/stores/dashboard-action-dialog-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
-import { RolesBages } from "@users/constants/role-bage";
 import useEditUserService from "@users/hooks/use-edit-user-service";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
@@ -89,29 +92,56 @@ export default function UsersEditForm() {
               control={form.control}
               name="role"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="font-bold">Role</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="rounded-full capitalize">
-                        <SelectValue placeholder="Select a role" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {Object.values(UserRoleSchema.Values).map((role, i) => (
-                        <SelectItem
+                <FormItem className="flex w-full flex-col space-y-0">
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex flex-col space-y-1"
+                    >
+                      {rolesFields.map((role, i) => (
+                        <FormItem
+                          className="flex items-center space-x-3 space-y-0"
                           key={i}
-                          value={role}
-                          className="capitalize"
                         >
-                          <div className="mb-1">{RolesBages[role]}</div>
-                        </SelectItem>
+                          <FormControl>
+                            <Card className="relative w-full overflow-hidden before:invisible before:absolute before:left-0 before:top-0 before:block before:size-4 before:rounded-ee-full before:rounded-ss-lg before:bg-primary before:content-[''] has-[:checked]:border-primary has-[:checked]:before:visible">
+                              <RadioGroupItem
+                                value={role.value}
+                                id={role.label}
+                                className="peer sr-only"
+                              />
+                              <FormLabel
+                                className="w-full"
+                                htmlFor={role.label}
+                              >
+                                <CardContent
+                                  className="group flex w-full items-center rounded-lg bg-background p-2 px-4 hover:bg-accent data-[state=checked]:bg-accent"
+                                  data-state={
+                                    role.value === form.getValues("role")
+                                      ? "checked"
+                                      : "unchecked"
+                                  }
+                                >
+                                  <div className="rounded-full p-2">
+                                    <role.icon className="size-5" />
+                                  </div>
+                                  <CardHeader className="p-2">
+                                    <CardTitle className="text-sm font-bold capitalize">
+                                      {role.label}
+                                    </CardTitle>
+                                    <CardDescription>
+                                      {role.description}
+                                    </CardDescription>
+                                  </CardHeader>
+                                </CardContent>
+                              </FormLabel>
+                            </Card>
+                          </FormControl>
+                        </FormItem>
                       ))}
-                    </SelectContent>
-                  </Select>
+                    </RadioGroup>
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
