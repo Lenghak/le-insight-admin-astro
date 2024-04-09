@@ -32,7 +32,8 @@ import useEditUserService from "@users/hooks/use-edit-user-service";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
 import { addDays } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2Icon } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -46,7 +47,7 @@ export default function UsersBanForm() {
 
   const userID = useStore($userIDStore);
   const { data: res } = useGetUserService({ userID });
-  const { mutate: editUser } = useEditUserService();
+  const { mutate: editUser, status } = useEditUserService();
 
   const user = res?.data?.data;
 
@@ -57,6 +58,15 @@ export default function UsersBanForm() {
       bannedUntil: addDays(new Date(), 1),
     },
   });
+
+  useEffect(() => {
+    if (status === "success") {
+      setDashboardDialogOpen({
+        id: `USER_BAN`,
+        isOpen: false,
+      });
+    }
+  }, [status]);
 
   return (
     <Dialog
@@ -86,14 +96,14 @@ export default function UsersBanForm() {
                 banned_until: value.bannedUntil.toISOString(),
               }),
             )}
-            className="w-full space-y-8"
+            className="w-full space-y-6"
           >
             <FormField
               control={form.control}
-              name="bannedUntil"
+              name="bannedAt"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel className="font-bold">Ban until</FormLabel>
+                  <FormLabel className="font-bold">Ban From</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -130,6 +140,49 @@ export default function UsersBanForm() {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="bannedUntil"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel className="font-bold">Ban Until</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "pl-3 text-left font-semibold",
+                            !field.value && "text-muted-foreground",
+                          )}
+                        >
+                          {field.value ? (
+                            formatDate(field.value)
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="w-auto p-0"
+                      align="start"
+                    >
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) => date < form.getValues("bannedAt")}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <DialogFooter className="gap-2">
               <DialogClose
                 type="reset"
@@ -141,10 +194,20 @@ export default function UsersBanForm() {
                 Cancel
               </DialogClose>
               <Button
-                type="submit"
-                className="font-bold"
+                type={status === "pending" ? "button" : "submit"}
+                className={cn(
+                  "gap-0 font-bold transition-all",
+                  status === "pending" ? "gap-2 pr-3" : "",
+                )}
+                disabled={status === "pending"}
                 variant={"destructive"}
               >
+                <Loader2Icon
+                  className={cn(
+                    "h-4 w-0 animate-spin transition-all",
+                    status === "pending" ? "w-4" : "",
+                  )}
+                />
                 Ban this user
               </Button>
             </DialogFooter>

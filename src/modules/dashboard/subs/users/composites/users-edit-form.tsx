@@ -39,6 +39,8 @@ import { useStore } from "@nanostores/react";
 import useEditUserService from "@users/hooks/use-edit-user-service";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
+import { Loader2Icon } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { UserRoleSchema, UsersSchema } from "@/common/types/users-type";
@@ -48,7 +50,7 @@ export default function UsersEditForm() {
 
   const userID = useStore($userIDStore);
   const { data: res } = useGetUserService({ userID });
-  const { mutate: editUser } = useEditUserService();
+  const { mutate: editUser, status } = useEditUserService();
 
   const user = res?.data?.data;
 
@@ -62,6 +64,15 @@ export default function UsersEditForm() {
       role: UserRoleSchema.Values[user?.attributes.role ?? "GUEST"],
     },
   });
+
+  useEffect(() => {
+    if (status === "success") {
+      setDashboardDialogOpen({
+        id: `USER_EDIT`,
+        isOpen: false,
+      });
+    }
+  }, [status]);
 
   return (
     <Dialog
@@ -157,9 +168,19 @@ export default function UsersEditForm() {
                 Cancel
               </DialogClose>
               <Button
-                type="submit"
-                className="font-bold"
+                type={status === "pending" ? "button" : "submit"}
+                className={cn(
+                  "gap-0 font-bold transition-all",
+                  status === "pending" ? "gap-2 pr-3" : "",
+                )}
+                disabled={status === "pending"}
               >
+                <Loader2Icon
+                  className={cn(
+                    "h-4 w-0 animate-spin transition-all",
+                    status === "pending" ? "w-4" : "",
+                  )}
+                />
                 Save changes
               </Button>
             </DialogFooter>
