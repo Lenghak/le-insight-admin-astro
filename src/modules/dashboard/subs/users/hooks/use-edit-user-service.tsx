@@ -1,10 +1,9 @@
-import { userKeys } from "@/modules/dashboard/subs/users/constants/query-keys";
-
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
+import { userKeys } from "@users/constants/query-keys";
 import patchEditUserAPI from "@users/services/post-edit-user-api";
 import type { UserEditRequestType } from "@users/types/users-edit-type";
 import { AxiosError } from "axios";
@@ -25,12 +24,14 @@ export default function useEditUserService() {
             duration: 10 * 1000,
             description:
               "The input in not acceptable. Please check and try again.",
+            closeButton: true,
           });
         else {
           toast.error("Editing Failed", {
             duration: 10 * 1000,
             description:
               "There was a problem while banning this user. Please try again later",
+            closeButton: true,
           });
         }
       },
@@ -39,6 +40,7 @@ export default function useEditUserService() {
           duration: 10 * 1000,
           description:
             "The new data has been successfully updated. You may see the result shortly.",
+          closeButton: true,
         });
       },
       onSettled: async () => {
