@@ -1,10 +1,9 @@
-import useRefreshTokenService from "@/modules/auth/hooks/use-refresh-token-service";
-import useSessionService from "@/modules/auth/hooks/use-session-service";
-
 import {
   createQueryInstance,
   getPublicQueryInstance,
 } from "@/common/stores/api-store";
+import useRefreshTokenService from "@auth/hooks/use-refresh-token-service";
+import useSessionService from "@auth/hooks/use-session-service";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect } from "react";
 

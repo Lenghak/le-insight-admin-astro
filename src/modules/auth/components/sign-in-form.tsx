@@ -1,3 +1,4 @@
+import useSignInService from "@/modules/auth/hooks/use-sign-in-service";
 import { SignInRequestSchema } from "@/modules/auth/types/sign-in-schema";
 
 import { Button, buttonVariants } from "@/common/components/ui/button";
@@ -13,7 +14,6 @@ import { Input } from "@/common/components/ui/input";
 
 import { cn } from "@/common/lib/utils";
 
-import useSignInService from "@/modules/auth/hooks/use-sign-in-service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
@@ -31,14 +31,14 @@ export default function SignInForm() {
 
   const [isPasswordShowed, setShowPassword] = useState(false);
 
-  const { mutateAsync: signIn, isPending: isSigningIn } = useSignInService()
+  const { mutateAsync: signIn, isPending: isSigningIn } = useSignInService();
 
   return (
     <Form {...form}>
       <form
         method="POST"
         onSubmit={form.handleSubmit(async (values) => {
-          await signIn(values)
+          await signIn(values);
         })}
         className="w-full space-y-2"
       >
@@ -47,12 +47,18 @@ export default function SignInForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold" htmlFor="email-field">Email</FormLabel>
+              <FormLabel
+                className="font-bold"
+                htmlFor="email-field"
+              >
+                Email
+              </FormLabel>
               <FormControl>
                 <Input
                   id="email-field"
                   placeholder="someone@example.com"
                   autoComplete="on"
+                  className="rounded-full px-4 font-medium"
                   {...field}
                 />
               </FormControl>
@@ -65,13 +71,18 @@ export default function SignInForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="font-semibold" htmlFor="password-field">Password</FormLabel>
+              <FormLabel
+                className="font-bold"
+                htmlFor="password-field"
+              >
+                Password
+              </FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     id="password-field"
                     placeholder="Enter a password"
-                    className="pr-12"
+                    className="rounded-full px-4 pr-16 font-medium"
                     type={isPasswordShowed ? "text" : "password"}
                     autoComplete="on"
                     {...field}
@@ -80,7 +91,7 @@ export default function SignInForm() {
                     variant={"ghost"}
                     size={"icon"}
                     type="button"
-                    className="absolute right-0 top-0 rounded-md hover:bg-transparent"
+                    className="absolute right-2 top-0 rounded-md hover:bg-transparent"
                     onClick={() => setShowPassword(!isPasswordShowed)}
                   >
                     {isPasswordShowed ? (
@@ -114,9 +125,14 @@ export default function SignInForm() {
         <Button
           type={isSigningIn ? "button" : "submit"}
           disabled={isSigningIn}
-          className={cn("w-full rounded-md font-bold transition-all gap-0", isSigningIn && "gap-4")}
+          className={cn(
+            "w-full gap-0 font-bold transition-all",
+            isSigningIn && "gap-4",
+          )}
         >
-          <Loader2Icon className={cn("size-0 animate-spin", isSigningIn && "size-4")} />
+          <Loader2Icon
+            className={cn("size-0 animate-spin", isSigningIn && "size-4")}
+          />
           <span>Sign In</span>
         </Button>
       </form>
