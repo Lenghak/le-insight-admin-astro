@@ -127,7 +127,7 @@ export default function UsersEditForm() {
                                 htmlFor={role.label}
                               >
                                 <CardContent
-                                  className="group flex w-full items-center rounded-lg bg-background p-2 px-4 hover:bg-accent data-[state=checked]:bg-accent"
+                                  className="group flex w-full items-center rounded-lg bg-card p-2 px-4 hover:bg-accent data-[state=checked]:bg-accent"
                                   data-state={
                                     role.value === form.getValues("role")
                                       ? "checked"

@@ -16,6 +16,8 @@ export const UsersTableSchema = UsersSchema.omit({ type: true }).extend({
 export const UsersListRequestSchema = PaginationRequestSchema.extend({
   role: UserRoleSchema.nullable().optional(),
   "sex[]": z.array(ProfileSexSchema).optional(),
+  from: z.string().datetime().optional(),
+  to: z.string().datetime().optional(),
 });
 
 export const UsersListResponseSchema = z.object({

@@ -22,10 +22,10 @@ export const createQueryInstance = (conf: CreateAxiosDefaults<unknown>) =>
     ...conf,
   });
 
-export const queryInstance = map(
+export const $queryInstance = map(
   axios.create({
     baseURL: env.PUBLIC_API_ENDPOINT,
   }),
 );
 
-export const getPublicQueryInstance = () => queryInstance.get();
+export const getPublicQueryInstance = () => $queryInstance.get();

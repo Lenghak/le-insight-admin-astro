@@ -14,14 +14,14 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           default:
-            "bg-default group toast text-foreground group-[.toaster]:border-l-4 border-l-primary",
+            "bg-default group toast text-foreground group-[.toaster]:border-2 border-primary rounded-xl",
           warning:
-            "warning group toast group-[.toaster]:text-warning group-[.toaster]:border-l-warning",
-          info: "informative group toast group-[.toaster]:text-informative group-[.toaster]:border-l-informative",
+            "warning group toast group-[.toaster]:text-warning group-[.toaster]:border-warning",
+          info: "informative group toast group-[.toaster]:text-informative group-[.toaster]:border-informative",
           success:
-            "successive group toast group-[.toaster]:text-successive group-[.toaster]:border-l-successive",
+            "successive group toast group-[.toaster]:text-successive group-[.toaster]:border-successive",
           error:
-            "destructive group toast group-[.toaster]:text-destructive group-[.toaster]:border-l-destructive",
+            "destructive group toast group-[.toaster]:text-destructive group-[.toaster]:border-destructive",
           toast:
             "group toast group-[.toaster]:bg-card group-[.toaster]:border-border group-[.toaster]:shadow-lg group-[.toaster]:font-sans",
           description:
@@ -32,7 +32,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "group-[.toast]:bg-muted group-[.toast]:text-foreground",
           title: "group-[.toast]:font-bold group-[.toaster]:text-sm",
           closeButton:
-            "group-[.toaster]:bg-card group-[.toaster]:border [&>svg]:stroke-[3] group-[.toaster]:border-card",
+            "group-[.toaster]:left-[95%] group-[.toaster]:-top-1 group-[.toaster]:bg-card group-[.toaster]:border-2 [&>svg]:stroke-[3] group-[.toaster]:border-card group-[.successive]:border-successive group-[.warning]:border-warning group-[.informative]:border-informative group-[.destructive]:border-destructive",
         },
       }}
       {...props}

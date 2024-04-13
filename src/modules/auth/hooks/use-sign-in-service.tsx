@@ -10,6 +10,7 @@ import { toast } from "sonner";
 
 export default function useSignInService() {
   const queryClient = useStore($queryClient);
+
   return useMutation(
     {
       mutationKey: authKeys.operation("sign-in"),
@@ -26,6 +27,7 @@ export default function useSignInService() {
                 duration: 10 * 1000,
                 description:
                   "The email and password are invalid. Please check and try again.",
+                closeButton: true,
               });
           })
           .catch((err) => {
@@ -39,6 +41,7 @@ export default function useSignInService() {
                   err instanceof AxiosError && err.response?.status === 401
                     ? "The email and password are invalid. Please check and try again."
                     : "There was a technical problem while signing you in. Please try again later.",
+                closeButton: true,
               },
             );
           }),
