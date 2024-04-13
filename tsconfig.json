@@ -12,6 +12,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@categories/*": ["./src/modules/dashboard/subs/categories/*"],
       "@users/*": ["./src/modules/dashboard/subs/users/*"],
       "@dashboard/*": ["./src/modules/dashboard/*"],
       "@auth/*": ["./src/modules/auth/*"],

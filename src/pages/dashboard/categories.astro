@@ -1,5 +1,8 @@
 ---
+import CategoriesTable from "@categories/presenters/categories-table";
 import DashboardLayout from "@dashboard/layouts/dashboard-layout.astro";
 ---
 
-<DashboardLayout dashboardTitle="Categories" />
+<DashboardLayout dashboardTitle="Categories">
+  <CategoriesTable client:only="react" />
+</DashboardLayout>
