@@ -12,7 +12,7 @@ import {
   AlertCircleIcon,
   ArchiveIcon,
   BellDotIcon,
-  FileJsonIcon,
+  BookIcon,
   FilesIcon,
   HandCoinsIcon,
   Layers3Icon,
@@ -78,7 +78,7 @@ export default function SideBar({
           {
             isDisabled: false,
             title: "Articles",
-            icon: FileJsonIcon,
+            icon: ScrollIcon,
             link: "/dashboard/articles",
             variant: "ghost",
           },
@@ -152,7 +152,7 @@ export default function SideBar({
           {
             isDisabled: true,
             title: "Documents",
-            icon: ScrollIcon,
+            icon: BookIcon,
             link: "/docs",
             variant: "ghost",
           },
