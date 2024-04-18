@@ -32,7 +32,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "group-[.toast]:bg-muted group-[.toast]:text-foreground",
           title: "group-[.toast]:font-bold group-[.toaster]:text-sm",
           closeButton:
-            "group-[.toaster]:left-[95%] group-[.toaster]:-top-1 group-[.toaster]:bg-card group-[.toaster]:border-2 [&>svg]:stroke-[3] group-[.toaster]:border-card group-[.successive]:border-successive group-[.warning]:border-warning group-[.informative]:border-informative group-[.destructive]:border-destructive",
+            "group-[.toaster]:left-[95%] group-[.toaster]:-top-1 group-[.toaster]:bg-card group-[.toaster]:border-2 [&>svg]:stroke-[3] group-[.successive]:border-successive group-[.warning]:border-warning group-[.informative]:border-informative group-[.destructive]:border-destructive",
         },
       }}
       {...props}

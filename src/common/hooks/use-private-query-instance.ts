@@ -4,6 +4,7 @@ import {
 } from "@/common/stores/api-store";
 import useRefreshTokenService from "@auth/hooks/use-refresh-token-service";
 import useSessionService from "@auth/hooks/use-session-service";
+import { signOut } from "auth-astro/client";
 import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { useEffect } from "react";
 
@@ -34,6 +35,11 @@ export default function usePrivateQueryInstance() {
 
           if (err.response?.status === 401 && !prevConf?.sent) {
             prevConf.sent = true;
+
+            if (err.config?.url === "/auth/refresh") {
+              await signOut({ redirect: true, callbackUrl: "/auth/sign-in" });
+              return Promise.reject(err);
+            }
 
             const { data: res } = await refreshToken(
               createQueryInstance({
