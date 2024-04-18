@@ -13,7 +13,7 @@ export default function DashboardLayout({
     <main className="grid h-full w-screen grid-cols-[auto,_1fr] grid-rows-[auto,_1fr] bg-card p-2 pr-2">
       <SideBar className="w-full" />
 
-      <DashboardHeader />
+      <DashboardHeader spa />
 
       <section className="flex h-full w-full flex-col overflow-x-auto rounded-xl bg-background p-6 pb-4 pr-4">
         <Outlet />

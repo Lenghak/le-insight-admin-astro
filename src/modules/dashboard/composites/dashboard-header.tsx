@@ -1,5 +1,6 @@
 import ProfileDropdown from "@/common/components/custom/profile";
 import ModeToggle from "@/common/components/custom/theme";
+import { SpaModeToggle } from "@/common/components/custom/theme/spa-mode-toggle";
 import { Button } from "@/common/components/ui/button";
 import { Input } from "@/common/components/ui/input";
 import { Separator } from "@/common/components/ui/separator";
@@ -8,7 +9,11 @@ import { $sidebar, setCollapsed } from "@/common/stores/side-bar-store";
 import { useStore } from "@nanostores/react";
 import { MenuIcon, SearchIcon } from "lucide-react";
 
-export default function DashboardHeader() {
+interface DashboardHeaderProps {
+  spa?: boolean;
+}
+
+export default function DashboardHeader({ spa }: DashboardHeaderProps) {
   const isCollapsed = useStore($sidebar);
 
   return (
@@ -41,7 +46,7 @@ export default function DashboardHeader() {
 
       {/* Profiles */}
       <div className="flex w-full items-center justify-end gap-4">
-        <ModeToggle />
+        {spa ? <SpaModeToggle /> : <ModeToggle />}
         <ProfileDropdown />
       </div>
     </header>
