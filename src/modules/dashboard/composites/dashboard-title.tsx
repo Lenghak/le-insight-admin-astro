@@ -12,19 +12,20 @@ import { cn } from "@/common/lib/utils";
 
 import { SlashIcon } from "lucide-react";
 import { Fragment } from "react/jsx-runtime";
+import {useLocation} from 'react-router-dom'
 
 type DashboardTitleProps = {
   className?: string;
-  url: URL;
   title: string;
 };
 
 export default function DashboardTitle({
   className,
   title,
-  url,
+  
 }: DashboardTitleProps) {
-  const links = url.pathname.split("/").filter((link) => link !== "");
+  const location = useLocation()
+  const links = location.pathname.split("/").filter((link) => link !== "");
 
   return (
     <div className={cn("flex flex-col gap-1", className)}>

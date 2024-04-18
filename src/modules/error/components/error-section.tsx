@@ -1,4 +1,4 @@
-import { H3 } from "@/common/components/ui/h3";
+import { H2 } from "@/common/components/ui/h2";
 import { Muted } from "@/common/components/ui/muted";
 
 import { cn } from "@/common/lib/utils";
@@ -11,6 +11,7 @@ interface ErrorSectionProps
   title?: React.ReactNode;
   description: React.ReactNode;
   action?: React.ReactNode;
+  imgSrc?: string;
 }
 
 export default function ErrorSection({
@@ -19,6 +20,7 @@ export default function ErrorSection({
   description,
   action,
   className,
+  imgSrc,
   ...props
 }: ErrorSectionProps) {
   return (
@@ -32,7 +34,7 @@ export default function ErrorSection({
       {/* image */}
       {img ?? (
         <img
-          src={"/svg/data-error.svg"}
+          src={imgSrc ?? "/svg/data-error.svg"}
           alt="Error"
           className="w-48 object-cover"
         />
@@ -42,7 +44,7 @@ export default function ErrorSection({
       {typeof title !== "string" ? (
         title
       ) : (
-        <H3 className="text-center font-extrabold">Something went wrong!</H3>
+        <H2 className="text-center font-extrabold">{title}</H2>
       )}
 
       <Muted className="mt-4 w-80 max-w-screen-xs text-center">

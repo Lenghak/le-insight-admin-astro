@@ -1,0 +1,13 @@
+---
+import RootLayout from "@/common/layouts/root-layout.astro";
+import Routes from "@dashboard/routes";
+
+export const prerender = false;
+---
+
+<RootLayout title="Le-Insight | Dashboard">
+  <Routes
+    client:only="react"
+    transition:persist
+  />
+</RootLayout>

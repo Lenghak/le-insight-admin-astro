@@ -3,7 +3,7 @@ import CategoriesDataTable from "@/modules/dashboard/subs/categories/composites/
 
 import { Fragment } from "react/jsx-runtime";
 
-export default function UsersTable() {
+export default function CategoriesTable() {
   return (
     <Fragment>
       <CategoriesDataTable

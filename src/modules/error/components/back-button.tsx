@@ -4,13 +4,19 @@ import { cn } from "@/common/lib/utils";
 
 import { MoveLeftIcon } from "lucide-react";
 
-export function BackButton() {
+type Props = {
+  className?: string;
+};
+
+export function BackButton({ className }: Props) {
   return (
     <a
-      href="/"
+      href="/dashboard/users"
+      target="_parent"
       className={cn(
         buttonVariants({ size: "lg", variant: "default" }),
-        "items-center gap-2 rounded-full font-bold",
+        "items-center gap-3 rounded-full font-bold",
+        className,
       )}
     >
       <MoveLeftIcon size={18} />

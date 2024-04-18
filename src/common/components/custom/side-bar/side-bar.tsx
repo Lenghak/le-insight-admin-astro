@@ -1,12 +1,10 @@
 import Logo from "@/common/components/custom/logo";
-import SidebarSkeleton from "@/common/components/custom/side-bar/side-bar-skeleton";
 import { Separator } from "@/common/components/ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
 import { $sidebar } from "@/common/stores/side-bar-store";
 import { useStore } from "@nanostores/react";
-import { useIsClient } from "@uidotdev/usehooks";
 import {
   ActivityIcon,
   AlertCircleIcon,
@@ -21,22 +19,13 @@ import {
   SwatchBookIcon,
   UsersIcon,
 } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 import SideNav from "./side-nav";
 
-export default function SideBar({
-  className,
-  pathname,
-}: {
-  className?: string;
-  pathname: string;
-}) {
+export default function SideBar({ className }: { className?: string }) {
   const isCollapsed = useStore($sidebar);
-
-  const isClient = useIsClient();
-
-  if (!isClient) return <SidebarSkeleton />;
-
+  const loacation = useLocation();
   return (
     <aside
       className={cn(
@@ -45,20 +34,20 @@ export default function SideBar({
         className,
       )}
     >
-      <a
-        href={"/dashboard"}
+      <Link
+        to={"/dashboard"}
         className={cn(
           "flex h-16 items-center justify-center",
           isCollapsed ? "h-16 px-2" : "md:justify-between md:px-4",
         )}
       >
         <Logo />
-      </a>
+      </Link>
 
       <Separator className="mx-auto w-4/5" />
 
       <SideNav
-        pathname={pathname}
+        pathname={loacation.pathname}
         isCollapsed={isCollapsed}
         links={[
           {
@@ -109,7 +98,7 @@ export default function SideBar({
       <Separator className="mx-auto w-4/5" />
 
       <SideNav
-        pathname={pathname}
+        pathname={location.pathname}
         isCollapsed={isCollapsed}
         links={[
           {
@@ -139,7 +128,7 @@ export default function SideBar({
       <Separator className="mx-auto w-4/5" />
 
       <SideNav
-        pathname={pathname}
+        pathname={location.pathname}
         isCollapsed={isCollapsed}
         links={[
           {

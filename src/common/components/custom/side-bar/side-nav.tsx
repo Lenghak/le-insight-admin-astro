@@ -9,6 +9,7 @@ import {
 import { cn } from "@/common/lib/utils";
 
 import { type LucideIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface SideNavProps {
   isCollapsed: boolean;
@@ -41,8 +42,8 @@ export default function SideNav({
             <TooltipProvider key={index}>
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
-                  <a
-                    href={link.link}
+                  <Link
+                    to={link.link}
                     aria-disabled={link.isDisabled}
                     data-state={
                       link.variant === "default" ? "active" : "inactive"
@@ -57,7 +58,7 @@ export default function SideNav({
                   >
                     <link.icon className={cn("size-4")} />
                     <span className="sr-only">{link.title}</span>
-                  </a>
+                  </Link>
                 </TooltipTrigger>
                 <TooltipContent
                   side="right"

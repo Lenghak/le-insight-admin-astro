@@ -21,7 +21,6 @@
     "@fontsource-variable/open-sans": "^5.0.28",
     "@fontsource-variable/roboto-mono": "^5.0.18",
     "@hookform/resolvers": "^3.3.4",
-    "@iconify-icon/react": "^2.0.1",
     "@nanostores/persistent": "^0.10.1",
     "@nanostores/react": "^0.7.2",
     "@portive/client": "^10.0.3",
@@ -102,7 +101,7 @@
     "@udecode/plate-toggle": "^31.1.0",
     "@udecode/plate-trailing-block": "^31.0.0",
     "@uidotdev/usehooks": "^2.4.1",
-    "astro": "^4.6.1",
+    "astro": "^4.6.2",
     "auth-astro": "^4.1.1",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
@@ -120,7 +119,7 @@
     "react": "^18.2.0",
     "react-colorful": "^5.6.1",
     "react-cookie": "^7.1.4",
-    "react-day-picker": "^8.10.0",
+    "react-day-picker": "^8.10.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
@@ -129,7 +128,8 @@
     "react-hook-form": "^7.51.3",
     "react-lite-youtube-embed": "^2.4.0",
     "react-paginate": "^8.2.0",
-    "react-resizable-panels": "^2.0.16",
+    "react-resizable-panels": "^2.0.17",
+    "react-router-dom": "^6.22.3",
     "react-tweet": "^3.2.1",
     "slate": "^0.102.0",
     "slate-history": "^0.100.0",
@@ -148,14 +148,14 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.77",
+    "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/uuid": "^9.0.8",
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
-    "@typescript-eslint/parser": "^7.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "astro-eslint-parser": "^0.16.3",
     "autoprefixer": "^10.4.19",
-    "dependency-cruiser": "^16.3.0",
+    "dependency-cruiser": "^16.3.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-astro": "^0.31.4",
@@ -165,16 +165,14 @@
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.13",
+    "prettier-plugin-tailwindcss": "^0.5.14",
     "scss": "^0.2.4",
     "tailwindcss": "^3.4.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "lint-staged": {
-    "**/*.{js,ts,json}": [
-      "prettier --write --config .prettierrc.cjs"
-    ]
+    "**/*.{js,ts,json}": ["prettier --write --config .prettierrc.cjs"]
   },
   "pnpm": {
     "overrides": {
