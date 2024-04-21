@@ -1,9 +1,3 @@
-import UsersActions from "@/modules/dashboard/subs/users/composites/users-actions";
-import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
-import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
-import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
-
-import ProfileBadge from "@/common/components/custom/profile/profile-badge";
 import { DataTableColumnHeader } from "@/common/components/custom/table";
 import { Checkbox } from "@/common/components/ui/checkbox";
 
@@ -11,10 +5,7 @@ import formatDate from "@/common/lib/date/format-date";
 
 import { type ColumnDef } from "@tanstack/react-table";
 
-import type { ProfileSexType } from "@/common/types/profiles-type";
-import type { UsersRoleType } from "@/common/types/users-type";
-
-export const categoriesColumns: ColumnDef<UsersTableType>[] = [
+export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -51,64 +42,72 @@ export const categoriesColumns: ColumnDef<UsersTableType>[] = [
       `${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`,
   },
   {
-    accessorKey: "profile",
+    accessorKey: "label",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Profile"
-      />
-    ),
-    cell: ({ row }) => {
-      const data = row.original;
-      return (
-        <ProfileBadge
-          email={data.email}
-          firstName={data.profile.first_name}
-          lastName={data.profile.last_name}
-          imageURL={data.profile.image_url ?? undefined}
-        />
-      );
-    },
-  },
-  {
-    accessorKey: "profile.sex",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Sex"
-      />
-    ),
-    cell: ({ getValue }) => SexesBages[getValue() as ProfileSexType],
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Email"
-      />
-    ),
-  },
-  {
-    accessorKey: "role",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Role"
-      />
-    ),
-    cell: ({ getValue }) => rolesBages[getValue() as UsersRoleType],
-  },
-  {
-    accessorKey: "phone",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Phone"
+        title="Label"
       />
     ),
     cell: ({ getValue }) =>
-      getValue() ?? <span className="inline-block w-full text-center">-</span>,
+      getValue() ? (
+        <span className="w-full text-center font-bold">
+          {getValue() as string}
+        </span>
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
+  },
+  {
+    accessorKey: "description",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Description"
+      />
+    ),
+    cell: ({ getValue }) =>
+      getValue() ? (
+        <span className="w-full text-center">{getValue() as string}</span>
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
+  },
+  {
+    id: "assigned",
+    accessorKey: "assigned_count",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Assigned"
+      />
+    ),
+    cell: ({ getValue }) =>
+      getValue() ? (
+        <span className="w-full text-center font-bold">
+          {getValue() as string}
+        </span>
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
+  },
+  {
+    id: "generated",
+    accessorKey: "generated_count",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Assigned"
+      />
+    ),
+    cell: ({ getValue }) =>
+      getValue() ? (
+        <span className="w-full text-center font-bold">
+          {getValue() as string}
+        </span>
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
   },
   {
     accessorKey: "created_at",
@@ -142,6 +141,6 @@ export const categoriesColumns: ColumnDef<UsersTableType>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <UsersActions row={row} />,
+    // cell: ({ row }) => <UsersActions row={row} />,
   },
 ];

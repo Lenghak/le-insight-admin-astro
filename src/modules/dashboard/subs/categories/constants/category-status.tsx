@@ -1,31 +1,40 @@
 import { Badge } from "@/common/components/ui/badge";
 
-export const sexesBages = {
-  MALE: (
+export const categoryStatus = {
+  ACTIVE: (
     <Badge
       variant={"dot"}
-      colored={"cyan"}
+      colored={"emerald"}
       className="font-bold uppercase"
     >
-      Male
+      ACTIVE
     </Badge>
   ),
-  FEMALE: (
+  INACTIVE: (
     <Badge
       variant={"dot"}
-      colored={"pink"}
+      colored={"yellow"}
       className="font-bold uppercase"
     >
-      Female
+      Inactive
     </Badge>
   ),
-  RNTS: (
+  PENDING: (
     <Badge
       variant={"dot"}
-      colored={"purple"}
+      colored={"blue"}
       className="font-bold uppercase"
     >
-      Hidden
+      Pending
+    </Badge>
+  ),
+  REVOKED: (
+    <Badge
+      variant={"dot"}
+      colored={"red"}
+      className="font-bold uppercase"
+    >
+      Revoked
     </Badge>
   ),
 };

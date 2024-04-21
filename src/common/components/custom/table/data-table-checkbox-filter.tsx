@@ -105,7 +105,7 @@ export default function DataTableCheckboxFilter({
           <DropdownMenuItem
             className="flex items-center gap-4 pl-4 font-bold text-destructive"
             onClick={() => {
-              url.searchParams.delete("sex");
+              url.searchParams.delete(queryName);
               setURLStore(url);
             }}
           >

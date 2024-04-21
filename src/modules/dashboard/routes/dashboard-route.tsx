@@ -1,8 +1,9 @@
-import DashboardLayout from "@/modules/dashboard/layouts/dashboard-layout";
 import { BackButton } from "@/modules/error/components/back-button";
 import ErrorSection from "@/modules/error/components/error-section";
 
-import UsersRoutes from "@users/routes";
+import DashboardLayout from "@dashboard/layouts/dashboard-layout";
+import { CategoriesRoute } from "@dashboard/subs/categories/routes";
+import UsersRoute from "@users/routes";
 import { PawPrintIcon } from "lucide-react";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -29,7 +30,11 @@ export const dashboardRoute = createBrowserRouter([
     children: [
       {
         path: "/dashboard/users",
-        element: <UsersRoutes />,
+        element: <UsersRoute />,
+      },
+      {
+        path: "/dashboard/categories",
+        element: <CategoriesRoute />,
       },
     ],
   },

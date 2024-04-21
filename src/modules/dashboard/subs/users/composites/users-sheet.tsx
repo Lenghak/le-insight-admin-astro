@@ -1,4 +1,5 @@
 import SheetSection from "@/modules/dashboard/subs/users/components/sheet-section";
+import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
 
 import { InlineBanner } from "@/common/components/custom/banner";
 import InlineBannerContent from "@/common/components/custom/banner/inline-banner-content";
@@ -13,8 +14,7 @@ import {
   setDashboardSheetOpen,
 } from "@dashboard/stores/dashboard-sheet-store";
 import { useStore } from "@nanostores/react";
-import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
-import { SexesBages } from "@users/constants/sex-badge";
+import { sexesBages } from "@users/constants/sex-badge";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
 
@@ -32,7 +32,7 @@ export default function UsersSheet() {
       description="Information about user in detail"
       open={isDashboardSheetOpen}
       onOpenChange={(open: boolean) => setDashboardSheetOpen(open)}
-      className="flex flex-col gap-4 divide-y overflow-y-auto rounded-l-xl border-none sm:max-w-screen-sm"
+      className="flex flex-col gap-4 divide-y overflow-y-auto rounded-l-xl border-none sm:max-w-screen-xs"
     >
       <SheetSection
         title="Profile"
@@ -103,7 +103,7 @@ export default function UsersSheet() {
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
               {profile?.attributes.sex
-                ? SexesBages[profile?.attributes.sex]
+                ? sexesBages[profile?.attributes.sex]
                 : "-"}
             </InlineBannerContent>
           </InlineBanner>

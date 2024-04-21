@@ -1,6 +1,6 @@
 import UsersActions from "@/modules/dashboard/subs/users/composites/users-actions";
 import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
-import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
+import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
 import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
 
 import ProfileBadge from "@/common/components/custom/profile/profile-badge";
@@ -71,6 +71,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
     },
   },
   {
+    id: "sex",
     accessorKey: "profile.sex",
     header: ({ column }) => (
       <DataTableColumnHeader
@@ -78,7 +79,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Sex"
       />
     ),
-    cell: ({ getValue }) => SexesBages[getValue() as ProfileSexType],
+    cell: ({ getValue }) => sexesBages[getValue() as ProfileSexType],
   },
   {
     accessorKey: "email",

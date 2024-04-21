@@ -7,7 +7,7 @@ import UsersSheet from "@users/composites/users-sheet";
 
 import { Fragment } from "react";
 
-export default function UsersRoutes() {
+export default function UsersRoute() {
   return (
     <Fragment>
       <DashboardTitle title="Users" />

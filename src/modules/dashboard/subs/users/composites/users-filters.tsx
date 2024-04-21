@@ -1,4 +1,4 @@
-import { SexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
+import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
 
 import { DataTableViewOptions } from "@/common/components/custom/table";
 import DataTableCheckboxFilter from "@/common/components/custom/table/data-table-checkbox-filter";
@@ -14,15 +14,15 @@ interface UsersFiltersProps<TData> {
 
 const usersSexFilters = [
   {
-    label: SexesBages.MALE,
+    label: sexesBages.MALE,
     value: "MALE",
   },
   {
-    label: SexesBages.FEMALE,
+    label: sexesBages.FEMALE,
     value: "FEMALE",
   },
   {
-    label: SexesBages.RNTS,
+    label: sexesBages.RNTS,
     value: "RNTS",
   },
 ];
