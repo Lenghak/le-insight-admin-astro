@@ -96,17 +96,19 @@ export default function UsersBanForm() {
                 banned_until: value.bannedUntil.toISOString(),
               }),
             )}
-            className="w-full space-y-6"
+            className="mt-4 w-full space-y-6"
           >
             <FormField
               control={form.control}
               name="bannedAt"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="font-bold">Ban From</FormLabel>
+                <FormItem className="flex items-center justify-end gap-4 space-y-0">
+                  <FormLabel className="whitespace-nowrap text-end font-bold">
+                    Ban From
+                  </FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <FormControl>
+                      <FormControl className="w-3/4">
                         <Button
                           variant={"outline"}
                           className={cn(
@@ -145,11 +147,13 @@ export default function UsersBanForm() {
               control={form.control}
               name="bannedUntil"
               render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="font-bold">Ban Until</FormLabel>
+                <FormItem className="flex items-center justify-end gap-4 space-y-0">
+                  <FormLabel className="whitespace-nowrap text-end font-bold">
+                    Ban Until
+                  </FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <FormControl>
+                      <FormControl className="w-3/4">
                         <Button
                           variant={"outline"}
                           className={cn(

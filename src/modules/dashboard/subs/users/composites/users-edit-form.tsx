@@ -97,7 +97,7 @@ export default function UsersEditForm() {
             onSubmit={form.handleSubmit((value) =>
               editUser({ id: userID ?? "", role: value.role }),
             )}
-            className="w-full space-y-6"
+            className="mt-4 w-full space-y-6"
           >
             <FormField
               control={form.control}
@@ -127,7 +127,7 @@ export default function UsersEditForm() {
                                 htmlFor={role.label}
                               >
                                 <CardContent
-                                  className="group flex w-full items-center rounded-lg bg-card p-2 px-4 hover:bg-accent data-[state=checked]:bg-accent"
+                                  className="group flex w-full items-center rounded-lg bg-background p-2 px-4 hover:bg-accent data-[state=checked]:bg-accent"
                                   data-state={
                                     role.value === form.getValues("role")
                                       ? "checked"
@@ -162,7 +162,7 @@ export default function UsersEditForm() {
                 type="reset"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "default" }),
-                  "font-bold",
+                  "px-8 font-bold",
                 )}
               >
                 Cancel
@@ -170,7 +170,7 @@ export default function UsersEditForm() {
               <Button
                 type={status === "pending" ? "button" : "submit"}
                 className={cn(
-                  "gap-0 font-bold transition-all",
+                  "gap-0 px-8 font-bold transition-all",
                   status === "pending" ? "gap-2 pr-3" : "",
                 )}
                 disabled={status === "pending"}

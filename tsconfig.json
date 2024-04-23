@@ -16,7 +16,8 @@
       "@users/*": ["./src/modules/dashboard/subs/users/*"],
       "@dashboard/*": ["./src/modules/dashboard/*"],
       "@auth/*": ["./src/modules/auth/*"],
-      "@ui/*": ["./src/common/components/ui/*"]
+      "@ui/*": ["./src/common/components/ui/*"],
+      "@custom/*": ["./src/common/components/custom/*"]
     }
   }
 }

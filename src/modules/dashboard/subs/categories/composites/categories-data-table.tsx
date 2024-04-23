@@ -1,3 +1,5 @@
+import CategoriesFilters from "@/modules/dashboard/subs/categories/composites/categories-filters";
+
 import { DataTablePagination } from "@/common/components/custom/table";
 import {
   Table,
@@ -53,7 +55,9 @@ export default function CategoriesDataTable<TData, TValue>({
 
   return (
     <Fragment>
-      <div className="mt-4 flex h-fit items-center justify-between gap-6"></div>
+      <div className="mt-4 flex h-fit items-center justify-between gap-6">
+        <CategoriesFilters table={table} />
+      </div>
 
       <div
         className={cn(

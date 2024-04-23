@@ -7,6 +7,7 @@ export default function CategoriesRoute() {
   return (
     <Fragment>
       <DashboardTitle title="Categories" />
+      
 
       <CategoriesTable />
     </Fragment>

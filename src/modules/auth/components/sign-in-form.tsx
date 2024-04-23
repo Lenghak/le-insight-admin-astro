@@ -91,7 +91,7 @@ export default function SignInForm() {
                     variant={"ghost"}
                     size={"icon"}
                     type="button"
-                    className="absolute right-2 top-0 rounded-md hover:bg-transparent"
+                    className="absolute right-1 top-0 hover:bg-transparent"
                     onClick={() => setShowPassword(!isPasswordShowed)}
                   >
                     {isPasswordShowed ? (

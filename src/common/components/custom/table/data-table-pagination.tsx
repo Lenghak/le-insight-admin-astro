@@ -47,12 +47,26 @@ export default function DataTablePagination<TData>({
 
       <div className="w-fit rounded-full border bg-card p-1 text-sm font-semibold text-muted-foreground">
         <ReactPaginate
+          onClick={({ nextSelectedPage, selected }) => {
+            searchParams.set(
+              "page",
+              String(
+                nextSelectedPage
+                  ? nextSelectedPage + 1
+                  : selected
+                    ? selected + 1
+                    : 1,
+              ),
+            );
+            setURLStore(url);
+          }}
           className={cn("flex w-fit items-center justify-center gap-2")}
           breakLabel={<PaginationEllipsis />}
+          hrefBuilder={() => undefined}
           previousLabel={
             <div className="flex items-center gap-2">
               <ChevronLeftIcon className="h-4 w-4" />
-              <span>Previous</span>
+              <span className="sr-only">Previous</span>
             </div>
           }
           previousLinkClassName={cn(
@@ -61,7 +75,7 @@ export default function DataTablePagination<TData>({
           )}
           nextLabel={
             <div className="flex items-center gap-2">
-              <span>Next</span>
+              <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-4 w-4" />
             </div>
           }
@@ -77,15 +91,15 @@ export default function DataTablePagination<TData>({
           activeClassName={cn(
             buttonVariants({
               size: "icon",
-              variant: "outline",
+              variant: "default",
             }),
-            "min-w-9 min-h-9 h-9 w-9",
+            "min-w-9 min-h-9 h-9 w-9 hover:text-primary-foreground",
             activeClassName,
           )}
           activeLinkClassName={cn(activeLinkClassName)}
           pageRangeDisplayed={1}
           renderOnZeroPageCount={null}
-          forcePage={parseInt(searchParams.get("page") ?? "-1") - 1}
+          forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
           {...props}
         />
       </div>
@@ -95,7 +109,8 @@ export default function DataTablePagination<TData>({
         <Select
           value={`${searchParams.get("limit") ?? "50"}`}
           onValueChange={(value) => {
-            url.searchParams.set("limit", value);
+            searchParams.set("limit", value);
+            searchParams.delete("page");
             setURLStore(url);
           }}
         >

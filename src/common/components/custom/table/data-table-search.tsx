@@ -66,7 +66,7 @@ export default function DataTableSearch({
 
                   <Input
                     type="search"
-                    placeholder="Search users..."
+                    placeholder="Search"
                     className="peer h-9 w-full rounded-full bg-card px-12 placeholder:ml-12"
                     {...field}
                   />

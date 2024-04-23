@@ -79,7 +79,7 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Assigned"
+        title="N. Assigned"
       />
     ),
     cell: ({ getValue }) =>
@@ -97,7 +97,7 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Assigned"
+        title="N. Generated"
       />
     ),
     cell: ({ getValue }) =>
@@ -141,6 +141,5 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
   },
   {
     id: "actions",
-    // cell: ({ row }) => <UsersActions row={row} />,
   },
 ];
