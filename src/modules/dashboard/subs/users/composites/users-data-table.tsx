@@ -121,7 +121,7 @@ export default memo(function UsersDataTable<TData, TValue>({
 
       <DataTablePagination
         table={table}
-        pageCount={(meta?.totalPages ?? 1) - 1}
+        pageCount={meta?.totalPages ?? 1}
         className="mt-2"
       />
     </Fragment>

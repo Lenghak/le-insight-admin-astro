@@ -13,7 +13,7 @@ import { cn } from "@/common/lib/utils";
 import type { Table } from "@tanstack/react-table";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import ReactPaginate, { type ReactPaginateProps } from "react-paginate";
-import { useSearchParams } from "react-router-dom";
+import { useHref, useSearchParams } from "react-router-dom";
 
 export type PaginatedItemsProps<TData> = ReactPaginateProps & {
   table: Table<TData>;
@@ -27,9 +27,10 @@ export default function DataTablePagination<TData>({
   ...props
 }: PaginatedItemsProps<TData>) {
   const [searchParams, setSearchParams] = useSearchParams({
-    page: "0",
+    page: "1",
     limit: "50",
   });
+  const href = useHref({});
 
   return (
     <section
@@ -48,19 +49,11 @@ export default function DataTablePagination<TData>({
 
       <div className="w-fit rounded-full border bg-card p-1 text-sm font-semibold text-muted-foreground">
         <ReactPaginate
-          onClick={({ nextSelectedPage, selected }) => {
+          hrefBuilder={() => href}
+          onPageChange={({ selected }) => {
             setSearchParams(
               (prev) => {
-                prev.set(
-                  "page",
-                  String(
-                    nextSelectedPage
-                      ? nextSelectedPage + 1
-                      : selected
-                        ? selected + 1
-                        : 1,
-                  ),
-                );
+                prev.set("page", String(selected ? selected + 1 : 1));
                 return prev;
               },
               { replace: true },
@@ -68,7 +61,6 @@ export default function DataTablePagination<TData>({
           }}
           className={cn("flex w-fit items-center justify-center gap-2")}
           breakLabel={<PaginationEllipsis />}
-          hrefBuilder={() => null}
           previousLabel={
             <div className="flex items-center gap-2">
               <ChevronLeftIcon className="h-4 w-4" />
@@ -103,7 +95,7 @@ export default function DataTablePagination<TData>({
             activeClassName,
           )}
           activeLinkClassName={cn(activeLinkClassName)}
-          pageRangeDisplayed={1}
+          pageRangeDisplayed={3}
           renderOnZeroPageCount={null}
           forcePage={parseInt(searchParams.get("page") ?? "0") - 1}
           {...props}
@@ -126,7 +118,7 @@ export default function DataTablePagination<TData>({
           }}
         >
           <SelectTrigger className="h-8 w-[70px] rounded-full font-bold">
-            <SelectValue placeholder={table.getState().pagination.pageSize} />
+            <SelectValue placeholder={`${searchParams.get("limit") ?? "50"}`} />
           </SelectTrigger>
           <SelectContent side="top">
             {[10, 20, 30, 40, 50].map((pageSize) => (

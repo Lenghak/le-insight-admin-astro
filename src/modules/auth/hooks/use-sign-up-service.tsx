@@ -5,6 +5,7 @@ import type { SignUpRequestType } from "@/modules/auth/types/sign-up-schema";
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
+import { userKeys } from "@users/constants/query-keys";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
@@ -40,6 +41,13 @@ export default function useSignUpService() {
           closeButton: true,
           duration: 10 * 1000,
           description: "You can view a new updated data in any moment now.",
+        });
+      },
+      onSettled: async () => {
+        await queryClient.invalidateQueries({
+          queryKey: [...userKeys.all],
+          exact: false,
+          stale: true,
         });
       },
     },
