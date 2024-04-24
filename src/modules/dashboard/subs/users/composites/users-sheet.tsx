@@ -18,6 +18,7 @@ import { sexesBages } from "@users/constants/sex-badge";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
 
+// million-ignore
 export default function UsersSheet() {
   const userID = useStore($userIDStore);
   const { data: res } = useGetUserService({ userID });

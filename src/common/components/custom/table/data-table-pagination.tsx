@@ -48,58 +48,62 @@ export default function DataTablePagination<TData>({
       </div>
 
       <div className="w-fit rounded-full border bg-card p-1 text-sm font-semibold text-muted-foreground">
-        <ReactPaginate
-          hrefBuilder={() => href}
-          onPageChange={({ selected }) => {
-            setSearchParams(
-              (prev) => {
-                prev.set("page", String(selected ? selected + 1 : 1));
-                return prev;
-              },
-              { replace: true },
-            );
-          }}
-          className={cn("flex w-fit items-center justify-center gap-2")}
-          breakLabel={<PaginationEllipsis />}
-          previousLabel={
-            <div className="flex items-center gap-2">
-              <ChevronLeftIcon className="h-4 w-4" />
-              <span className="sr-only">Previous</span>
-            </div>
-          }
-          previousLinkClassName={cn(
-            buttonVariants({ variant: "outline", size: "icon" }),
-            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
-          )}
-          nextLabel={
-            <div className="flex items-center gap-2">
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-4 w-4" />
-            </div>
-          }
-          nextLinkClassName={cn(
-            buttonVariants({ variant: "outline", size: "icon" }),
-            "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
-          )}
-          disabledClassName="text-muted-foreground"
-          pageClassName={cn(buttonVariants({ size: "icon", variant: "ghost" }))}
-          pageLinkClassName={cn(
-            "font-semibold w-full h-full flex items-center justify-center rounded-full",
-          )}
-          activeClassName={cn(
-            buttonVariants({
-              size: "icon",
-              variant: "default",
-            }),
-            "min-w-9 min-h-9 h-9 w-9 hover:text-primary-foreground",
-            activeClassName,
-          )}
-          activeLinkClassName={cn(activeLinkClassName)}
-          pageRangeDisplayed={3}
-          renderOnZeroPageCount={null}
-          forcePage={parseInt(searchParams.get("page") ?? "0") - 1}
-          {...props}
-        />
+        {props.pageCount > 1 && (
+          <ReactPaginate
+            hrefBuilder={() => href}
+            onPageChange={({ selected }) => {
+              setSearchParams(
+                (prev) => {
+                  prev.set("page", String(selected ? selected + 1 : 1));
+                  return prev;
+                },
+                { replace: true },
+              );
+            }}
+            className={cn("flex w-fit items-center justify-center gap-2")}
+            breakLabel={<PaginationEllipsis />}
+            previousLabel={
+              <div className="flex items-center gap-2">
+                <ChevronLeftIcon className="h-4 w-4" />
+                <span className="sr-only">Previous</span>
+              </div>
+            }
+            previousLinkClassName={cn(
+              buttonVariants({ variant: "outline", size: "icon" }),
+              "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
+            )}
+            nextLabel={
+              <div className="flex items-center gap-2">
+                <span className="sr-only">Next</span>
+                <ChevronRightIcon className="h-4 w-4" />
+              </div>
+            }
+            nextLinkClassName={cn(
+              buttonVariants({ variant: "outline", size: "icon" }),
+              "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
+            )}
+            disabledClassName="text-muted-foreground"
+            pageClassName={cn(
+              buttonVariants({ size: "icon", variant: "ghost" }),
+            )}
+            pageLinkClassName={cn(
+              "font-semibold w-full h-full flex items-center justify-center rounded-full",
+            )}
+            activeClassName={cn(
+              buttonVariants({
+                size: "icon",
+                variant: "default",
+              }),
+              "min-w-9 min-h-9 h-9 w-9 hover:text-primary-foreground",
+              activeClassName,
+            )}
+            activeLinkClassName={cn(activeLinkClassName)}
+            pageRangeDisplayed={3}
+            renderOnZeroPageCount={null}
+            forcePage={parseInt(searchParams.get("page") ?? "0") - 1}
+            {...props}
+          />
+        )}
       </div>
 
       <div className="flex items-center gap-4 rounded-full border bg-card py-1 pl-4 pr-1">

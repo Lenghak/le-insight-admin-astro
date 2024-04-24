@@ -1,3 +1,5 @@
+import useCreateCategoryService from "@/modules/dashboard/subs/categories/hooks/use-create-categories-service";
+
 import { Button, buttonVariants } from "@ui/button";
 import {
   Dialog,
@@ -19,28 +21,28 @@ import {
   FormMessage,
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
+import { Textarea } from "@/common/components/ui/textarea";
 
 import { cn } from "@/common/lib/utils";
 
+import { CategoriesCreateSchema } from "@categories/types/categories-ind-type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, PlusIcon } from "lucide-react";
 import { type Ref, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-const CreateCategoriesSchema = z.object({
-  label: z.string().min(1, "Enter a label").trim(),
-  description: z.string().min(1, "Describe the category").trim(),
-});
+import { type z } from "zod";
 
 export default function CreateCategoriesForm() {
-  const form = useForm<z.infer<typeof CreateCategoriesSchema>>({
-    resolver: zodResolver(CreateCategoriesSchema),
+  const form = useForm<z.infer<typeof CategoriesCreateSchema>>({
+    resolver: zodResolver(CategoriesCreateSchema),
     defaultValues: {
       description: "",
       label: "",
     },
   });
+
+  const { mutate: create, isPending: isCreatingCategory } =
+    useCreateCategoryService();
 
   const closeRef: Ref<HTMLButtonElement> = useRef(null);
 
@@ -57,15 +59,17 @@ export default function CreateCategoriesForm() {
       </DialogTrigger>
       <DialogContent className="bg-card sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-extrabold">Create new user</DialogTitle>
+          <DialogTitle className="font-extrabold">
+            Create a new category
+          </DialogTitle>
           <DialogDescription>
-            Signing up a new user directly from admin.
+            Add new categories for grouping and managing articles.
           </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit((values) => console.log(values))}
+            onSubmit={form.handleSubmit((values) => create(values))}
             className="mt-4 w-full space-y-6"
           >
             <FormField
@@ -77,12 +81,12 @@ export default function CreateCategoriesForm() {
                     className="whitespace-nowrap text-end font-bold"
                     htmlFor="label-field"
                   >
-                    First Name
+                    Label
                   </FormLabel>
                   <FormControl className="w-3/4">
                     <Input
                       id="label-field"
-                      placeholder="e. g. John"
+                      placeholder="e. g. Technology"
                       className="rounded-full bg-background px-5 font-semibold"
                       autoComplete="on"
                       {...field}
@@ -97,18 +101,18 @@ export default function CreateCategoriesForm() {
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem className="flex items-center justify-end gap-4">
+                <FormItem className="flex items-start justify-end gap-4">
                   <FormLabel
-                    className="whitespace-nowrap text-end font-bold"
+                    className="whitespace-nowrap text-end font-bold mt-4"
                     htmlFor="description-field"
                   >
-                    Last Name
+                    Description
                   </FormLabel>
                   <FormControl className="w-3/4">
-                    <Input
+                    <Textarea
                       id="description-field"
-                      placeholder="e.g. Doe"
-                      className="rounded-full bg-background px-5 font-semibold"
+                      placeholder="e.g. something that related to society"
+                      className="rounded-xl bg-background px-5 font-semibold"
                       autoComplete="on"
                       {...field}
                     />
@@ -130,15 +134,18 @@ export default function CreateCategoriesForm() {
                 Cancel
               </DialogClose>
               <Button
-                type={true ? "button" : "submit"}
-                disabled={true}
+                type={isCreatingCategory ? "button" : "submit"}
+                disabled={isCreatingCategory}
                 className={cn(
                   "gap-0 px-8 font-bold transition-all",
-                  true && "gap-4",
+                  isCreatingCategory && "gap-4 pl-6",
                 )}
               >
                 <Loader2Icon
-                  className={cn("size-0 animate-spin", true && "size-4")}
+                  className={cn(
+                    "size-0 animate-spin",
+                    isCreatingCategory && "size-4",
+                  )}
                 />
                 <span>Create</span>
               </Button>

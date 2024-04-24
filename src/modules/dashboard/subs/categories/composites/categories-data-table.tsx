@@ -1,5 +1,3 @@
-import CategoriesFilters from "@/modules/dashboard/subs/categories/composites/categories-filters";
-
 import { DataTablePagination } from "@/common/components/custom/table";
 import {
   Table,
@@ -23,6 +21,9 @@ import {
 } from "@tanstack/react-table";
 import React from "react";
 import { Fragment } from "react/jsx-runtime";
+
+import CategoriesFilters from "./categories-filters";
+import CategoriesTabs from "./categories-tab";
 
 import type { PaginationMetaType } from "@/common/types/pagination-type";
 
@@ -56,6 +57,7 @@ export default function CategoriesDataTable<TData, TValue>({
   return (
     <Fragment>
       <div className="mt-4 flex h-fit items-center justify-between gap-6">
+        <CategoriesTabs />
         <CategoriesFilters table={table} />
       </div>
 
@@ -120,7 +122,7 @@ export default function CategoriesDataTable<TData, TValue>({
 
       <DataTablePagination
         table={table}
-        pageCount={(meta?.totalPages ?? 1) - 1}
+        pageCount={meta?.totalPages ?? 1}
         className="mt-2"
       />
     </Fragment>

@@ -10,15 +10,15 @@ const DashboardTabList = lazy(
   () => import("@dashboard/composites/tabs/dashboard-tab-list"),
 );
 
-type UsersTabsProps = Record<string, unknown>;
+type CategoriesTabsProps = Record<string, unknown>;
 
-const TABS = ["all", "admin", "user"];
+const TABS = ["all", "active", "inactive", "pending", "revoked"];
 
-export default memo(function UsersTabs({}: UsersTabsProps) {
+export default memo(function CategoriesTabs({}: CategoriesTabsProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { pathname } = useLocation();
-  const role = searchParams.get("role");
-  const activeTab = !!role ? role : "ALL";
+  const status = searchParams.get("status");
+  const activeTab = !!status ? status : "ALL";
 
   return (
     <Suspense fallback={<DashboardTabsSkeletons count={TABS.length} />}>
@@ -29,7 +29,7 @@ export default memo(function UsersTabs({}: UsersTabsProps) {
             pathname={pathname}
             link={false}
             onClick={() => {
-              searchParams.set("role", tab.toUpperCase());
+              searchParams.set("status", tab.toUpperCase());
               setSearchParams(searchParams);
             }}
             activeFn={() => activeTab === tab.toUpperCase()}
