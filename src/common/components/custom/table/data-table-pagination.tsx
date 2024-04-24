@@ -99,7 +99,7 @@ export default function DataTablePagination<TData>({
           activeLinkClassName={cn(activeLinkClassName)}
           pageRangeDisplayed={1}
           renderOnZeroPageCount={null}
-          forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
+          forcePage={parseInt(searchParams.get("page") ?? "0") - 1}
           {...props}
         />
       </div>

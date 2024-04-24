@@ -74,7 +74,7 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
       ),
   },
   {
-    id: "assigned",
+    id: "n. assigned",
     accessorKey: "assigned_count",
     header: ({ column }) => (
       <DataTableColumnHeader
@@ -92,7 +92,7 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
       ),
   },
   {
-    id: "generated",
+    id: "n. generated",
     accessorKey: "generated_count",
     header: ({ column }) => (
       <DataTableColumnHeader

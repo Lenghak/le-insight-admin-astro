@@ -1,20 +1,19 @@
-import UsersDataTable from "@/modules/dashboard/subs/users/composites/users-data-table";
-import useUsersTableHandler from "@/modules/dashboard/subs/users/hooks/use-users-table-handler";
+import { userColumns } from "@users/composites/users-columns";
+import UsersDataTable from "@users/composites/users-data-table";
+import useUsersTableHandler from "@users/hooks/use-users-table-handler";
+import { Fragment, memo } from "react";
 
-import { userColumns } from "@dashboard/subs/users/composites/users-columns";
-import { Fragment } from "react/jsx-runtime";
-
-export default function UsersTable() {
+export default memo(function UsersTable() {
   const { data: res } = useUsersTableHandler();
-
+  
   return (
     <Fragment>
       <UsersDataTable
-        columns={userColumns}
+        columns={userColumns as []}
         data={res?.data?.data ?? []}
         meta={res?.data?.meta?.pagination}
         className="mt-4 w-full"
       />
     </Fragment>
   );
-}
+});

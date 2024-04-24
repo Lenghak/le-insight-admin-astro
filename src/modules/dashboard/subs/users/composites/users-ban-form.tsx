@@ -33,7 +33,7 @@ import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
 import { addDays } from "date-fns";
 import { CalendarIcon, Loader2Icon } from "lucide-react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -42,7 +42,7 @@ const banUserSchema = z.object({
   bannedUntil: z.date({ required_error: "State the end of the ban" }),
 });
 
-export default function UsersBanForm() {
+export default memo(function UsersBanForm() {
   const dialog = useStore($dashboardDialogStore);
 
   const userID = useStore($userIDStore);
@@ -192,7 +192,7 @@ export default function UsersBanForm() {
                 type="reset"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "default" }),
-                  "font-bold",
+                  "px-8 font-bold",
                 )}
               >
                 Cancel
@@ -200,7 +200,7 @@ export default function UsersBanForm() {
               <Button
                 type={status === "pending" ? "button" : "submit"}
                 className={cn(
-                  "gap-0 font-bold transition-all",
+                  "gap-0 px-8 font-bold transition-all",
                   status === "pending" ? "gap-2 pr-3" : "",
                 )}
                 disabled={status === "pending"}
@@ -220,4 +220,4 @@ export default function UsersBanForm() {
       </DialogContent>
     </Dialog>
   );
-}
+});

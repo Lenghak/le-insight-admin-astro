@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 import { defineConfig } from "astro/config";
 import auth from "auth-astro";
+import million from "million/compiler";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,6 +26,11 @@ export default defineConfig({
     },
   },
   vite: {
+    plugins: [
+      million.vite({
+        auto: true,
+      }),
+    ],
     ssr: {
       noExternal: ["react-tweet"],
     },

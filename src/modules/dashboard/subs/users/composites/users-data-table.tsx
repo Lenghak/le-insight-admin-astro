@@ -21,7 +21,7 @@ import {
 } from "@tanstack/react-table";
 import UsersFilters from "@users/composites/users-filters";
 import UsersTabs from "@users/composites/users-tabs";
-import React from "react";
+import React, { memo } from "react";
 import { Fragment } from "react/jsx-runtime";
 
 import type { PaginationMetaType } from "@/common/types/pagination-type";
@@ -33,7 +33,7 @@ interface DataTableProps<TData, TValue> {
   className?: string;
 }
 
-export default function UsersDataTable<TData, TValue>({
+export default memo(function UsersDataTable<TData, TValue>({
   columns,
   className,
   data,
@@ -126,4 +126,4 @@ export default function UsersDataTable<TData, TValue>({
       />
     </Fragment>
   );
-}
+});

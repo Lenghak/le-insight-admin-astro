@@ -8,7 +8,10 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
+import { setURLStore } from "@/common/stores/url-store";
+import { env } from "@/core/env";
 import { type LucideIcon } from "lucide-react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 interface SideNavProps {
@@ -24,7 +27,7 @@ interface SideNavProps {
   pathname: string;
 }
 
-export default function SideNav({
+export default memo(function SideNav({
   links,
   isCollapsed,
   pathname,
@@ -43,6 +46,9 @@ export default function SideNav({
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
                   <Link
+                    onClick={() => {
+                      setURLStore(new URL(link.link, env.PUBLIC_ORIGIN));
+                    }}
                     to={link.link}
                     aria-disabled={link.isDisabled}
                     data-state={
@@ -74,8 +80,11 @@ export default function SideNav({
               </Tooltip>
             </TooltipProvider>
           ) : (
-            <a
-              href={link.link}
+            <Link
+              onClick={() => {
+                setURLStore(new URL(link.link, env.PUBLIC_ORIGIN));
+              }}
+              to={link.link}
               aria-disabled={link.isDisabled}
               data-state={link.variant === "default" ? "active" : "inactive"}
               key={index}
@@ -89,10 +98,10 @@ export default function SideNav({
             >
               <link.icon className={cn("min-size-5 h-4 min-w-4")} />
               <span className={"max-md:hidden"}>{link.title}</span>
-            </a>
+            </Link>
           );
         })}
       </nav>
     </div>
   );
-}
+});

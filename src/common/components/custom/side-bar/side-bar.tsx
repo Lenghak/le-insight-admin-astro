@@ -4,6 +4,7 @@ import { Separator } from "@/common/components/ui/separator";
 import { cn } from "@/common/lib/utils";
 
 import { $sidebar } from "@/common/stores/side-bar-store";
+import { setURLStore } from "@/common/stores/url-store";
 import { useStore } from "@nanostores/react";
 import {
   ActivityIcon,
@@ -19,11 +20,12 @@ import {
   SwatchBookIcon,
   UsersIcon,
 } from "lucide-react";
+import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import SideNav from "./side-nav";
 
-export default function SideBar({ className }: { className?: string }) {
+export default memo(function SideBar({ className }: { className?: string }) {
   const isCollapsed = useStore($sidebar);
   const loacation = useLocation();
   return (
@@ -35,7 +37,11 @@ export default function SideBar({ className }: { className?: string }) {
       )}
     >
       <Link
+        onClick={() => {
+          setURLStore(new URL("/dashboard"));
+        }}
         to={"/dashboard"}
+        replace
         className={cn(
           "flex h-16 items-center justify-center",
           isCollapsed ? "h-16 px-2" : "md:justify-between md:px-4",
@@ -156,4 +162,4 @@ export default function SideBar({ className }: { className?: string }) {
       />
     </aside>
   );
-}
+});
