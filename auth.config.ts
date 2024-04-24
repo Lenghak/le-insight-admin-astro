@@ -49,6 +49,7 @@ export default defineConfig({
       };
 
       session.tokens = {
+        role: token.attributes.role,
         iat: token.iat,
         exp: token.exp,
         jti: token.jti,
