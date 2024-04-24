@@ -9,11 +9,10 @@ import { Input } from "@/common/components/ui/input";
 
 import { cn } from "@/common/lib/utils";
 
-import { $urlStore, setURLStore } from "@/common/stores/url-store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useStore } from "@nanostores/react";
 import { ArrowRightIcon, SearchIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
 import { z } from "zod";
 
 const DataTableSearchSchema = z.object({
@@ -27,13 +26,14 @@ type DataTableSearchProps = {
 export default function DataTableSearch({
   handleSubmit,
 }: DataTableSearchProps) {
-  const url = useStore($urlStore);
-  const q = url.searchParams.get("q") ?? "";
+  const [searchParams, setSearchParams] = useSearchParams({
+    q: "",
+  });
 
   const form = useForm<z.infer<typeof DataTableSearchSchema>>({
     resolver: zodResolver(DataTableSearchSchema),
     defaultValues: {
-      q,
+      q: searchParams.get("q") ?? "",
     },
   });
 
@@ -43,8 +43,14 @@ export default function DataTableSearch({
         onSubmit={form.handleSubmit((data) => {
           if (handleSubmit) handleSubmit(data);
           else {
-            url.searchParams.set("q", data.q);
-            setURLStore(url);
+            searchParams.set("q", data.q);
+            setSearchParams(
+              (prev) => {
+                prev.set("q", data.q);
+                return prev;
+              },
+              { replace: true },
+            );
           }
         })}
         className="relative space-y-8"

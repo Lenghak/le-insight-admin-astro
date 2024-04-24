@@ -36,7 +36,7 @@ export default function UsersFilters<TData>({
       <DataTableSearch />
 
       <DataTableCheckboxFilter
-        queryName="sex[]"
+        queryName="sex"
         checkboxes={usersSexFilters}
         label="Sex"
         trigger={

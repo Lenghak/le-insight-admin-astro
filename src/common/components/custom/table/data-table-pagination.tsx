@@ -10,11 +10,10 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
-import { $urlStore, setURLStore } from "@/common/stores/url-store";
-import { useStore } from "@nanostores/react";
 import type { Table } from "@tanstack/react-table";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import ReactPaginate, { type ReactPaginateProps } from "react-paginate";
+import { useSearchParams } from "react-router-dom";
 
 export type PaginatedItemsProps<TData> = ReactPaginateProps & {
   table: Table<TData>;
@@ -27,8 +26,10 @@ export default function DataTablePagination<TData>({
   table,
   ...props
 }: PaginatedItemsProps<TData>) {
-  const url = useStore($urlStore);
-  const searchParams = url.searchParams;
+  const [searchParams, setSearchParams] = useSearchParams({
+    page: "0",
+    limit: "50",
+  });
 
   return (
     <section
@@ -48,21 +49,26 @@ export default function DataTablePagination<TData>({
       <div className="w-fit rounded-full border bg-card p-1 text-sm font-semibold text-muted-foreground">
         <ReactPaginate
           onClick={({ nextSelectedPage, selected }) => {
-            searchParams.set(
-              "page",
-              String(
-                nextSelectedPage
-                  ? nextSelectedPage + 1
-                  : selected
-                    ? selected + 1
-                    : 1,
-              ),
+            setSearchParams(
+              (prev) => {
+                prev.set(
+                  "page",
+                  String(
+                    nextSelectedPage
+                      ? nextSelectedPage + 1
+                      : selected
+                        ? selected + 1
+                        : 1,
+                  ),
+                );
+                return prev;
+              },
+              { replace: true },
             );
-            setURLStore(url);
           }}
           className={cn("flex w-fit items-center justify-center gap-2")}
           breakLabel={<PaginationEllipsis />}
-          hrefBuilder={() => undefined}
+          hrefBuilder={() => null}
           previousLabel={
             <div className="flex items-center gap-2">
               <ChevronLeftIcon className="h-4 w-4" />
@@ -109,9 +115,14 @@ export default function DataTablePagination<TData>({
         <Select
           value={`${searchParams.get("limit") ?? "50"}`}
           onValueChange={(value) => {
-            searchParams.set("limit", value);
-            searchParams.delete("page");
-            setURLStore(url);
+            setSearchParams(
+              (prev) => {
+                prev.set("limit", value);
+                prev.delete("page");
+                return prev;
+              },
+              { replace: true },
+            );
           }}
         >
           <SelectTrigger className="h-8 w-[70px] rounded-full font-bold">

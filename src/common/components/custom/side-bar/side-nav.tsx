@@ -8,8 +8,6 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
-import { setURLStore } from "@/common/stores/url-store";
-import { env } from "@/core/env";
 import { type LucideIcon } from "lucide-react";
 import { memo } from "react";
 import { Link } from "react-router-dom";
@@ -46,9 +44,6 @@ export default memo(function SideNav({
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
                   <Link
-                    onClick={() => {
-                      setURLStore(new URL(link.link, env.PUBLIC_ORIGIN));
-                    }}
                     to={link.link}
                     aria-disabled={link.isDisabled}
                     data-state={
@@ -81,9 +76,6 @@ export default memo(function SideNav({
             </TooltipProvider>
           ) : (
             <Link
-              onClick={() => {
-                setURLStore(new URL(link.link, env.PUBLIC_ORIGIN));
-              }}
               to={link.link}
               aria-disabled={link.isDisabled}
               data-state={link.variant === "default" ? "active" : "inactive"}

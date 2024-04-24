@@ -1,3 +1,5 @@
+import { Badge } from "@ui/badge";
+import { buttonVariants } from "@ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -8,17 +10,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@ui/dropdown-menu";
-
-import { Badge } from "@/common/components/ui/badge";
-import { buttonVariants } from "@/common/components/ui/button";
-import { Separator } from "@/common/components/ui/separator";
+import { Separator } from "@ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
-import { $urlStore, setURLStore } from "@/common/stores/url-store";
-import { useStore } from "@nanostores/react";
 import { FilterXIcon } from "lucide-react";
 import * as React from "react";
+import { useSearchParams } from "react-router-dom";
 
 type DataTableCheckboxFilterProps = {
   label: React.ReactNode;
@@ -38,16 +36,18 @@ export default function DataTableCheckboxFilter({
   queryName,
   ...props
 }: DataTableCheckboxFilterProps) {
-  const url = useStore($urlStore);
+  const [searchParams, setSearchParams] = useSearchParams({
+    [queryName]: queryName,
+  });
 
   const selected = React.useMemo(
     () =>
       checkboxes.reduce(
         (acc, curr) =>
-          url.searchParams.has(queryName, curr.value) ? acc + 1 : acc,
+          searchParams.has(queryName, curr.value) ? acc + 1 : acc,
         0,
       ),
-    [url],
+    [searchParams],
   );
 
   return (
@@ -84,13 +84,15 @@ export default function DataTableCheckboxFilter({
           {checkboxes.map((item, index) => (
             <DropdownMenuCheckboxItem
               key={index}
-              checked={url.searchParams.has(queryName, item.value)}
+              checked={searchParams.has(queryName, item.value)}
               onCheckedChange={(checked) => {
-                checked
-                  ? url.searchParams.append(queryName, item.value)
-                  : url.searchParams.delete(queryName, item.value);
+                setSearchParams((prev) => {
+                  checked
+                    ? prev.append(queryName, item.value)
+                    : prev.delete(queryName, item.value);
 
-                setURLStore(url);
+                  return prev;
+                });
               }}
               className="pl-8"
             >
@@ -105,8 +107,10 @@ export default function DataTableCheckboxFilter({
           <DropdownMenuItem
             className="flex items-center gap-4 pl-4 font-bold text-destructive"
             onClick={() => {
-              url.searchParams.delete(queryName);
-              setURLStore(url);
+              setSearchParams((prev) => {
+                prev.delete(queryName);
+                return prev;
+              });
             }}
           >
             <FilterXIcon className="size-4 stroke-[3]" />

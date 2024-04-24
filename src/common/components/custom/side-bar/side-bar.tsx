@@ -4,7 +4,6 @@ import { Separator } from "@/common/components/ui/separator";
 import { cn } from "@/common/lib/utils";
 
 import { $sidebar } from "@/common/stores/side-bar-store";
-import { setURLStore } from "@/common/stores/url-store";
 import { useStore } from "@nanostores/react";
 import {
   ActivityIcon,
@@ -37,9 +36,6 @@ export default memo(function SideBar({ className }: { className?: string }) {
       )}
     >
       <Link
-        onClick={() => {
-          setURLStore(new URL("/dashboard"));
-        }}
         to={"/dashboard"}
         replace
         className={cn(

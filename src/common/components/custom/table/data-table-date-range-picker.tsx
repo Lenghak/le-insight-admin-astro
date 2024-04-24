@@ -6,19 +6,18 @@ import { Badge } from "@/common/components/ui/badge";
 
 import { cn } from "@/common/lib/utils";
 
-import { $urlStore, setURLStore } from "@/common/stores/url-store";
-import { useStore } from "@nanostores/react";
 import { compareDesc, format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import * as React from "react";
 import { type DateRange } from "react-day-picker";
+import { useSearchParams } from "react-router-dom";
 
 export function DateTableDatePicker({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const url = useStore($urlStore);
-  const defaultFrom = new Date(url.searchParams.get("from") ?? Date.now());
-  const defaultTo = new Date(url.searchParams.get("to") ?? Date.now());
+  const [searchParams, setSearchParams] = useSearchParams();
+  const defaultFrom = new Date(searchParams.get("from") ?? Date.now());
+  const defaultTo = new Date(searchParams.get("to") ?? Date.now());
 
   const validRange = compareDesc(defaultFrom, defaultTo);
 
@@ -37,16 +36,16 @@ export function DateTableDatePicker({
   React.useEffect(() => {
     if (date) {
       date.from
-        ? url.searchParams.set("from", format(date.from, "MM-dd-yyyy"))
-        : url.searchParams.delete("from");
+        ? searchParams.set("from", format(date.from, "MM-dd-yyyy"))
+        : searchParams.delete("from");
       date.to
-        ? url.searchParams.set("to", format(date.to, "MM-dd-yyyy"))
-        : url.searchParams.delete("to");
+        ? searchParams.set("to", format(date.to, "MM-dd-yyyy"))
+        : searchParams.delete("to");
     } else {
-      url.searchParams.delete("from");
-      url.searchParams.delete("to");
+      searchParams.delete("from");
+      searchParams.delete("to");
     }
-    setURLStore(url);
+    setSearchParams(searchParams);
   }, [date]);
 
   return (

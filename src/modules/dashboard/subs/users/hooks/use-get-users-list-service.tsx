@@ -13,7 +13,7 @@ export default function useGetUsersListService({
 }: UsersListRequestType) {
   const instance = usePrivateQueryInstance();
   const queryClient = useStore($queryClient);
-
+  
   return useQuery(
     {
       queryKey: [
