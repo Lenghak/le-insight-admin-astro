@@ -1,11 +1,12 @@
-import UsersActions from "@/modules/dashboard/subs/users/composites/users-actions";
-import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
-import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
-import type { UsersTableType } from "@/modules/dashboard/subs/users/types/users-list-type";
+import UsersActions from "@users/composites/users-actions";
+import { rolesBages } from "@users/constants/roles-bages";
+import { sexesBages } from "@users/constants/sex-badge";
+import type { UsersTableType } from "@users/types/users-list-type";
 
-import ProfileBadge from "@/common/components/custom/profile/profile-badge";
-import { DataTableColumnHeader } from "@/common/components/custom/table";
-import { Checkbox } from "@/common/components/ui/checkbox";
+import { Checkbox } from "@ui/checkbox";
+
+import ProfileBadge from "@custom/profile/profile-badge";
+import { DataTableColumnHeader } from "@custom/table";
 
 import formatDate from "@/common/lib/date/format-date";
 

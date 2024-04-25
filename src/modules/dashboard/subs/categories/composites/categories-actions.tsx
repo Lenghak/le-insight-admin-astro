@@ -1,3 +1,6 @@
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
+import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
+
 import { Button } from "@ui/button";
 import {
   DropdownMenu,
@@ -10,16 +13,12 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
-import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
-import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
-import { setDashboardSheetOpen } from "@dashboard/stores/dashboard-sheet-store";
 import type { Row } from "@tanstack/react-table";
 import {
   CopyIcon,
   MoreHorizontalIcon,
   PencilLineIcon,
   Trash2Icon,
-  UsersIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -58,25 +57,6 @@ export default function CategoriesActions<TData>({ row }: { row: Row<TData> }) {
             <CopyIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
             Copy
           </DropdownMenuItem>
-        </DropdownMenuGroup>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuGroup>
-          <DropdownMenuItem
-            className="items-center gap-3 px-3 py-2 font-semibold"
-            onClick={() => {
-              setDashboardDialogOpen({
-                id: DASHBOARD_DIALOG_ID.categories.edit,
-                isOpen: true,
-                meta: (row.original as CategoriesType).id,
-              });
-              setDashboardSheetOpen(true);
-            }}
-          >
-            <UsersIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
-            View
-          </DropdownMenuItem>
           <DropdownMenuItem
             className="items-center gap-3 px-3 py-2 font-semibold"
             onClick={() => {
@@ -90,6 +70,25 @@ export default function CategoriesActions<TData>({ row }: { row: Row<TData> }) {
             <PencilLineIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
             Edit
           </DropdownMenuItem>
+        </DropdownMenuGroup>
+
+        {/* <DropdownMenuSeparator /> */}
+
+        <DropdownMenuGroup>
+          {/* <DropdownMenuItem
+            className="items-center gap-3 px-3 py-2 font-semibold"
+            onClick={() => {
+              setDashboardDialogOpen({
+                id: DASHBOARD_DIALOG_ID.categories.edit,
+                isOpen: true,
+                meta: (row.original as CategoriesType).id,
+              });
+              setDashboardSheetOpen(true);
+            }}
+          >
+            <UsersIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+            View
+          </DropdownMenuItem> */}
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />

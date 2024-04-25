@@ -1,3 +1,10 @@
+import DashboardDialogFormSkeleton from "@dashboard/components/dashboard-dialog-form-skeleton";
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
+import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
+
+import { categoryStatus } from "@categories/constants/category-status";
+import useEditCategoriesHandler from "@categories/hooks/use-edit-categories-handler";
+
 import { Button, buttonVariants } from "@ui/button";
 import {
   Dialog,
@@ -17,89 +24,28 @@ import {
   FormMessage,
 } from "@ui/form";
 import { Input } from "@ui/input";
-
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/common/components/ui/select";
-import { Textarea } from "@/common/components/ui/textarea";
+} from "@ui/select";
+import { Textarea } from "@ui/textarea";
 
 import { cn } from "@/common/lib/utils";
 
-import { categoryStatus } from "@categories/constants/category-status";
-import useEditCategoryService from "@categories/hooks/use-edit-categories-service";
-import useGetCategoryService from "@categories/hooks/use-get-category-service";
-import {
-  CategoriesEditRequestSchema,
-  type CategoryEditRequestType,
-} from "@categories/types/categories-edit-type";
-import DashboardDialogFormSkeleton from "@dashboard/components/dashboard-dialog-form-skeleton";
-import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
-import {
-  $dashboardDialogStore,
-  setDashboardDialogOpen,
-} from "@dashboard/stores/dashboard-action-dialog-store";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useStore } from "@nanostores/react";
 import { Loader2Icon } from "lucide-react";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 
 export default function EditCategoriesForm() {
-  const dialog = useStore($dashboardDialogStore);
-
   const {
-    data: res,
-    isLoading: isGettingCategory,
-    status: getCategoryStatus,
-    isRefetching,
-  } = useGetCategoryService({
-    categoryID: typeof dialog.meta === "string" ? dialog.meta : undefined,
-  });
-  const { status: editCategoryStatus } = useEditCategoryService();
-
-  const category = res?.data?.data;
-
-  const form = useForm<CategoryEditRequestType>({
-    resolver: zodResolver(CategoriesEditRequestSchema),
-    defaultValues: {
-      status: category?.attributes?.status ?? "INACTIVE",
-      label: category?.attributes?.label ?? "",
-      description: category?.attributes?.description ?? "",
-    },
-  });
-
-  useEffect(() => {
-    if (category && getCategoryStatus === "success" && !isRefetching) {
-      form.setValue(
-        "status",
-        category?.attributes?.status ?? form.getValues("status"),
-      );
-
-      form.setValue(
-        "label",
-        category?.attributes?.label ?? form.getValues("label"),
-      );
-
-      form.setValue(
-        "description",
-        category?.attributes?.description ?? form.getValues("description"),
-      );
-    }
-  }, [category, getCategoryStatus, isRefetching]);
-
-  useEffect(() => {
-    if (editCategoryStatus === "success") {
-      form.reset();
-      setDashboardDialogOpen({
-        id: DASHBOARD_DIALOG_ID.categories.edit,
-        isOpen: false,
-      });
-    }
-  }, [editCategoryStatus]);
+    dialog,
+    form,
+    isGettingCategory,
+    editCategoryStatus,
+    mutate: editCategory,
+    category,
+  } = useEditCategoriesHandler();
 
   return (
     <Dialog
@@ -123,8 +69,8 @@ export default function EditCategoriesForm() {
 
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit((value) => {
-                console.log(value);
+              onSubmit={form.handleSubmit((values) => {
+                editCategory({ id: category?.id, ...values });
               })}
               className="mt-4 w-full space-y-6"
             >
@@ -225,17 +171,17 @@ export default function EditCategoriesForm() {
                   Cancel
                 </DialogClose>
                 <Button
-                  type={status === "pending" ? "button" : "submit"}
+                  type={editCategoryStatus === "pending" ? "button" : "submit"}
                   className={cn(
                     "gap-0 px-8 font-bold transition-all",
-                    status === "pending" ? "gap-2 pr-3" : "",
+                    editCategoryStatus === "pending" ? "gap-2 pl-6" : "",
                   )}
-                  disabled={status === "pending"}
+                  disabled={editCategoryStatus === "pending"}
                 >
                   <Loader2Icon
                     className={cn(
                       "h-4 w-0 animate-spin transition-all",
-                      status === "pending" ? "w-4" : "",
+                      editCategoryStatus === "pending" ? "w-4" : "",
                     )}
                   />
                   Save changes

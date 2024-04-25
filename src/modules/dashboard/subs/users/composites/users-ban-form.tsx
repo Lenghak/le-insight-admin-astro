@@ -1,5 +1,14 @@
 import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
 
+import {
+  $dashboardDialogStore,
+  setDashboardDialogOpen,
+} from "@dashboard/stores/dashboard-action-dialog-store";
+
+import useEditUserService from "@users/hooks/use-edit-user-service";
+import useGetUserService from "@users/hooks/use-get-user-service";
+import { $userIDStore } from "@users/stores/users-id-store";
+
 import { Button, buttonVariants } from "@ui/button";
 import { Calendar } from "@ui/calendar";
 import {
@@ -24,15 +33,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
-import {
-  $dashboardDialogStore,
-  setDashboardDialogOpen,
-} from "@dashboard/stores/dashboard-action-dialog-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
-import useEditUserService from "@users/hooks/use-edit-user-service";
-import useGetUserService from "@users/hooks/use-get-user-service";
-import { $userIDStore } from "@users/stores/users-id-store";
 import { addDays } from "date-fns";
 import { CalendarIcon, Loader2Icon } from "lucide-react";
 import { memo, useEffect } from "react";
@@ -203,7 +205,7 @@ export default memo(function UsersBanForm() {
                 type={status === "pending" ? "button" : "submit"}
                 className={cn(
                   "gap-0 px-8 font-bold transition-all",
-                  status === "pending" ? "gap-2 pr-3" : "",
+                  status === "pending" ? "gap-2 pl-6" : "",
                 )}
                 disabled={status === "pending"}
                 variant={"destructive"}

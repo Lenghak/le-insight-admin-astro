@@ -224,7 +224,7 @@ export default function UsersCreateForm() {
                 disabled={isSigningUp}
                 className={cn(
                   "gap-0 px-8 font-bold transition-all",
-                  isSigningUp && "gap-4",
+                  isSigningUp && "gap-2 pl-6",
                 )}
               >
                 <Loader2Icon

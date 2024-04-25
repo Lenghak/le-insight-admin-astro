@@ -172,7 +172,7 @@ export default function UsersEditForm() {
                 type={status === "pending" ? "button" : "submit"}
                 className={cn(
                   "gap-0 px-8 font-bold transition-all",
-                  status === "pending" ? "gap-2 pr-3" : "",
+                  status === "pending" ? "gap-2 pl-6" : "",
                 )}
                 disabled={status === "pending"}
               >

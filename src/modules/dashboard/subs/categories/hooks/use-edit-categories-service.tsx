@@ -1,13 +1,12 @@
-import { categoriesKeys } from "@/modules/dashboard/subs/categories/constants/query-keys";
+import { categoriesKeys } from "@categories/constants/query-keys";
+import patchEditCategoryAPI from "@categories/services/patch-edit-categories-api";
+import type { CategoryEditRequestType } from "@categories/types/categories-edit-type";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import { userKeys } from "@users/constants/query-keys";
-import patchEditUserAPI from "@users/services/post-edit-user-api";
-import type { UserEditRequestType } from "@users/types/users-edit-type";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
@@ -18,8 +17,8 @@ export default function useEditCategoryService() {
   return useMutation(
     {
       mutationKey: [...categoriesKeys.detail(`edit`), instance],
-      mutationFn: async (data: UserEditRequestType) =>
-        await patchEditUserAPI(data),
+      mutationFn: async (data: CategoryEditRequestType) =>
+        await patchEditCategoryAPI(data),
 
       onError: (error) => {
         let title = "Editing Failed";
@@ -54,7 +53,7 @@ export default function useEditCategoryService() {
       },
       onSettled: async () => {
         await queryClient.invalidateQueries({
-          queryKey: [...userKeys.all],
+          queryKey: [...categoriesKeys.all],
           exact: false,
           stale: true,
         });

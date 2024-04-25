@@ -1,4 +1,5 @@
 import CategoriesActions from "@/modules/dashboard/subs/categories/composites/categories-actions";
+import { categoryStatus } from "@/modules/dashboard/subs/categories/constants/category-status";
 import type { CategoriesTableType } from "@/modules/dashboard/subs/categories/types/categories-list-type";
 
 import { DataTableColumnHeader } from "@/common/components/custom/table";
@@ -7,6 +8,8 @@ import { Checkbox } from "@/common/components/ui/checkbox";
 import formatDate from "@/common/lib/date/format-date";
 
 import { type ColumnDef } from "@tanstack/react-table";
+
+import type { CategoriesStatusType } from "@/common/types/categories-type";
 
 export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
   {
@@ -75,6 +78,16 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
       ) : (
         <span className="inline-block w-full text-center">-</span>
       ),
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Status"
+      />
+    ),
+    cell: ({ getValue }) => categoryStatus[getValue() as CategoriesStatusType],
   },
   {
     id: "n. assigned",
