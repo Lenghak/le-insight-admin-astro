@@ -10,11 +10,11 @@ export const CategoriesStatusEnum = z.enum([
 export const CategoriesSchema = z.object({
   type: z.literal("category"),
   id: z.string().uuid(),
-  label: z.string().nullable(),
-  description: z.string().nullable(),
-  assigned_count: z.number().nullable(),
-  generated_count: z.number().nullable(),
-  status: CategoriesStatusEnum.nullable(),
+  label: z.string(),
+  description: z.string(),
+  assigned_count: z.number(),
+  generated_count: z.number(),
+  status: CategoriesStatusEnum,
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
 });

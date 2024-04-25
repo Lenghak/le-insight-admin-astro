@@ -96,7 +96,7 @@ export default function CategoriesDataTable<TData, TValue>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="p-2 px-4"
+                      className="p-4 px-4"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

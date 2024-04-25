@@ -1,3 +1,5 @@
+import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
+
 import { Button, buttonVariants } from "@ui/button";
 import { Calendar } from "@ui/calendar";
 import {
@@ -62,7 +64,7 @@ export default memo(function UsersBanForm() {
   useEffect(() => {
     if (status === "success") {
       setDashboardDialogOpen({
-        id: `USER_BAN`,
+        id: DASHBOARD_DIALOG_ID.users.ban,
         isOpen: false,
       });
     }
@@ -70,10 +72,10 @@ export default memo(function UsersBanForm() {
 
   return (
     <Dialog
-      open={dialog.isOpen && `USER_BAN` === dialog.id}
+      open={dialog.isOpen && DASHBOARD_DIALOG_ID.users.ban === dialog.id}
       onOpenChange={(isOpen) =>
         setDashboardDialogOpen({
-          id: `USER_BAN`,
+          id: DASHBOARD_DIALOG_ID.users.ban,
           isOpen: isOpen,
         })
       }

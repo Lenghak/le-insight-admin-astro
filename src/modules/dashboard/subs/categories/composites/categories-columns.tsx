@@ -1,3 +1,6 @@
+import CategoriesActions from "@/modules/dashboard/subs/categories/composites/categories-actions";
+import type { CategoriesTableType } from "@/modules/dashboard/subs/categories/types/categories-list-type";
+
 import { DataTableColumnHeader } from "@/common/components/custom/table";
 import { Checkbox } from "@/common/components/ui/checkbox";
 
@@ -5,7 +8,7 @@ import formatDate from "@/common/lib/date/format-date";
 
 import { type ColumnDef } from "@tanstack/react-table";
 
-export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
+export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -68,7 +71,7 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
     ),
     cell: ({ getValue }) =>
       getValue() ? (
-        <span className="w-full text-center">{getValue() as string}</span>
+        <span className="line-clamp-3 w-full">{getValue() as string}</span>
       ) : (
         <span className="inline-block w-full text-center">-</span>
       ),
@@ -82,10 +85,10 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
         title="N. Assigned"
       />
     ),
-    cell: ({ getValue }) =>
-      getValue() ? (
+    cell: ({ row }) =>
+      row?.original?.assigned_count ? (
         <span className="w-full text-center font-bold">
-          {getValue() as string}
+          {row?.original?.assigned_count}
         </span>
       ) : (
         <span className="inline-block w-full text-center">-</span>
@@ -100,10 +103,10 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
         title="N. Generated"
       />
     ),
-    cell: ({ getValue }) =>
-      getValue() ? (
+    cell: ({ row }) =>
+      row?.original?.generated_count ? (
         <span className="w-full text-center font-bold">
-          {getValue() as string}
+          {row?.original?.generated_count}
         </span>
       ) : (
         <span className="inline-block w-full text-center">-</span>
@@ -141,5 +144,6 @@ export const categoriesColumns: ColumnDef<Record<string, unknown>>[] = [
   },
   {
     id: "actions",
+    cell: ({ row }) => <CategoriesActions row={row} />,
   },
 ];

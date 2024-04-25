@@ -1,8 +1,4 @@
-import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
-import { setDashboardDialogOpen } from "@/modules/dashboard/stores/dashboard-action-dialog-store";
-import { setDashboardSheetOpen } from "@/modules/dashboard/stores/dashboard-sheet-store";
-
-import { Button } from "@/common/components/ui/button";
+import { Button } from "@ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,24 +6,26 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/common/components/ui/dropdown-menu";
+} from "@ui/dropdown-menu";
 
 import { cn } from "@/common/lib/utils";
 
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
+import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
+import { setDashboardSheetOpen } from "@dashboard/stores/dashboard-sheet-store";
 import type { Row } from "@tanstack/react-table";
-import { setUserID } from "@users/stores/users-id-store";
 import {
-  BanIcon,
   CopyIcon,
   MoreHorizontalIcon,
   PencilLineIcon,
+  Trash2Icon,
   UsersIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
-import type { UsersType } from "@/common/types/users-type";
+import type { CategoriesType } from "@/common/types/categories-type";
 
-export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
+export default function CategoriesActions<TData>({ row }: { row: Row<TData> }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -48,7 +46,7 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
             className="items-center gap-3 px-3 py-2 font-semibold"
             onClick={async () => {
               await navigator.clipboard
-                .writeText((row.original as UsersType).id)
+                .writeText((row.original as CategoriesType).id)
                 .then((res) => {
                   toast.success("ID successfully copied to clipboard", {
                     closeButton: true,
@@ -68,7 +66,11 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
           <DropdownMenuItem
             className="items-center gap-3 px-3 py-2 font-semibold"
             onClick={() => {
-              setUserID((row.original as UsersType).id);
+              setDashboardDialogOpen({
+                id: DASHBOARD_DIALOG_ID.categories.edit,
+                isOpen: true,
+                meta: (row.original as CategoriesType).id,
+              });
               setDashboardSheetOpen(true);
             }}
           >
@@ -78,10 +80,10 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
           <DropdownMenuItem
             className="items-center gap-3 px-3 py-2 font-semibold"
             onClick={() => {
-              setUserID((row.original as UsersType).id);
               setDashboardDialogOpen({
-                id: DASHBOARD_DIALOG_ID.users.edit,
+                id: DASHBOARD_DIALOG_ID.categories.edit,
                 isOpen: true,
+                meta: (row.original as CategoriesType).id,
               });
             }}
           >
@@ -98,15 +100,15 @@ export default function UsersActions<TData>({ row }: { row: Row<TData> }) {
               "items-center gap-3 bg-destructive/15 px-3 py-2 font-bold text-destructive hover:bg-destructive/15",
             )}
             onClick={() => {
-              setUserID((row.original as UsersType).id);
               setDashboardDialogOpen({
-                id: DASHBOARD_DIALOG_ID.users.ban,
+                id: DASHBOARD_DIALOG_ID.categories.delete,
                 isOpen: true,
+                meta: (row.original as CategoriesType).id,
               });
             }}
           >
-            <BanIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
-            Ban
+            <Trash2Icon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+            Delete
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

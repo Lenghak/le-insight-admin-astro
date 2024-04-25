@@ -1,6 +1,5 @@
-import type { CategoriesCreateType } from "@/modules/dashboard/subs/categories/types/categories-ind-type";
-
 import { getPublicQueryInstance } from "@/common/stores/api-store";
+import type { CategoriesCreateType } from "@categories/types/categories-create-type";
 import type { AxiosInstance } from "axios";
 
 export default function createCategoriesAPI(

@@ -25,26 +25,35 @@ import { Textarea } from "@/common/components/ui/textarea";
 
 import { cn } from "@/common/lib/utils";
 
-import { CategoriesCreateSchema } from "@categories/types/categories-ind-type";
+import { CategoriesCreateRequestSchema } from "@categories/types/categories-create-type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, PlusIcon } from "lucide-react";
-import { type Ref, useRef } from "react";
+import { type Ref, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { type z } from "zod";
 
 export default function CreateCategoriesForm() {
-  const form = useForm<z.infer<typeof CategoriesCreateSchema>>({
-    resolver: zodResolver(CategoriesCreateSchema),
+  const form = useForm<z.infer<typeof CategoriesCreateRequestSchema>>({
+    resolver: zodResolver(CategoriesCreateRequestSchema),
     defaultValues: {
       description: "",
       label: "",
     },
   });
 
-  const { mutate: create, isPending: isCreatingCategory } =
-    useCreateCategoryService();
+  const {
+    mutate: create,
+    isPending: isCreatingCategory,
+    isSuccess: isCategoryCreated,
+  } = useCreateCategoryService();
 
   const closeRef: Ref<HTMLButtonElement> = useRef(null);
+
+  useEffect(() => {
+    if (isCategoryCreated) {
+      closeRef.current?.click();
+    }
+  }, [isCreatingCategory]);
 
   return (
     <Dialog>
@@ -76,23 +85,27 @@ export default function CreateCategoriesForm() {
               control={form.control}
               name="label"
               render={({ field }) => (
-                <FormItem className="flex items-center justify-end gap-4">
+                <FormItem className="flex w-full items-start justify-end gap-4">
                   <FormLabel
-                    className="whitespace-nowrap text-end font-bold"
+                    className="mt-5 whitespace-nowrap text-end font-bold"
                     htmlFor="label-field"
                   >
                     Label
                   </FormLabel>
-                  <FormControl className="w-3/4">
-                    <Input
-                      id="label-field"
-                      placeholder="e. g. Technology"
-                      className="rounded-full bg-background px-5 font-semibold"
-                      autoComplete="on"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="ml-4 list-item text-xs font-semibold" />
+
+                  <div className="w-3/4 space-y-2">
+                    <FormControl>
+                      <Input
+                        id="label-field"
+                        placeholder="e. g. Technology"
+                        className="rounded-full bg-background px-5 font-semibold"
+                        autoComplete="on"
+                        {...field}
+                      />
+                    </FormControl>
+
+                    <FormMessage className="ml-4 list-item font-semibold" />
+                  </div>
                 </FormItem>
               )}
             />
@@ -103,21 +116,24 @@ export default function CreateCategoriesForm() {
               render={({ field }) => (
                 <FormItem className="flex items-start justify-end gap-4">
                   <FormLabel
-                    className="whitespace-nowrap text-end font-bold mt-4"
+                    className="mt-5 whitespace-nowrap text-end font-bold"
                     htmlFor="description-field"
                   >
                     Description
                   </FormLabel>
-                  <FormControl className="w-3/4">
-                    <Textarea
-                      id="description-field"
-                      placeholder="e.g. something that related to society"
-                      className="rounded-xl bg-background px-5 font-semibold"
-                      autoComplete="on"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage className="ml-4 list-item text-xs font-semibold" />
+
+                  <div className="w-3/4 space-y-2">
+                    <FormControl>
+                      <Textarea
+                        id="description-field"
+                        placeholder="e.g. something that related to society"
+                        className="rounded-xl bg-background px-5 font-semibold"
+                        autoComplete="on"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage className="ml-4 list-item font-semibold" />
+                  </div>
                 </FormItem>
               )}
             />

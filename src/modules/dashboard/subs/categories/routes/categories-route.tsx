@@ -1,6 +1,7 @@
 import DashboardTitle from "@/modules/dashboard/composites/dashboard-title";
-import CreateCategoriesForm from "@/modules/dashboard/subs/categories/composites/create-form";
 
+import CreateCategoriesForm from "@categories/composites/create-form";
+import EditCategoriesForm from "@categories/composites/edit-form";
 import CategoriesTable from "@categories/presenters/categories-table";
 import { Fragment } from "react";
 
@@ -16,6 +17,8 @@ export default function CategoriesRoute() {
       </div>
 
       <CategoriesTable />
+
+      <EditCategoriesForm />
     </Fragment>
   );
 }

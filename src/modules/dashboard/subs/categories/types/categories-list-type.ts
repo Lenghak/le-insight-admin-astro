@@ -6,7 +6,9 @@ import {
   PaginationRequestSchema,
 } from "@/common/types/pagination-type";
 
-export const CategoriesTableSchema = CategoriesSchema;
+export const CategoriesTableSchema = CategoriesSchema.omit({
+  type: true,
+});
 
 export const CategoriesListRequestSchema = PaginationRequestSchema.extend({
   from: z.string().datetime().optional(),
@@ -19,6 +21,8 @@ export const CategoriesListResponseSchema = z.object({
     pagination: PaginationMetaSchema,
   }),
 });
+
+export type CategoriesTableType = z.infer<typeof CategoriesTableSchema>;
 
 export type CategoriesListRequestType = z.infer<
   typeof CategoriesListRequestSchema

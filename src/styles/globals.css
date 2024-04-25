@@ -109,7 +109,7 @@
   }
   
   html {
-    @apply w-dvw h-dvh flex items-start justify-center flex-col text-sm
+    @apply w-dvw h-dvh flex items-start justify-center flex-col
   }
 
   body {

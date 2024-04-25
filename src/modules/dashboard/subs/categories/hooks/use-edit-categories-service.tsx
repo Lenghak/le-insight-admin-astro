@@ -1,23 +1,26 @@
+import { categoriesKeys } from "@/modules/dashboard/subs/categories/constants/query-keys";
+
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { $queryClient } from "@/common/stores/api-store";
-import { categoriesKeys } from "@categories/constants/query-keys";
-import createCategoriesAPI from "@categories/services/post-create-categories-api";
-import type { CategoriesCreateType } from "@categories/types/categories-create-type";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
+import { userKeys } from "@users/constants/query-keys";
+import patchEditUserAPI from "@users/services/post-edit-user-api";
+import type { UserEditRequestType } from "@users/types/users-edit-type";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export default function useCreateCategoryService() {
+export default function useEditCategoryService() {
   const instance = usePrivateQueryInstance();
   const queryClient = useStore($queryClient);
 
   return useMutation(
     {
       mutationKey: [...categoriesKeys.detail(`edit`), instance],
-      mutationFn: async (data: CategoriesCreateType) =>
-        await createCategoriesAPI(data),
+      mutationFn: async (data: UserEditRequestType) =>
+        await patchEditUserAPI(data),
+
       onError: (error) => {
         let title = "Editing Failed";
         let description =
@@ -45,14 +48,13 @@ export default function useCreateCategoryService() {
         toast.success("Data modified successfully", {
           duration: 10 * 1000,
           description:
-            "The new data has been successfully updated. You may see the result very shortly.",
+            "The new data has been successfully updated. You may see the result shortly.",
           closeButton: true,
         });
       },
-
       onSettled: async () => {
         await queryClient.invalidateQueries({
-          queryKey: [...categoriesKeys.all],
+          queryKey: [...userKeys.all],
           exact: false,
           stale: true,
         });

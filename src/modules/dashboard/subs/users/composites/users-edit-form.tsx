@@ -1,3 +1,4 @@
+import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
 import { rolesFields } from "@/modules/dashboard/subs/users/constants/roles-fields";
 
 import { Button, buttonVariants } from "@ui/button";
@@ -68,7 +69,7 @@ export default function UsersEditForm() {
   useEffect(() => {
     if (status === "success") {
       setDashboardDialogOpen({
-        id: `USER_EDIT`,
+        id: DASHBOARD_DIALOG_ID.users.edit,
         isOpen: false,
       });
     }
@@ -76,10 +77,10 @@ export default function UsersEditForm() {
 
   return (
     <Dialog
-      open={dialog.isOpen && `USER_EDIT` === dialog.id}
+      open={dialog.isOpen && DASHBOARD_DIALOG_ID.users.edit === dialog.id}
       onOpenChange={(isOpen) =>
         setDashboardDialogOpen({
-          id: `USER_EDIT`,
+          id: DASHBOARD_DIALOG_ID.users.edit,
           isOpen: isOpen,
         })
       }

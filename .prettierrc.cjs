@@ -16,7 +16,13 @@ module.exports = {
   ],
   importOrder: [
     "^@/modules/(.*)$",
+
+    "^@dashboard/(.*)$",
+    "^@users/(.*)$",
+    "^@categories/(.*)$",
+
     "^@ui/(.*)$",
+    "^@custom/(.*)$",
     "^@/common/layouts/(.*)$",
     "^@/common/components/(.*)$",
     "^@/common/hooks/(.*)$",
