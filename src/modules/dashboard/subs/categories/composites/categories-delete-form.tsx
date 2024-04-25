@@ -33,7 +33,8 @@ const DeleteCategorySchema = z.object({
 
 export function DeleteCategoryForm() {
   const dialog = useStore($dashboardDialogStore);
-  const { status, mutate: deleteCategory } = useDeleteCategoryService();
+  const { status: categoryStatus, mutate: deleteCategory } =
+    useDeleteCategoryService();
 
   const form = useForm<z.infer<typeof DeleteCategorySchema>>({
     resolver: zodResolver(DeleteCategorySchema),
@@ -47,6 +48,16 @@ export function DeleteCategoryForm() {
       form.setValue("id", dialog.meta);
     }
   }, [dialog.meta]);
+
+  useEffect(() => {
+    if (categoryStatus === "success") {
+      form.reset();
+      setDashboardDialogOpen({
+        isOpen: false,
+        id: DASHBOARD_DIALOG_ID.categories.delete,
+      });
+    }
+  }, [categoryStatus]);
 
   return (
     <AlertDialog
@@ -78,18 +89,18 @@ export function DeleteCategoryForm() {
               className="space-y-8"
             >
               <Button
-                type={status === "pending" ? "button" : "submit"}
-                disabled={status === "pending"}
+                type={categoryStatus === "pending" ? "button" : "submit"}
+                disabled={categoryStatus === "pending"}
                 variant={"destructive"}
                 className={cn(
                   "gap-0 px-8 font-bold transition-all",
-                  status === "pending" ? "gap-2 pl-6" : "",
+                  categoryStatus === "pending" ? "gap-2 pl-6" : "",
                 )}
               >
                 <Loader2Icon
                   className={cn(
                     "h-4 w-0 animate-spin transition-all",
-                    status === "pending" ? "w-4" : "",
+                    categoryStatus === "pending" ? "w-4" : "",
                   )}
                 />
                 Delete
