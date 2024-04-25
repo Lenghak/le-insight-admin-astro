@@ -3,9 +3,11 @@ import { categoryStatus } from "@/modules/dashboard/subs/categories/constants/ca
 import type { CategoriesTableType } from "@/modules/dashboard/subs/categories/types/categories-list-type";
 
 import { DataTableColumnHeader } from "@/common/components/custom/table";
+import { Badge } from "@/common/components/ui/badge";
 import { Checkbox } from "@/common/components/ui/checkbox";
 
 import formatDate from "@/common/lib/date/format-date";
+import { cn } from "@/common/lib/utils";
 
 import { type ColumnDef } from "@tanstack/react-table";
 
@@ -44,8 +46,18 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="ID"
       />
     ),
-    cell: ({ getValue }) =>
-      `${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`,
+    cell: ({ getValue, row }) => (
+      <span
+        className={cn(
+          row.original.is_archived
+            ? "font-bold italic text-muted-foreground line-through"
+            : "",
+        )}
+      >
+        {`${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`}
+        ,
+      </span>
+    ),
   },
   {
     accessorKey: "label",
@@ -55,9 +67,15 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Label"
       />
     ),
-    cell: ({ getValue }) =>
+    cell: ({ getValue, row }) =>
       getValue() ? (
-        <span className="w-full text-center font-bold">
+        <span
+          className={cn(
+            "w-full text-center font-bold",
+            row.original.is_archived &&
+              "font-bold italic text-muted-foreground line-through",
+          )}
+        >
           {getValue() as string}
         </span>
       ) : (
@@ -72,9 +90,17 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Description"
       />
     ),
-    cell: ({ getValue }) =>
+    cell: ({ getValue, row }) =>
       getValue() ? (
-        <span className="line-clamp-3 w-full">{getValue() as string}</span>
+        <span
+          className={cn(
+            "line-clamp-3 w-full",
+            row.original.is_archived &&
+              "font-bold italic text-muted-foreground line-through",
+          )}
+        >
+          {getValue() as string}
+        </span>
       ) : (
         <span className="inline-block w-full text-center">-</span>
       ),
@@ -87,7 +113,17 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Status"
       />
     ),
-    cell: ({ getValue }) => categoryStatus[getValue() as CategoriesStatusType],
+    cell: ({ getValue, row }) =>
+      row.original.is_archived ? (
+        <Badge
+          variant={"dot"}
+          className="font-bold uppercase text-muted-foreground line-through before:bg-muted-foreground"
+        >
+          Archived
+        </Badge>
+      ) : (
+        categoryStatus[getValue() as CategoriesStatusType]
+      ),
   },
   {
     id: "n. assigned",
@@ -100,7 +136,13 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
     ),
     cell: ({ row }) =>
       row?.original?.assigned_count ? (
-        <span className="w-full text-center font-bold">
+        <span
+          className={cn(
+            "w-full text-center font-bold",
+            row?.original?.is_archived &&
+              "font-bold uppercase text-muted-foreground line-through",
+          )}
+        >
           {row?.original?.assigned_count}
         </span>
       ) : (
@@ -118,7 +160,13 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
     ),
     cell: ({ row }) =>
       row?.original?.generated_count ? (
-        <span className="w-full text-center font-bold">
+        <span
+          className={cn(
+            "w-full text-center font-bold",
+            row?.original?.is_archived &&
+              "font-bold uppercase text-muted-foreground line-through",
+          )}
+        >
           {row?.original?.generated_count}
         </span>
       ) : (
@@ -133,9 +181,16 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Cre. Date"
       />
     ),
-    cell: ({ getValue }) =>
+    cell: ({ getValue, row }) =>
       getValue() ? (
-        formatDate(getValue() as string)
+        <span
+          className={cn(
+            row?.original?.is_archived &&
+              "font-bold italic text-muted-foreground line-through",
+          )}
+        >
+          {formatDate(getValue() as string)}
+        </span>
       ) : (
         <span className="inline-block w-full text-center">-</span>
       ),
@@ -148,9 +203,16 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Up. Date"
       />
     ),
-    cell: ({ getValue }) =>
+    cell: ({ getValue, row }) =>
       getValue() ? (
-        formatDate(getValue() as string)
+        <span
+          className={cn(
+            row?.original?.is_archived &&
+              "font-bold italic text-muted-foreground line-through",
+          )}
+        >
+          {formatDate(getValue() as string)}
+        </span>
       ) : (
         <span className="inline-block w-full text-center">-</span>
       ),

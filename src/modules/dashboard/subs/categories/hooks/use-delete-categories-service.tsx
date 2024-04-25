@@ -1,6 +1,5 @@
 import { categoriesKeys } from "@categories/constants/query-keys";
-import patchEditCategoryAPI from "@categories/services/patch-edit-categories-api";
-import type { CategoryEditRequestType } from "@categories/types/categories-edit-type";
+import deleteCategoryAPI from "@categories/services/delete-categories-api";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
@@ -10,18 +9,18 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export default function useEditCategoryService() {
+export default function useDeleteCategoryService() {
   const instance = usePrivateQueryInstance();
   const queryClient = useStore($queryClient);
 
   return useMutation(
     {
-      mutationKey: [...categoriesKeys.detail(`edit`), instance],
-      mutationFn: async (data: CategoryEditRequestType) =>
-        await patchEditCategoryAPI(data),
+      mutationKey: [...categoriesKeys.detail(`delete`), instance],
+      mutationFn: async ({ id }: { id: string }) =>
+        await deleteCategoryAPI({ id }),
 
       onError: (error) => {
-        let title = "Editing Failed";
+        let title = "Deleting Failed";
         let description =
           "There was a problem while processing your action. Please try again later.";
 
@@ -31,8 +30,8 @@ export default function useEditCategoryService() {
             "The input in not acceptable. Please check and try again.";
         }
 
-        if (error instanceof AxiosError && error.response?.status === 409) {
-          title = "Category already exist";
+        if (error instanceof AxiosError && error.response?.status === 404) {
+          title = "Category has already been deleted";
           description =
             "The input in not acceptable. Please check and try again.";
         }

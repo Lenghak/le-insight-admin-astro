@@ -55,8 +55,7 @@ export default function useCreateCategoryService() {
           queryKey: [...categoriesKeys.all],
           exact: false,
           stale: true,
-        });
-        window.history.replaceState(null, "", location.toString());
+        });   
       },
     },
     queryClient,
