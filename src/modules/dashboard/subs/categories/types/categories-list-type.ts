@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-import { CategoriesSchema } from "@/common/types/categories-type";
+import {
+  CategoriesSchema,
+  CategoriesStatusEnum,
+} from "@/common/types/categories-type";
 import {
   PaginationMetaSchema,
   PaginationRequestSchema,
@@ -13,6 +16,7 @@ export const CategoriesTableSchema = CategoriesSchema.omit({
 export const CategoriesListRequestSchema = PaginationRequestSchema.extend({
   from: z.string().datetime().optional(),
   to: z.string().datetime().optional(),
+  status: CategoriesStatusEnum.optional().catch(undefined),
 });
 
 export const CategoriesListResponseSchema = z.object({

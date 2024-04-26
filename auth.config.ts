@@ -20,6 +20,7 @@ export default defineConfig({
 
           return {
             ...res.data.data,
+            id: res.data.data.id,
             attributes: {
               first_name: profile?.attributes["first_name"] as string | null,
               last_name: profile?.attributes["last_name"] as string | null,

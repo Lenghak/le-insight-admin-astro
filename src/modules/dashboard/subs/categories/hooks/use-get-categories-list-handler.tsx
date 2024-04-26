@@ -2,6 +2,8 @@ import useGetCategoriesListService from "@/modules/dashboard/subs/categories/hoo
 
 import { useSearchParams } from "react-router-dom";
 
+import type { CategoriesStatusType } from "@/common/types/categories-type";
+
 type DateRange = string | Date | null | undefined;
 
 export default function useCategoriesListHandler() {
@@ -10,6 +12,7 @@ export default function useCategoriesListHandler() {
   const page = parseInt(searchParams.get("page") ?? "1");
   const limit = parseInt(searchParams.get("limit") ?? "50");
   const q = searchParams.get("q") ?? undefined;
+  const status = searchParams.get("status") ?? undefined;
 
   let rfrom: DateRange = searchParams.get("from") ?? undefined;
   let rto: DateRange = searchParams.get("to") ?? undefined;
@@ -28,5 +31,6 @@ export default function useCategoriesListHandler() {
     q,
     from: (rfrom as Date)?.toISOString(),
     to: (rto as Date)?.toISOString(),
+    status: status === "ALL" ? undefined : (status as CategoriesStatusType),
   });
 }
