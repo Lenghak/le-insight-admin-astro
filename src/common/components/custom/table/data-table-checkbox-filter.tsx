@@ -36,9 +36,7 @@ export default function DataTableCheckboxFilter({
   queryName,
   ...props
 }: DataTableCheckboxFilterProps) {
-  const [searchParams, setSearchParams] = useSearchParams({
-    [queryName]: queryName,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const selected = React.useMemo(
     () =>
