@@ -1,4 +1,4 @@
-import DashboardTabsSkeletons from "@/modules/dashboard/composites/tabs/dashboard-tabs-skeleton";
+import DashboardTabsSkeletons from "@dashboard/composites/tabs/dashboard-tabs-skeleton";
 
 import { lazy, memo, Suspense } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";

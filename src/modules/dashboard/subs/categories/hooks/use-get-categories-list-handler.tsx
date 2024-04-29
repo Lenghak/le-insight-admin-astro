@@ -1,4 +1,4 @@
-import useGetCategoriesListService from "@/modules/dashboard/subs/categories/hooks/use-get-categories-list-service";
+import useGetCategoriesListService from "@categories/hooks/use-get-categories-list-service";
 
 import { useSearchParams } from "react-router-dom";
 

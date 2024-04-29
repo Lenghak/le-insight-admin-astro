@@ -1,6 +1,6 @@
-import { userKeys } from "@/modules/dashboard/subs/users/constants/query-keys";
-import getUsersAPI from "@/modules/dashboard/subs/users/services/get-user-list-api";
-import type { UsersListRequestType } from "@/modules/dashboard/subs/users/types/users-list-type";
+import { userKeys } from "@users/constants/query-keys";
+import getUsersAPI from "@users/services/get-user-list-api";
+import type { UsersListRequestType } from "@users/types/users-list-type";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
@@ -13,7 +13,7 @@ export default function useGetUsersListService({
 }: UsersListRequestType) {
   const instance = usePrivateQueryInstance();
   const queryClient = useStore($queryClient);
-  
+
   return useQuery(
     {
       queryKey: [

@@ -1,7 +1,7 @@
 import type {
   UsersListRequestType,
   UsersListResponseType,
-} from "@/modules/dashboard/subs/users/types/users-list-type";
+} from "@users/types/users-list-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";

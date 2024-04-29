@@ -1,8 +1,6 @@
-import CategoriesActions from "@categories/composites/categories-actions";
 import { categoryStatus } from "@categories/constants/category-status";
 import type { CategoriesTableType } from "@categories/types/categories-list-type";
 
-import { Badge } from "@ui/badge";
 import { Checkbox } from "@ui/checkbox";
 
 import { DataTableColumnHeader } from "@custom/table";
@@ -83,29 +81,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span className="inline-block w-full text-center">-</span>
       ),
   },
-  {
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Description"
-      />
-    ),
-    cell: ({ getValue, row }) =>
-      getValue() ? (
-        <span
-          className={cn(
-            "line-clamp-3 w-full",
-            row.original.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
-          )}
-        >
-          {getValue() as string}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
-  },
+
   {
     accessorKey: "status",
     header: ({ column }) => (
@@ -114,66 +90,9 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Status"
       />
     ),
-    cell: ({ getValue, row }) =>
-      row.original.is_archived ? (
-        <Badge
-          variant={"dot"}
-          className="font-bold uppercase text-muted-foreground line-through before:bg-muted-foreground"
-        >
-          Archived
-        </Badge>
-      ) : (
-        categoryStatus[getValue() as CategoriesStatusType]
-      ),
+    cell: ({ getValue }) => categoryStatus[getValue() as CategoriesStatusType],
   },
-  {
-    id: "n. assigned",
-    accessorKey: "assigned_count",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="N. Assigned"
-      />
-    ),
-    cell: ({ row }) =>
-      row?.original?.assigned_count ? (
-        <span
-          className={cn(
-            "w-full text-center font-bold",
-            row?.original?.is_archived &&
-              "font-bold uppercase text-muted-foreground line-through",
-          )}
-        >
-          {row?.original?.assigned_count}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
-  },
-  {
-    id: "n. generated",
-    accessorKey: "generated_count",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="N. Generated"
-      />
-    ),
-    cell: ({ row }) =>
-      row?.original?.generated_count ? (
-        <span
-          className={cn(
-            "w-full text-center font-bold",
-            row?.original?.is_archived &&
-              "font-bold uppercase text-muted-foreground line-through",
-          )}
-        >
-          {row?.original?.generated_count}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
-  },
+
   {
     accessorKey: "created_at",
     header: ({ column }) => (
@@ -220,6 +139,6 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <CategoriesActions row={row} />,
+    // cell: ({ row }) => <CategoriesActions row={row} />,
   },
 ];

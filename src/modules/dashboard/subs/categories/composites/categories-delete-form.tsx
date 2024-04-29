@@ -1,9 +1,10 @@
-import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import {
   $dashboardDialogStore,
   setDashboardDialogOpen,
-} from "@/modules/dashboard/stores/dashboard-action-dialog-store";
-import useDeleteCategoryService from "@/modules/dashboard/subs/categories/hooks/use-delete-categories-service";
+} from "@dashboard/stores/dashboard-action-dialog-store";
+
+import useDeleteCategoryService from "@categories/hooks/use-delete-categories-service";
 
 import {
   AlertDialog,
@@ -14,9 +15,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@ui/alert-dialog";
-
-import { Button } from "@/common/components/ui/button";
-import { Form } from "@/common/components/ui/form";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
 
 import { cn } from "@/common/lib/utils";
 

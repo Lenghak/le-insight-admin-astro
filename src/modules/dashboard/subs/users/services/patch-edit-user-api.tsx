@@ -1,4 +1,4 @@
-import type { UserEditRequestType } from "@/modules/dashboard/subs/users/types/users-edit-type";
+import type { UserEditRequestType } from "@users/types/users-edit-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance } from "axios";

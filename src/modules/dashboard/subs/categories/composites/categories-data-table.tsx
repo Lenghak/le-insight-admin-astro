@@ -1,4 +1,3 @@
-import { DataTablePagination } from "@/common/components/custom/table";
 import {
   Table,
   TableBody,
@@ -6,7 +5,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/common/components/ui/table";
+} from "@ui/table";
+
+import { DataTablePagination } from "@custom/table";
 
 import { cn } from "@/common/lib/utils";
 

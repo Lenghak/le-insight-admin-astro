@@ -1,14 +1,15 @@
-import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import {
   $dashboardDialogStore,
   setDashboardDialogOpen,
-} from "@/modules/dashboard/stores/dashboard-action-dialog-store";
-import useEditCategoryService from "@/modules/dashboard/subs/categories/hooks/use-edit-categories-service";
-import useGetCategoryService from "@/modules/dashboard/subs/categories/hooks/use-get-category-service";
+} from "@dashboard/stores/dashboard-action-dialog-store";
+
+import useEditCategoryService from "@categories/hooks/use-edit-categories-service";
+import useGetCategoryService from "@categories/hooks/use-get-category-service";
 import {
   CategoriesEditRequestSchema,
   type CategoryEditRequestType,
-} from "@/modules/dashboard/subs/categories/types/categories-edit-type";
+} from "@categories/types/categories-edit-type";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";

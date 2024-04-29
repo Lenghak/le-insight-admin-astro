@@ -1,4 +1,5 @@
-import useCreateCategoryService from "@/modules/dashboard/subs/categories/hooks/use-create-categories-service";
+import useCreateCategoryService from "@categories/hooks/use-create-categories-service";
+import { CategoriesCreateRequestSchema } from "@categories/types/categories-create-type";
 
 import { Button, buttonVariants } from "@ui/button";
 import {
@@ -11,7 +12,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@ui/dialog";
-
 import {
   Form,
   FormControl,
@@ -19,13 +19,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/common/components/ui/form";
-import { Input } from "@/common/components/ui/input";
-import { Textarea } from "@/common/components/ui/textarea";
+} from "@ui/form";
+import { Input } from "@ui/input";
+import { Textarea } from "@ui/textarea";
 
 import { cn } from "@/common/lib/utils";
 
-import { CategoriesCreateRequestSchema } from "@categories/types/categories-create-type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, PlusIcon } from "lucide-react";
 import { type Ref, useEffect, useRef } from "react";

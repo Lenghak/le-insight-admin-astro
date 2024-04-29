@@ -1,11 +1,12 @@
+import { userKeys } from "@users/constants/query-keys";
+import patchEditUserAPI from "@users/services/patch-edit-user-api";
+import type { UserEditRequestType } from "@users/types/users-edit-type";
+
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import { userKeys } from "@users/constants/query-keys";
-import patchEditUserAPI from "@/modules/dashboard/subs/users/services/patch-edit-user-api";
-import type { UserEditRequestType } from "@users/types/users-edit-type";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
