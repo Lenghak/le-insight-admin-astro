@@ -1,12 +1,12 @@
-import { buttonVariants } from "@/common/components/ui/button";
-import { PaginationEllipsis } from "@/common/components/ui/pagination";
+import { buttonVariants } from "@ui/button";
+import { PaginationEllipsis } from "@ui/pagination";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/common/components/ui/select";
+} from "@ui/select";
 
 import { cn } from "@/common/lib/utils";
 
@@ -100,7 +100,7 @@ export default function DataTablePagination<TData>({
             activeLinkClassName={cn(activeLinkClassName)}
             pageRangeDisplayed={3}
             renderOnZeroPageCount={null}
-            forcePage={parseInt(searchParams.get("page") ?? "0") - 1}
+            forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
             {...props}
           />
         )}

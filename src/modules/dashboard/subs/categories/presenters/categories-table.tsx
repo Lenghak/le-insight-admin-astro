@@ -1,6 +1,7 @@
 import { categoriesColumns } from "@categories/composites/categories-columns";
 import CategoriesDataTable from "@categories/composites/categories-data-table";
 import useCategoriesListHandler from "@categories/hooks/use-get-categories-list-handler";
+
 import { Fragment } from "react/jsx-runtime";
 
 export default function CategoriesTable() {
@@ -12,6 +13,7 @@ export default function CategoriesTable() {
         columns={categoriesColumns}
         data={res?.data.data ?? []}
         className="mt-4 w-full"
+        meta={res?.data?.meta}
       />
     </Fragment>
   );

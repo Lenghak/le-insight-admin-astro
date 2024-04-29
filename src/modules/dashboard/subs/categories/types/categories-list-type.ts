@@ -21,9 +21,7 @@ export const CategoriesListRequestSchema = PaginationRequestSchema.extend({
 
 export const CategoriesListResponseSchema = z.object({
   data: z.array(CategoriesTableSchema),
-  meta: z.object({
-    pagination: PaginationMetaSchema,
-  }),
+  meta: PaginationMetaSchema,
 });
 
 export type CategoriesTableType = z.infer<typeof CategoriesTableSchema>;
