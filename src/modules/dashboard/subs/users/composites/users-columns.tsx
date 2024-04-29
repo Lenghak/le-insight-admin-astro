@@ -1,6 +1,6 @@
 import UsersActions from "@users/composites/users-actions";
-import { rolesBages } from "@users/constants/roles-bages";
-import { sexesBages } from "@users/constants/sex-badge";
+import { rolesBadges } from "@/modules/dashboard/subs/users/constants/roles-badges";
+import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badges";
 import type { UsersTableType } from "@users/types/users-list-type";
 
 import { Checkbox } from "@ui/checkbox";
@@ -99,7 +99,7 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="Role"
       />
     ),
-    cell: ({ getValue }) => rolesBages[getValue() as UsersRoleType],
+    cell: ({ getValue }) => rolesBadges[getValue() as UsersRoleType],
   },
   {
     accessorKey: "phone",

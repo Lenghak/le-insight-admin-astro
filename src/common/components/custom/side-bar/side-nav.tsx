@@ -54,10 +54,10 @@ export default memo(function SideNav({
                         variant: link.variant,
                         size: isCollapsed ? "icon" : "default",
                       }),
-                      "h-10 w-10 font-semibold aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground",
+                      "group h-10 w-10 font-semibold aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground",
                     )}
                   >
-                    <link.icon className={cn("size-4")} />
+                    <link.icon className={cn("size-4 group-data-[state=active]:stroke-[3]")} />
                     <span className="sr-only">{link.title}</span>
                   </Link>
                 </TooltipTrigger>
@@ -85,10 +85,10 @@ export default memo(function SideNav({
                   variant: link.variant,
                   size: isCollapsed ? "icon" : "default",
                 }),
-                "gap-4 px-4 font-semibold aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:font-bold max-md:h-10 max-md:w-10 md:justify-start md:px-4",
+                "group gap-4 px-4 font-semibold aria-disabled:pointer-events-none aria-disabled:cursor-not-allowed aria-disabled:text-muted-foreground aria-disabled:hover:text-muted-foreground data-[state=active]:font-bold max-md:h-10 max-md:w-10 md:justify-start md:px-4",
               )}
             >
-              <link.icon className={cn("min-size-5 h-4 min-w-4")} />
+              <link.icon className={cn("min-size-5 h-4 min-w-4 group-data-[state=active]:stroke-[3]")} />
               <span className={"max-md:hidden"}>{link.title}</span>
             </Link>
           );

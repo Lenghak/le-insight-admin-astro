@@ -216,7 +216,7 @@ export default memo(function UsersBanForm() {
                     status === "pending" ? "w-4" : "",
                   )}
                 />
-                Ban this user
+                Ban
               </Button>
             </DialogFooter>
           </form>

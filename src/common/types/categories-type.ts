@@ -11,7 +11,6 @@ export const CategoriesSchema = z.object({
   type: z.literal("category"),
   id: z.string().uuid(),
   label: z.string(),
-  description: z.string(),
   assigned_count: z.number(),
   generated_count: z.number(),
   status: CategoriesStatusEnum,

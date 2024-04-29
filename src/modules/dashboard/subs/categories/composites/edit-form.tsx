@@ -31,7 +31,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@ui/select";
-import { Textarea } from "@ui/textarea";
 
 import { cn } from "@/common/lib/utils";
 
@@ -130,32 +129,6 @@ export default function EditCategoriesForm() {
                       </SelectContent>
                     </Select>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col items-start justify-center">
-                    <FormLabel
-                      className="whitespace-nowrap font-bold"
-                      htmlFor="description-field"
-                    >
-                      Description
-                    </FormLabel>
-
-                    <FormControl>
-                      <Textarea
-                        id="description-field"
-                        placeholder="e.g. something that related to society"
-                        className="rounded-xl bg-background px-5 font-semibold"
-                        autoComplete="on"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage className="ml-4 list-item font-semibold" />
                   </FormItem>
                 )}
               />

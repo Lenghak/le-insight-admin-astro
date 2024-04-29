@@ -37,7 +37,6 @@ export default function useEditCategoriesHandler() {
     defaultValues: {
       status: category?.attributes?.status ?? "INACTIVE",
       label: category?.attributes?.label ?? "",
-      description: category?.attributes?.description ?? "",
     },
   });
 
@@ -51,11 +50,6 @@ export default function useEditCategoriesHandler() {
       form.setValue(
         "label",
         category?.attributes?.label ?? form.getValues("label"),
-      );
-
-      form.setValue(
-        "description",
-        category?.attributes?.description ?? form.getValues("description"),
       );
     }
   }, [category, getCategoryStatus, isRefetching]);

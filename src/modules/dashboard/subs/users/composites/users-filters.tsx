@@ -1,4 +1,4 @@
-import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badge";
+import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badges";
 
 import { DataTableViewOptions } from "@/common/components/custom/table";
 import DataTableCheckboxFilter from "@/common/components/custom/table/data-table-checkbox-filter";

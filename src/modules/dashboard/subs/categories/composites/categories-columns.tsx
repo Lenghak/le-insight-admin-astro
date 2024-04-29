@@ -56,7 +56,6 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         )}
       >
         {`${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`}
-        ,
       </span>
     ),
   },
@@ -83,29 +82,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span className="inline-block w-full text-center">-</span>
       ),
   },
-  {
-    accessorKey: "description",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Description"
-      />
-    ),
-    cell: ({ getValue, row }) =>
-      getValue() ? (
-        <span
-          className={cn(
-            "line-clamp-3 w-full",
-            row.original.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
-          )}
-        >
-          {getValue() as string}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
-  },
+
   {
     accessorKey: "status",
     header: ({ column }) => (

@@ -2,6 +2,7 @@ import { Checkbox } from "@ui/checkbox";
 
 import { DataTableColumnHeader } from "@custom/table";
 
+import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
 import { type ColumnDef } from "@tanstack/react-table";
@@ -48,17 +49,16 @@ export const articlesColumns: ColumnDef<Record<string, unknown>>[] = [
         )}
       >
         {`${(getValue() as string).slice(0, 4)}...${(getValue() as string).slice(-4)}`}
-        ,
       </span>
     ),
   },
 
   {
-    accessorKey: "status",
+    accessorKey: "visibility",
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Status"
+        title="Visibility"
       />
     ),
   },
@@ -71,19 +71,12 @@ export const articlesColumns: ColumnDef<Record<string, unknown>>[] = [
         title="Cre. Date"
       />
     ),
-    // cell: ({ getValue, row }) =>
-    //   getValue() ? (
-    //     <span
-    //       className={cn(
-    //         row?.original?.is_archived &&
-    //           "font-bold italic text-muted-foreground line-through",
-    //       )}
-    //     >
-    //       {formatDate(getValue() as string)}
-    //     </span>
-    //   ) : (
-    //     <span className="inline-block w-full text-center">-</span>
-    //   ),
+    cell: ({ getValue }) =>
+      getValue() ? (
+        <span>{formatDate(getValue() as string)}</span>
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
   },
   {
     accessorKey: "updated_at",
@@ -93,19 +86,12 @@ export const articlesColumns: ColumnDef<Record<string, unknown>>[] = [
         title="Up. Date"
       />
     ),
-    // cell: ({ getValue, row }) =>
-    //   getValue() ? (
-    //     <span
-    //       className={cn(
-    //         row?.original?.is_archived &&
-    //           "font-bold italic text-muted-foreground line-through",
-    //       )}
-    //     >
-    //       {formatDate(getValue() as string)}
-    //     </span>
-    //   ) : (
-    //     <span className="inline-block w-full text-center">-</span>
-    //   ),
+    cell: ({ getValue }) =>
+      getValue() ? (
+        <span>{formatDate(getValue() as string)}</span>
+      ) : (
+        <span className="inline-block w-full text-center">-</span>
+      ),
   },
   {
     id: "actions",

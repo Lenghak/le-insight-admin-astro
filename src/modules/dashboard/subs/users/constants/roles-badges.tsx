@@ -1,11 +1,11 @@
 import { Badge } from "@/common/components/ui/badge";
 
-export const rolesBages = {
+export const rolesBadges = {
   ADMIN: (
     <Badge
       variant={"fair"}
       colored={"amber"}
-      className="font-bold"
+      className="font-bold uppercase"
     >
       Admin
     </Badge>
@@ -14,7 +14,7 @@ export const rolesBages = {
     <Badge
       variant={"fair"}
       colored={"emerald"}
-      className="font-bold"
+      className="font-bold uppercase"
     >
       User
     </Badge>
@@ -23,7 +23,7 @@ export const rolesBages = {
     <Badge
       variant={"fair"}
       colored={"cyan"}
-      className="font-bold"
+      className="font-bold uppercase"
     >
       Guest
     </Badge>

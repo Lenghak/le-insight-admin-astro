@@ -4,13 +4,12 @@ import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance } from "axios";
 
 export default function patchEditCategoryAPI(
-  { id, description, label, status }: CategoryEditRequestType,
+  { id, label, status }: CategoryEditRequestType,
   queryInstance?: AxiosInstance,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).patch(
     `/categories/${id}`,
     {
-      description,
       label,
       status,
     },

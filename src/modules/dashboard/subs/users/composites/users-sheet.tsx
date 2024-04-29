@@ -1,22 +1,23 @@
-import SheetSection from "@/modules/dashboard/subs/users/components/sheet-section";
-import { rolesBages } from "@/modules/dashboard/subs/users/constants/roles-bages";
-
-import { InlineBanner } from "@/common/components/custom/banner";
-import InlineBannerContent from "@/common/components/custom/banner/inline-banner-content";
-import InlineBannerTitle from "@/common/components/custom/banner/inline-banner-title";
-import ProfileBadge from "@/common/components/custom/profile/profile-badge";
-
-import formatDate from "@/common/lib/date/format-date";
-
 import DashboardSheet from "@dashboard/composites/dashboard-sheet";
 import {
   $dashboardSheetStore,
   setDashboardSheetOpen,
 } from "@dashboard/stores/dashboard-sheet-store";
-import { useStore } from "@nanostores/react";
-import { sexesBages } from "@users/constants/sex-badge";
+
+import SheetSection from "@users/components/sheet-section";
+import { rolesBadges } from "@users/constants/roles-badges";
+import { sexesBages } from "@users/constants/sex-badges";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
+
+import { InlineBanner } from "@custom/banner";
+import InlineBannerContent from "@custom/banner/inline-banner-content";
+import InlineBannerTitle from "@custom/banner/inline-banner-title";
+import ProfileBadge from "@custom/profile/profile-badge";
+
+import formatDate from "@/common/lib/date/format-date";
+
+import { useStore } from "@nanostores/react";
 
 // million-ignore
 export default function UsersSheet() {
@@ -38,7 +39,7 @@ export default function UsersSheet() {
       <SheetSection
         title="Profile"
         description="Displayed user's profile badge"
-        className="py-8"
+        className="py-8 flex flex-col"
       >
         <ProfileBadge
           email={user?.attributes.email}
@@ -55,7 +56,7 @@ export default function UsersSheet() {
       >
         <div className="flex flex-col gap-8 pt-2">
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Identifier
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -64,7 +65,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Profile
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -73,7 +74,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Location
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -90,7 +91,7 @@ export default function UsersSheet() {
       >
         <div className="flex flex-col gap-8 pt-2">
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Full Name
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -99,9 +100,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
-              Sex
-            </InlineBannerTitle>
+            <InlineBannerTitle className="font-semibold">Sex</InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
               {profile?.attributes.sex
                 ? sexesBages[profile?.attributes.sex]
@@ -110,7 +109,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Email
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -119,12 +118,14 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Role
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
               {user?.attributes.role ? (
-                <div className="w-fit">{rolesBages[user?.attributes.role]}</div>
+                <div className="w-fit">
+                  {rolesBadges[user?.attributes.role]}
+                </div>
               ) : (
                 "-"
               )}
@@ -132,7 +133,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Phone
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -141,16 +142,14 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
-              Bio
-            </InlineBannerTitle>
+            <InlineBannerTitle className="font-semibold">Bio</InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
               {profile?.attributes.bio ?? "-"}
             </InlineBannerContent>
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Bithday
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -169,7 +168,7 @@ export default function UsersSheet() {
       >
         <div className="flex flex-col gap-8 pt-2">
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Joined at
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -179,7 +178,7 @@ export default function UsersSheet() {
             </InlineBannerContent>
           </InlineBanner>
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Updated at ~ (User)
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -189,7 +188,7 @@ export default function UsersSheet() {
             </InlineBannerContent>
           </InlineBanner>
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Confirmation sent at
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -199,7 +198,7 @@ export default function UsersSheet() {
             </InlineBannerContent>
           </InlineBanner>
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Confirmed at
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -210,7 +209,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Deleted at
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -221,7 +220,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Invited at
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -232,7 +231,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Created at ~ (Profile)
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -243,7 +242,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Updated at ~ (Profile)
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -254,7 +253,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Banned at
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">
@@ -265,7 +264,7 @@ export default function UsersSheet() {
           </InlineBanner>
 
           <InlineBanner>
-            <InlineBannerTitle className="list-item list-inside list-['\2012\2007'] font-semibold">
+            <InlineBannerTitle className="font-semibold">
               Banned Until
             </InlineBannerTitle>
             <InlineBannerContent className="w-fit font-bold">

@@ -21,7 +21,6 @@ import {
   FormMessage,
 } from "@ui/form";
 import { Input } from "@ui/input";
-import { Textarea } from "@ui/textarea";
 
 import { cn } from "@/common/lib/utils";
 
@@ -35,7 +34,6 @@ export default function CreateCategoriesForm() {
   const form = useForm<z.infer<typeof CategoriesCreateRequestSchema>>({
     resolver: zodResolver(CategoriesCreateRequestSchema),
     defaultValues: {
-      description: "",
       label: "",
     },
   });
@@ -103,34 +101,6 @@ export default function CreateCategoriesForm() {
                       />
                     </FormControl>
 
-                    <FormMessage className="ml-4 list-item font-semibold" />
-                  </div>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem className="flex items-start justify-end gap-4">
-                  <FormLabel
-                    className="mt-5 whitespace-nowrap text-end font-bold"
-                    htmlFor="description-field"
-                  >
-                    Description
-                  </FormLabel>
-
-                  <div className="w-3/4 space-y-2">
-                    <FormControl>
-                      <Textarea
-                        id="description-field"
-                        placeholder="e.g. something that related to society"
-                        className="rounded-xl bg-background px-5 font-semibold"
-                        autoComplete="on"
-                        {...field}
-                      />
-                    </FormControl>
                     <FormMessage className="ml-4 list-item font-semibold" />
                   </div>
                 </FormItem>
