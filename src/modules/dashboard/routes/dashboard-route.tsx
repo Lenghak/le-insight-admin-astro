@@ -6,7 +6,7 @@ import { CategoriesRoute } from "@dashboard/subs/categories/routes";
 
 import UsersRoute from "@users/routes";
 
-import { PawPrintIcon } from "lucide-react";
+import { ConstructionIcon, PawPrintIcon } from "lucide-react";
 import { createBrowserRouter } from "react-router-dom";
 
 export const dashboardRoute = createBrowserRouter([
@@ -35,14 +35,14 @@ export const dashboardRoute = createBrowserRouter([
         element: (
           <ErrorSection
             img={
-              <PawPrintIcon
+              <ConstructionIcon
                 size={96}
                 strokeWidth={2}
                 className="mb-4"
               />
             }
-            title="Page Not Found"
-            description="Looks like you have stumble across a page that does not exist in our universe."
+            title="Page in Development"
+            description="Stay tune! We are still constructing this page. It may not available right now."
             action={<BackButton className="mt-6" />}
           />
         ),
