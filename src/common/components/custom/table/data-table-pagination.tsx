@@ -61,7 +61,9 @@ export default function DataTablePagination<TData>({
               );
             }}
             className={cn("flex w-fit items-center justify-center gap-2")}
-            breakLabel={<PaginationEllipsis />}
+            breakLabel={<PaginationEllipsis className="rounded-full" />}
+            breakClassName="rounded-full"
+            breakLinkClassName="rounded-full"
             previousLabel={
               <div className="flex items-center gap-2">
                 <ChevronLeftIcon className="h-4 w-4" />

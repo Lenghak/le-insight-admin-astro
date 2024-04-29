@@ -18,8 +18,9 @@ module.exports = {
     "^@/modules/(.*)$",
 
     "^@dashboard/(.*)$",
-    "^@users/(.*)$",
+    "^@articles/(.*)$",
     "^@categories/(.*)$",
+    "^@users/(.*)$",
 
     "^@ui/(.*)$",
     "^@custom/(.*)$",
@@ -27,6 +28,7 @@ module.exports = {
     "^@/common/components/(.*)$",
     "^@/common/hooks/(.*)$",
     "^@/common/lib/(.*)$",
+
     "<THIRD_PARTY_MODULES>",
     "^[./]",
     "^@/common/types/(.*)$",

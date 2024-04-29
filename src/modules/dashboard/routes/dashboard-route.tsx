@@ -4,6 +4,8 @@ import ErrorSection from "@/modules/error/components/error-section";
 import DashboardLayout from "@dashboard/layouts/dashboard-layout";
 import { CategoriesRoute } from "@dashboard/subs/categories/routes";
 
+import ArticlesRoute from "@articles/routes/articles-route";
+
 import UsersRoute from "@users/routes";
 
 import { ConstructionIcon, PawPrintIcon } from "lucide-react";
@@ -50,6 +52,10 @@ export const dashboardRoute = createBrowserRouter([
       {
         path: "/dashboard/users",
         element: <UsersRoute />,
+      },
+      {
+        path: "/dashboard/articles",
+        element: <ArticlesRoute />,
       },
       {
         path: "/dashboard/categories",

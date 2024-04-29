@@ -1,7 +1,7 @@
 import useSignInService from "@/modules/auth/hooks/use-sign-in-service";
 import { SignInRequestSchema } from "@/modules/auth/types/sign-in-schema";
 
-import { Button, buttonVariants } from "@/common/components/ui/button";
+import { Button, buttonVariants } from "@ui/button";
 import {
   Form,
   FormControl,
@@ -9,8 +9,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/common/components/ui/form";
-import { Input } from "@/common/components/ui/input";
+} from "@ui/form";
+import { Input } from "@ui/input";
 
 import { cn } from "@/common/lib/utils";
 

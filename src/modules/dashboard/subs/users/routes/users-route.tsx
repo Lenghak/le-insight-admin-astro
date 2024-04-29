@@ -12,7 +12,10 @@ export default function UsersRoute() {
   return (
     <Fragment>
       <div className="flex items-end justify-between">
-        <DashboardTitle title="Users" />
+        <DashboardTitle
+          title="Users"
+          spa
+        />
 
         <div className="flex items-center justify-center gap-4">
           <UsersCreateForm />

@@ -1,18 +1,12 @@
-import { categoryStatus } from "@categories/constants/category-status";
-import type { CategoriesTableType } from "@categories/types/categories-list-type";
-
 import { Checkbox } from "@ui/checkbox";
 
 import { DataTableColumnHeader } from "@custom/table";
 
-import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
 import { type ColumnDef } from "@tanstack/react-table";
 
-import type { CategoriesStatusType } from "@/common/types/categories-type";
-
-export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
+export const articlesColumns: ColumnDef<Record<string, unknown>>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -58,29 +52,6 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
       </span>
     ),
   },
-  {
-    accessorKey: "label",
-    header: ({ column }) => (
-      <DataTableColumnHeader
-        column={column}
-        title="Label"
-      />
-    ),
-    cell: ({ getValue, row }) =>
-      getValue() ? (
-        <span
-          className={cn(
-            "w-full text-center font-bold",
-            row.original.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
-          )}
-        >
-          {getValue() as string}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
-  },
 
   {
     accessorKey: "status",
@@ -90,7 +61,6 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Status"
       />
     ),
-    cell: ({ getValue }) => categoryStatus[getValue() as CategoriesStatusType],
   },
 
   {
@@ -101,19 +71,19 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Cre. Date"
       />
     ),
-    cell: ({ getValue, row }) =>
-      getValue() ? (
-        <span
-          className={cn(
-            row?.original?.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
-          )}
-        >
-          {formatDate(getValue() as string)}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
+    // cell: ({ getValue, row }) =>
+    //   getValue() ? (
+    //     <span
+    //       className={cn(
+    //         row?.original?.is_archived &&
+    //           "font-bold italic text-muted-foreground line-through",
+    //       )}
+    //     >
+    //       {formatDate(getValue() as string)}
+    //     </span>
+    //   ) : (
+    //     <span className="inline-block w-full text-center">-</span>
+    //   ),
   },
   {
     accessorKey: "updated_at",
@@ -123,19 +93,19 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="Up. Date"
       />
     ),
-    cell: ({ getValue, row }) =>
-      getValue() ? (
-        <span
-          className={cn(
-            row?.original?.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
-          )}
-        >
-          {formatDate(getValue() as string)}
-        </span>
-      ) : (
-        <span className="inline-block w-full text-center">-</span>
-      ),
+    // cell: ({ getValue, row }) =>
+    //   getValue() ? (
+    //     <span
+    //       className={cn(
+    //         row?.original?.is_archived &&
+    //           "font-bold italic text-muted-foreground line-through",
+    //       )}
+    //     >
+    //       {formatDate(getValue() as string)}
+    //     </span>
+    //   ) : (
+    //     <span className="inline-block w-full text-center">-</span>
+    //   ),
   },
   {
     id: "actions",

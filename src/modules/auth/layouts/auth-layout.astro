@@ -1,12 +1,12 @@
 ---
-import { buttonVariants } from "@/common/components/ui/button";
-import { Muted } from "@/common/components/ui/muted";
-import { Separator } from "@/common/components/ui/separator";
+import { buttonVariants } from "@ui/button";
+import { Muted } from "@ui/muted";
+import { Separator } from "@ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
-import ModeToggle from "@/common/components/custom/theme";
-import { H1 } from "@/common/components/ui/h1";
+import ModeToggle from "@custom/theme";
+import { H1 } from "@ui/h1";
 import { ChevronLeftIcon, DotIcon } from "lucide-react";
 
 interface Props {
@@ -46,7 +46,6 @@ const { title, description, className, hideSignIn } = Astro.props;
     />
 
     <div class="flex flex-col items-center justify-center gap-6">
-      {/* Title */}
       <div class="flex flex-col items-center justify-center gap-4">
         <H1>{title}</H1>
         <Muted className="max-w-xs text-center">
