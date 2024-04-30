@@ -32,4 +32,7 @@ export default defineConfig({
       noExternal: ["react-tweet"],
     },
   },
+  image: {
+    domains: ["source.unsplash.com"],
+  },
 });

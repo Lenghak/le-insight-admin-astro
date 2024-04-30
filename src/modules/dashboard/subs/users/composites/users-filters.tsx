@@ -1,9 +1,9 @@
-import { sexesBages } from "@/modules/dashboard/subs/users/constants/sex-badges";
+import { sexesBages } from "@users/constants/sex-badges";
 
-import { DataTableViewOptions } from "@/common/components/custom/table";
-import DataTableCheckboxFilter from "@/common/components/custom/table/data-table-checkbox-filter";
-import { DateTableDatePicker } from "@/common/components/custom/table/data-table-date-range-picker";
-import DataTableSearch from "@/common/components/custom/table/data-table-search";
+import { DataTableViewOptions } from "@custom/table";
+import DataTableCheckboxFilter from "@custom/table/data-table-checkbox-filter";
+import { DateTableDatePicker } from "@custom/table/data-table-date-range-picker";
+import DataTableSearch from "@custom/table/data-table-search";
 
 import type { Table } from "@tanstack/react-table";
 import { FilterIcon } from "lucide-react";

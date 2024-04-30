@@ -43,7 +43,7 @@ export default memo(function SideBar({ className }: { className?: string }) {
           isCollapsed ? "h-16 px-2" : "md:justify-between md:px-4",
         )}
       >
-        <Logo />
+        <Logo spa />
       </Link>
 
       <Separator className="mx-auto w-4/5" />

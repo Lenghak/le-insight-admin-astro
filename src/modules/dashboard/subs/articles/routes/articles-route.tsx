@@ -1,10 +1,10 @@
 import DashboardTitle from "@dashboard/composites/dashboard-title";
 
-import { Fragment } from "react";
+import ArticlesCard from "@articles/composites/articles-card";
 
 export default function ArticlesRoute() {
   return (
-    <Fragment>
+    <div className="space-y-6">
       <div className="flex items-end justify-between">
         <DashboardTitle
           title="Articles"
@@ -15,6 +15,10 @@ export default function ArticlesRoute() {
           {/* <UsersCreateForm /> */}
         </div>
       </div>
-    </Fragment>
+
+      <div className="flex flex-col space-y-4">
+        <ArticlesCard className="max-w-lg bg-transparent" />
+      </div>
+    </div>
   );
 }

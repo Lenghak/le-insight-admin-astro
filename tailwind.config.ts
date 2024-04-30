@@ -24,7 +24,8 @@ export default {
       fontFamily: {
         ...defaultTheme.fontFamily,
         sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
-        // monospace: ["Roboto Mono Variable", defaultTheme.fontFamily.mono],
+        serif: ["Yrsa Variable", ...defaultTheme.fontFamily.serif],
+        // mono: ["Roboto Mono Variable", defaultTheme.fontFamily.mono],
       },
       fontSize: {
         ...defaultTheme.fontSize,
