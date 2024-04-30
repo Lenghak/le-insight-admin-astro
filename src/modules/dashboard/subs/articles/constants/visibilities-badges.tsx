@@ -1,31 +1,56 @@
 import { Badge } from "@ui/badge";
 
-export const visibiltiesBadges = {
-  ADMIN: (
+import type React from "react";
+
+import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
+
+export const visibiltiesBadges: Record<
+  ArticlesVisiblityEnumType,
+  React.ReactNode
+> = {
+  DRAFT: (
     <Badge
       variant={"fair"}
       colored={"yellow"}
       className="font-bold"
     >
-      Admin
+      Draft
     </Badge>
   ),
-  USER: (
+  ARCHIVED: (
     <Badge
       variant={"fair"}
-      colored={"amber"}
+      colored={"rose"}
       className="font-bold"
     >
-      User
+      Archived
     </Badge>
   ),
-  GUEST: (
+  PRIVATE: (
     <Badge
       variant={"fair"}
-      colored={"lime"}
+      colored={"purple"}
       className="font-bold"
     >
-      Guest
+      Private
+    </Badge>
+  ),
+  PREMIUM: (
+    <Badge
+      variant={"fair"}
+      colored={"emerald"}
+      className="font-bold"
+    >
+      Premium
+    </Badge>
+  ),
+  PUBLIC: (
+    <Badge
+      variant={"fair"}
+      colored={"emerald"}
+      className="font-bold"
+    >
+      Public
     </Badge>
   ),
 };

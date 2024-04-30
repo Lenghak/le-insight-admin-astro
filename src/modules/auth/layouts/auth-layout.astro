@@ -21,10 +21,10 @@ const { title, description, className, hideSignIn } = Astro.props;
 ---
 
 <main
-  class={cn("container flex h-screen w-full flex-row items-center", className)}
+  class={cn("flex h-screen w-full flex-row items-center bg-card", className)}
 >
   <section
-    class="relative flex h-full w-full flex-col items-center justify-center"
+    class="container relative flex h-full w-full flex-col items-center justify-center"
   >
     <a
       href={"/auth/sign-in"}

@@ -39,7 +39,7 @@ module.exports = {
   importOrderCaseInsensitive: true,
   overrides: [
     {
-      files: "*.scss",
+      files: ["*.scss", "*.css"],
       options: { parser: "scss" },
     },
     {

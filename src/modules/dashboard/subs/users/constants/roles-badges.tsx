@@ -22,7 +22,7 @@ export const rolesBadges = {
   GUEST: (
     <Badge
       variant={"fair"}
-      colored={"cyan"}
+      colored={"rose"}
       className="font-bold uppercase"
     >
       Guest

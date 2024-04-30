@@ -6,7 +6,6 @@ export const CategoriesEditRequestSchema = CategoriesSchema.pick({
   id: true,
   label: true,
   status: true,
-  description: true,
   assigned_count: true,
   generated_count: true,
 }).partial();
