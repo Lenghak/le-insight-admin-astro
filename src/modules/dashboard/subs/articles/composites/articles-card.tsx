@@ -1,3 +1,5 @@
+import { Badge } from "@ui/badge";
+import { Button, buttonVariants } from "@ui/button";
 import {
   Card,
   CardContent,
@@ -6,11 +8,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@ui/card";
+import { Muted } from "@ui/muted";
+import { Small } from "@ui/small";
 
-import { Image } from "@/common/components/custom/image";
+import { Image } from "@custom/image";
+import { ProfileHoverCard } from "@custom/profile";
+import ProfileBadge from "@custom/profile/profile-badge";
 
 import { cn } from "@/common/lib/utils";
 
+import {
+  BookmarkPlusIcon,
+  DotIcon,
+  MessageCircle,
+  MoreHorizontalIcon,
+  ThumbsUpIcon,
+} from "lucide-react";
 import React from "react";
 
 export default React.forwardRef<
@@ -21,39 +34,121 @@ export default React.forwardRef<
     <Card
       ref={ref}
       className={cn(
-        "grid w-full grid-cols-[auto,_1fr] grid-rows-1 items-center justify-center border-none shadow-none",
+        buttonVariants({ variant: "secondary", size: "default" }),
+        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-none border-x-0 border-y py-4 pr-8 shadow-none",
         className,
       )}
       {...props}
     >
-      <CardHeader className="aspect-square max-h-full min-h-40 min-w-40 max-w-40 p-0">
-        {/* Thumbnail */}
-        <Image
-          src="https://source.unsplash.com/user/c_v_r/800x800"
-          alt="Article Thumbnail"
-          className="aspect-square h-full w-full rounded-md object-cover"
-        />
-      </CardHeader>
+      <CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0">
+        <div className="flex w-full items-center justify-between gap-4 p-0">
+          {/* Profile */}
+          <ProfileHoverCard asChild>
+            <ProfileBadge
+              firstName="Lenghak"
+              lastName="Hok"
+              avatarClassName="size-8"
+              avatarFallBackClassName="bg-accent"
+              metaClassName="text-sm"
+            />
+          </ProfileHoverCard>
 
-      <CardContent className="flex h-full w-full flex-col space-y-4 py-0">
-        <CardTitle className="line-clamp-2 font-black">
-          Lorem ipsum dolor sit.
+          {/* Minutes Reads */}
+          <Muted className="font-medium">5 minutes read</Muted>
+        </div>
+
+        <CardTitle className="line-clamp-2 text-xl font-black">
+          Lorem ipsum dolor sit amet consectetur.
         </CardTitle>
 
-        <CardDescription className="line-clamp-3 font-serif text-base font-semibold">
+        <div className="flex w-full items-center gap-8">
+          <Muted className="text-xs font-semibold uppercase tracking-widest">
+            April 20, 2024
+          </Muted>
+
+          <DotIcon size={16} />
+
+          <Badge
+            variant={"outline"}
+            className="text-xs font-bold"
+          >
+            Category
+          </Badge>
+        </div>
+
+        <CardDescription className="line-clamp-3 font-serif text-base font-medium">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident
           soluta fugiat tempora accusamus officia pariatur harum saepe odio
           vitae eligendi?
         </CardDescription>
+      </CardHeader>
 
-        <CardFooter className="flex w-full items-center gap-4">
-          {/* Profile */}
-
-          {/* Posted Date */}
-
-          {/* Minutes Reads */}
-        </CardFooter>
+      <CardContent className="flex aspect-square h-full w-fit max-w-40 items-center justify-center p-0">
+        {/* Thumbnail */}
+        <Image
+          src="https://source.unsplash.com/user/c_v_r/800x800"
+          alt="Article Thumbnail"
+          className="aspect-square h-full max-h-40 max-w-40 rounded-xl object-cover"
+        />
       </CardContent>
+
+      <CardFooter className="col-span-2 flex w-full items-center justify-between p-0">
+        <div className="flex items-center justify-end gap-4">
+          <div className="flex items-center">
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+            >
+              <span className="sr-only">Like the Article</span>
+              <ThumbsUpIcon />
+            </Button>
+
+            <Button
+              variant={"link"}
+              size={"icon"}
+            >
+              <Small>12</Small>
+            </Button>
+          </div>
+
+          <div className="flex items-center">
+            <Button
+              variant={"ghost"}
+              size={"icon"}
+            >
+              <span className="sr-only">Comment on the Article</span>
+              <MessageCircle />
+            </Button>
+
+            <Button
+              variant={"link"}
+              size={"icon"}
+            >
+              <Small>12</Small>
+            </Button>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-2">
+          {/* Save */}
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+          >
+            <span className="sr-only">Save the Article</span>
+            <BookmarkPlusIcon />
+          </Button>
+
+          {/* More */}
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+          >
+            <span className="sr-only">More Options</span>
+            <MoreHorizontalIcon />
+          </Button>
+        </div>
+      </CardFooter>
     </Card>
   );
 });

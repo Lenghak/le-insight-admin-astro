@@ -1,3 +1,4 @@
+import { Button } from "@ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -7,8 +8,6 @@ import {
   CommandList,
   CommandShortcut,
 } from "@ui/command";
-
-import { Button } from "@/common/components/ui/button";
 
 import { SearchIcon } from "lucide-react";
 import React, { Fragment } from "react";

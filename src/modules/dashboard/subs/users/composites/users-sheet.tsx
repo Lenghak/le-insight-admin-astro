@@ -39,10 +39,10 @@ export default function UsersSheet() {
       <SheetSection
         title="Profile"
         description="Displayed user's profile badge"
-        className="py-8 flex flex-col"
+        className="flex flex-col py-8"
       >
         <ProfileBadge
-          email={user?.attributes.email}
+          meta={user?.attributes.email}
           firstName={profile?.attributes.first_name}
           lastName={profile?.attributes.last_name}
           imageURL={profile?.attributes.image_url ?? ""}

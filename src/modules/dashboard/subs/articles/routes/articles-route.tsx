@@ -17,7 +17,7 @@ export default function ArticlesRoute() {
       </div>
 
       <div className="flex flex-col space-y-4">
-        <ArticlesCard className="max-w-lg bg-transparent" />
+        <ArticlesCard className="max-w-xl bg-transparent" />
       </div>
     </div>
   );

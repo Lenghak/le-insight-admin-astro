@@ -17,7 +17,8 @@ type ProfileBadgeProps = {
   imageURL?: string;
   firstName?: string;
   lastName?: string;
-  email?: string;
+  metaClassName?: string;
+  meta?: string;
 };
 
 export default function ProfileBadge({
@@ -25,7 +26,8 @@ export default function ProfileBadge({
   imageClassName,
   avatarClassName,
   avatarFallBackClassName,
-  email,
+  metaClassName,
+  meta,
   firstName,
   imageURL,
   lastName,
@@ -46,9 +48,9 @@ export default function ProfileBadge({
         </AvatarFallback>
       </Avatar>
 
-      <div className="flex flex-col justify-between">
+      <div className={cn("flex flex-col justify-between", metaClassName)}>
         <span className="line-clamp-1 font-bold">{`${firstName} ${lastName}`}</span>
-        <Muted className="line-clamp-1 font-medium">{email}</Muted>
+        <Muted className="line-clamp-1 font-medium">{meta}</Muted>
       </div>
     </div>
   );

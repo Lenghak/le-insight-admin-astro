@@ -1,6 +1,6 @@
-import DashboardHeader from "@/modules/dashboard/composites/dashboard-header";
+import DashboardHeader from "@dashboard/composites/dashboard-header";
 
-import SideBar from "@/common/components/custom/side-bar/side-bar";
+import SideBar from "@custom/side-bar/side-bar";
 
 import { Outlet } from "react-router-dom";
 

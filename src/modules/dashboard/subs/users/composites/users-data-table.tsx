@@ -66,7 +66,7 @@ export default memo(function UsersDataTable<TData, TValue>({
           className,
         )}
       >
-        <Table className="h-full border-separate border-spacing-0 [&_tr]:border-b-0">
+        <Table className="h-full border-separate border-spacing-y-1 [&_tr]:border-b-0">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -93,7 +93,7 @@ export default memo(function UsersDataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map((row, index) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
@@ -101,7 +101,10 @@ export default memo(function UsersDataTable<TData, TValue>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="p-2 px-4"
+                      className={cn(
+                        "p-2 px-4",
+                        index === 0 && "border-t-4 border-t-background",
+                      )}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

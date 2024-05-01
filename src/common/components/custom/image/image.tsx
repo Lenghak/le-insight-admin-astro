@@ -11,13 +11,13 @@ type ImageProps = HTMLAttributes<HTMLImageElement> & {
 
 export default function Image({ className, ...props }: ImageProps) {
   const [isImageLoaded, setImageLoaded] = useState<boolean>(false);
-  console.log(isImageLoaded);
+
   return (
     <Fragment>
       <img
         className={cn(
           "transition-all",
-          !isImageLoaded ? "invisible !max-h-0" : "visible",
+          !isImageLoaded ? "invisible !max-h-0 !max-w-0" : "visible",
           className,
         )}
         {...props}

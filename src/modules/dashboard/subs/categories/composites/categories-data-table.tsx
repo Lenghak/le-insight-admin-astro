@@ -95,7 +95,7 @@ export default function CategoriesDataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
+              table.getRowModel().rows.map((row, index) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
@@ -103,7 +103,10 @@ export default function CategoriesDataTable<TData, TValue>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="p-2 px-4"
+                      className={cn(
+                        "p-2 px-4",
+                        index === 0 && "border-t-4 border-t-background",
+                      )}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

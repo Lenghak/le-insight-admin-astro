@@ -1,4 +1,4 @@
-import DashboardTabsSkeletons from "@/modules/dashboard/composites/tabs/dashboard-tabs-skeleton";
+import DashboardTabsSkeletons from "@dashboard/composites/tabs/dashboard-tabs-skeleton";
 
 import { lazy, memo, Suspense } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -12,7 +12,7 @@ const DashboardTabList = lazy(
 
 type UsersTabsProps = Record<string, unknown>;
 
-const TABS = ["all", "admin", "user"];
+const TABS = ["all", "admin", "user", "guest"];
 
 export default memo(function UsersTabs({}: UsersTabsProps) {
   const [searchParams, setSearchParams] = useSearchParams();

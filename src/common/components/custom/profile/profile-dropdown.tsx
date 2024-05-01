@@ -1,12 +1,4 @@
-import useSessionService from "@auth/hooks/use-session-service";
-import useSignOutService from "@auth/hooks/use-sign-out-service";
-
-import ProfileBadge from "@custom/profile/profile-badge";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +8,10 @@ import {
   DropdownMenuTrigger,
 } from "@ui/dropdown-menu";
 
+import ProfileBadge from "@custom/profile/profile-badge";
+
+import useSessionService from "@auth/hooks/use-session-service";
+import useSignOutService from "@auth/hooks/use-sign-out-service";
 import { useIsClient } from "@uidotdev/usehooks";
 import { InfoIcon, LogOut, Settings, UserIcon } from "lucide-react";
 
@@ -33,7 +29,7 @@ export default function ProfileDropdown() {
             src={user?.image_url}
             alt={user?.first_name}
           />
-          <AvatarFallback className="bg-background">
+          <AvatarFallback className="bg-background font-bold">
             {isClient && (user?.first_name[0] ?? "?")}
           </AvatarFallback>
         </Avatar>
@@ -42,7 +38,7 @@ export default function ProfileDropdown() {
         <DropdownMenuGroup>
           <DropdownMenuItem className="px-3 py-2">
             <ProfileBadge
-              email={user?.email}
+              meta={user?.email}
               firstName={user?.first_name}
               lastName={user?.last_name}
               imageURL={user?.image_url}
