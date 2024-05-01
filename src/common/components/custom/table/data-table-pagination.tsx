@@ -37,11 +37,11 @@ export default function DataTablePagination<TData>({
       className={cn("flex items-center justify-between pt-2", className)}
     >
       <div className="w-fit rounded-full border bg-card py-1 pl-1 pr-4 text-sm font-semibold text-muted-foreground">
-        <span className="mr-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-background p-2 font-bold text-foreground">
+        <span className="mr-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-accent p-2 font-bold text-foreground">
           {table.getFilteredSelectedRowModel().rows.length}
         </span>{" "}
         of{" "}
-        <span className="mx-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-background p-2 font-bold text-foreground">
+        <span className="mx-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-accent p-2 font-bold text-foreground">
           {table.getFilteredRowModel().rows.length}
         </span>{" "}
         row(s) selected.
@@ -72,7 +72,7 @@ export default function DataTablePagination<TData>({
             }
             previousLinkClassName={cn(
               buttonVariants({ variant: "outline", size: "icon" }),
-              "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
+              "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-8",
             )}
             nextLabel={
               <div className="flex items-center gap-2">
@@ -82,11 +82,12 @@ export default function DataTablePagination<TData>({
             }
             nextLinkClassName={cn(
               buttonVariants({ variant: "outline", size: "icon" }),
-              "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-9",
+              "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-8",
             )}
             disabledClassName="text-muted-foreground"
             pageClassName={cn(
               buttonVariants({ size: "icon", variant: "ghost" }),
+              "size-8",
             )}
             pageLinkClassName={cn(
               "font-semibold w-full h-full flex items-center justify-center rounded-full",
@@ -96,7 +97,7 @@ export default function DataTablePagination<TData>({
                 size: "icon",
                 variant: "default",
               }),
-              "min-w-9 min-h-9 h-9 w-9 hover:text-primary-foreground",
+              "min-w-8 min-h-8 size-8 hover:text-primary-foreground",
               activeClassName,
             )}
             activeLinkClassName={cn(activeLinkClassName)}
@@ -123,7 +124,7 @@ export default function DataTablePagination<TData>({
             );
           }}
         >
-          <SelectTrigger className="h-8 w-[70px] rounded-full font-bold">
+          <SelectTrigger className="h-8 w-[70px] rounded-full border bg-accent font-bold">
             <SelectValue placeholder={`${searchParams.get("limit") ?? "50"}`} />
           </SelectTrigger>
           <SelectContent side="top">

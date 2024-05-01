@@ -21,7 +21,7 @@ export default React.forwardRef<
     <Card
       ref={ref}
       className={cn(
-        "grid w-full grid-cols-[auto,_1fr] grid-rows-1 items-center justify-center border-none",
+        "grid w-full grid-cols-[auto,_1fr] grid-rows-1 items-center justify-center border-none shadow-none",
         className,
       )}
       {...props}

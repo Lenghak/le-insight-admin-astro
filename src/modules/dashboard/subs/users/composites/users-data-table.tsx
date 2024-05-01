@@ -1,3 +1,6 @@
+import UsersFilters from "@users/composites/users-filters";
+import UsersTabs from "@users/composites/users-tabs";
+
 import { DataTablePagination } from "@/common/components/custom/table";
 import {
   Table,
@@ -19,10 +22,7 @@ import {
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import UsersFilters from "@users/composites/users-filters";
-import UsersTabs from "@users/composites/users-tabs";
-import React, { memo } from "react";
-import { Fragment } from "react/jsx-runtime";
+import React, { Fragment, memo } from "react";
 
 import type { PaginationMetaType } from "@/common/types/pagination-type";
 
@@ -62,17 +62,23 @@ export default memo(function UsersDataTable<TData, TValue>({
 
       <div
         className={cn(
-          "flex h-full w-dvw flex-col justify-between overflow-hidden rounded-2xl border bg-card",
+          "flex w-dvw flex-col justify-between rounded-3xl",
           className,
         )}
       >
-        <Table className="h-full">
-          <TableHeader className="bg-accent/50">
+        <Table className="h-full border-separate border-spacing-0 [&_tr]:border-b-0">
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow
+                key={headerGroup.id}
+                className="border-b-0 p-1"
+              >
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead
+                      key={header.id}
+                      className="border-y bg-card first:rounded-l-full first:border first:border-r-0 last:rounded-r-full last:border last:border-l-0"
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(

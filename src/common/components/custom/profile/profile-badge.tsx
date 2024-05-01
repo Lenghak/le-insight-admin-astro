@@ -12,6 +12,7 @@ import { useIsClient } from "@uidotdev/usehooks";
 type ProfileBadgeProps = {
   className?: string;
   avatarClassName?: string;
+  avatarFallBackClassName?: string;
   imageClassName?: string;
   imageURL?: string;
   firstName?: string;
@@ -23,6 +24,7 @@ export default function ProfileBadge({
   className,
   imageClassName,
   avatarClassName,
+  avatarFallBackClassName,
   email,
   firstName,
   imageURL,
@@ -37,7 +39,9 @@ export default function ProfileBadge({
           src={imageURL}
           className={imageClassName}
         />
-        <AvatarFallback className="bg-background font-bold">
+        <AvatarFallback
+          className={cn("bg-background font-bold", avatarFallBackClassName)}
+        >
           {isClient && (firstName ? firstName[0] : "?")}
         </AvatarFallback>
       </Avatar>

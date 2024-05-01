@@ -1,13 +1,14 @@
+import { DashboardCommandMenu } from "@/modules/dashboard/composites/dashboard-command-menu";
+
 import ProfileDropdown from "@/common/components/custom/profile";
 import ModeToggle from "@/common/components/custom/theme";
 import { SpaModeToggle } from "@/common/components/custom/theme/spa-mode-toggle";
 import { Button } from "@/common/components/ui/button";
-import { Input } from "@/common/components/ui/input";
 import { Separator } from "@/common/components/ui/separator";
 
 import { $sidebar, setCollapsed } from "@/common/stores/side-bar-store";
 import { useStore } from "@nanostores/react";
-import { MenuIcon, SearchIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 
 interface DashboardHeaderProps {
   spa?: boolean;
@@ -34,15 +35,7 @@ export default function DashboardHeader({ spa }: DashboardHeaderProps) {
       </Button>
 
       {/* Search  */}
-      <div className="absolute flex w-full max-w-md items-center justify-center opacity-0 transition-all md:opacity-100">
-        <Input
-          type="text"
-          placeholder="Search Le-Insight"
-          className="w-full rounded-full border-0 bg-background pl-12 placeholder:ml-12 placeholder:text-center"
-        />
-
-        <SearchIcon className="absolute left-4 h-4 w-4 text-muted-foreground" />
-      </div>
+      <DashboardCommandMenu />
 
       {/* Profiles */}
       <div className="flex w-full items-center justify-end gap-4">
