@@ -192,7 +192,7 @@ export const EDITOR_PLUGINS = createPlugins(
         props: {
           validTypes: [
             ELEMENT_PARAGRAPH,
-            // ELEMENT_H1, ELEMENT_H2, ELEMENT_H3
+            ELEMENT_H1, ELEMENT_H2, ELEMENT_H3
           ],
         },
       },

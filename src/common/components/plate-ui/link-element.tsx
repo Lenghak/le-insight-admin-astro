@@ -8,6 +8,7 @@ export const LinkElement = withRef<typeof PlateElement>(
     const { props: linkProps } = useLink({ element });
 
     return (
+      // @ts-expect-error cannot assign two types of elements event listeners to PlateElement
       <PlateElement
         ref={ref}
         asChild
@@ -15,8 +16,7 @@ export const LinkElement = withRef<typeof PlateElement>(
           "font-medium text-primary underline decoration-primary underline-offset-4",
           className,
         )}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        {...(linkProps as any)}
+        {...linkProps}
         {...props}
       >
         <a>{children}</a>

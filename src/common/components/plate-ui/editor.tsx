@@ -43,7 +43,9 @@ const editorVariants = cva(
 );
 
 export type EditorProps = PlateContentProps &
-  VariantProps<typeof editorVariants>;
+  VariantProps<typeof editorVariants> & {
+    containerClassName?: string;
+  };
 
 const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
   (
@@ -55,6 +57,7 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
       readOnly,
       size,
       variant,
+      containerClassName,
       ...props
     },
     ref,
@@ -62,7 +65,7 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
     return (
       <div
         ref={ref}
-        className="relative h-full w-full"
+        className={cn("relative h-full w-full", containerClassName)}
       >
         <PlateContent
           className={cn(

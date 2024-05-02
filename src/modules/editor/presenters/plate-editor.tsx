@@ -35,14 +35,17 @@ export default function PlateEditor() {
             plugins={EDITOR_PLUGINS}
             initialValue={initialValue}
           >
-            <FixedToolbar className="static">
+            <FixedToolbar className="sticky top-0 mt-4 h-fit min-h-12 w-[calc(100%_-_3rem)] self-center rounded-xl border-b-0 bg-card p-1.5 shadow-sm">
               <FixedToolbarButtons />
             </FixedToolbar>
 
-            <Editor
-              className="h-full border-0 p-6"
-              focusRing={false}
-            />
+            <section className="flex h-full w-full flex-col px-6">
+              <Editor
+                containerClassName="w-full h-full min-h-full overflow-auto flex flex-col max-h-full"
+                className="w-full border-0 bg-card px-24 py-12"
+                focusRing={false}
+              />
+            </section>
 
             <FloatingToolbar>
               <FloatingToolbarButtons />

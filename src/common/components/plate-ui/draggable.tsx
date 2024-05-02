@@ -12,6 +12,9 @@ import {
 import { GripVerticalIcon } from "lucide-react";
 import { type DropTargetMonitor } from "react-dnd";
 
+import { Button } from "./button";
+import { InsertDropdownMenu } from "./insert-dropdown-menu";
+import { Toolbar } from "./toolbar";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 export interface DraggableProps
@@ -71,8 +74,7 @@ export interface DraggableProps
     props: {
       monitor: DropTargetMonitor<DragItemNode, unknown>;
       dragItem: DragItemNode;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      nodeRef: any;
+      nodeRef: string;
       id: string;
     },
   ) => boolean;
@@ -80,20 +82,24 @@ export interface DraggableProps
 
 const dragHandle = (
   <Tooltip>
-    <TooltipTrigger>
-      <GripVerticalIcon className="size-4 text-muted-foreground" />
+    <TooltipTrigger asChild>
+      <Button
+        size={"sms"}
+        variant={"ghost"}
+      >
+        <GripVerticalIcon className="size-4 text-muted-foreground" />
+      </Button>
     </TooltipTrigger>
-    <TooltipContent>Drag to move</TooltipContent>
+    <TooltipContent className="font-medium">Drag to move</TooltipContent>
   </Tooltip>
 );
 
 export const Draggable = withRef<"div", DraggableProps>(
-  ({ className, classNames = {}, onDropHandler, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const { children, element } = props;
+  ({ className, classNames = {}, onDropHandler, children, ...props }, ref) => {
+    const { element } = props;
 
     const state = useDraggableState({ element, onDropHandler });
-    const { dropLine, isDragging, isHovered } = state;
+    const { dropLine, isDragging } = state;
     const {
       groupProps,
       droplineProps,
@@ -123,15 +129,22 @@ export const Draggable = withRef<"div", DraggableProps>(
           <div className={cn("flex h-[1.5em]", classNames.blockToolbarWrapper)}>
             <div
               className={cn(
-                "pointer-events-auto mr-1 flex items-center",
+                "pointer-events-auto mr-1 flex items-center space-x-1",
                 classNames.blockToolbar,
               )}
             >
+              <Toolbar>
+                <InsertDropdownMenu
+                  triggerClassName="text-muted-foreground"
+                  isDropdown={false}
+                />
+              </Toolbar>
+
               <div
                 ref={handleRef}
-                className="size-4"
+                className="pr-2"
               >
-                {isHovered && dragHandle}
+                {dragHandle}
               </div>
             </div>
           </div>
