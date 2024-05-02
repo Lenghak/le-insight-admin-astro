@@ -2,11 +2,13 @@ import { EDITOR_PLUGINS } from "@/modules/editor/constants/editor-plugins";
 
 import { CommentsPopover } from "@plate-ui/comments-popover";
 import { Editor } from "@plate-ui/editor";
-import { FixedToolbar } from "@plate-ui/fixed-toolbar";
-import { FixedToolbarButtons } from "@plate-ui/fixed-toolbar-buttons";
 import { FloatingToolbar } from "@plate-ui/floating-toolbar";
 import { FloatingToolbarButtons } from "@plate-ui/floating-toolbar-buttons";
 import { MentionCombobox } from "@plate-ui/mention-combobox";
+
+import { FixedToolbar } from "@/common/components/plate-ui/fixed-toolbar";
+import { FixedToolbarButtons } from "@/common/components/plate-ui/fixed-toolbar-buttons";
+import { TooltipProvider } from "@/common/components/ui/tooltip";
 
 import { CommentsProvider } from "@udecode/plate-comments";
 import { Plate } from "@udecode/plate-common";
@@ -23,28 +25,33 @@ const initialValue = [
 
 export default function PlateEditor() {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <CommentsProvider
-        users={{}}
-        myUserId="1"
-      >
-        <Plate
-          plugins={EDITOR_PLUGINS}
-          initialValue={initialValue}
+    <TooltipProvider>
+      <DndProvider backend={HTML5Backend}>
+        <CommentsProvider
+          users={{}}
+          myUserId="1"
         >
-          <FixedToolbar>
-            <FixedToolbarButtons />
-          </FixedToolbar>
+          <Plate
+            plugins={EDITOR_PLUGINS}
+            initialValue={initialValue}
+          >
+            <FixedToolbar className="static">
+              <FixedToolbarButtons />
+            </FixedToolbar>
 
-          <Editor />
+            <Editor
+              className="h-full border-0 p-6"
+              focusRing={false}
+            />
 
-          <FloatingToolbar>
-            <FloatingToolbarButtons />
-          </FloatingToolbar>
-          <MentionCombobox items={[]} />
-          <CommentsPopover />
-        </Plate>
-      </CommentsProvider>
-    </DndProvider>
+            <FloatingToolbar>
+              <FloatingToolbarButtons />
+            </FloatingToolbar>
+            <MentionCombobox items={[]} />
+            <CommentsPopover />
+          </Plate>
+        </CommentsProvider>
+      </DndProvider>
+    </TooltipProvider>
   );
 }

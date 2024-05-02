@@ -6,11 +6,9 @@ import UsersEditForm from "@users/composites/users-edit-form";
 import UsersSheet from "@users/composites/users-sheet";
 import UsersTable from "@users/presenters/users-table";
 
-import { Fragment } from "react";
-
 export default function UsersRoute() {
   return (
-    <Fragment>
+    <section className="p-6 pb-4 pr-4">
       <div className="flex items-end justify-between">
         <DashboardTitle
           title="Users"
@@ -29,6 +27,6 @@ export default function UsersRoute() {
       <UsersEditForm />
 
       <UsersBanForm />
-    </Fragment>
+    </section>
   );
 }

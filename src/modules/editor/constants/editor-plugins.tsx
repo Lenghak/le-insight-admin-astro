@@ -20,15 +20,16 @@ import { MentionElement } from "@plate-ui/mention-element";
 import { MentionInputElement } from "@plate-ui/mention-input-element";
 import { ParagraphElement } from "@plate-ui/paragraph-element";
 import { withPlaceholders } from "@plate-ui/placeholder";
+
 import {
   TableCellElement,
   TableCellHeaderElement,
-} from "@plate-ui/table-cell-element";
-import { TableElement } from "@plate-ui/table-element";
-import { TableRowElement } from "@plate-ui/table-row-element";
-import { TodoListElement } from "@plate-ui/todo-list-element";
-import { ToggleElement } from "@plate-ui/toggle-element";
-import { withDraggables } from "@plate-ui/with-draggables";
+} from "@/common/components/plate-ui/table-cell-element";
+import { TableElement } from "@/common/components/plate-ui/table-element";
+import { TableRowElement } from "@/common/components/plate-ui/table-row-element";
+import { TodoListElement } from "@/common/components/plate-ui/todo-list-element";
+import { ToggleElement } from "@/common/components/plate-ui/toggle-element";
+import { withDraggables } from "@/common/components/plate-ui/with-draggables";
 
 import { withProps } from "@udecode/cn";
 import { createAlignPlugin } from "@udecode/plate-alignment";
@@ -90,6 +91,7 @@ import {
   ELEMENT_H4,
   ELEMENT_H5,
   ELEMENT_H6,
+  KEYS_HEADING,
 } from "@udecode/plate-heading";
 import {
   createHighlightPlugin,
@@ -278,7 +280,7 @@ export const EDITOR_PLUGINS = createPlugins(
             query: {
               start: true,
               end: true,
-              // allow: KEYS_HEADING,
+              allow: KEYS_HEADING,
             },
             relative: true,
             level: 1,
@@ -298,9 +300,7 @@ export const EDITOR_PLUGINS = createPlugins(
     createSelectOnBackspacePlugin({
       options: {
         query: {
-          allow: [
-            // ELEMENT_IMAGE, ELEMENT_HR
-          ],
+          allow: [ELEMENT_IMAGE, ELEMENT_HR],
         },
       },
     }),

@@ -1,15 +1,13 @@
-import DashboardTitle from "@/modules/dashboard/composites/dashboard-title";
+import DashboardTitle from "@dashboard/composites/dashboard-title";
 
 import { DeleteCategoryForm } from "@categories/composites/categories-delete-form";
 import CreateCategoriesForm from "@categories/composites/create-form";
 import EditCategoriesForm from "@categories/composites/edit-form";
 import CategoriesTable from "@categories/presenters/categories-table";
 
-import { Fragment } from "react";
-
 export default function CategoriesRoute() {
   return (
-    <Fragment>
+    <section className="p-6 pb-4 pr-4">
       <div className="flex items-end justify-between">
         <DashboardTitle
           title="Categories"
@@ -26,6 +24,6 @@ export default function CategoriesRoute() {
       <EditCategoriesForm />
 
       <DeleteCategoryForm />
-    </Fragment>
+    </section>
   );
 }

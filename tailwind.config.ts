@@ -1,9 +1,14 @@
 import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   darkMode: ["class"],
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -37,90 +42,18 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-
-        informative: {
-          DEFAULT: "hsl(var(--informative))",
-          foreground: "hsl(var(--informative-foreground))",
-          "50": "hsl(var(--informative-50))",
-          "100": "hsl(var(--informative-100))",
-          "200": "hsl(var(--informative-200))",
-          "300": "hsl(var(--informative-300))",
-          "400": "hsl(var(--informative-400))",
-          "500": "hsl(var(--informative-500))",
-          "600": "hsl(var(--informative-600))",
-          "700": "hsl(var(--informative-700))",
-          "800": "hsl(var(--informative-800))",
-          "900": "hsl(var(--informative-900))",
-          "950": "hsl(var(--informative-950))",
-        },
-
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-          "50": "hsl(var(--destructive-50))",
-          "100": "hsl(var(--destructive-100))",
-          "200": "hsl(var(--destructive-200))",
-          "300": "hsl(var(--destructive-300))",
-          "400": "hsl(var(--destructive-400))",
-          "500": "hsl(var(--destructive-500))",
-          "600": "hsl(var(--destructive-600))",
-          "700": "hsl(var(--destructive-700))",
-          "800": "hsl(var(--destructive-800))",
-          "900": "hsl(var(--destructive-900))",
-          "950": "hsl(var(--destructive-950))",
-        },
-
-        successive: {
-          DEFAULT: "hsl(var(--successive))",
-          foreground: "hsl(var(--successive-foreground))",
-          "50": "hsl(var(--successive-50))",
-          "100": "hsl(var(--successive-100))",
-          "200": "hsl(var(--successive-200))",
-          "300": "hsl(var(--successive-300))",
-          "400": "hsl(var(--successive-400))",
-          "500": "hsl(var(--successive-500))",
-          "600": "hsl(var(--successive-600))",
-          "700": "hsl(var(--successive-700))",
-          "800": "hsl(var(--successive-800))",
-          "900": "hsl(var(--successive-900))",
-          "950": "hsl(var(--successive-950))",
-        },
-
-        warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))",
-          "50": "hsl(var(--warning-50))",
-          "100": "hsl(var(--warning-100))",
-          "200": "hsl(var(--warning-200))",
-          "300": "hsl(var(--warning-300))",
-          "400": "hsl(var(--warning-400))",
-          "500": "hsl(var(--warning-500))",
-          "600": "hsl(var(--warning-600))",
-          "700": "hsl(var(--warning-700))",
-          "800": "hsl(var(--warning-800))",
-          "900": "hsl(var(--warning-900))",
-          "950": "hsl(var(--warning-950))",
-        },
-
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          "50": "hsl(var(--primary-50))",
-          "100": "hsl(var(--primary-100))",
-          "200": "hsl(var(--primary-200))",
-          "300": "hsl(var(--primary-300))",
-          "400": "hsl(var(--primary-400))",
-          "500": "hsl(var(--primary-500))",
-          "600": "hsl(var(--primary-600))",
-          "700": "hsl(var(--primary-700))",
-          "800": "hsl(var(--primary-800))",
-          "900": "hsl(var(--primary-900))",
-          "950": "hsl(var(--primary-950))",
         },
 
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -148,25 +81,17 @@ export default {
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
-          "accordion-down": {
-            from: { height: "0" },
-            to: { height: "var(--radix-accordion-content-height)" },
-          },
-          "accordion-up": {
-            from: { height: "var(--radix-accordion-content-height)" },
-            to: { height: "0" },
-            "accordion-up": {
-              from: { height: "var(--radix-accordion-content-height)" },
-              to: { height: "0" },
-            },
-          },
-          animation: {
-            "accordion-down": "accordion-down 0.2s ease-out",
-            "accordion-up": "accordion-up 0.2s ease-out",
-          },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
-      plugins: [require("tailwindcss-animate")],
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
+  plugins: [require("tailwindcss-animate")],
 };

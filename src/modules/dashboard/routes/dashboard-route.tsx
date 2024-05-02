@@ -1,20 +1,17 @@
 import { BackButton } from "@/modules/error/components/back-button";
 import ErrorSection from "@/modules/error/components/error-section";
+import RootBoundary from "@/modules/error/composites/spa-error-page";
 
 import DashboardLayout from "@dashboard/layouts/dashboard-layout";
 import { CategoriesRoute } from "@dashboard/subs/categories/routes";
 
-import { BombIcon, ConstructionIcon, PawPrintIcon } from "lucide-react";
-import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import ArticlesRoute from "@articles/routes/articles-route";
 
-const ArticlesRoute = React.lazy(
-  () => import("@articles/routes/articles-route"),
-);
-const UsersRoute = React.lazy(() => import("@users/routes"));
-const Editor = React.lazy(
-  () => import("@/modules/editor/presenters/plate-editor"),
-);
+import UsersRoute from "@users/routes/users-route";
+
+import EditorRoute from "@editor/routes/editor-route";
+import { ConstructionIcon } from "lucide-react";
+import { createBrowserRouter } from "react-router-dom";
 
 export const dashboardRoute = createBrowserRouter([
   {
@@ -22,18 +19,7 @@ export const dashboardRoute = createBrowserRouter([
     element: <DashboardLayout />,
     errorElement: (
       <DashboardLayout>
-        <ErrorSection
-          img={
-            <BombIcon
-              size={96}
-              strokeWidth={2}
-              className="mb-4"
-            />
-          }
-          title="Internal Server Eror"
-          description="Looks there's been a problem on our end. Sit tight! We'll get this fixed as soon as possible"
-          action={<BackButton className="mt-6" />}
-        />
+        <RootBoundary />
       </DashboardLayout>
     ),
     children: [
@@ -68,24 +54,7 @@ export const dashboardRoute = createBrowserRouter([
       },
       {
         path: "/dashboard/editor",
-        element: <Editor />,
-      },
-      {
-        path: "/dashboard/*",
-        element: (
-          <ErrorSection
-            img={
-              <PawPrintIcon
-                size={96}
-                strokeWidth={2}
-                className="mb-4"
-              />
-            }
-            title="Page Not Found"
-            description="Looks like you have stumble across a page that does not exist in our universe."
-            action={<BackButton className="mt-6" />}
-          />
-        ),
+        element: <EditorRoute />,
       },
     ],
   },

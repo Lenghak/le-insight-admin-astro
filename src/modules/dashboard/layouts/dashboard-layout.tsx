@@ -15,7 +15,7 @@ export default function DashboardLayout({
 
       <DashboardHeader spa />
 
-      <section className="flex h-full w-full flex-col overflow-x-auto rounded-xl bg-background p-6 pb-4 pr-4 shadow-inner">
+      <section className="flex h-full w-full flex-col overflow-x-auto rounded-xl bg-background shadow-inner">
         <Outlet />
         {children}
       </section>
