@@ -24,7 +24,7 @@ export default {
       fontFamily: {
         ...defaultTheme.fontFamily,
         sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
-        serif: ["Yrsa Variable", ...defaultTheme.fontFamily.serif],
+        serif: ["Source Serif 4 Variable", ...defaultTheme.fontFamily.serif],
         // mono: ["Roboto Mono Variable", defaultTheme.fontFamily.mono],
       },
       fontSize: {
@@ -148,17 +148,25 @@ export default {
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+          "accordion-down": {
+            from: { height: "0" },
+            to: { height: "var(--radix-accordion-content-height)" },
+          },
+          "accordion-up": {
+            from: { height: "var(--radix-accordion-content-height)" },
+            to: { height: "0" },
+            "accordion-up": {
+              from: { height: "var(--radix-accordion-content-height)" },
+              to: { height: "0" },
+            },
+          },
+          animation: {
+            "accordion-down": "accordion-down 0.2s ease-out",
+            "accordion-up": "accordion-up 0.2s ease-out",
+          },
         },
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
+      plugins: [require("tailwindcss-animate")],
     },
   },
-  plugins: [require("tailwindcss-animate")],
 };

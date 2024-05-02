@@ -23,6 +23,7 @@ module.exports = {
     "^@users/(.*)$",
 
     "^@ui/(.*)$",
+    "^@plate-ui/(.*)$",
     "^@custom/(.*)$",
     "^@/common/layouts/(.*)$",
     "^@/common/components/(.*)$",

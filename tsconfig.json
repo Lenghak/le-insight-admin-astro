@@ -16,9 +16,11 @@
       "@categories/*": ["./src/modules/dashboard/subs/categories/*"],
       "@users/*": ["./src/modules/dashboard/subs/users/*"],
       "@dashboard/*": ["./src/modules/dashboard/*"],
+      "@editor/*": ["./src/modules/editor/*"],
       "@auth/*": ["./src/modules/auth/*"],
       "@ui/*": ["./src/common/components/ui/*"],
-      "@custom/*": ["./src/common/components/custom/*"]
+      "@custom/*": ["./src/common/components/custom/*"],
+      "@plate-ui/*": ["./src/common/components/plate-ui/*"]
     }
   }
 }
