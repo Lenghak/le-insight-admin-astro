@@ -31,9 +31,22 @@ import { TodoListElement } from "@/common/components/plate-ui/todo-list-element"
 import { ToggleElement } from "@/common/components/plate-ui/toggle-element";
 import { withDraggables } from "@/common/components/plate-ui/with-draggables";
 
+import { autoformatBlocks } from "@/common/lib/plate/auto-format-blocks";
+import { autoformatIndentLists } from "@/common/lib/plate/auto-format-indent-list";
+import { autoformatMarks } from "@/common/lib/plate/auto-format-mark";
+
 import { withProps } from "@udecode/cn";
 import { createAlignPlugin } from "@udecode/plate-alignment";
-import { createAutoformatPlugin } from "@udecode/plate-autoformat";
+import {
+  autoformatArrow,
+  autoformatLegal,
+  autoformatLegalHtml,
+  autoformatMath,
+  autoformatPunctuation,
+  type AutoformatRule,
+  autoformatSmartQuotes,
+  createAutoformatPlugin,
+} from "@udecode/plate-autoformat";
 import {
   createBoldPlugin,
   createCodePlugin,
@@ -81,7 +94,9 @@ import {
 import {
   createFontBackgroundColorPlugin,
   createFontColorPlugin,
+  createFontFamilyPlugin,
   createFontSizePlugin,
+  createFontWeightPlugin,
 } from "@udecode/plate-font";
 import {
   createHeadingPlugin,
@@ -150,6 +165,18 @@ import {
 import { createTogglePlugin, ELEMENT_TOGGLE } from "@udecode/plate-toggle";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
+export const autoformatRules: AutoformatRule[] = [
+  ...autoformatBlocks,
+  ...autoformatIndentLists,
+  ...autoformatMarks,
+  ...autoformatSmartQuotes,
+  ...autoformatPunctuation,
+  ...autoformatLegal,
+  ...autoformatLegalHtml,
+  ...autoformatArrow,
+  ...autoformatMath,
+];
+
 export const EDITOR_PLUGINS = createPlugins(
   [
     createParagraphPlugin(),
@@ -167,9 +194,7 @@ export const EDITOR_PLUGINS = createPlugins(
     createMediaEmbedPlugin(),
     createCaptionPlugin({
       options: {
-        pluginKeys: [
-          // ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED
-        ],
+        pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED],
       },
     }),
     createMentionPlugin(),
@@ -185,6 +210,8 @@ export const EDITOR_PLUGINS = createPlugins(
     createFontColorPlugin(),
     createFontBackgroundColorPlugin(),
     createFontSizePlugin(),
+    createFontFamilyPlugin(),
+    createFontWeightPlugin(),
     createHighlightPlugin(),
     createKbdPlugin(),
     createAlignPlugin({
@@ -250,9 +277,7 @@ export const EDITOR_PLUGINS = createPlugins(
     }),
     createAutoformatPlugin({
       options: {
-        rules: [
-          // Usage: https://platejs.org/docs/autoformat
-        ],
+        rules: [...autoformatRules],
         enableUndoOnDelete: true,
       },
     }),
@@ -295,12 +320,14 @@ export const EDITOR_PLUGINS = createPlugins(
       },
     }),
     createNodeIdPlugin(),
-    createNormalizeTypesPlugin(),
+    createNormalizeTypesPlugin({
+      options: {
+        rules: [{ path: [0], strictType: ELEMENT_H1, type: ELEMENT_H1 }],
+      },
+    }),
     createResetNodePlugin({
       options: {
-        rules: [
-          // Usage: https://platejs.org/docs/reset-node
-        ],
+        rules: [],
       },
     }),
     createSelectOnBackspacePlugin({
@@ -318,9 +345,7 @@ export const EDITOR_PLUGINS = createPlugins(
           {
             hotkey: "enter",
             query: {
-              allow: [
-                // ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD
-              ],
+              allow: [ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD],
             },
           },
         ],

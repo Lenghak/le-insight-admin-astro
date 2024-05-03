@@ -28,9 +28,8 @@ module.exports = {
       },
       fontFamily: {
         ...defaultTheme.fontFamily,
-        sans: ["Open Sans Variable", ...defaultTheme.fontFamily.sans],
-        serif: ["Source Serif 4 Variable", ...defaultTheme.fontFamily.serif],
-        // mono: ["Roboto Mono Variable", defaultTheme.fontFamily.mono],
+        sans: ["'Open Sans Variable'", ...defaultTheme.fontFamily.sans],
+        serif: ["'Source Serif 4 Variable'", ...defaultTheme.fontFamily.serif],
       },
       fontSize: {
         ...defaultTheme.fontSize,
