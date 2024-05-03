@@ -1,5 +1,3 @@
-import { setMediaDialogState } from "@editor/stores/upload-dialog-store";
-
 import { Button } from "@/common/components/ui/button";
 import {
   Form,
@@ -11,6 +9,7 @@ import {
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
 
+import { setMediaDialogState } from "@editor/stores/upload-dialog-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { PlateEditor } from "@udecode/plate-common";
 import { insertMedia } from "@udecode/plate-media";
@@ -59,24 +58,27 @@ export default function URLUploadForm({
           name="url"
           render={({ field }) => (
             <FormItem>
-              {!hideLabel && <FormLabel
-                className="font-bold"
-                htmlFor="url-field"
-              >
-                Import from URL
-              </FormLabel>}
+              {!hideLabel && (
+                <FormLabel
+                  className="font-bold"
+                  htmlFor="url-field"
+                >
+                  Import from URL
+                </FormLabel>
+              )}
               <FormControl>
                 <div className="relative flex w-full items-center">
                   <Input
                     id="url-field"
                     placeholder="Paste a valid url"
-                    className="pr-24"
+                    className="h-11 rounded-full pr-28"
                     {...field}
                   />
 
                   <Button
                     type="submit"
-                    className="absolute right-0 rounded-l-none rounded-r-lg font-semibold"
+                    size={"sm"}
+                    className="absolute right-1 rounded-full px-6 font-bold"
                   >
                     Import
                   </Button>

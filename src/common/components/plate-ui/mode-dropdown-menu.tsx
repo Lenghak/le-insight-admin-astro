@@ -29,16 +29,16 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const item: any = {
     editing: (
-      <>
-        <PenLineIcon className="mr-2 size-5" />
-        <span className="hidden lg:inline">Editing</span>
-      </>
+      <div className="flex items-center">
+        <PenLineIcon className="mr-4 size-5" />
+        <span className="hidden font-semibold lg:inline">Editing</span>
+      </div>
     ),
     viewing: (
-      <>
-        <EyeIcon className="mr-2 size-5" />
-        <span className="hidden lg:inline">Viewing</span>
-      </>
+      <div className="flex items-center">
+        <EyeIcon className="mr-4 size-5" />
+        <span className="hidden font-semibold lg:inline">Viewing</span>
+      </div>
     ),
   };
 
@@ -64,7 +64,7 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
 
       <DropdownMenuContent
         align="start"
-        className="min-w-[180px]"
+        className="mr-8 min-w-[180px]"
       >
         <DropdownMenuRadioGroup
           className="flex flex-col gap-0.5"

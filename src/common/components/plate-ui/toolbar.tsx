@@ -36,7 +36,7 @@ const toolbarButtonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-transparent hover:bg-muted hover:text-muted-foreground aria-checked:bg-accent aria-checked:text-accent-foreground [&>svg]:aria-checked:stroke-[3]",
+          "bg-transparent hover:bg-muted hover:text-foreground aria-checked:bg-accent aria-checked:text-accent-foreground [&>svg]:aria-checked:stroke-[3]",
         outline:
           "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground",
       },
@@ -146,7 +146,7 @@ export const ToolbarGroup = withRef<
       className={cn("flex", className)}
     >
       {!noSeparator && (
-        <div className="h-full py-1">
+        <div className="flex h-full items-center px-2 py-3">
           <Separator orientation="vertical" />
         </div>
       )}

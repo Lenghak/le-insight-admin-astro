@@ -1,9 +1,9 @@
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import {
   useLineHeightDropdownMenu,
   useLineHeightDropdownMenuState,
 } from "@udecode/plate-line-height";
+import { TbLineHeight } from "react-icons/tb";
 
 import {
   DropdownMenu,
@@ -32,10 +32,7 @@ export function LineHeightDropdownMenu({ ...props }: DropdownMenuProps) {
           tooltip="Line height"
           isDropdown
         >
-          <Icon
-            icon={"mingcute-line-height-line"}
-            className="size-4"
-          />
+          <TbLineHeight className="size-4" />
         </ToolbarButton>
       </DropdownMenuTrigger>
 

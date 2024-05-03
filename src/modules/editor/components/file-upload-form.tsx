@@ -91,7 +91,7 @@ export default function FileUploadForm({
                 dropzone.open();
               }}
               type="button"
-              className="rounded-lg font-semibold"
+              className="px-6 font-bold"
             >
               Browse File
             </Button>

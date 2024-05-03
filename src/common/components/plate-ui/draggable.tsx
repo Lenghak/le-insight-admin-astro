@@ -1,3 +1,5 @@
+import { buttonVariants } from "@/common/components/ui/button";
+
 import { cn, withRef } from "@udecode/cn";
 import {
   type ClassNames,
@@ -87,7 +89,7 @@ const dragHandle = (
         size={"sms"}
         variant={"ghost"}
       >
-        <GripVerticalIcon className="size-4 text-muted-foreground" />
+        <GripVerticalIcon className="size-4 rounded-full text-muted-foreground" />
       </Button>
     </TooltipTrigger>
     <TooltipContent className="font-medium">Drag to move</TooltipContent>
@@ -133,9 +135,15 @@ export const Draggable = withRef<"div", DraggableProps>(
                 classNames.blockToolbar,
               )}
             >
-              <Toolbar>
+              <Toolbar className="bg-transparent">
                 <InsertDropdownMenu
-                  triggerClassName="text-muted-foreground"
+                  triggerClassName={cn(
+                    buttonVariants({
+                      variant: "ghost",
+                      size: "icon",
+                    }),
+                    "size-9",
+                  )}
                   isDropdown={false}
                 />
               </Toolbar>

@@ -1,3 +1,16 @@
+import { AlignDropdownMenu } from "@plate-ui/align-dropdown-menu";
+import { ColorDropdownMenu } from "@plate-ui/color-dropdown-menu";
+import { EmojiDropdownMenu } from "@plate-ui/emoji-dropdown-menu";
+import { IndentListToolbarButton } from "@plate-ui/indent-list-toolbar-button";
+import { IndentToolbarButton } from "@plate-ui/indent-toolbar-button";
+import { InsertDropdownMenu } from "@plate-ui/insert-dropdown-menu";
+import { LineHeightDropdownMenu } from "@plate-ui/line-height-dropdown-menu";
+import { LinkToolbarButton } from "@plate-ui/link-toolbar-button";
+import { ModeDropdownMenu } from "@plate-ui/mode-dropdown-menu";
+import { MoreDropdownMenu } from "@plate-ui/more-dropdown-menu";
+import { OutdentToolbarButton } from "@plate-ui/outdent-toolbar-button";
+import { TurnIntoDropdownMenu } from "@plate-ui/turn-into-dropdown-menu";
+
 import {
   MARK_BOLD,
   MARK_CODE,
@@ -6,28 +19,30 @@ import {
   MARK_UNDERLINE,
 } from "@udecode/plate-basic-marks";
 import { useEditorReadOnly } from "@udecode/plate-common";
+import { MARK_BG_COLOR, MARK_COLOR } from "@udecode/plate-font";
+import { ListStyleType } from "@udecode/plate-indent-list";
 import {
+  BaselineIcon,
   BoldIcon,
   Code2Icon,
   ItalicIcon,
+  PaintBucketIcon,
   StrikethroughIcon,
   UnderlineIcon,
 } from "lucide-react";
 
-import { InsertDropdownMenu } from "./insert-dropdown-menu";
 import { MarkToolbarButton } from "./mark-toolbar-button";
-import { ModeDropdownMenu } from "./mode-dropdown-menu";
 import { ToolbarGroup } from "./toolbar";
-import { TurnIntoDropdownMenu } from "./turn-into-dropdown-menu";
 
 export function FixedToolbarButtons() {
   const readOnly = useEditorReadOnly();
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-y-hidden">
       <div
-        className="flex flex-wrap"
+        className="flex"
         style={{
+          // Conceal the first separator on each line using overflow
           transform: "translateX(calc(-1px))",
         }}
       >
@@ -35,7 +50,7 @@ export function FixedToolbarButtons() {
           <>
             <ToolbarGroup noSeparator>
               <InsertDropdownMenu />
-              <TurnIntoDropdownMenu />
+              {!readOnly && <TurnIntoDropdownMenu />}
             </ToolbarGroup>
 
             <ToolbarGroup>
@@ -58,18 +73,74 @@ export function FixedToolbarButtons() {
                 <UnderlineIcon className="size-4" />
               </MarkToolbarButton>
 
-              <MarkToolbarButton
-                tooltip="Strikethrough (⌘+⇧+M)"
-                nodeType={MARK_STRIKETHROUGH}
-              >
-                <StrikethroughIcon className="size-4" />
-              </MarkToolbarButton>
-              <MarkToolbarButton
-                tooltip="Code (⌘+E)"
-                nodeType={MARK_CODE}
-              >
-                <Code2Icon className="size-4" />
-              </MarkToolbarButton>
+              {!readOnly && (
+                <>
+                  <MarkToolbarButton
+                    tooltip="Strikethrough (⌘+⇧+M)"
+                    nodeType={MARK_STRIKETHROUGH}
+                  >
+                    <StrikethroughIcon className="size-4" />
+                  </MarkToolbarButton>
+                  <MarkToolbarButton
+                    tooltip="Code (⌘+E)"
+                    nodeType={MARK_CODE}
+                  >
+                    <Code2Icon className="size-4" />
+                  </MarkToolbarButton>
+                </>
+              )}
+
+              {!readOnly && (
+                <>
+                  <ColorDropdownMenu
+                    nodeType={MARK_COLOR}
+                    tooltip="Text Color"
+                  >
+                    <BaselineIcon className={"size-4"} />
+                  </ColorDropdownMenu>
+                  <ColorDropdownMenu
+                    nodeType={MARK_BG_COLOR}
+                    tooltip="Highlight Color"
+                  >
+                    <PaintBucketIcon className={"size-4"} />
+                  </ColorDropdownMenu>
+                </>
+              )}
+            </ToolbarGroup>
+
+            <ToolbarGroup>
+              {!readOnly && <AlignDropdownMenu />}
+
+              {!readOnly && <LineHeightDropdownMenu />}
+
+              {!readOnly && (
+                <>
+                  <IndentListToolbarButton nodeType={ListStyleType.Disc} />
+                  <IndentListToolbarButton nodeType={ListStyleType.Decimal} />
+                  {/* <IndentTodoToolbarButton /> */}
+                </>
+              )}
+
+              {!readOnly && (
+                <>
+                  <OutdentToolbarButton />
+                  <IndentToolbarButton />
+                </>
+              )}
+            </ToolbarGroup>
+
+            <ToolbarGroup>
+              {!readOnly && <LinkToolbarButton />}
+
+              {/* {readOnly && <ToggleToolbarButton />} */}
+
+              {/* {!readOnly && <MediaToolbarButton nodeType={ELEMENT_IMAGE} />} */}
+
+              {/* {!readOnly && <TableDropdownMenu />} */}
+
+              {!readOnly && <EmojiDropdownMenu />}
+
+              <MoreDropdownMenu />
             </ToolbarGroup>
           </>
         )}
@@ -77,6 +148,7 @@ export function FixedToolbarButtons() {
         <div className="grow" />
 
         <ToolbarGroup noSeparator>
+          {/* {readOnly && <CommentToolbarButton />} */}
           <ModeDropdownMenu />
         </ToolbarGroup>
       </div>

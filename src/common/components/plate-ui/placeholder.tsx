@@ -47,6 +47,7 @@ export const withPlaceholders = (components: any) =>
       query: {
         maxLevel: 1,
       },
+      className: "!font-bold",
     },
     {
       key: ELEMENT_H1,

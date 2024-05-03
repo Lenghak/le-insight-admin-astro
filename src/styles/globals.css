@@ -96,6 +96,7 @@
     background: hsl(var(--muted));
     border: 0.25rem solid transparent;
     background-clip: padding-box;
+    min-height: 3rem;
     @apply rounded-full transition-all;
 
     /* Handle on hover */

@@ -1,4 +1,3 @@
-import { Icon } from "@iconify-icon/react";
 import type * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { PopoverAnchor } from "@radix-ui/react-popover";
 import { cn, withRef } from "@udecode/cn";
@@ -22,6 +21,14 @@ import {
   useTableMergeState,
 } from "@udecode/plate-table";
 import { Grid2X2Icon, MergeIcon, Trash2Icon, UngroupIcon } from "lucide-react";
+import {
+  TbBorderBottom,
+  TbBorderLeft,
+  TbBorderNone,
+  TbBorderOuter,
+  TbBorderRight,
+  TbBorderTop,
+} from "react-icons/tb";
 import { useReadOnly, useSelected } from "slate-react";
 
 import { Button } from "./button";
@@ -61,40 +68,28 @@ export const TableBordersDropdownMenuContent = withRef<
         checked={hasBottomBorder}
         onCheckedChange={getOnSelectTableBorder("bottom")}
       >
-        <Icon
-          icon={"mingcute:border-bottom-line"}
-          className="size-4"
-        />
+        <TbBorderBottom className="size-4" />
         <div>Bottom Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasTopBorder}
         onCheckedChange={getOnSelectTableBorder("top")}
       >
-        <Icon
-          icon={"mingcute:border-top-line"}
-          className="size-4"
-        />
+        <TbBorderTop className="size-4" />
         <div>Top Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasLeftBorder}
         onCheckedChange={getOnSelectTableBorder("left")}
       >
-        <Icon
-          icon={"mingcute:border-left-line"}
-          className="size-4"
-        />
+        <TbBorderLeft className="size-4" />
         <div>Left Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasRightBorder}
         onCheckedChange={getOnSelectTableBorder("right")}
       >
-        <Icon
-          icon={"mingcute:border-right-line"}
-          className="size-4"
-        />
+        <TbBorderRight className="size-4" />
         <div>Right Border</div>
       </DropdownMenuCheckboxItem>
 
@@ -104,20 +99,14 @@ export const TableBordersDropdownMenuContent = withRef<
         checked={hasNoBorders}
         onCheckedChange={getOnSelectTableBorder("none")}
       >
-        <Icon
-          icon={"mingcute:border-blank-line"}
-          className="size-4"
-        />
+        <TbBorderNone className="size-4" />
         <div>No Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasOuterBorders}
         onCheckedChange={getOnSelectTableBorder("outer")}
       >
-        <Icon
-          icon={"mingcute:border-outer-line"}
-          className="size-4"
-        />
+        <TbBorderOuter className="size-4" />
         <div>Outside Borders</div>
       </DropdownMenuCheckboxItem>
     </DropdownMenuContent>
