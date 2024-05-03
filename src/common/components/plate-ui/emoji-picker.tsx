@@ -30,7 +30,7 @@ export function EmojiPicker({
     <div
       className={cn(
         "flex flex-col rounded-xl bg-card",
-        "mr-8 h-[350px] w-[316px] shadow-md",
+        "mr-8 h-[350px] w-[316px] border shadow-md",
       )}
     >
       <EmojiPickerNavigation

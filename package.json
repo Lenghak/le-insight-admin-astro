@@ -14,16 +14,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/react": "^3.3.1",
+    "@astrojs/react": "^3.3.2",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^7.5.4",
     "@auth/core": "^0.18.6",
-    "@fontsource-variable/crimson-pro": "^5.0.19",
-    "@fontsource-variable/noto-serif": "^5.0.6",
     "@fontsource-variable/open-sans": "^5.0.29",
-    "@fontsource-variable/roboto-mono": "^5.0.19",
     "@fontsource-variable/source-serif-4": "^5.0.19",
-    "@fontsource-variable/yrsa": "^5.0.21",
     "@hookform/resolvers": "^3.3.4",
     "@nanostores/persistent": "^0.10.1",
     "@nanostores/react": "^0.7.2",
@@ -106,8 +102,9 @@
     "@udecode/plate-table": "^32.0.0",
     "@udecode/plate-toggle": "^32.0.0",
     "@udecode/plate-trailing-block": "^32.0.0",
+    "@udecode/react-utils": "^31.0.0",
     "@uidotdev/usehooks": "^2.4.1",
-    "astro": "^4.7.0",
+    "astro": "^4.7.1",
     "auth-astro": "^4.1.1",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
@@ -148,7 +145,7 @@
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^9.0.1",
     "vaul": "^0.9.0",
-    "zod": "^3.23.5"
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.6.1",

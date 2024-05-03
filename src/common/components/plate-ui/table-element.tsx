@@ -68,29 +68,29 @@ export const TableBordersDropdownMenuContent = withRef<
         checked={hasBottomBorder}
         onCheckedChange={getOnSelectTableBorder("bottom")}
       >
-        <TbBorderBottom className="size-4" />
-        <div>Bottom Border</div>
+        <TbBorderBottom className="mr-2 size-4" />
+        <div className="font-semibold">Bottom Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasTopBorder}
         onCheckedChange={getOnSelectTableBorder("top")}
       >
-        <TbBorderTop className="size-4" />
-        <div>Top Border</div>
+        <TbBorderTop className="mr-2 size-4" />
+        <div className="font-semibold">Top Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasLeftBorder}
         onCheckedChange={getOnSelectTableBorder("left")}
       >
-        <TbBorderLeft className="size-4" />
-        <div>Left Border</div>
+        <TbBorderLeft className="mr-2 size-4" />
+        <div className="font-semibold">Left Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasRightBorder}
         onCheckedChange={getOnSelectTableBorder("right")}
       >
-        <TbBorderRight className="size-4" />
-        <div>Right Border</div>
+        <TbBorderRight className="mr-2 size-4" />
+        <div className="font-semibold">Right Border</div>
       </DropdownMenuCheckboxItem>
 
       <Separator />
@@ -99,15 +99,15 @@ export const TableBordersDropdownMenuContent = withRef<
         checked={hasNoBorders}
         onCheckedChange={getOnSelectTableBorder("none")}
       >
-        <TbBorderNone className="size-4" />
-        <div>No Border</div>
+        <TbBorderNone className="mr-2 size-4" />
+        <div className="font-semibold">No Border</div>
       </DropdownMenuCheckboxItem>
       <DropdownMenuCheckboxItem
         checked={hasOuterBorders}
         onCheckedChange={getOnSelectTableBorder("outer")}
       >
-        <TbBorderOuter className="size-4" />
-        <div>Outside Borders</div>
+        <TbBorderOuter className="mr-2 size-4" />
+        <div className="font-semibold">Outside Borders</div>
       </DropdownMenuCheckboxItem>
     </DropdownMenuContent>
   );
@@ -162,6 +162,7 @@ export const TableFloatingToolbar = withRef<typeof PopoverContent>(
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
+              className="font-semibold"
               isMenu
             >
               <Grid2X2Icon className="mr-2 size-4" />

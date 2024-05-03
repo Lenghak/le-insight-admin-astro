@@ -38,7 +38,7 @@ export function LineHeightDropdownMenu({ ...props }: DropdownMenuProps) {
 
       <DropdownMenuContent
         align="start"
-        className="min-w-0"
+        className="min-w-0 max-w-40"
       >
         <DropdownMenuRadioGroup
           className="flex flex-col gap-0.5"
@@ -48,7 +48,7 @@ export function LineHeightDropdownMenu({ ...props }: DropdownMenuProps) {
             <DropdownMenuRadioItem
               key={_value}
               value={_value}
-              className="min-w-[180px] font-medium"
+              className="w-full min-w-28 font-medium"
             >
               {_value}
             </DropdownMenuRadioItem>

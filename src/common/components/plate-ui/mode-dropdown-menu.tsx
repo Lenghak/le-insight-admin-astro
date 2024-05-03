@@ -30,13 +30,13 @@ export function ModeDropdownMenu(props: DropdownMenuProps) {
   const item: any = {
     editing: (
       <div className="flex items-center">
-        <PenLineIcon className="mr-4 size-5" />
+        <PenLineIcon className="mr-4 size-4" />
         <span className="hidden font-semibold lg:inline">Editing</span>
       </div>
     ),
     viewing: (
       <div className="flex items-center">
-        <EyeIcon className="mr-4 size-5" />
+        <EyeIcon className="mr-4 size-4" />
         <span className="hidden font-semibold lg:inline">Viewing</span>
       </div>
     ),

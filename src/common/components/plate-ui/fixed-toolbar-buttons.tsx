@@ -11,6 +11,11 @@ import { MoreDropdownMenu } from "@plate-ui/more-dropdown-menu";
 import { OutdentToolbarButton } from "@plate-ui/outdent-toolbar-button";
 import { TurnIntoDropdownMenu } from "@plate-ui/turn-into-dropdown-menu";
 
+import { IndentTodoToolbarButton } from "@/common/components/plate-ui/index-todo-toolbar-button";
+import { MediaDropdownMenu } from "@/common/components/plate-ui/media-dropdown-menu";
+import { TableDropdownMenu } from "@/common/components/plate-ui/table-dropdown-menu";
+import { ToggleToolbarButton } from "@/common/components/plate-ui/toggle-toolbar-button";
+
 import {
   MARK_BOLD,
   MARK_CODE,
@@ -117,7 +122,7 @@ export function FixedToolbarButtons() {
                 <>
                   <IndentListToolbarButton nodeType={ListStyleType.Disc} />
                   <IndentListToolbarButton nodeType={ListStyleType.Decimal} />
-                  {/* <IndentTodoToolbarButton /> */}
+                  <IndentTodoToolbarButton />
                 </>
               )}
 
@@ -130,13 +135,13 @@ export function FixedToolbarButtons() {
             </ToolbarGroup>
 
             <ToolbarGroup>
+              {!readOnly && <ToggleToolbarButton />}
+
               {!readOnly && <LinkToolbarButton />}
 
-              {/* {readOnly && <ToggleToolbarButton />} */}
+              {!readOnly && <MediaDropdownMenu />}
 
-              {/* {!readOnly && <MediaToolbarButton nodeType={ELEMENT_IMAGE} />} */}
-
-              {/* {!readOnly && <TableDropdownMenu />} */}
+              {!readOnly && <TableDropdownMenu />}
 
               {!readOnly && <EmojiDropdownMenu />}
 

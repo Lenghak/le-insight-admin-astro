@@ -190,10 +190,7 @@ export const EDITOR_PLUGINS = createPlugins(
     createAlignPlugin({
       inject: {
         props: {
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            ELEMENT_H1, ELEMENT_H2, ELEMENT_H3
-          ],
+          validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
         },
       },
     }),
@@ -205,6 +202,9 @@ export const EDITOR_PLUGINS = createPlugins(
             ELEMENT_H1,
             ELEMENT_H2,
             ELEMENT_H3,
+            ELEMENT_H4,
+            ELEMENT_H5,
+            ELEMENT_H6,
             ELEMENT_BLOCKQUOTE,
             ELEMENT_CODE_BLOCK,
           ],
@@ -219,6 +219,9 @@ export const EDITOR_PLUGINS = createPlugins(
             ELEMENT_H1,
             ELEMENT_H2,
             ELEMENT_H3,
+            ELEMENT_H4,
+            ELEMENT_H5,
+            ELEMENT_H6,
             ELEMENT_BLOCKQUOTE,
             ELEMENT_CODE_BLOCK,
           ],
@@ -235,6 +238,9 @@ export const EDITOR_PLUGINS = createPlugins(
             ELEMENT_H1,
             ELEMENT_H2,
             ELEMENT_H3,
+            ELEMENT_H4,
+            ELEMENT_H5,
+            ELEMENT_H6,
             ELEMENT_H4,
             ELEMENT_H5,
             ELEMENT_H6,

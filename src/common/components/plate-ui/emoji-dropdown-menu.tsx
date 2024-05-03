@@ -30,7 +30,7 @@ export function EmojiDropdownMenu({
           tooltip="Emoji"
           {...props}
         >
-          <SmileIcon className="size-4" />
+          <SmileIcon className="mr-2 size-4" />
         </ToolbarButton>
       }
       isOpen={isOpen}

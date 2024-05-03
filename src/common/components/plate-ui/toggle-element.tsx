@@ -1,7 +1,9 @@
+import { cn } from "@/common/lib/utils";
+
 import { withRef } from "@udecode/cn";
 import { PlateElement, useElement } from "@udecode/plate-common";
 import { useToggleButton, useToggleButtonState } from "@udecode/plate-toggle";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 export const ToggleElement = withRef<typeof PlateElement>(
   ({ children, ...props }, ref) => {
@@ -18,14 +20,12 @@ export const ToggleElement = withRef<typeof PlateElement>(
         <div className="relative pl-6">
           <span
             contentEditable={false}
-            className="absolute -left-0.5 -top-0.5 flex cursor-pointer select-none items-center justify-center rounded-sm p-px transition-colors hover:bg-slate-200"
+            className="absolute -left-2.5 -top-0.5 flex cursor-pointer select-none items-center justify-center rounded-full p-1 transition-colors hover:bg-accent"
             {...buttonProps}
           >
-            {open ? (
-              <ChevronDown className="size-4" />
-            ) : (
-              <ChevronRight className="size-4" />
-            )}
+            <ChevronDown
+              className={cn("size-4 transition-all", open ? "-rotate-90" : "")}
+            />
           </span>
           {children}
         </div>

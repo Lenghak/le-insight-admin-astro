@@ -1,4 +1,4 @@
-import { buttonVariants } from "@ui/button";
+import { buttonVariants } from "@plate-ui/button";
 
 import { cn } from "@/common/lib/utils";
 

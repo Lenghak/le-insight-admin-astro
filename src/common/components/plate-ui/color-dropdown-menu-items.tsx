@@ -30,9 +30,10 @@ export function ColorDropdownMenuItem({
       className={cn(
         buttonVariants({
           variant: "outline",
+          size: "icon",
           isMenu: true,
         }),
-        "h-6 w-6 border border-solid border-muted p-0",
+        "border border-solid border-muted p-0",
         !isBrightColor && "border-transparent text-white",
         className,
       )}
@@ -43,7 +44,12 @@ export function ColorDropdownMenuItem({
       }}
       {...props}
     >
-      {isSelected ? <CheckIcon className="size-4" /> : null}
+      <CheckIcon
+        className={cn(
+          "invisible size-6 transition-all",
+          isSelected ? "visible" : "",
+        )}
+      />
     </DropdownMenuItem>
   );
 
