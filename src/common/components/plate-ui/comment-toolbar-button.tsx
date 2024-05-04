@@ -1,5 +1,5 @@
 import { useCommentAddButton } from "@udecode/plate-comments";
-import { MessageCirclePlusIcon } from "lucide-react";
+import { MessageSquarePlusIcon } from "lucide-react";
 
 import { ToolbarButton } from "./toolbar";
 
@@ -13,7 +13,7 @@ export function CommentToolbarButton() {
       tooltip="Comment (⌘+⇧+M)"
       {...props}
     >
-      <MessageCirclePlusIcon className="size-4" />
+      <MessageSquarePlusIcon className="size-4" />
     </ToolbarButton>
   );
 }

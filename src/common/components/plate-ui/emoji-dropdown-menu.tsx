@@ -3,7 +3,6 @@ import {
   useEmojiDropdownMenuState,
 } from "@udecode/plate-emoji";
 import { SmileIcon } from "lucide-react";
-import React from "react";
 
 import { emojiCategoryIcons, emojiSearchIcons } from "./emoji-icons";
 import { EmojiPicker } from "./emoji-picker";

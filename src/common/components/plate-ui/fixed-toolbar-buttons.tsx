@@ -11,6 +11,7 @@ import { MoreDropdownMenu } from "@plate-ui/more-dropdown-menu";
 import { OutdentToolbarButton } from "@plate-ui/outdent-toolbar-button";
 import { TurnIntoDropdownMenu } from "@plate-ui/turn-into-dropdown-menu";
 
+import { CommentToolbarButton } from "@/common/components/plate-ui/comment-toolbar-button";
 import { IndentTodoToolbarButton } from "@/common/components/plate-ui/index-todo-toolbar-button";
 import { MediaDropdownMenu } from "@/common/components/plate-ui/media-dropdown-menu";
 import { TableDropdownMenu } from "@/common/components/plate-ui/table-dropdown-menu";
@@ -153,7 +154,7 @@ export function FixedToolbarButtons() {
         <div className="grow" />
 
         <ToolbarGroup noSeparator>
-          {/* {readOnly && <CommentToolbarButton />} */}
+          <CommentToolbarButton />
           <ModeDropdownMenu />
         </ToolbarGroup>
       </div>

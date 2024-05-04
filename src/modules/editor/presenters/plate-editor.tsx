@@ -34,6 +34,7 @@ export default function PlateEditor() {
           <Plate
             plugins={EDITOR_PLUGINS}
             initialValue={initialValue}
+            normalizeInitialValue
           >
             <FixedToolbar className="sticky top-6 h-fit min-h-12 w-[calc(100%_-_3rem)] self-center overflow-hidden rounded-xl border-b-0 bg-card p-1.5 shadow-sm">
               <FixedToolbarButtons />

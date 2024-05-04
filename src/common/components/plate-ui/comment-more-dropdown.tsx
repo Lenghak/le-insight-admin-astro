@@ -26,7 +26,7 @@ export function CommentMoreDropdown() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className={cn("h-6 p-1 text-muted-foreground")}
+          className={cn("h-6 p-1 font-semibold text-muted-foreground")}
         >
           <MoreHorizontalIcon className="size-4" />
         </Button>

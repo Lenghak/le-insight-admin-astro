@@ -20,16 +20,15 @@ import { MentionElement } from "@plate-ui/mention-element";
 import { MentionInputElement } from "@plate-ui/mention-input-element";
 import { ParagraphElement } from "@plate-ui/paragraph-element";
 import { withPlaceholders } from "@plate-ui/placeholder";
-
 import {
   TableCellElement,
   TableCellHeaderElement,
-} from "@/common/components/plate-ui/table-cell-element";
-import { TableElement } from "@/common/components/plate-ui/table-element";
-import { TableRowElement } from "@/common/components/plate-ui/table-row-element";
-import { TodoListElement } from "@/common/components/plate-ui/todo-list-element";
-import { ToggleElement } from "@/common/components/plate-ui/toggle-element";
-import { withDraggables } from "@/common/components/plate-ui/with-draggables";
+} from "@plate-ui/table-cell-element";
+import { TableElement } from "@plate-ui/table-element";
+import { TableRowElement } from "@plate-ui/table-row-element";
+import { TodoListElement } from "@plate-ui/todo-list-element";
+import { ToggleElement } from "@plate-ui/toggle-element";
+import { withDraggables } from "@plate-ui/with-draggables";
 
 import { autoformatBlocks } from "@/common/lib/plate/auto-format-blocks";
 import { autoformatIndentLists } from "@/common/lib/plate/auto-format-indent-list";
@@ -82,6 +81,7 @@ import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createCommentsPlugin, MARK_COMMENT } from "@udecode/plate-comments";
 import {
   createPlugins,
+  findNode,
   PlateLeaf,
   type RenderAfterEditable,
 } from "@udecode/plate-common";
@@ -127,7 +127,11 @@ import {
 } from "@udecode/plate-layout";
 import { createLineHeightPlugin } from "@udecode/plate-line-height";
 import { createLinkPlugin, ELEMENT_LINK } from "@udecode/plate-link";
-import { createTodoListPlugin, ELEMENT_TODO_LI } from "@udecode/plate-list";
+import {
+  createTodoListPlugin,
+  ELEMENT_LI,
+  ELEMENT_TODO_LI,
+} from "@udecode/plate-list";
 import {
   createImagePlugin,
   createMediaEmbedPlugin,
@@ -154,6 +158,7 @@ import { createBlockSelectionPlugin } from "@udecode/plate-selection";
 import { createDeserializeCsvPlugin } from "@udecode/plate-serializer-csv";
 import { createDeserializeDocxPlugin } from "@udecode/plate-serializer-docx";
 import { createDeserializeMdPlugin } from "@udecode/plate-serializer-md";
+import { createSlashPlugin } from "@udecode/plate-slash-command";
 import { createTabbablePlugin } from "@udecode/plate-tabbable";
 import {
   createTablePlugin,
@@ -351,7 +356,18 @@ export const EDITOR_PLUGINS = createPlugins(
         ],
       },
     }),
-    createTabbablePlugin(),
+    createSlashPlugin(),
+    createTabbablePlugin({
+      options: {
+        query: (editor) => {
+          const inList = findNode(editor, { match: { type: ELEMENT_LI } });
+          const inCodeBlock = findNode(editor, {
+            match: { type: ELEMENT_CODE_BLOCK },
+          });
+          return !inList && !inCodeBlock;
+        },
+      },
+    }),
     createTrailingBlockPlugin({
       options: { type: ELEMENT_PARAGRAPH },
     }),

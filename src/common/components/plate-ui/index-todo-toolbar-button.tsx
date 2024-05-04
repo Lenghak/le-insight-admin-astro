@@ -9,7 +9,8 @@ import { ToolbarButton } from "./toolbar";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
 export const IndentTodoToolbarButton = withRef<typeof ToolbarButton>(
-  (rest, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (rest: any, ref: any) => {
     const state = useIndentTodoToolBarButtonState({ nodeType: "todo" });
     const { props } = useIndentTodoToolBarButton(state);
 

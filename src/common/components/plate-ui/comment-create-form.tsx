@@ -16,11 +16,14 @@ export function CommentCreateForm() {
     <div className="flex w-full space-x-2">
       <CommentAvatar userId={myUserId} />
 
-      <div className="flex grow flex-col items-end gap-2">
+      <div className="flex grow flex-col items-end gap-4">
         <CommentNewTextarea className={inputVariants()} />
 
         <CommentNewSubmitButton
-          className={cn(buttonVariants({ size: "sm" }), "w-[90px]")}
+          className={cn(
+            buttonVariants({ size: "sm" }),
+            "w-fit rounded-full px-6",
+          )}
         >
           Comment
         </CommentNewSubmitButton>
