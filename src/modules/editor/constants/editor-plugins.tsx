@@ -1,3 +1,18 @@
+import { alignPlugin } from "@editor/plugins/align-plugin";
+import { autoformatPlugin } from '@editor/plugins/auto-format-plugin';
+import { captionPlugin } from "@editor/plugins/caption-plugin";
+import { dragOverCursorPlugin } from "@editor/plugins/drag-over-cursor-plugin";
+import { emojiPlugin } from "@editor/plugins/emoji-plugin";
+import { exitBreakPlugin } from "@editor/plugins/exit-break-plugin";
+import { forcedLayoutPlugin } from "@editor/plugins/forced-layout-plugin";
+import { indentListPlugin } from "@editor/plugins/indent-list-plugin";
+import { indentPlugin } from "@editor/plugins/indent-plugin";
+import { lineHeightPlugin } from "@editor/plugins/line-height-plugin";
+import { selectOnBackspacePlugin } from "@editor/plugins/select-on-backspace-plugin";
+import { softBreakPlugin } from '@editor/plugins/soft-break-plugin';
+import { tabbablePlugin } from "@editor/plugins/tabbable-plugin";
+import { trailingBlockPlugin } from '@editor/plugins/trailing-block-plugin';
+
 import { BlockquoteElement } from "@plate-ui/blockquote-element";
 import { CodeBlockElement } from "@plate-ui/code-block-element";
 import { CodeLeaf } from "@plate-ui/code-leaf";
@@ -6,7 +21,6 @@ import { CodeSyntaxLeaf } from "@plate-ui/code-syntax-leaf";
 import { ColumnElement } from "@plate-ui/column-element";
 import { ColumnGroupElement } from "@plate-ui/column-group-element";
 import { CommentLeaf } from "@plate-ui/comment-leaf";
-import { EmojiCombobox } from "@plate-ui/emoji-combobox";
 import { ExcalidrawElement } from "@plate-ui/excalidraw-element";
 import { HeadingElement } from "@plate-ui/heading-element";
 import { HighlightLeaf } from "@plate-ui/highlight-leaf";
@@ -30,22 +44,9 @@ import { TodoListElement } from "@plate-ui/todo-list-element";
 import { ToggleElement } from "@plate-ui/toggle-element";
 import { withDraggables } from "@plate-ui/with-draggables";
 
-import { autoformatBlocks } from "@/common/lib/plate/auto-format-blocks";
-import { autoformatIndentLists } from "@/common/lib/plate/auto-format-indent-list";
-import { autoformatMarks } from "@/common/lib/plate/auto-format-mark";
-
 import { withProps } from "@udecode/cn";
 import { createAlignPlugin } from "@udecode/plate-alignment";
-import {
-  autoformatArrow,
-  autoformatLegal,
-  autoformatLegalHtml,
-  autoformatMath,
-  autoformatPunctuation,
-  type AutoformatRule,
-  autoformatSmartQuotes,
-  createAutoformatPlugin,
-} from "@udecode/plate-autoformat";
+import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import {
   createBoldPlugin,
   createCodePlugin,
@@ -81,7 +82,6 @@ import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createCommentsPlugin, MARK_COMMENT } from "@udecode/plate-comments";
 import {
   createPlugins,
-  findNode,
   PlateLeaf,
   type RenderAfterEditable,
 } from "@udecode/plate-common";
@@ -105,8 +105,7 @@ import {
   ELEMENT_H3,
   ELEMENT_H4,
   ELEMENT_H5,
-  ELEMENT_H6,
-  KEYS_HEADING,
+  ELEMENT_H6
 } from "@udecode/plate-heading";
 import {
   createHighlightPlugin,
@@ -127,11 +126,7 @@ import {
 } from "@udecode/plate-layout";
 import { createLineHeightPlugin } from "@udecode/plate-line-height";
 import { createLinkPlugin, ELEMENT_LINK } from "@udecode/plate-link";
-import {
-  createTodoListPlugin,
-  ELEMENT_LI,
-  ELEMENT_TODO_LI,
-} from "@udecode/plate-list";
+import { createListPlugin, createTodoListPlugin, ELEMENT_TODO_LI } from "@udecode/plate-list";
 import {
   createImagePlugin,
   createMediaEmbedPlugin,
@@ -170,18 +165,6 @@ import {
 import { createTogglePlugin, ELEMENT_TOGGLE } from "@udecode/plate-toggle";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
-export const autoformatRules: AutoformatRule[] = [
-  ...autoformatBlocks,
-  ...autoformatIndentLists,
-  ...autoformatMarks,
-  ...autoformatSmartQuotes,
-  ...autoformatPunctuation,
-  ...autoformatLegal,
-  ...autoformatLegalHtml,
-  ...autoformatArrow,
-  ...autoformatMath,
-];
-
 export const EDITOR_PLUGINS = createPlugins(
   [
     createParagraphPlugin(),
@@ -198,12 +181,11 @@ export const EDITOR_PLUGINS = createPlugins(
     createColumnPlugin(),
     createMediaEmbedPlugin(),
     createCaptionPlugin({
-      options: {
-        pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED],
-      },
+      ...captionPlugin,
     }),
     createMentionPlugin(),
     createTablePlugin(),
+    createListPlugin(),
     createTodoListPlugin(),
     createBoldPlugin(),
     createItalicPlugin(),
@@ -219,72 +201,16 @@ export const EDITOR_PLUGINS = createPlugins(
     createFontWeightPlugin(),
     createHighlightPlugin(),
     createKbdPlugin(),
-    createAlignPlugin({
-      inject: {
-        props: {
-          validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
-        },
-      },
-    }),
-    createIndentPlugin({
-      inject: {
-        props: {
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            ELEMENT_H1,
-            ELEMENT_H2,
-            ELEMENT_H3,
-            ELEMENT_H4,
-            ELEMENT_H5,
-            ELEMENT_H6,
-            ELEMENT_BLOCKQUOTE,
-            ELEMENT_CODE_BLOCK,
-          ],
-        },
-      },
-    }),
+    createAlignPlugin({ ...alignPlugin }),
+    createIndentPlugin({ ...indentPlugin }),
     createIndentListPlugin({
-      inject: {
-        props: {
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            ELEMENT_H1,
-            ELEMENT_H2,
-            ELEMENT_H3,
-            ELEMENT_H4,
-            ELEMENT_H5,
-            ELEMENT_H6,
-            ELEMENT_BLOCKQUOTE,
-            ELEMENT_CODE_BLOCK,
-          ],
-        },
-      },
+      ...indentListPlugin,
     }),
     createLineHeightPlugin({
-      inject: {
-        props: {
-          defaultNodeValue: 1.5,
-          validNodeValues: [1, 1.2, 1.5, 2, 3],
-          validTypes: [
-            ELEMENT_PARAGRAPH,
-            ELEMENT_H1,
-            ELEMENT_H2,
-            ELEMENT_H3,
-            ELEMENT_H4,
-            ELEMENT_H5,
-            ELEMENT_H6,
-            ELEMENT_H4,
-            ELEMENT_H5,
-            ELEMENT_H6,
-          ],
-        },
-      },
+      ...lineHeightPlugin,
     }),
     createAutoformatPlugin({
-      options: {
-        rules: [...autoformatRules],
-        enableUndoOnDelete: true,
-      },
+      ...autoformatPlugin,
     }),
     createBlockSelectionPlugin({
       options: {
@@ -299,36 +225,14 @@ export const EDITOR_PLUGINS = createPlugins(
       options: { enableScroller: true },
     }),
     createEmojiPlugin({
-      renderAfterEditable: EmojiCombobox,
+      ...emojiPlugin
     }),
     createExitBreakPlugin({
-      options: {
-        rules: [
-          {
-            hotkey: "mod+enter",
-          },
-          {
-            hotkey: "mod+shift+enter",
-            before: true,
-          },
-          {
-            hotkey: "enter",
-            query: {
-              start: true,
-              end: true,
-              allow: KEYS_HEADING,
-            },
-            relative: true,
-            level: 1,
-          },
-        ],
-      },
+      ...exitBreakPlugin,
     }),
     createNodeIdPlugin(),
     createNormalizeTypesPlugin({
-      options: {
-        rules: [{ path: [0], strictType: ELEMENT_H1, type: ELEMENT_H1 }],
-      },
+      ...forcedLayoutPlugin
     }),
     createResetNodePlugin({
       options: {
@@ -336,41 +240,20 @@ export const EDITOR_PLUGINS = createPlugins(
       },
     }),
     createSelectOnBackspacePlugin({
-      options: {
-        query: {
-          allow: [ELEMENT_IMAGE, ELEMENT_HR],
-        },
-      },
+      ...selectOnBackspacePlugin,
     }),
     createDeletePlugin(),
     createSoftBreakPlugin({
-      options: {
-        rules: [
-          { hotkey: "shift+enter" },
-          {
-            hotkey: "enter",
-            query: {
-              allow: [ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD],
-            },
-          },
-        ],
-      },
+      ...softBreakPlugin
     }),
     createSlashPlugin(),
     createTabbablePlugin({
-      options: {
-        query: (editor) => {
-          const inList = findNode(editor, { match: { type: ELEMENT_LI } });
-          const inCodeBlock = findNode(editor, {
-            match: { type: ELEMENT_CODE_BLOCK },
-          });
-          return !inList && !inCodeBlock;
-        },
-      },
+      ...tabbablePlugin,
     }),
     createTrailingBlockPlugin({
-      options: { type: ELEMENT_PARAGRAPH },
+      ...trailingBlockPlugin
     }),
+    { ...dragOverCursorPlugin },
     createCommentsPlugin(),
     createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),

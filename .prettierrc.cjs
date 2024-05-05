@@ -21,6 +21,7 @@ module.exports = {
     "^@articles/(.*)$",
     "^@categories/(.*)$",
     "^@users/(.*)$",
+    "^@editor/(.*)$",
 
     "^@ui/(.*)$",
     "^@plate-ui/(.*)$",

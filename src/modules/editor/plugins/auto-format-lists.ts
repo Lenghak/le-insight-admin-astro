@@ -1,30 +1,29 @@
 import { type AutoformatRule } from "@udecode/plate-autoformat";
 import { isBlock, setNodes } from "@udecode/plate-common";
-import { ListStyleType, toggleIndentList } from "@udecode/plate-indent-list";
 import {
+  ELEMENT_LI,
+  ELEMENT_OL,
   ELEMENT_TODO_LI,
+  ELEMENT_UL,
   type TTodoListItemElement,
 } from "@udecode/plate-list";
 
-export const autoformatIndentLists: AutoformatRule[] = [
+import { formatList, preFormat } from "./auto-format-utils";
+
+export const autoformatLists: AutoformatRule[] = [
   {
     mode: "block",
-    type: "list",
+    type: ELEMENT_LI,
     match: ["* ", "- "],
-    format: (editor) => {
-      toggleIndentList(editor, {
-        listStyleType: ListStyleType.Disc,
-      });
-    },
+    preFormat,
+    format: (editor) => formatList(editor, ELEMENT_UL),
   },
   {
     mode: "block",
-    type: "list",
+    type: ELEMENT_LI,
     match: ["1. ", "1) "],
-    format: (editor) =>
-      toggleIndentList(editor, {
-        listStyleType: ListStyleType.Decimal,
-      }),
+    preFormat,
+    format: (editor) => formatList(editor, ELEMENT_OL),
   },
   {
     mode: "block",

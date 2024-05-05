@@ -1,21 +1,19 @@
 import { AlignDropdownMenu } from "@plate-ui/align-dropdown-menu";
 import { ColorDropdownMenu } from "@plate-ui/color-dropdown-menu";
+import { CommentToolbarButton } from "@plate-ui/comment-toolbar-button";
 import { EmojiDropdownMenu } from "@plate-ui/emoji-dropdown-menu";
 import { IndentListToolbarButton } from "@plate-ui/indent-list-toolbar-button";
 import { IndentToolbarButton } from "@plate-ui/indent-toolbar-button";
 import { InsertDropdownMenu } from "@plate-ui/insert-dropdown-menu";
 import { LineHeightDropdownMenu } from "@plate-ui/line-height-dropdown-menu";
 import { LinkToolbarButton } from "@plate-ui/link-toolbar-button";
+import { MediaDropdownMenu } from "@plate-ui/media-dropdown-menu";
 import { ModeDropdownMenu } from "@plate-ui/mode-dropdown-menu";
 import { MoreDropdownMenu } from "@plate-ui/more-dropdown-menu";
 import { OutdentToolbarButton } from "@plate-ui/outdent-toolbar-button";
+import { TableDropdownMenu } from "@plate-ui/table-dropdown-menu";
+import { ToggleToolbarButton } from "@plate-ui/toggle-toolbar-button";
 import { TurnIntoDropdownMenu } from "@plate-ui/turn-into-dropdown-menu";
-
-import { CommentToolbarButton } from "@/common/components/plate-ui/comment-toolbar-button";
-import { IndentTodoToolbarButton } from "@/common/components/plate-ui/index-todo-toolbar-button";
-import { MediaDropdownMenu } from "@/common/components/plate-ui/media-dropdown-menu";
-import { TableDropdownMenu } from "@/common/components/plate-ui/table-dropdown-menu";
-import { ToggleToolbarButton } from "@/common/components/plate-ui/toggle-toolbar-button";
 
 import {
   MARK_BOLD,
@@ -40,7 +38,7 @@ import {
 import { MarkToolbarButton } from "./mark-toolbar-button";
 import { ToolbarGroup } from "./toolbar";
 
-export function FixedToolbarButtons() {
+export function FixedToolbarButtons({ }: { id?: string }) {
   const readOnly = useEditorReadOnly();
 
   return (
@@ -123,7 +121,7 @@ export function FixedToolbarButtons() {
                 <>
                   <IndentListToolbarButton nodeType={ListStyleType.Disc} />
                   <IndentListToolbarButton nodeType={ListStyleType.Decimal} />
-                  <IndentTodoToolbarButton />
+                  {/* <IndentTodoToolbarButton /> */}
                 </>
               )}
 

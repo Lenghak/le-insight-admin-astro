@@ -1,4 +1,4 @@
-import { EDITOR_PLUGINS } from "@/modules/editor/constants/editor-plugins";
+import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
 
 import { TooltipProvider } from "@ui/tooltip";
 
