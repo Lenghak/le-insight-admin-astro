@@ -18,11 +18,11 @@ import ProfileBadge from "@custom/profile/profile-badge";
 import { cn } from "@/common/lib/utils";
 
 import {
-  BookmarkPlusIcon,
+  BookmarkIcon,
   DotIcon,
   MessageCircle,
   MoreHorizontalIcon,
-  ThumbsUpIcon,
+  ThumbsUpIcon
 } from "lucide-react";
 import React from "react";
 
@@ -35,12 +35,12 @@ export default React.forwardRef<
       ref={ref}
       className={cn(
         buttonVariants({ variant: "secondary", size: "default" }),
-        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-none border-x-0 border-y py-4 pr-8 shadow-none",
+        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-none border-x-0 border-y py-4 px-8 shadow-none",
         className,
       )}
       {...props}
     >
-      <CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0">
+      <CardHeader className="pt-0 flex h-full w-full flex-col space-y-4 px-0 pb-0">
         <div className="flex w-full items-center justify-between gap-4 p-0">
           {/* Profile */}
           <ProfileHoverCard asChild>
@@ -136,7 +136,7 @@ export default React.forwardRef<
             size={"icon"}
           >
             <span className="sr-only">Save the Article</span>
-            <BookmarkPlusIcon />
+            <BookmarkIcon />
           </Button>
 
           {/* More */}

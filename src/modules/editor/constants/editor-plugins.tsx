@@ -1,4 +1,4 @@
-import { EDITOR_COMPONENT } from "@/modules/editor/constants/editor-components";
+import { EDITOR_COMPONENT } from "@editor/constants/editor-components";
 import { alignPlugin } from "@editor/plugins/align-plugin";
 import { autoformatPlugin } from "@editor/plugins/auto-format-plugin";
 import { captionPlugin } from "@editor/plugins/caption-plugin";
@@ -13,6 +13,7 @@ import { selectOnBackspacePlugin } from "@editor/plugins/select-on-backspace-plu
 import { softBreakPlugin } from "@editor/plugins/soft-break-plugin";
 import { tabbablePlugin } from "@editor/plugins/tabbable-plugin";
 import { trailingBlockPlugin } from "@editor/plugins/trailing-block-plugin";
+import getCloudAuthToken from "@editor/services/cloud-auth-api";
 import { LinkFloatingToolbar } from "@plate-ui/link-floating-toolbar";
 import { withPlaceholders } from "@plate-ui/placeholder";
 import { withDraggables } from "@plate-ui/with-draggables";
@@ -35,6 +36,7 @@ import {
   createSoftBreakPlugin,
 } from "@udecode/plate-break";
 import { createCaptionPlugin } from "@udecode/plate-caption";
+import { createCloudAttachmentPlugin, createCloudImagePlugin, createCloudPlugin } from "@udecode/plate-cloud";
 import {
   createCodeBlockPlugin
 } from "@udecode/plate-code-block";
@@ -119,6 +121,23 @@ export const EDITOR_PLUGINS = createPlugins(
     }),
     createImagePlugin(),
     createExcalidrawPlugin(),
+    createCloudPlugin({
+      options: {
+        authToken: async () => {
+          const { data: res } = await getCloudAuthToken();
+          return res.data.attributes.token;
+        },
+      },
+    }),
+    createCloudAttachmentPlugin(),
+    createCloudImagePlugin({
+      options: {
+        maxInitialWidth: 320,
+        maxInitialHeight: 320,
+        minResizeWidth: 100,
+        maxResizeWidth: 720,
+      },
+    }),
     createTogglePlugin(),
     createColumnPlugin(),
     createMediaEmbedPlugin(),

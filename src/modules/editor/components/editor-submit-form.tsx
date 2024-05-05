@@ -4,6 +4,7 @@ import { SERIALIZE_PLUGINS } from "@editor/constants/editor-plugins";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 
+import { cn } from "@/common/lib/utils";
 import { serializeHtml } from "@editor/lib/serialize-html";
 import {
   createPlateEditor,
@@ -12,7 +13,11 @@ import {
 } from "@udecode/plate-common";
 import { useForm } from "react-hook-form";
 
-export default function EditorSubmitForm() {
+type EditorSubmitFormProps = {
+  className?: string
+}
+
+export default function EditorSubmitForm({ className }: EditorSubmitFormProps) {
   const form = useForm({ defaultValues: {} });
   const editorPrimitive = useEditorState();
   const isEditorMounted = useEditorMounted();
@@ -30,8 +35,9 @@ export default function EditorSubmitForm() {
         onSubmit={form.handleSubmit(() =>
           console.log(isEditorMounted && serializeHtml(editor)),
         )}
+        className={cn(className)}
       >
-        <Button className="px-6">Submit</Button>
+        <Button className="px-6 font-bold" type="submit">Submit</Button>
       </form>
     </Form>
   );
