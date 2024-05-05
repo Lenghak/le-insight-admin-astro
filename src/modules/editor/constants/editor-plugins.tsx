@@ -1,5 +1,6 @@
+import { EDITOR_COMPONENT } from "@/modules/editor/constants/editor-components";
 import { alignPlugin } from "@editor/plugins/align-plugin";
-import { autoformatPlugin } from '@editor/plugins/auto-format-plugin';
+import { autoformatPlugin } from "@editor/plugins/auto-format-plugin";
 import { captionPlugin } from "@editor/plugins/caption-plugin";
 import { dragOverCursorPlugin } from "@editor/plugins/drag-over-cursor-plugin";
 import { emojiPlugin } from "@editor/plugins/emoji-plugin";
@@ -9,42 +10,12 @@ import { indentListPlugin } from "@editor/plugins/indent-list-plugin";
 import { indentPlugin } from "@editor/plugins/indent-plugin";
 import { lineHeightPlugin } from "@editor/plugins/line-height-plugin";
 import { selectOnBackspacePlugin } from "@editor/plugins/select-on-backspace-plugin";
-import { softBreakPlugin } from '@editor/plugins/soft-break-plugin';
+import { softBreakPlugin } from "@editor/plugins/soft-break-plugin";
 import { tabbablePlugin } from "@editor/plugins/tabbable-plugin";
-import { trailingBlockPlugin } from '@editor/plugins/trailing-block-plugin';
-
-import { BlockquoteElement } from "@plate-ui/blockquote-element";
-import { CodeBlockElement } from "@plate-ui/code-block-element";
-import { CodeLeaf } from "@plate-ui/code-leaf";
-import { CodeLineElement } from "@plate-ui/code-line-element";
-import { CodeSyntaxLeaf } from "@plate-ui/code-syntax-leaf";
-import { ColumnElement } from "@plate-ui/column-element";
-import { ColumnGroupElement } from "@plate-ui/column-group-element";
-import { CommentLeaf } from "@plate-ui/comment-leaf";
-import { ExcalidrawElement } from "@plate-ui/excalidraw-element";
-import { HeadingElement } from "@plate-ui/heading-element";
-import { HighlightLeaf } from "@plate-ui/highlight-leaf";
-import { HrElement } from "@plate-ui/hr-element";
-import { ImageElement } from "@plate-ui/image-element";
-import { KbdLeaf } from "@plate-ui/kbd-leaf";
-import { LinkElement } from "@plate-ui/link-element";
+import { trailingBlockPlugin } from "@editor/plugins/trailing-block-plugin";
 import { LinkFloatingToolbar } from "@plate-ui/link-floating-toolbar";
-import { MediaEmbedElement } from "@plate-ui/media-embed-element";
-import { MentionElement } from "@plate-ui/mention-element";
-import { MentionInputElement } from "@plate-ui/mention-input-element";
-import { ParagraphElement } from "@plate-ui/paragraph-element";
 import { withPlaceholders } from "@plate-ui/placeholder";
-import {
-  TableCellElement,
-  TableCellHeaderElement,
-} from "@plate-ui/table-cell-element";
-import { TableElement } from "@plate-ui/table-element";
-import { TableRowElement } from "@plate-ui/table-row-element";
-import { TodoListElement } from "@plate-ui/todo-list-element";
-import { ToggleElement } from "@plate-ui/toggle-element";
 import { withDraggables } from "@plate-ui/with-draggables";
-
-import { withProps } from "@udecode/cn";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import {
@@ -54,18 +25,10 @@ import {
   createStrikethroughPlugin,
   createSubscriptPlugin,
   createSuperscriptPlugin,
-  createUnderlinePlugin,
-  MARK_BOLD,
-  MARK_CODE,
-  MARK_ITALIC,
-  MARK_STRIKETHROUGH,
-  MARK_SUBSCRIPT,
-  MARK_SUPERSCRIPT,
-  MARK_UNDERLINE,
+  createUnderlinePlugin
 } from "@udecode/plate-basic-marks";
 import {
-  createBlockquotePlugin,
-  ELEMENT_BLOCKQUOTE,
+  createBlockquotePlugin
 } from "@udecode/plate-block-quote";
 import {
   createExitBreakPlugin,
@@ -73,23 +36,18 @@ import {
 } from "@udecode/plate-break";
 import { createCaptionPlugin } from "@udecode/plate-caption";
 import {
-  createCodeBlockPlugin,
-  ELEMENT_CODE_BLOCK,
-  ELEMENT_CODE_LINE,
-  ELEMENT_CODE_SYNTAX,
+  createCodeBlockPlugin
 } from "@udecode/plate-code-block";
 import { createComboboxPlugin } from "@udecode/plate-combobox";
-import { createCommentsPlugin, MARK_COMMENT } from "@udecode/plate-comments";
+import { createCommentsPlugin } from "@udecode/plate-comments";
 import {
   createPlugins,
-  PlateLeaf,
-  type RenderAfterEditable,
+  type RenderAfterEditable
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
 import { createEmojiPlugin } from "@udecode/plate-emoji";
 import {
-  createExcalidrawPlugin,
-  ELEMENT_EXCALIDRAW,
+  createExcalidrawPlugin
 } from "@udecode/plate-excalidraw";
 import {
   createFontBackgroundColorPlugin,
@@ -99,50 +57,38 @@ import {
   createFontWeightPlugin,
 } from "@udecode/plate-font";
 import {
-  createHeadingPlugin,
-  ELEMENT_H1,
-  ELEMENT_H2,
-  ELEMENT_H3,
-  ELEMENT_H4,
-  ELEMENT_H5,
-  ELEMENT_H6
+  createHeadingPlugin
 } from "@udecode/plate-heading";
 import {
-  createHighlightPlugin,
-  MARK_HIGHLIGHT,
+  createHighlightPlugin
 } from "@udecode/plate-highlight";
 import {
-  createHorizontalRulePlugin,
-  ELEMENT_HR,
+  createHorizontalRulePlugin
 } from "@udecode/plate-horizontal-rule";
 import { createIndentPlugin } from "@udecode/plate-indent";
 import { createIndentListPlugin } from "@udecode/plate-indent-list";
 import { createJuicePlugin } from "@udecode/plate-juice";
-import { createKbdPlugin, MARK_KBD } from "@udecode/plate-kbd";
+import { createKbdPlugin } from "@udecode/plate-kbd";
 import {
-  createColumnPlugin,
-  ELEMENT_COLUMN,
-  ELEMENT_COLUMN_GROUP,
+  createColumnPlugin
 } from "@udecode/plate-layout";
 import { createLineHeightPlugin } from "@udecode/plate-line-height";
-import { createLinkPlugin, ELEMENT_LINK } from "@udecode/plate-link";
-import { createListPlugin, createTodoListPlugin, ELEMENT_TODO_LI } from "@udecode/plate-list";
+import { createLinkPlugin } from "@udecode/plate-link";
+import {
+  createListPlugin,
+  createTodoListPlugin
+} from "@udecode/plate-list";
 import {
   createImagePlugin,
-  createMediaEmbedPlugin,
-  ELEMENT_IMAGE,
-  ELEMENT_MEDIA_EMBED,
+  createMediaEmbedPlugin
 } from "@udecode/plate-media";
 import {
-  createMentionPlugin,
-  ELEMENT_MENTION,
-  ELEMENT_MENTION_INPUT,
+  createMentionPlugin
 } from "@udecode/plate-mention";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
 import {
-  createParagraphPlugin,
-  ELEMENT_PARAGRAPH,
+  createParagraphPlugin
 } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import {
@@ -156,13 +102,9 @@ import { createDeserializeMdPlugin } from "@udecode/plate-serializer-md";
 import { createSlashPlugin } from "@udecode/plate-slash-command";
 import { createTabbablePlugin } from "@udecode/plate-tabbable";
 import {
-  createTablePlugin,
-  ELEMENT_TABLE,
-  ELEMENT_TD,
-  ELEMENT_TH,
-  ELEMENT_TR,
+  createTablePlugin
 } from "@udecode/plate-table";
-import { createTogglePlugin, ELEMENT_TOGGLE } from "@udecode/plate-toggle";
+import { createTogglePlugin } from "@udecode/plate-toggle";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
 export const EDITOR_PLUGINS = createPlugins(
@@ -225,14 +167,14 @@ export const EDITOR_PLUGINS = createPlugins(
       options: { enableScroller: true },
     }),
     createEmojiPlugin({
-      ...emojiPlugin
+      ...emojiPlugin,
     }),
     createExitBreakPlugin({
       ...exitBreakPlugin,
     }),
     createNodeIdPlugin(),
     createNormalizeTypesPlugin({
-      ...forcedLayoutPlugin
+      ...forcedLayoutPlugin,
     }),
     createResetNodePlugin({
       options: {
@@ -244,14 +186,18 @@ export const EDITOR_PLUGINS = createPlugins(
     }),
     createDeletePlugin(),
     createSoftBreakPlugin({
-      ...softBreakPlugin
+      ...softBreakPlugin,
     }),
-    createSlashPlugin(),
+    createSlashPlugin({
+      options: {
+        // rules: SLASH_RULES
+      },
+    }),
     createTabbablePlugin({
       ...tabbablePlugin,
     }),
     createTrailingBlockPlugin({
-      ...trailingBlockPlugin
+      ...trailingBlockPlugin,
     }),
     { ...dragOverCursorPlugin },
     createCommentsPlugin(),
@@ -263,44 +209,11 @@ export const EDITOR_PLUGINS = createPlugins(
   {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     components: withDraggables(
-      withPlaceholders({
-        [ELEMENT_BLOCKQUOTE]: BlockquoteElement,
-        [ELEMENT_CODE_BLOCK]: CodeBlockElement,
-        [ELEMENT_CODE_LINE]: CodeLineElement,
-        [ELEMENT_CODE_SYNTAX]: CodeSyntaxLeaf,
-        [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
-        [ELEMENT_HR]: HrElement,
-        [ELEMENT_IMAGE]: ImageElement,
-        [ELEMENT_LINK]: LinkElement,
-        [ELEMENT_TOGGLE]: ToggleElement,
-        [ELEMENT_COLUMN_GROUP]: ColumnGroupElement,
-        [ELEMENT_COLUMN]: ColumnElement,
-        [ELEMENT_H1]: withProps(HeadingElement, { variant: "h1" }),
-        [ELEMENT_H2]: withProps(HeadingElement, { variant: "h2" }),
-        [ELEMENT_H3]: withProps(HeadingElement, { variant: "h3" }),
-        [ELEMENT_H4]: withProps(HeadingElement, { variant: "h4" }),
-        [ELEMENT_H5]: withProps(HeadingElement, { variant: "h5" }),
-        [ELEMENT_H6]: withProps(HeadingElement, { variant: "h6" }),
-        [ELEMENT_MEDIA_EMBED]: MediaEmbedElement,
-        [ELEMENT_MENTION]: MentionElement,
-        [ELEMENT_MENTION_INPUT]: MentionInputElement,
-        [ELEMENT_PARAGRAPH]: ParagraphElement,
-        [ELEMENT_TABLE]: TableElement,
-        [ELEMENT_TR]: TableRowElement,
-        [ELEMENT_TD]: TableCellElement,
-        [ELEMENT_TH]: TableCellHeaderElement,
-        [ELEMENT_TODO_LI]: TodoListElement,
-        [MARK_BOLD]: withProps(PlateLeaf, { as: "strong" }),
-        [MARK_CODE]: CodeLeaf,
-        [MARK_COMMENT]: CommentLeaf,
-        [MARK_HIGHLIGHT]: HighlightLeaf,
-        [MARK_ITALIC]: withProps(PlateLeaf, { as: "em" }),
-        [MARK_KBD]: KbdLeaf,
-        [MARK_STRIKETHROUGH]: withProps(PlateLeaf, { as: "s" }),
-        [MARK_SUBSCRIPT]: withProps(PlateLeaf, { as: "sub" }),
-        [MARK_SUPERSCRIPT]: withProps(PlateLeaf, { as: "sup" }),
-        [MARK_UNDERLINE]: withProps(PlateLeaf, { as: "u" }),
-      }),
+      withPlaceholders(EDITOR_COMPONENT),
     ),
   },
+);
+
+export const SERIALIZE_PLUGINS = EDITOR_PLUGINS?.filter(
+  (plugin) => plugin?.key !== "toggle" && plugin?.key !== "blockSelection",
 );
