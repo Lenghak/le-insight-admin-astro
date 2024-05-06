@@ -1,5 +1,3 @@
-import { EDITOR_COMPONENT } from "@editor/constants/editor-components";
-import { SERIALIZE_PLUGINS } from "@editor/constants/editor-plugins";
 import { serializeHtml } from "@editor/lib/serialize-html";
 
 import { Button } from "@ui/button";
@@ -7,11 +5,13 @@ import { Form } from "@ui/form";
 
 import { cn } from "@/common/lib/utils";
 
+import { SERIALIZE_PLUGINS } from "@/modules/editor/constants/editor-plugins";
+import { createPlateUI } from "@/modules/editor/lib/create-plate-ui";
 import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import {
   createPlateEditor,
   useEditorMounted,
-  useEditorState,
+  useEditorRef
 } from "@udecode/plate-common";
 import { useForm } from "react-hook-form";
 
@@ -21,14 +21,15 @@ type EditorSubmitFormProps = {
 
 export default function EditorSubmitForm({ className }: EditorSubmitFormProps) {
   const form = useForm({ defaultValues: {} });
-  const editorPrimitive = useEditorState();
+  const editorPrimitive = useEditorRef();
   const isEditorMounted = useEditorMounted();
   const editor = createPlateEditor({
-    plugins: SERIALIZE_PLUGINS,
-    components: EDITOR_COMPONENT,
     editor: {
       ...editorPrimitive,
     },
+    disableCorePlugins: true,
+    plugins: SERIALIZE_PLUGINS,
+    components: createPlateUI(),
   }) as PlateCloudEditor;
 
   return (

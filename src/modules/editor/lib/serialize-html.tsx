@@ -7,7 +7,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const serializeHtml = (editor: PlateCloudEditor) => {
   return serialize(editor, {
-    nodes: editor.cloud.getSaveValue(),
+    nodes: editor.children,
     dndWrapper: (props) => (
       <TooltipProvider>
         <DndProvider

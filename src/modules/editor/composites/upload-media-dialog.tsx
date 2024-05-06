@@ -17,11 +17,10 @@ import {
   setMediaDialogState,
 } from "@editor/stores/upload-dialog-store";
 import { useStore } from "@nanostores/react";
-import type { PlateEditor } from "@udecode/plate-common";
-
+import type { PlateCloudEditor } from "@udecode/plate-cloud";
 interface UploadMediaDialogProps {
   trigger?: React.ReactNode;
-  editor: PlateEditor;
+  editor: PlateCloudEditor;
 }
 
 export default function UploadMediaDialog({

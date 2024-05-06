@@ -1,3 +1,4 @@
+
 import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
 
 import { TooltipProvider } from "@ui/tooltip";
@@ -9,7 +10,6 @@ import { FixedToolbarButtons } from "@plate-ui/fixed-toolbar-buttons";
 import { FloatingToolbar } from "@plate-ui/floating-toolbar";
 import { FloatingToolbarButtons } from "@plate-ui/floating-toolbar-buttons";
 
-import FooterToolbar from "@/modules/editor/composites/footer-toolbar";
 import { CommentsProvider } from "@udecode/plate-comments";
 import { Plate, PlateController } from "@udecode/plate-common";
 import { DndProvider } from "react-dnd";
@@ -27,7 +27,10 @@ export default function PlateEditor() {
   return (
     <TooltipProvider>
       <PlateController>
-        <DndProvider backend={HTML5Backend} context={window}>
+        <DndProvider
+          backend={HTML5Backend}
+          context={window}
+        >
           <CommentsProvider
             users={{}}
             myUserId="1"
@@ -41,7 +44,7 @@ export default function PlateEditor() {
                 <FixedToolbarButtons />
               </FixedToolbar>
 
-              <section className="flex h-full w-full flex-col overflow-hidden px-6 items-center mt-4">
+              <section className="mt-4 flex h-full w-full flex-col items-center overflow-hidden px-6">
                 <Editor
                   containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full [&_.slate-SelectionArea]:overflow-hidden"
                   className="h-full w-full border-0 bg-card px-32 py-12"
@@ -55,11 +58,8 @@ export default function PlateEditor() {
               <CommentsPopover />
 
             </Plate>
-
           </CommentsProvider>
         </DndProvider>
-
-        <FooterToolbar />
       </PlateController>
     </TooltipProvider>
   );

@@ -6,7 +6,7 @@ import {
 import {
   PlateElement,
   type PlateElementProps,
-  type Value,
+  type Value
 } from "@udecode/plate-common";
 
 import { ResizeControls } from "./cloud-resize-controls";
@@ -21,7 +21,6 @@ export function CloudImageElement({
 }: CloudImageElementProps) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { children, element } = props;
-
   const { focused, selected, src, srcSet, size, upload, setSize } =
     useCloudImageElementState({ element });
 

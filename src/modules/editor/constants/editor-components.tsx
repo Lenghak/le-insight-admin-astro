@@ -1,6 +1,3 @@
-
-import { CloudAttachmentElement } from "@/common/components/plate-ui/cloud-attachment-element";
-import { CloudImageElement } from "@/common/components/plate-ui/cloud-image-element";
 import { BlockquoteElement } from "@plate-ui/blockquote-element";
 import { CodeBlockElement } from "@plate-ui/code-block-element";
 import { CodeLeaf } from "@plate-ui/code-leaf";
@@ -29,6 +26,7 @@ import { TableRowElement } from "@plate-ui/table-row-element";
 import { TodoListElement } from "@plate-ui/todo-list-element";
 import { ToggleElement } from "@plate-ui/toggle-element";
 
+
 import { withProps } from "@udecode/cn";
 import {
   MARK_BOLD,
@@ -37,66 +35,41 @@ import {
   MARK_STRIKETHROUGH,
   MARK_SUBSCRIPT,
   MARK_SUPERSCRIPT,
-  MARK_UNDERLINE
+  MARK_UNDERLINE,
 } from "@udecode/plate-basic-marks";
-import {
-  ELEMENT_BLOCKQUOTE
-} from "@udecode/plate-block-quote";
-import { ELEMENT_CLOUD_ATTACHMENT, ELEMENT_CLOUD_IMAGE } from "@udecode/plate-cloud";
+import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
 import {
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
-  ELEMENT_CODE_SYNTAX
+  ELEMENT_CODE_SYNTAX,
 } from "@udecode/plate-code-block";
 import { MARK_COMMENT } from "@udecode/plate-comments";
-import {
-  PlateLeaf
-} from "@udecode/plate-common";
-import {
-  ELEMENT_EXCALIDRAW
-} from "@udecode/plate-excalidraw";
+import { PlateLeaf } from "@udecode/plate-common";
+import { ELEMENT_EXCALIDRAW } from "@udecode/plate-excalidraw";
 import {
   ELEMENT_H1,
   ELEMENT_H2,
   ELEMENT_H3,
   ELEMENT_H4,
   ELEMENT_H5,
-  ELEMENT_H6
+  ELEMENT_H6,
 } from "@udecode/plate-heading";
-import {
-  MARK_HIGHLIGHT
-} from "@udecode/plate-highlight";
-import {
-  ELEMENT_HR
-} from "@udecode/plate-horizontal-rule";
+import { MARK_HIGHLIGHT } from "@udecode/plate-highlight";
+import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
 import { MARK_KBD } from "@udecode/plate-kbd";
-import {
-  ELEMENT_COLUMN,
-  ELEMENT_COLUMN_GROUP
-} from "@udecode/plate-layout";
+import { ELEMENT_COLUMN, ELEMENT_COLUMN_GROUP } from "@udecode/plate-layout";
 import { ELEMENT_LINK } from "@udecode/plate-link";
-import {
-  ELEMENT_TODO_LI
-} from "@udecode/plate-list";
-import {
-  ELEMENT_IMAGE,
-  ELEMENT_MEDIA_EMBED
-} from "@udecode/plate-media";
-import {
-  ELEMENT_MENTION,
-  ELEMENT_MENTION_INPUT
-} from "@udecode/plate-mention";
-import {
-  ELEMENT_PARAGRAPH
-} from "@udecode/plate-paragraph";
+import { ELEMENT_TODO_LI } from "@udecode/plate-list";
+import { ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED } from "@udecode/plate-media";
+import { ELEMENT_MENTION, ELEMENT_MENTION_INPUT } from "@udecode/plate-mention";
+import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import {
   ELEMENT_TABLE,
   ELEMENT_TD,
   ELEMENT_TH,
-  ELEMENT_TR
+  ELEMENT_TR,
 } from "@udecode/plate-table";
 import { ELEMENT_TOGGLE } from "@udecode/plate-toggle";
-
 
 export const EDITOR_COMPONENT = {
   [ELEMENT_BLOCKQUOTE]: BlockquoteElement,
@@ -106,8 +79,8 @@ export const EDITOR_COMPONENT = {
   [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
   [ELEMENT_HR]: HrElement,
   [ELEMENT_IMAGE]: ImageElement,
-  [ELEMENT_CLOUD_ATTACHMENT]: CloudAttachmentElement,
-  [ELEMENT_CLOUD_IMAGE]: CloudImageElement,
+  // [ELEMENT_CLOUD_ATTACHMENT]: CloudAttachmentElement,
+  // [ELEMENT_CLOUD_IMAGE]: CloudImageElement,
   [ELEMENT_LINK]: LinkElement,
   [ELEMENT_TOGGLE]: ToggleElement,
   [ELEMENT_COLUMN_GROUP]: ColumnGroupElement,
@@ -137,4 +110,9 @@ export const EDITOR_COMPONENT = {
   [MARK_SUBSCRIPT]: withProps(PlateLeaf, { as: "sub" }),
   [MARK_SUPERSCRIPT]: withProps(PlateLeaf, { as: "sup" }),
   [MARK_UNDERLINE]: withProps(PlateLeaf, { as: "u" }),
-}
+};
+
+export const SERIALIZE_COMPONENTS = {
+  ...EDITOR_COMPONENT,
+  // [ELEMENT_CLOUD_IMAGE]: ImageElement,
+};

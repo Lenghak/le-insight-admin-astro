@@ -28,6 +28,9 @@ import { TodoListElement } from "@plate-ui/todo-list-element";
 import { ToggleElement } from "@plate-ui/toggle-element";
 import { withDraggables } from "@plate-ui/with-draggables";
 
+import { CloudAttachmentElement } from "@/common/components/plate-ui/cloud-attachment-element";
+import { CloudImageElement } from "@/common/components/plate-ui/cloud-image-element";
+
 import { withProps } from "@udecode/cn";
 import {
   MARK_BOLD,
@@ -39,6 +42,10 @@ import {
   MARK_UNDERLINE,
 } from "@udecode/plate-basic-marks";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
+import {
+  ELEMENT_CLOUD_ATTACHMENT,
+  ELEMENT_CLOUD_IMAGE,
+} from "@udecode/plate-cloud";
 import {
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
@@ -101,6 +108,8 @@ export const createPlateUI = (
     [ELEMENT_H5]: withProps(HeadingElement, { variant: "h5" }),
     [ELEMENT_H6]: withProps(HeadingElement, { variant: "h6" }),
     [ELEMENT_IMAGE]: ImageElement,
+    [ELEMENT_CLOUD_ATTACHMENT]: CloudAttachmentElement,
+    [ELEMENT_CLOUD_IMAGE]: CloudImageElement,
     [ELEMENT_LI]: withProps(PlateElement, { as: "li" }),
     [ELEMENT_LINK]: LinkElement,
     [ELEMENT_MEDIA_EMBED]: MediaEmbedElement,

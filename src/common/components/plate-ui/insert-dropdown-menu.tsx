@@ -46,6 +46,7 @@ import {
 } from "lucide-react";
 import React, { Fragment } from "react";
 
+import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -262,7 +263,7 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <UploadMediaDialog editor={editor} />
+      <UploadMediaDialog editor={editor as PlateCloudEditor} />
       <EmbedMediaDialog editor={editor} />
     </Fragment>
   );
