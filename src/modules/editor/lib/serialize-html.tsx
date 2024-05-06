@@ -1,13 +1,13 @@
 import { TooltipProvider } from "@/common/components/plate-ui/tooltip";
+import type { PlateCloudEditor } from "@udecode/plate-cloud";
 
-import { type PlateEditor } from "@udecode/plate-common";
 import { serializeHtml as serialize } from "@udecode/plate-serializer-html";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-export const serializeHtml = (editor: PlateEditor) => {
+export const serializeHtml = (editor: PlateCloudEditor) => {
   return serialize(editor, {
-    nodes: editor.children,
+    nodes: editor.cloud.getSaveValue(),
     dndWrapper: (props) => (
       <TooltipProvider>
         <DndProvider

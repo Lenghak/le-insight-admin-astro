@@ -14,9 +14,11 @@ import { softBreakPlugin } from "@editor/plugins/soft-break-plugin";
 import { tabbablePlugin } from "@editor/plugins/tabbable-plugin";
 import { trailingBlockPlugin } from "@editor/plugins/trailing-block-plugin";
 import getCloudAuthToken from "@editor/services/cloud-auth-api";
+
 import { LinkFloatingToolbar } from "@plate-ui/link-floating-toolbar";
 import { withPlaceholders } from "@plate-ui/placeholder";
 import { withDraggables } from "@plate-ui/with-draggables";
+
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import {
@@ -26,31 +28,26 @@ import {
   createStrikethroughPlugin,
   createSubscriptPlugin,
   createSuperscriptPlugin,
-  createUnderlinePlugin
+  createUnderlinePlugin,
 } from "@udecode/plate-basic-marks";
-import {
-  createBlockquotePlugin
-} from "@udecode/plate-block-quote";
+import { createBlockquotePlugin } from "@udecode/plate-block-quote";
 import {
   createExitBreakPlugin,
   createSoftBreakPlugin,
 } from "@udecode/plate-break";
 import { createCaptionPlugin } from "@udecode/plate-caption";
-import { createCloudAttachmentPlugin, createCloudImagePlugin, createCloudPlugin } from "@udecode/plate-cloud";
 import {
-  createCodeBlockPlugin
-} from "@udecode/plate-code-block";
+  createCloudAttachmentPlugin,
+  createCloudImagePlugin,
+  createCloudPlugin,
+} from "@udecode/plate-cloud";
+import { createCodeBlockPlugin } from "@udecode/plate-code-block";
 import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createCommentsPlugin } from "@udecode/plate-comments";
-import {
-  createPlugins,
-  type RenderAfterEditable
-} from "@udecode/plate-common";
+import { createPlugins, type RenderAfterEditable } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
 import { createEmojiPlugin } from "@udecode/plate-emoji";
-import {
-  createExcalidrawPlugin
-} from "@udecode/plate-excalidraw";
+import { createExcalidrawPlugin } from "@udecode/plate-excalidraw";
 import {
   createFontBackgroundColorPlugin,
   createFontColorPlugin,
@@ -58,40 +55,25 @@ import {
   createFontSizePlugin,
   createFontWeightPlugin,
 } from "@udecode/plate-font";
-import {
-  createHeadingPlugin
-} from "@udecode/plate-heading";
-import {
-  createHighlightPlugin
-} from "@udecode/plate-highlight";
-import {
-  createHorizontalRulePlugin
-} from "@udecode/plate-horizontal-rule";
+import { createHeadingPlugin } from "@udecode/plate-heading";
+import { createHighlightPlugin } from "@udecode/plate-highlight";
+import { createHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
 import { createIndentPlugin } from "@udecode/plate-indent";
 import { createIndentListPlugin } from "@udecode/plate-indent-list";
 import { createJuicePlugin } from "@udecode/plate-juice";
 import { createKbdPlugin } from "@udecode/plate-kbd";
-import {
-  createColumnPlugin
-} from "@udecode/plate-layout";
+import { createColumnPlugin } from "@udecode/plate-layout";
 import { createLineHeightPlugin } from "@udecode/plate-line-height";
 import { createLinkPlugin } from "@udecode/plate-link";
-import {
-  createListPlugin,
-  createTodoListPlugin
-} from "@udecode/plate-list";
+import { createListPlugin, createTodoListPlugin } from "@udecode/plate-list";
 import {
   createImagePlugin,
-  createMediaEmbedPlugin
+  createMediaEmbedPlugin,
 } from "@udecode/plate-media";
-import {
-  createMentionPlugin
-} from "@udecode/plate-mention";
+import { createMentionPlugin } from "@udecode/plate-mention";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
-import {
-  createParagraphPlugin
-} from "@udecode/plate-paragraph";
+import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import {
   createDeletePlugin,
@@ -103,9 +85,7 @@ import { createDeserializeDocxPlugin } from "@udecode/plate-serializer-docx";
 import { createDeserializeMdPlugin } from "@udecode/plate-serializer-md";
 import { createSlashPlugin } from "@udecode/plate-slash-command";
 import { createTabbablePlugin } from "@udecode/plate-tabbable";
-import {
-  createTablePlugin
-} from "@udecode/plate-table";
+import { createTablePlugin } from "@udecode/plate-table";
 import { createTogglePlugin } from "@udecode/plate-toggle";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
@@ -227,9 +207,7 @@ export const EDITOR_PLUGINS = createPlugins(
   ],
   {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    components: withDraggables(
-      withPlaceholders(EDITOR_COMPONENT),
-    ),
+    components: withDraggables(withPlaceholders(EDITOR_COMPONENT)),
   },
 );
 

@@ -1,4 +1,6 @@
 
+import { CloudAttachmentElement } from "@/common/components/plate-ui/cloud-attachment-element";
+import { CloudImageElement } from "@/common/components/plate-ui/cloud-image-element";
 import { BlockquoteElement } from "@plate-ui/blockquote-element";
 import { CodeBlockElement } from "@plate-ui/code-block-element";
 import { CodeLeaf } from "@plate-ui/code-leaf";
@@ -40,6 +42,7 @@ import {
 import {
   ELEMENT_BLOCKQUOTE
 } from "@udecode/plate-block-quote";
+import { ELEMENT_CLOUD_ATTACHMENT, ELEMENT_CLOUD_IMAGE } from "@udecode/plate-cloud";
 import {
   ELEMENT_CODE_BLOCK,
   ELEMENT_CODE_LINE,
@@ -103,6 +106,8 @@ export const EDITOR_COMPONENT = {
   [ELEMENT_EXCALIDRAW]: ExcalidrawElement,
   [ELEMENT_HR]: HrElement,
   [ELEMENT_IMAGE]: ImageElement,
+  [ELEMENT_CLOUD_ATTACHMENT]: CloudAttachmentElement,
+  [ELEMENT_CLOUD_IMAGE]: CloudImageElement,
   [ELEMENT_LINK]: LinkElement,
   [ELEMENT_TOGGLE]: ToggleElement,
   [ELEMENT_COLUMN_GROUP]: ColumnGroupElement,

@@ -7,8 +7,8 @@ type FooterToolbarProps = {
 
 export default function FooterToolbar({ className }: FooterToolbarProps) {
   return (
-    <footer className={cn("flex items-center overflow-y-visible p-6 pt-0", className)}>
-      <EditorSubmitForm className="w-full flex items-center overflow-visible" />
+    <footer className={cn("flex items-center overflow-y-visible px-4 pb-4", className)}>
+      <EditorSubmitForm className="w-full flex items-center overflow-visible bg-card rounded-xl p-1 shadow-sm" />
     </footer>
   );
 }

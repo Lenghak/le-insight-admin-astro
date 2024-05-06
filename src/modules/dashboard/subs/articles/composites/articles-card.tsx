@@ -100,7 +100,7 @@ export default React.forwardRef<
               size={"icon"}
             >
               <span className="sr-only">Like the Article</span>
-              <ThumbsUpIcon />
+              <ThumbsUpIcon className="size-5" />
             </Button>
 
             <Button
@@ -117,7 +117,7 @@ export default React.forwardRef<
               size={"icon"}
             >
               <span className="sr-only">Comment on the Article</span>
-              <MessageCircle />
+              <MessageCircle className="size-5" />
             </Button>
 
             <Button
@@ -136,7 +136,7 @@ export default React.forwardRef<
             size={"icon"}
           >
             <span className="sr-only">Save the Article</span>
-            <BookmarkIcon />
+            <BookmarkIcon className="size-5" />
           </Button>
 
           {/* More */}
@@ -145,7 +145,7 @@ export default React.forwardRef<
             size={"icon"}
           >
             <span className="sr-only">More Options</span>
-            <MoreHorizontalIcon />
+            <MoreHorizontalIcon className="size-5" />
           </Button>
         </div>
       </CardFooter>
