@@ -65,7 +65,7 @@ import { createKbdPlugin } from "@udecode/plate-kbd";
 import { createColumnPlugin } from "@udecode/plate-layout";
 import { createLineHeightPlugin } from "@udecode/plate-line-height";
 import { createLinkPlugin } from "@udecode/plate-link";
-import { createListPlugin, createTodoListPlugin } from "@udecode/plate-list";
+import { createTodoListPlugin } from "@udecode/plate-list";
 import {
   createImagePlugin,
   createMediaEmbedPlugin,
@@ -126,7 +126,6 @@ export const EDITOR_PLUGINS = createPlugins(
     }),
     createMentionPlugin(),
     createTablePlugin(),
-    createListPlugin(),
     createTodoListPlugin(),
     createBoldPlugin(),
     createItalicPlugin(),

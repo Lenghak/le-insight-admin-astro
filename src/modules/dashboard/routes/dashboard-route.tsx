@@ -9,7 +9,6 @@ import ArticlesRoute from "@articles/routes/articles-route";
 
 import UsersRoute from "@users/routes/users-route";
 
-import EditorRoute from "@editor/routes/editor-route";
 import { ConstructionIcon } from "lucide-react";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -51,10 +50,6 @@ export const dashboardRoute = createBrowserRouter([
       {
         path: "/dashboard/categories",
         element: <CategoriesRoute />,
-      },
-      {
-        path: "/dashboard/editor",
-        element: <EditorRoute />,
       },
     ],
   },
