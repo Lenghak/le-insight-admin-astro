@@ -53,7 +53,7 @@ export function ThemeProvider({
       root.classList.add(systemTheme);
       return;
     }
-
+    setResolvedTheme(theme);
     root.classList.add(theme);
   }, [theme]);
 

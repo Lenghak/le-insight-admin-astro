@@ -69,8 +69,8 @@ export default React.forwardRef<
           <DotIcon size={16} />
 
           <Badge
-            variant={"outline"}
-            className="text-xs font-bold"
+            variant={"fair"}
+            className="text-xs font-bold bg-accent"
           >
             Category
           </Badge>
@@ -104,7 +104,7 @@ export default React.forwardRef<
             </Button>
 
             <Button
-              variant={"link"}
+              variant={"ghost"}
               size={"icon"}
             >
               <Small>12</Small>
@@ -121,7 +121,7 @@ export default React.forwardRef<
             </Button>
 
             <Button
-              variant={"link"}
+              variant={"ghost"}
               size={"icon"}
             >
               <Small>12</Small>

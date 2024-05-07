@@ -1,16 +1,16 @@
-import { Button } from "@/common/components/ui/button";
+import { Button } from "@ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-} from "@/common/components/ui/form";
-import { Input } from "@/common/components/ui/input";
+} from "@ui/form";
+import { Input } from "@ui/input";
 
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRightIcon, SearchIcon } from "lucide-react";
+import { ArrowRightIcon, SearchIcon, XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import { z } from "zod";
@@ -71,17 +71,28 @@ export default function DataTableSearch({
                   </div>
 
                   <Input
-                    type="search"
+                    type="text"
                     placeholder="Search"
-                    className="peer h-9 w-full rounded-full bg-card px-12 placeholder:ml-12"
+                    className="peer/input h-9 w-full rounded-full bg-card px-12 placeholder:ml-12 pr-20"
                     {...field}
                   />
+
+                  <Button
+                    onClick={() => form.reset({ q: "" })}
+                    type="submit"
+                    variant={"ghost"}
+                    size={"icon"}
+                    className="peer/clear invisible absolute right-10 size-6 hover:visible focus:visible focus-visible:visible group-focus:visible peer-focus:visible peer-focus-visible/input:visible"
+                  >
+                    <XIcon className="size-4" />
+                    <span className="sr-only">Clear Search</span>
+                  </Button>
 
                   <Button
                     type="submit"
                     variant={"default"}
                     size={"icon"}
-                    className="invisible absolute right-2 size-6 hover:visible focus:visible focus-visible:visible group-focus:visible peer-focus:visible peer-focus-visible:visible"
+                    className="invisible absolute right-2 size-6 hover:visible focus:visible focus-visible:visible group-focus:visible peer-focus/input:visible peer-focus-visible/input:visible"
                   >
                     <ArrowRightIcon className="size-4" />
                     <span className="sr-only">Enter Search</span>
