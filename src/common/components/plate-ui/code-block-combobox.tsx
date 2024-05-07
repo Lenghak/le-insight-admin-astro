@@ -5,7 +5,7 @@ import {
   useCodeBlockCombobox,
   useCodeBlockComboboxState,
 } from "@udecode/plate-code-block";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "./button";
@@ -52,9 +52,9 @@ export function CodeBlockCombobox() {
         >
           {state.value
             ? languages.find((language) => language.value === state.value)
-                ?.label
+              ?.label
             : "Plain Text"}
-          <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
+          <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
@@ -67,15 +67,16 @@ export function CodeBlockCombobox() {
               <CommandItem
                 key={language.value}
                 value={language.value}
-                className="cursor-pointer"
+                className="cursor-pointer font-medium"
+                data-disabled={"true"}
                 onSelect={(_value) => {
                   commandItemProps.onSelect(_value);
                   setOpen(false);
                 }}
               >
-                <Check
+                <CheckIcon
                   className={cn(
-                    "mr-2 size-4",
+                    "mr-2 h-4 w-4",
                     state.value === language.value
                       ? "opacity-100"
                       : "opacity-0",

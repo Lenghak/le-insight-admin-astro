@@ -1,4 +1,4 @@
-import useSignUpService from "@/modules/auth/hooks/use-sign-up-service";
+import useSignUpService from "@auth/hooks/use-sign-up-service";
 
 import { Button, buttonVariants } from "@ui/button";
 import {
@@ -19,14 +19,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/common/components/ui/form";
-import { Input } from "@/common/components/ui/input";
+} from "@ui/form";
+import { Input } from "@ui/input";
 
 import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon, Loader2Icon, PlusIcon } from "lucide-react";
-import { type Ref, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type Ref } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -71,10 +71,10 @@ export default function UsersCreateForm() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          className="items-center gap-1"
+          className="items-center gap-1 px-4"
           size={"sm"}
         >
-          <PlusIcon size={16} />
+          <PlusIcon size={16} strokeWidth={3}/>
           <span className="px-2 font-bold">Add data</span>
         </Button>
       </DialogTrigger>

@@ -1,6 +1,7 @@
 import DashboardTitle from "@dashboard/composites/dashboard-title";
 
 import ArticlesCard from "@articles/composites/articles-card";
+import ArticlesCreateForm from "@articles/composites/articles-create-form";
 
 export default function ArticlesRoute() {
   return (
@@ -11,7 +12,9 @@ export default function ArticlesRoute() {
           spa
         />
 
-        <div className="flex items-center justify-center gap-4"></div>
+        <div className="flex items-center justify-center gap-4">
+          <ArticlesCreateForm />
+        </div>
       </div>
 
       <div className="flex flex-col space-y-4">

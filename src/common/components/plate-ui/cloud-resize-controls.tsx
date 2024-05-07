@@ -2,7 +2,7 @@ import { Button } from "@/common/components/ui/button";
 import { resizeInWidth } from "@portive/client";
 import { type TCloudImageElement } from "@udecode/plate-cloud";
 import { findNodePath, setNodes, useEditorRef } from "@udecode/plate-common";
-import { UnfoldHorizontalIcon } from "lucide-react";
+import { MoveHorizontalIcon } from "lucide-react";
 import React, {
   useCallback,
   useRef,
@@ -93,7 +93,7 @@ function ResizeHandles({
             marginTop: -16,
           }}
         >
-          <UnfoldHorizontalIcon className="size-4 absolute" />
+          <MoveHorizontalIcon className="size-4 absolute" />
         </Button>
       </div>
     </>

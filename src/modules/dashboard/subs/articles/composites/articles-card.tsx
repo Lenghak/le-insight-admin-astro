@@ -22,7 +22,7 @@ import {
   DotIcon,
   MessageCircle,
   MoreHorizontalIcon,
-  ThumbsUpIcon
+  ThumbsUpIcon,
 } from "lucide-react";
 import React from "react";
 
@@ -35,12 +35,12 @@ export default React.forwardRef<
       ref={ref}
       className={cn(
         buttonVariants({ variant: "secondary", size: "default" }),
-        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-none border-x-0 border-y py-4 px-8 shadow-none",
+        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-lg border-0 px-8 py-6 shadow-none",
         className,
       )}
       {...props}
     >
-      <CardHeader className="pt-0 flex h-full w-full flex-col space-y-4 px-0 pb-0">
+      <CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0 pt-0">
         <div className="flex w-full items-center justify-between gap-4 p-0">
           {/* Profile */}
           <ProfileHoverCard asChild>
@@ -70,7 +70,7 @@ export default React.forwardRef<
 
           <Badge
             variant={"fair"}
-            className="text-xs font-bold bg-accent"
+            className="bg-accent text-xs font-bold"
           >
             Category
           </Badge>
@@ -98,6 +98,7 @@ export default React.forwardRef<
             <Button
               variant={"ghost"}
               size={"icon"}
+              disabled
             >
               <span className="sr-only">Like the Article</span>
               <ThumbsUpIcon className="size-5" />
@@ -115,6 +116,7 @@ export default React.forwardRef<
             <Button
               variant={"ghost"}
               size={"icon"}
+              disabled
             >
               <span className="sr-only">Comment on the Article</span>
               <MessageCircle className="size-5" />
@@ -124,7 +126,7 @@ export default React.forwardRef<
               variant={"ghost"}
               size={"icon"}
             >
-              <Small>12</Small>
+              <Small>0</Small>
             </Button>
           </div>
         </div>
@@ -134,6 +136,7 @@ export default React.forwardRef<
           <Button
             variant={"ghost"}
             size={"icon"}
+            disabled
           >
             <span className="sr-only">Save the Article</span>
             <BookmarkIcon className="size-5" />

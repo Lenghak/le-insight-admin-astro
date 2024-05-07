@@ -16,7 +16,6 @@ export const IndentListToolbarButton = withRef<
 >(({ nodeType = ListStyleType.Disc }, ref) => {
   const state = useIndentListToolbarButtonState({ nodeType });
   const { props } = useIndentListToolbarButton(state);
-  console.log(nodeType)
 
   return (
     <ToolbarButton
