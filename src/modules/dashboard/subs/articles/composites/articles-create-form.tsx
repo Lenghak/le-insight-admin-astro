@@ -4,7 +4,6 @@ import {
   setDashboardDialogOpen,
 } from "@dashboard/stores/dashboard-action-dialog-store";
 
-import ArticlesThumbnailForm from "@articles/composites/articles-thumbnail-form";
 
 import EditorSkeleton from "@editor/components/editor-skeleton";
 
@@ -22,7 +21,7 @@ import { Button } from "@ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 
 import { useStore } from "@nanostores/react";
-import { CheckIcon, PenLineIcon } from "lucide-react";
+import { PenLineIcon } from "lucide-react";
 import React, { Fragment, Suspense, useEffect, useState } from "react";
 
 
@@ -92,16 +91,6 @@ export default function ArticlesCreateForm() {
             <Editor />
           </Suspense>
 
-          <ArticlesThumbnailForm
-            trigger={
-              <div className="group fixed bottom-6 right-0">
-                <Button className="relative -right-20 w-fit gap-4 px-6 font-bold transition-all group-hover:right-6">
-                  <CheckIcon className="size-4" />
-                  Submit
-                </Button>
-              </div>
-            }
-          />
         </SheetContent>
       </Sheet>
 

@@ -1,3 +1,4 @@
+import ArticlesThumbnailForm from "@/modules/dashboard/subs/articles/composites/articles-thumbnail-form";
 import { EDITOR_PLUGINS } from "@/modules/editor/constants/editor-plugins";
 
 import { $editingArticle } from "@articles/stores/article-store";
@@ -10,9 +11,12 @@ import { FloatingToolbar } from "@plate-ui/floating-toolbar";
 import { FloatingToolbarButtons } from "@plate-ui/floating-toolbar-buttons";
 import { TooltipProvider } from "@plate-ui/tooltip";
 
+import { Button } from "@/common/components/ui/button";
+
 import { useStore } from "@nanostores/react";
 import { CommentsProvider } from "@udecode/plate-comments";
 import { Plate, PlateController } from "@udecode/plate-common";
+import { CheckIcon } from "lucide-react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -51,6 +55,17 @@ export default function ArticlesEditor() {
                 <FloatingToolbarButtons />
               </FloatingToolbar>
               <CommentsPopover />
+
+              <ArticlesThumbnailForm
+                trigger={
+                  <div className="group fixed bottom-6 right-0">
+                    <Button className="relative -right-20 w-fit gap-4 px-6 font-bold transition-all group-hover:right-6">
+                      <CheckIcon className="size-4" />
+                      Submit
+                    </Button>
+                  </div>
+                }
+              />
             </Plate>
           </CommentsProvider>
         </DndProvider>
