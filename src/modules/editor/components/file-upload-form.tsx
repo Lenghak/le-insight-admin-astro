@@ -13,7 +13,7 @@ import { ImageUpIcon } from "lucide-react";
 import type { HTMLAttributes } from "react";
 
 type FileUploadFormProps = HTMLAttributes<HTMLFormElement> & {
-  editor: PlateCloudEditor;
+  editor?: PlateCloudEditor;
 };
 
 export default function FileUploadForm({

@@ -1,10 +1,10 @@
-import ArticlesThumbnailForm from "@/modules/dashboard/subs/articles/composites/articles-thumbnail-form";
-
 import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import {
   $dashboardDialogStore,
   setDashboardDialogOpen,
 } from "@dashboard/stores/dashboard-action-dialog-store";
+
+import ArticlesThumbnailForm from "@articles/composites/articles-thumbnail-form";
 
 import EditorSkeleton from "@editor/components/editor-skeleton";
 
@@ -24,6 +24,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { useStore } from "@nanostores/react";
 import { CheckIcon, PenLineIcon } from "lucide-react";
 import React, { Fragment, Suspense, useEffect, useState } from "react";
+
 
 const Editor = React.lazy(() => import("./articles-editor"));
 
@@ -73,7 +74,7 @@ export default function ArticlesCreateForm() {
       >
         <SheetTrigger asChild>
           <Button
-            className="items-center gap-1 pr-4 pl-6"
+            className="items-center gap-1 pl-6 pr-4"
             size={"sm"}
           >
             <PenLineIcon
@@ -84,7 +85,7 @@ export default function ArticlesCreateForm() {
           </Button>
         </SheetTrigger>
         <SheetContent
-          className="grid h-full items-center gap-0 rounded-none bg-card"
+          className="grid h-full items-center gap-0 rounded-none"
           side={"bottom"}
         >
           <Suspense fallback={<EditorSkeleton />}>
@@ -93,7 +94,7 @@ export default function ArticlesCreateForm() {
 
           <ArticlesThumbnailForm
             trigger={
-              <div className="fixed bottom-6 group right-0">
+              <div className="group fixed bottom-6 right-0">
                 <Button className="relative -right-20 w-fit gap-4 px-6 font-bold transition-all group-hover:right-6">
                   <CheckIcon className="size-4" />
                   Submit

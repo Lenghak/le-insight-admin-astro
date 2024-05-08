@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 type useFileUPloadHandlerProps = {
-  editor: PlateCloudEditor;
+  editor?: PlateCloudEditor;
   dialogID: string;
 };
 
@@ -21,7 +21,7 @@ export default function useFileUploadHandler({
       toast.error("File is not supported");
     },
     onDropAccepted: (file: File[], _e: DropEvent) => {
-      uploadFile(editor, file[0]);
+      editor ? uploadFile(editor, file[0]) : undefined;
       setMediaDialogState({
         id: dialogID,
         isOpen: false,

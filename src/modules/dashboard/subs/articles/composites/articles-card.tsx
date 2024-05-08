@@ -108,7 +108,7 @@ export default React.forwardRef<
               variant={"ghost"}
               size={"icon"}
             >
-              <Small>12</Small>
+              <Small>0</Small>
             </Button>
           </div>
 

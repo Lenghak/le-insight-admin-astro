@@ -43,7 +43,7 @@ export default function ArticlesEditor() {
 
               <Editor
                 containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full"
-                className="h-full w-full border-0 bg-card px-32 pt-24"
+                className="h-full w-full border-0 px-32 pt-24"
                 focusRing={false}
               />
 
