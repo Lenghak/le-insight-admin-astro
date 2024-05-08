@@ -5,10 +5,10 @@ import {
   findNode,
   focusEditor,
   isBlock,
-  type TElement,
   toggleNodeType,
   useEditorRef,
   useEditorSelector,
+  type TElement,
 } from "@udecode/plate-common";
 import {
   ELEMENT_H1,
@@ -144,7 +144,6 @@ export function TurnIntoDropdownMenu(props: DropdownMenuProps) {
           pressed={openState.open}
           tooltip="Turn into"
           isDropdown
-          className="gap-2"
         >
           <SelectedItemIcon className="size-4" />
           <span className="sr-only">{selectedItemLabel}</span>

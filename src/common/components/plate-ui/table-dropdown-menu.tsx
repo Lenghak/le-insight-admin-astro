@@ -6,10 +6,10 @@ import {
   useEditorSelector,
 } from "@udecode/plate-common";
 import {
+  ELEMENT_TABLE,
   deleteColumn,
   deleteRow,
   deleteTable,
-  ELEMENT_TABLE,
   insertTable,
   insertTableColumn,
   insertTableRow,
@@ -58,7 +58,7 @@ export function TableDropdownMenu(props: DropdownMenuProps) {
           tooltip="Table"
           isDropdown
         >
-          <Table2Icon className="mr-2 size-4" />
+          <Table2Icon className="size-4" />
         </ToolbarButton>
       </DropdownMenuTrigger>
 

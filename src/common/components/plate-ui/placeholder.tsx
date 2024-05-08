@@ -2,11 +2,10 @@ import { cn } from "@udecode/cn";
 import {
   createNodeHOC,
   createNodesHOC,
-  type PlaceholderProps,
   usePlaceholderState,
+  type PlaceholderProps,
 } from "@udecode/plate-common";
 import { ELEMENT_H1 } from "@udecode/plate-heading";
-import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
 import React from "react";
 
 export const Placeholder = (props: PlaceholderProps) => {
@@ -41,17 +40,8 @@ export const withPlaceholders = (components: any) =>
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   withPlaceholdersPrimitive(components, [
     {
-      key: ELEMENT_PARAGRAPH,
-      placeholder: "Type a paragraph",
-      hideOnBlur: true,
-      query: {
-        maxLevel: 1,
-      },
-      className: "!font-bold",
-    },
-    {
       key: ELEMENT_H1,
-      placeholder: "Untitled",
+      placeholder: "Title",
       hideOnBlur: false,
     },
   ]);

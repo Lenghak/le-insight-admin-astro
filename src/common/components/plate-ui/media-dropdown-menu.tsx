@@ -32,7 +32,7 @@ export function MediaDropdownMenu(props: DropdownMenuProps) {
           tooltip="Media"
           isDropdown
         >
-          <ImageIcon className="mr-2 size-4" />
+          <ImageIcon className="size-4" />
         </ToolbarButton>
       </DropdownMenuTrigger>
 

@@ -178,7 +178,7 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
       >
         <DropdownMenuTrigger asChild>
           <ToolbarButton
-            className={cn("gap-2", props.triggerClassName)}
+            className={cn(props.triggerClassName)}
             pressed={openState.open}
             tooltip="Insert"
             isDropdown={props.isDropdown ?? true}

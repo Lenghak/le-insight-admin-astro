@@ -11,6 +11,7 @@ export function CommentToolbarButton() {
   return (
     <ToolbarButton
       tooltip="Comment (⌘+⇧+M)"
+      size={"icon"}
       {...props}
     >
       <MessageSquarePlusIcon className="size-4" />

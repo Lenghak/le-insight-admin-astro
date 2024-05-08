@@ -1,8 +1,12 @@
+import ArticlesThumbnailForm from "@/modules/dashboard/subs/articles/composites/articles-thumbnail-form";
+
 import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import {
   $dashboardDialogStore,
   setDashboardDialogOpen,
 } from "@dashboard/stores/dashboard-action-dialog-store";
+
+import EditorSkeleton from "@editor/components/editor-skeleton";
 
 import {
   AlertDialog,
@@ -18,7 +22,7 @@ import { Button } from "@ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 
 import { useStore } from "@nanostores/react";
-import { PlusIcon } from "lucide-react";
+import { CheckIcon, PenLineIcon } from "lucide-react";
 import React, { Fragment, Suspense, useEffect, useState } from "react";
 
 const Editor = React.lazy(() => import("./articles-editor"));
@@ -42,6 +46,7 @@ export default function ArticlesCreateForm() {
   return (
     <Fragment>
       <Sheet
+        modal={false}
         open={
           sheetState.id === DASHBOARD_DIALOG_ID.articles.create &&
           sheetState.isOpen
@@ -68,10 +73,10 @@ export default function ArticlesCreateForm() {
       >
         <SheetTrigger asChild>
           <Button
-            className="items-center gap-1 px-4"
+            className="items-center gap-1 pr-4 pl-6"
             size={"sm"}
           >
-            <PlusIcon
+            <PenLineIcon
               size={16}
               strokeWidth={3}
             />
@@ -79,12 +84,23 @@ export default function ArticlesCreateForm() {
           </Button>
         </SheetTrigger>
         <SheetContent
-          className="grid h-full grid-rows-[auto,_1fr] gap-4 rounded-none bg-card"
+          className="grid h-full items-center gap-0 rounded-none bg-card"
           side={"bottom"}
         >
-          <Suspense fallback={"Loading..."}>
+          <Suspense fallback={<EditorSkeleton />}>
             <Editor />
           </Suspense>
+
+          <ArticlesThumbnailForm
+            trigger={
+              <div className="fixed bottom-6 group right-0">
+                <Button className="relative -right-20 w-fit gap-4 px-6 font-bold transition-all group-hover:right-6">
+                  <CheckIcon className="size-4" />
+                  Submit
+                </Button>
+              </div>
+            }
+          />
         </SheetContent>
       </Sheet>
 
@@ -100,7 +116,8 @@ export default function ArticlesCreateForm() {
               Are you absolutely sure, you want to exit?
             </AlertDialogTitle>
             <AlertDialogDescription className="font-medium">
-              Although the data is reserved in the local-storage, it could have been damage or lost.
+              Although the data is reserved in the local-storage, it could have
+              been damage or lost.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

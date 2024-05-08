@@ -42,7 +42,7 @@ export function FixedToolbarButtons({ }: { id?: string }) {
   const readOnly = useEditorReadOnly();
 
   return (
-    <div className="w-full overflow-y-hidden">
+    <div className="w-full overflow-y-hidden scrollbar-hidden">
       <div
         className="flex"
         style={{
@@ -61,18 +61,21 @@ export function FixedToolbarButtons({ }: { id?: string }) {
               <MarkToolbarButton
                 tooltip="Bold (⌘+B)"
                 nodeType={MARK_BOLD}
+                size={"icon"}
               >
                 <BoldIcon className="size-4" />
               </MarkToolbarButton>
               <MarkToolbarButton
                 tooltip="Italic (⌘+I)"
                 nodeType={MARK_ITALIC}
+                size={"icon"}
               >
                 <ItalicIcon className="size-4" />
               </MarkToolbarButton>
               <MarkToolbarButton
                 tooltip="Underline (⌘+U)"
                 nodeType={MARK_UNDERLINE}
+                size={"icon"}
               >
                 <UnderlineIcon className="size-4" />
               </MarkToolbarButton>
@@ -82,12 +85,14 @@ export function FixedToolbarButtons({ }: { id?: string }) {
                   <MarkToolbarButton
                     tooltip="Strikethrough (⌘+⇧+M)"
                     nodeType={MARK_STRIKETHROUGH}
+                    size={"icon"}
                   >
                     <StrikethroughIcon className="size-4" />
                   </MarkToolbarButton>
                   <MarkToolbarButton
                     tooltip="Code (⌘+E)"
                     nodeType={MARK_CODE}
+                    size={"icon"}
                   >
                     <Code2Icon className="size-4" />
                   </MarkToolbarButton>
@@ -119,24 +124,30 @@ export function FixedToolbarButtons({ }: { id?: string }) {
 
               {!readOnly && (
                 <>
-                  <IndentListToolbarButton nodeType={ListStyleType.Disc} />
-                  <IndentListToolbarButton nodeType={ListStyleType.Decimal} />
+                  <IndentListToolbarButton
+                    size={"icon"}
+                    nodeType={ListStyleType.Disc}
+                  />
+                  <IndentListToolbarButton
+                    size={"icon"}
+                    nodeType={ListStyleType.Decimal}
+                  />
                   {/* <IndentTodoToolbarButton /> */}
                 </>
               )}
 
               {!readOnly && (
                 <>
-                  <OutdentToolbarButton />
-                  <IndentToolbarButton />
+                  <OutdentToolbarButton size={"icon"} />
+                  <IndentToolbarButton size={"icon"} />
                 </>
               )}
             </ToolbarGroup>
 
             <ToolbarGroup>
-              {!readOnly && <ToggleToolbarButton />}
+              {!readOnly && <ToggleToolbarButton size={"icon"} />}
 
-              {!readOnly && <LinkToolbarButton />}
+              {!readOnly && <LinkToolbarButton size={"icon"} />}
 
               {!readOnly && <MediaDropdownMenu />}
 

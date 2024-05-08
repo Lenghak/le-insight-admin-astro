@@ -29,7 +29,7 @@ export const ToolbarSeparator = withCn(
 
 const toolbarButtonVariants = cva(
   cn(
-    "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex items-center justify-center rounded-full text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
     "[&_svg:not([data-icon])]:h-4 [&_svg:not([data-icon])]:w-4",
   ),
   {
@@ -42,8 +42,9 @@ const toolbarButtonVariants = cva(
       },
       size: {
         default: "h-10 px-3",
-        sm: "h-9 px-2",
+        sm: "h-9 px-4",
         lg: "h-11 px-5",
+        icon: "size-9 p-0",
       },
     },
     defaultVariants: {
@@ -82,7 +83,7 @@ const ToolbarButton = withTooltip(
                 variant,
                 size,
               }),
-              isDropdown && "my-1 justify-between pr-1",
+              isDropdown && "my-1 justify-between pr-3",
               className,
             )}
             value={pressed ? "single" : ""}
@@ -93,7 +94,7 @@ const ToolbarButton = withTooltip(
                 <div className="flex flex-1">{children}</div>
                 <div>
                   <ChevronDownIcon
-                    className="ml-0.5 h-4 w-4"
+                    className="h-4 w-4 ml-2"
                     data-icon
                   />
                 </div>
@@ -111,7 +112,7 @@ const ToolbarButton = withTooltip(
               variant,
               size,
             }),
-            isDropdown && "pr-1",
+            isDropdown && "pr-3",
             className,
           )}
           {...props}

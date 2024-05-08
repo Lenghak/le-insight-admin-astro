@@ -37,14 +37,13 @@ export default function ArticlesEditor() {
               normalizeInitialValue
               onChange={(value) => $editingArticle.set(value)}
             >
-              <FixedToolbar className="sticky top-0 h-fit min-h-14 w-[calc(100%_-_3rem)] self-center place-self-center rounded-xl border p-1.5 shadow-sm bg-card overflow-y-hidden">
+              <FixedToolbar className="fixed left-auto top-4 mx-auto h-fit min-h-14 w-[calc(100%_-_6rem)] place-self-center self-center overflow-y-hidden rounded-full border bg-card p-1 px-2 shadow-sm">
                 <FixedToolbarButtons />
               </FixedToolbar>
 
-
               <Editor
-                containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full"
-                className="h-full w-full border-0 bg-card px-32 pt-8"
+                containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full"
+                className="h-full w-full border-0 bg-card px-32 pt-24"
                 focusRing={false}
               />
 

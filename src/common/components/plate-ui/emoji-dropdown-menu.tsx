@@ -1,6 +1,6 @@
 import {
-  type EmojiDropdownMenuOptions,
   useEmojiDropdownMenuState,
+  type EmojiDropdownMenuOptions,
 } from "@udecode/plate-emoji";
 import { SmileIcon } from "lucide-react";
 
@@ -29,7 +29,7 @@ export function EmojiDropdownMenu({
           tooltip="Emoji"
           {...props}
         >
-          <SmileIcon className="mr-2 size-4" />
+          <SmileIcon className="size-4" />
         </ToolbarButton>
       }
       isOpen={isOpen}

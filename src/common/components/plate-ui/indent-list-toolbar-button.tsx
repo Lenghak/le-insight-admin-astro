@@ -23,6 +23,7 @@ export const IndentListToolbarButton = withRef<
       tooltip={
         nodeType === ListStyleType.Disc ? "Bulleted List" : "Numbered List"
       }
+      size={"icon"}
       {...props}
     >
       {nodeType === ListStyleType.Disc ? (

@@ -44,6 +44,7 @@ export function ColorDropdownMenu({
         <ToolbarButton
           tooltip={tooltip}
           {...buttonProps}
+          size={"icon"}
         >
           {children}
         </ToolbarButton>

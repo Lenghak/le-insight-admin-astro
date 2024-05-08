@@ -38,7 +38,8 @@ export function MoreDropdownMenu(props: DropdownMenuProps) {
       <DropdownMenuTrigger asChild>
         <ToolbarButton
           pressed={openState.open}
-          tooltip="Insert"
+          tooltip="More"
+          size={"icon"}
         >
           <MoreHorizontalIcon className="size-4" />
         </ToolbarButton>
