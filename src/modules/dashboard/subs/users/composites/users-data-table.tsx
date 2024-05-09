@@ -14,13 +14,12 @@ import {
 import { cn } from "@/common/lib/utils";
 
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
-  type SortingState,
   useReactTable,
+  type ColumnDef,
+  type SortingState
 } from "@tanstack/react-table";
 import React, { Fragment, memo } from "react";
 
@@ -45,7 +44,6 @@ export default memo(function UsersDataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: {

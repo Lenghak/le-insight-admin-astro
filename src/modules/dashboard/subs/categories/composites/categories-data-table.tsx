@@ -12,13 +12,12 @@ import { DataTablePagination } from "@custom/table";
 import { cn } from "@/common/lib/utils";
 
 import {
-  type ColumnDef,
   flexRender,
   getCoreRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
-  type SortingState,
   useReactTable,
+  type ColumnDef,
+  type SortingState
 } from "@tanstack/react-table";
 import React from "react";
 import { Fragment } from "react/jsx-runtime";
@@ -47,7 +46,6 @@ export default function CategoriesDataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: {
