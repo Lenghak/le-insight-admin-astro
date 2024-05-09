@@ -5,9 +5,9 @@ import { ArticlesSchema } from "@/common/types/articles-type";
 export const CreateArticleSchema = ArticlesSchema.pick({
   preview_title: true,
   preview_description: true,
-  content: true,
-  user_id: true,
+  content_html: true,
+  content_plain_text: true,
   visibility: true,
 });
 
-export type CreateArticleType = z.infer<typeof CreateArticleSchema>;
+export type CreateArticleRequestType = z.infer<typeof CreateArticleSchema>;

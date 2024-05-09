@@ -1,4 +1,9 @@
+import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
+import { setDashboardDialogOpen } from "@/modules/dashboard/stores/dashboard-action-dialog-store";
+
 import FileUploadForm from "@dashboard/components/file-upload-form";
+
+import useCreateArticleService from "@articles/hooks/use-create-articles-service";
 
 import { serializeHtml } from "@editor/lib/serialize-html";
 import { serializePlainText } from "@editor/lib/serialize-plain-text";
@@ -29,9 +34,12 @@ import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import { useEditorMounted, useEditorRef } from "@udecode/plate-common";
 import { AsteriskIcon, CircleHelpIcon } from "lucide-react";
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
+
+import { ArticlesVisiblityEnum } from "@/common/types/articles-type";
 
 type ArticlesCreateFormProps = {
   trigger?: React.ReactNode;
@@ -49,6 +57,7 @@ const formSchema = z.object({
   thumbnail: z
     .string({ required_error: "Thumbnail cannot be empty" })
     .url("The thumbnail cannot be empty"),
+  visibility: ArticlesVisiblityEnum.default("PUBLIC"),
 });
 
 export default function ArticlesCreateForm({
@@ -63,25 +72,42 @@ export default function ArticlesCreateForm({
       title: "",
       description: "",
       thumbnail: "",
+      visibility: "PUBLIC",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const { mutateAsync: uploadArticle, isSuccess } = useCreateArticleService();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (isEditorMounted) {
       const html = serializeHtml(editorRef as PlateCloudEditor);
       const plaintext = serializePlainText(editorRef.children);
 
-      console.log(values, html, plaintext);
+      await uploadArticle({
+        content_html: html,
+        content_plain_text: plaintext,
+        preview_title: values.title,
+        preview_description: values.description,
+        visibility: values.visibility,
+      });
     }
   };
 
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    if (form.getFieldState("thumbnail").error) {
-      // toast.error(form.getFieldState("thumbnail").error?.message, {
-      //   closeButton: true,
-      // });
+    if (isSuccess) {
+      editorRef.reset();
+      form.reset();
+      closeRef.current?.click();
+      setDashboardDialogOpen({
+        id: DASHBOARD_DIALOG_ID.articles.create,
+        isOpen: false,
+      });
+      navigate("/dashboard/articles");
     }
-  }, [form.getFieldState("thumbnail").error]);
+  }, [isSuccess]);
 
   return (
     <Drawer>
@@ -95,7 +121,7 @@ export default function ArticlesCreateForm({
               className="h-full [&>div]:max-h-none [&>div]:font-serif"
             />
 
-            <Alert className="items-center border-none bg-transparent pr-8 mt-6">
+            <Alert className="mt-6 items-center border-none bg-transparent pr-8">
               <AsteriskIcon className="mt-0.5 size-3" />
               <AlertTitle className="font-serif text-sm italic">
                 You can upload one file only per thumbnail with 5MB size
@@ -167,6 +193,7 @@ export default function ArticlesCreateForm({
                 <div className="flex items-center justify-center gap-4">
                   <DrawerClose asChild>
                     <Button
+                      ref={closeRef}
                       type="button"
                       className="px-6 font-sans font-bold"
                       variant={"outline"}

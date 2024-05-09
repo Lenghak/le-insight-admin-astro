@@ -1,7 +1,6 @@
-import { articleKeys } from "@/modules/dashboard/subs/articles/constants/query-keys";
-
-import createCategoriesAPI from "@categories/services/post-create-categories-api";
-import type { CategoriesCreateType } from "@categories/types/categories-create-type";
+import { articleKeys } from "@articles/constants/query-keys";
+import postCreateCategoriesAPI from "@articles/services/post-create-articles-api";
+import type { CreateArticleRequestType } from "@articles/types/articles-create-type";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
@@ -11,15 +10,15 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 
-export default function useCreateCategoryService() {
+export default function useCreateArticleService() {
   const instance = usePrivateQueryInstance();
   const queryClient = useStore($queryClient);
 
   return useMutation(
     {
       mutationKey: [...articleKeys.detail(`create`), instance],
-      mutationFn: async (data: CategoriesCreateType) =>
-        await createCategoriesAPI(data),
+      mutationFn: async (data: CreateArticleRequestType) =>
+        await postCreateCategoriesAPI(data),
       onError: (error) => {
         let title = "Editing Failed";
         let description =
