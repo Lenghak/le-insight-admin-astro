@@ -4,7 +4,6 @@ import {
   setDashboardDialogOpen,
 } from "@dashboard/stores/dashboard-action-dialog-store";
 
-
 import EditorSkeleton from "@editor/components/editor-skeleton";
 
 import {
@@ -23,7 +22,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { useStore } from "@nanostores/react";
 import { PenLineIcon } from "lucide-react";
 import React, { Fragment, Suspense, useEffect, useState } from "react";
-
 
 const Editor = React.lazy(() => import("./articles-editor"));
 
@@ -72,11 +70,8 @@ export default function ArticlesCreateForm() {
         }}
       >
         <SheetTrigger asChild>
-          <Button
-            className="items-center gap-1 pl-6 pr-4"
-            size={"sm"}
-          >
-            <PenLineIcon
+          <Button className="items-center gap-1 pl-6 pr-4">
+            `<PenLineIcon
               size={16}
               strokeWidth={3}
             />
@@ -90,7 +85,6 @@ export default function ArticlesCreateForm() {
           <Suspense fallback={<EditorSkeleton />}>
             <Editor />
           </Suspense>
-
         </SheetContent>
       </Sheet>
 

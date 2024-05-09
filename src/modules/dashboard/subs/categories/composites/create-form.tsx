@@ -57,7 +57,6 @@ export default function CreateCategoriesForm() {
       <DialogTrigger asChild>
         <Button
           className="items-center gap-1 px-4"
-          size={"sm"}
         >
           <PlusIcon size={16} strokeWidth={3} />
           <span className="px-2 font-bold">Add data</span>
