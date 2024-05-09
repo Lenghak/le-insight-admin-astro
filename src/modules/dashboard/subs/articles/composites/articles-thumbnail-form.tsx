@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@ui/form";
-import { Input } from "@ui/input";
 import { Separator } from "@ui/separator";
 import { Textarea } from "@ui/textarea";
 import {
@@ -23,16 +22,14 @@ import {
 } from "@ui/tooltip";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { PlateCloudEditor } from "@udecode/plate-cloud";
-import { useEditorRef, type PlateEditor } from "@udecode/plate-common";
 import { AsteriskIcon, CircleHelpIcon } from "lucide-react";
 import type React from "react";
-import { useCallback } from "react";
+import { memo, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 type ArticlesThumbnailFormProps = {
-  editor?: PlateEditor | PlateCloudEditor;
   trigger?: React.ReactNode;
 };
 
@@ -45,32 +42,32 @@ const formSchema = z.object({
     .string()
     .min(50, "Description must be at least 50 characters")
     .max(2048, "Description must be less than 2048 characters"),
+  thumbnail: z.string({ required_error: "Thumbnail cannot be empty" }).url(),
 });
 
-export default function ArticlesThumbnailForm({
+export default memo(function ArticlesThumbnailForm({
   trigger,
 }: ArticlesThumbnailFormProps) {
-  const editor = useEditorRef();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title:
-        (editor.children.find((v) => v.type === "h1")?.children[0]
-          .text as string) ?? "",
-      description:
-        (editor.children.find((v) => v.type === "p")?.children[0]
-          .text as string) ?? "",
+      title: "",
+      description: "",
+      thumbnail: "",
     },
   });
 
-  const onSubmit = useCallback(
-    () => (values: z.infer<typeof formSchema>) => {
-      // Do something with the form values.
-      // ✅ This will be type-safe and validated.
-      console.log(values);
-    },
-    [],
-  );
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  };
+
+  useEffect(() => {
+    if (form.getFieldState("thumbnail").error) {
+      toast.error(form.getFieldState("thumbnail").error?.message, {
+        closeButton: true,
+      });
+    }
+  }, [form.getFieldState("thumbnail").error]);
 
   return (
     <Drawer>
@@ -78,16 +75,20 @@ export default function ArticlesThumbnailForm({
       <DrawerContent className="h-5/6 w-full bg-card px-32 pb-12">
         <section className="mt-12 flex h-full w-full flex-col items-center justify-center gap-12 sm:flex-row">
           <div className="flex h-full w-full flex-col gap-4">
-            <FileUploadForm className="h-full [&>div]:max-h-none [&>div]:bg-background [&>div]:p-12" />
+            <FileUploadForm
+              formFieldKey={formSchema.keyof().Enum.thumbnail}
+              outerForm={form}
+              className="h-full [&>div]:max-h-none [&>div]:bg-background [&>div]:font-serif"
+            />
 
             <Alert className="items-center border-none bg-transparent pr-8">
               <AsteriskIcon className="mt-0.5 size-3" />
-              <AlertTitle className="font-mono text-sm font-medium italic">
+              <AlertTitle className="font-serif text-sm italic">
                 You can upload one file only per thumbnail with 5MB size
                 limited.{" "}
                 <Button
                   variant={"link"}
-                  className="size-fit p-0 px-1 text-xs font-bold italic"
+                  className="size-fit p-0 px-1 italic"
                 >
                   Learn more
                 </Button>
@@ -98,22 +99,22 @@ export default function ArticlesThumbnailForm({
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="h-full w-2/3 space-y-8"
+              className="h-full w-2/3 space-y-8 font-serif"
             >
               <FormField
                 control={form.control}
                 name="title"
                 render={({ field }) => (
-                  <FormItem className="font-mono">
+                  <FormItem>
                     <FormLabel className="font-bold">Preview Title</FormLabel>
                     <FormControl>
-                      <Input
-                        className="rounded-xl bg-background px-6 font-semibold"
+                      <Textarea
+                        className="max-h-12 rounded-xl bg-background px-6 py-4 font-semibold"
                         placeholder="Enter preview title..."
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className="font-semibold" />
+                    <FormMessage className="font-semibold italic" />
                   </FormItem>
                 )}
               />
@@ -122,26 +123,26 @@ export default function ArticlesThumbnailForm({
                 control={form.control}
                 name="description"
                 render={({ field }) => (
-                  <FormItem className="font-mono">
+                  <FormItem>
                     <FormLabel className="font-bold">
                       Preview Description
                     </FormLabel>
                     <FormControl>
                       <Textarea
-                        className="max-h-5 rounded-xl bg-background px-6 py-4 font-semibold"
+                        className="max-h-12 rounded-xl bg-background px-6 py-4 font-semibold"
                         placeholder="Enter preview description..."
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className="font-semibold" />
+                    <FormMessage className="font-semibold italic" />
                   </FormItem>
                 )}
               />
 
-              <FormItem className="font-mono">
+              <FormItem>
                 <FormLabel className="font-bold">Category</FormLabel>
                 <Separator />
-                <FormDescription className="font-mono">
+                <FormDescription>
                   Our system will pick a category for you based on your content.
                   Once you sumbit, you will see the category badge attachd to
                   your articles.
@@ -151,14 +152,14 @@ export default function ArticlesThumbnailForm({
               <div className="flex w-full items-center justify-between">
                 <Button
                   type="submit"
-                  className="px-6 font-bold"
+                  className="px-6 font-sans font-bold"
                 >
                   Submit
                 </Button>
 
                 <TooltipProvider>
                   <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger asChild>
                       <Button
                         variant={"ghost"}
                         size={"icon"}
@@ -169,7 +170,7 @@ export default function ArticlesThumbnailForm({
                     </TooltipTrigger>
                     <TooltipContent className="max-w-64">
                       <Alert className="items-center border-none bg-transparent p-2">
-                        <AlertTitle className="font-mono text-xs font-bold">
+                        <AlertTitle className="font-medium leading-5">
                           The title and description will be shown in the preview
                           card.
                         </AlertTitle>
@@ -184,4 +185,4 @@ export default function ArticlesThumbnailForm({
       </DrawerContent>
     </Drawer>
   );
-}
+});

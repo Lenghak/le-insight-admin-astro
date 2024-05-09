@@ -1,7 +1,9 @@
-import ArticlesThumbnailForm from "@/modules/dashboard/subs/articles/composites/articles-thumbnail-form";
-import { EDITOR_PLUGINS } from "@/modules/editor/constants/editor-plugins";
-
+import ArticlesThumbnailForm from "@articles/composites/articles-thumbnail-form";
 import { $editingArticle } from "@articles/stores/article-store";
+
+import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
+
+import { Button } from "@ui/button";
 
 import { CommentsPopover } from "@plate-ui/comments-popover";
 import { Editor } from "@plate-ui/editor";
@@ -11,17 +13,21 @@ import { FloatingToolbar } from "@plate-ui/floating-toolbar";
 import { FloatingToolbarButtons } from "@plate-ui/floating-toolbar-buttons";
 import { TooltipProvider } from "@plate-ui/tooltip";
 
-import { Button } from "@/common/components/ui/button";
+import { SpaModeToggle } from "@custom/theme/spa-mode-toggle";
 
 import { useStore } from "@nanostores/react";
 import { CommentsProvider } from "@udecode/plate-comments";
-import { Plate, PlateController } from "@udecode/plate-common";
+import {
+  Plate,
+  PlateController
+} from "@udecode/plate-common";
 import { CheckIcon } from "lucide-react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 export default function ArticlesEditor() {
   const initialValue = useStore($editingArticle);
+
 
   return (
     <TooltipProvider>
@@ -56,16 +62,18 @@ export default function ArticlesEditor() {
               </FloatingToolbar>
               <CommentsPopover />
 
-              <ArticlesThumbnailForm
-                trigger={
-                  <div className="group fixed bottom-6 right-0">
-                    <Button className="relative -right-20 w-fit gap-4 px-6 font-bold transition-all group-hover:right-6">
+              <div className="group fixed bottom-6 right-0 flex flex-col items-end gap-6 pr-2">
+                <SpaModeToggle variant={"outline"}/>
+
+                <ArticlesThumbnailForm
+                  trigger={
+                    <Button className="relative -right-20 w-full gap-4 rounded-r-none px-6 font-bold transition-all group-hover:-right-2">
                       <CheckIcon className="size-4" />
                       Submit
                     </Button>
-                  </div>
-                }
-              />
+                  }
+                />
+              </div>
             </Plate>
           </CommentsProvider>
         </DndProvider>

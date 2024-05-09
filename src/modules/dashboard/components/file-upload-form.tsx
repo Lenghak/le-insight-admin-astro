@@ -6,27 +6,50 @@ import { Input } from "@ui/input";
 import { Muted } from "@ui/muted";
 import { Separator } from "@ui/separator";
 
+import { Image } from "@custom/image";
+
+import { Skeleton } from "@/common/components/ui/skeleton";
+
 import useUploadFileService from "@/common/hooks/use-upload-file-service";
 
 import { cn } from "@/common/lib/utils";
 
+import type { UploadSuccessEvent } from "@portive/client";
 import { ImagesIcon } from "lucide-react";
-import { Fragment, type HTMLAttributes } from "react";
+import { Fragment, useMemo, type HTMLAttributes } from "react";
+import type { InternalFieldName, UseFormReturn } from "react-hook-form";
 
-type FileUploadFormProps = HTMLAttributes<HTMLFormElement>;
+type FileUploadFormProps = HTMLAttributes<HTMLFormElement> & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  outerForm?: UseFormReturn<any>;
+  formFieldKey?: InternalFieldName;
+};
 
 export default function FileUploadForm({
   className,
+  outerForm,
+  formFieldKey,
   ...props
 }: FileUploadFormProps) {
-  const { mutateAsync: upload, isIdle } = useUploadFileService();
+  const { mutateAsync: upload, isPending } = useUploadFileService();
   const { dropzone, form } = useFileUpload({
     async onDropAccepted(files, _event) {
-      await upload({
-        file: files[0],
-      });
+      try {
+        const res = (await upload({
+          file: files[0],
+        })) as unknown as UploadSuccessEvent;
+        form.setValue("file", res);
+        formFieldKey
+          ? outerForm?.setValue(formFieldKey, res.hostedFile.url)
+          : undefined;
+      } catch (err) {}
     },
   });
+
+  const file = useMemo(
+    () => form.getValues("file") as UploadSuccessEvent,
+    [form.getValues("file")],
+  );
 
   return (
     <Form {...form}>
@@ -36,57 +59,33 @@ export default function FileUploadForm({
       >
         <div
           className={cn(
-            "group relative flex h-full w-full items-center justify-center rounded-md border-2 border-dashed border-border border-opacity-50 p-6 hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
+            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-border border-opacity-50 hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
             dropzone.isDragAccept ? "border-success hover:border-success" : "",
             dropzone.isDragReject
               ? "cursor-not-allowed border-destructive hover:border-destructive"
               : "",
+            file?.hostedFile?.url ? "border-0 outline-0" : "",
           )}
           {...dropzone.getRootProps()}
         >
-          {isIdle && (
-            <Fragment>
-              <Input
-                type="file"
-                name="files"
-                {...dropzone.getInputProps()}
-              />
+          <Fragment>
+            <Input
+              type="file"
+              name="files"
+              {...dropzone.getInputProps()}
+            />
 
-              <div
-                className={
-                  "flex h-full w-full flex-col items-center justify-center gap-4 text-center"
-                }
-              >
-                <ImagesIcon
-                  size={64}
-                  className={cn(
-                    "text-muted-foreground",
-                    dropzone.isDragAccept ? "text-success" : "",
-                    dropzone.isDragReject ? "text-destructive" : "",
-                    dropzone.isDragActive ? "animate-bounce" : "",
-                  )}
+            {isPending && <Skeleton className="absolute h-full w-full" />}
+
+            {!isPending &&
+            file?.clientFile?.objectUrl &&
+            file?.clientFile?.type === "image" ? (
+              <Fragment>
+                <Image
+                  src={file?.hostedFile?.url}
+                  alt="Thumbnail"
+                  className="peer h-full w-full rounded-xl object-cover group-hover:opacity-50"
                 />
-
-                <Muted
-                  className={cn(
-                    "max-w-56 font-medium transition-all",
-                    dropzone.isDragActive ? "hidden" : "",
-                  )}
-                >
-                  Drop an drop an image file here to upload.
-                </Muted>
-
-                <div className="flex w-full items-center justify-center gap-4">
-                  <Separator
-                    className="w-full max-w-10"
-                    orientation="horizontal"
-                  />
-                  <Muted className="font-bold">Or</Muted>
-                  <Separator
-                    className="w-full max-w-10"
-                    orientation="horizontal"
-                  />
-                </div>
 
                 <Button
                   onClick={(e) => {
@@ -94,13 +93,63 @@ export default function FileUploadForm({
                     dropzone.open();
                   }}
                   type="button"
-                  className="px-6 font-bold"
+                  className="invisible absolute px-6 font-sans font-bold transition-all hover:visible peer-hover:visible"
                 >
-                  Browse File
+                  Replace File
                 </Button>
-              </div>
-            </Fragment>
-          )}
+              </Fragment>
+            ) : (
+              !isPending && (
+                <div
+                  className={
+                    "flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center"
+                  }
+                >
+                  <ImagesIcon
+                    size={64}
+                    className={cn(
+                      "text-muted-foreground",
+                      dropzone.isDragAccept ? "text-success" : "",
+                      dropzone.isDragReject ? "text-destructive" : "",
+                      dropzone.isDragActive ? "animate-bounce" : "",
+                    )}
+                  />
+
+                  <Muted
+                    className={cn(
+                      "max-w-56 font-medium transition-all",
+                      dropzone.isDragActive ? "hidden" : "",
+                    )}
+                  >
+                    Drop an drop an image file here to upload.
+                  </Muted>
+
+                  <div className="flex w-full items-center justify-center gap-4">
+                    <Separator
+                      className="w-full max-w-10"
+                      orientation="horizontal"
+                    />
+                    <Muted className="font-bold">Or</Muted>
+                    <Separator
+                      className="w-full max-w-10"
+                      orientation="horizontal"
+                    />
+                  </div>
+
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      dropzone.open();
+                    }}
+                    type="button"
+                    className="px-6 font-sans font-bold"
+                  >
+                    Browse File
+                  </Button>
+                </div>
+              )
+            )}
+          </Fragment>
         </div>
       </form>
     </Form>

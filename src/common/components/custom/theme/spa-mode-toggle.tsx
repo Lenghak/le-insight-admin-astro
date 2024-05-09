@@ -1,6 +1,6 @@
 import { useTheme } from "@/modules/dashboard/providers/theme-provider";
 
-import { Button } from "@ui/button";
+import { Button, type ButtonProps } from "@ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +10,7 @@ import {
 
 import { MonitorIcon, MoonStarIcon, SunIcon } from "lucide-react";
 
-export function SpaModeToggle() {
+export function SpaModeToggle({...props} : ButtonProps) {
   const { setTheme } = useTheme();
 
   return (
@@ -19,6 +19,7 @@ export function SpaModeToggle() {
         <Button
           variant="ghost"
           size="icon"
+          {...props}
         >
           <SunIcon className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <MoonStarIcon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

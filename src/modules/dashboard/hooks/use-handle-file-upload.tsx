@@ -1,9 +1,16 @@
+import { PortiveResponseSchema } from "@/common/types/portive-type";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useDropzone, type DropzoneOptions } from "react-dropzone";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { z } from "zod";
 
 type FileUploadOptions =
   DropzoneOptions | undefined
+
+const FileSchema = z.object({
+  file : PortiveResponseSchema
+}) 
 
 export default function useFileUploadHandler({ ...options }: FileUploadOptions) {
   const dropzone = useDropzone({
@@ -18,8 +25,8 @@ export default function useFileUploadHandler({ ...options }: FileUploadOptions) 
     ...options
   });
 
-  const form = useForm({
-    defaultValues: {},
+  const form = useForm<z.infer<typeof FileSchema>>({
+    resolver : zodResolver(FileSchema),
   });
 
   return { dropzone, form };
