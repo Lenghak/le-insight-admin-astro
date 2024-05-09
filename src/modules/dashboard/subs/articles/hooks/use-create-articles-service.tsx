@@ -1,9 +1,11 @@
+import { articleKeys } from "@/modules/dashboard/subs/articles/constants/query-keys";
+
+import createCategoriesAPI from "@categories/services/post-create-categories-api";
+import type { CategoriesCreateType } from "@categories/types/categories-create-type";
+
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { $queryClient } from "@/common/stores/api-store";
-import { categoriesKeys } from "@categories/constants/query-keys";
-import createCategoriesAPI from "@categories/services/post-create-categories-api";
-import type { CategoriesCreateType } from "@categories/types/categories-create-type";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -15,7 +17,7 @@ export default function useCreateCategoryService() {
 
   return useMutation(
     {
-      mutationKey: [...categoriesKeys.detail(`create`), instance],
+      mutationKey: [...articleKeys.detail(`create`), instance],
       mutationFn: async (data: CategoriesCreateType) =>
         await createCategoriesAPI(data),
       onError: (error) => {
@@ -42,20 +44,20 @@ export default function useCreateCategoryService() {
         });
       },
       onSuccess: () => {
-        toast.success("Data modified successfully", {
+        toast.success("Articles created successfully", {
           duration: 10 * 1000,
           description:
-            "The new data has been successfully updated. You may see the result very shortly.",
+            "The new data has been successfully uploaded. You may see the result very shortly.",
           closeButton: true,
         });
       },
 
       onSettled: async () => {
         await queryClient.invalidateQueries({
-          queryKey: [...categoriesKeys.all],
+          queryKey: [...articleKeys.all],
           exact: false,
           stale: true,
-        });   
+        });
       },
     },
     queryClient,

@@ -1,7 +1,7 @@
 import DashboardTitle from "@dashboard/composites/dashboard-title";
 
+import ArticlesEditorSheet from "@/modules/dashboard/subs/articles/composites/articles-editor-sheet";
 import ArticlesCard from "@articles/composites/articles-card";
-import ArticlesCreateForm from "@articles/composites/articles-create-form";
 
 export default function ArticlesRoute() {
   return (
@@ -13,7 +13,7 @@ export default function ArticlesRoute() {
         />
 
         <div className="flex items-center justify-center gap-4">
-          <ArticlesCreateForm />
+          <ArticlesEditorSheet />
         </div>
       </div>
 

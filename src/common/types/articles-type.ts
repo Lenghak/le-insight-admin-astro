@@ -11,6 +11,8 @@ export const ArticlesVisiblityEnum = z.enum([
 export const ArticlesSchema = z.object({
   id: z.string().uuid(),
   user_id: z.string(),
+  preview_title: z.string(),
+  preview_description: z.string(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
   content: z.string().nullable(),

@@ -1,7 +1,7 @@
 import useFileUpload from "@dashboard/hooks/use-handle-file-upload";
 
 import { Button } from "@ui/button";
-import { Form } from "@ui/form";
+import { Form, FormLabel } from "@ui/form";
 import { Input } from "@ui/input";
 import { Muted } from "@ui/muted";
 import { Separator } from "@ui/separator";
@@ -47,24 +47,40 @@ export default function FileUploadForm({
   });
 
   const file = useMemo(
-    () => form.getValues("file") as UploadSuccessEvent,
+    () => {
+      outerForm?.clearErrors()
+      return form.getValues("file") as UploadSuccessEvent},
     [form.getValues("file")],
   );
 
+  const isInputError = outerForm?.getFieldState(formFieldKey ?? "")?.error
+    ?.message;
+    
   return (
     <Form {...form}>
       <form
-        className={cn("relative min-h-[20rem] w-full space-y-6", className)}
+        className={cn("relative min-h-[20rem] w-full space-y-2", className)}
         {...props}
       >
+        <FormLabel
+          className={cn(
+            "font-serif font-bold",
+            isInputError ? "text-destructive" : "",
+          )}
+        >
+          Thumbnail
+        </FormLabel>
+
         <div
           className={cn(
-            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-border border-opacity-50 hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
-            dropzone.isDragAccept ? "border-success hover:border-success" : "",
-            dropzone.isDragReject
-              ? "cursor-not-allowed border-destructive hover:border-destructive"
+            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
+            dropzone.isDragAccept
+              ? "border-successive hover:border-successive"
               : "",
-            file?.hostedFile?.url ? "border-0 outline-0" : "",
+            dropzone.isDragReject || isInputError
+              ? "hover:border-destructive"
+              : "",
+            file?.hostedFile?.url ? "border-solid outline-0" : "",
           )}
           {...dropzone.getRootProps()}
         >
@@ -109,8 +125,10 @@ export default function FileUploadForm({
                     size={64}
                     className={cn(
                       "text-muted-foreground",
-                      dropzone.isDragAccept ? "text-success" : "",
-                      dropzone.isDragReject ? "text-destructive" : "",
+                      dropzone.isDragAccept ? "text-successive" : "",
+                      dropzone.isDragReject || isInputError
+                        ? "animate-wiggle text-destructive"
+                        : "",
                       dropzone.isDragActive ? "animate-bounce" : "",
                     )}
                   />
@@ -118,7 +136,10 @@ export default function FileUploadForm({
                   <Muted
                     className={cn(
                       "max-w-56 font-medium transition-all",
-                      dropzone.isDragActive ? "hidden" : "",
+                      dropzone.isDragAccept ? "text-successive" : "",
+                      dropzone.isDragReject || isInputError
+                        ? "text-destructive"
+                        : "",
                     )}
                   >
                     Drop an drop an image file here to upload.

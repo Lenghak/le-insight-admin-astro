@@ -1,4 +1,4 @@
-import ArticlesThumbnailForm from "@articles/composites/articles-thumbnail-form";
+import ArticlesThumbnailForm from "@/modules/dashboard/subs/articles/composites/articles-create-form";
 import { $editingArticle } from "@articles/stores/article-store";
 
 import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
@@ -66,12 +66,12 @@ export default function ArticlesEditor() {
 
                 <ArticlesThumbnailForm
                   trigger={
-                    <Button className="group/button relative min-h-9 w-full min-w-9 items-center justify-center gap-0 p-0 font-bold transition-all hover:w-auto hover:gap-4 hover:px-6">
+                    <Button className="group/button relative min-h-9 w-full min-w-9 items-center justify-center gap-0 p-0 font-bold transition-all duration-300 hover:w-auto hover:gap-4 hover:px-6">
                       <CheckIcon
                         className="size-4"
                         strokeWidth={3}
                       />
-                      <span className="invisible w-0 transition-all group-hover/button:visible group-hover/button:w-auto">
+                      <span className="opacity-0 w-0 group-hover/button:w-auto scale-0 transition-all group-hover/button:opacity-100 group-hover/button:scale-100">
                         Submit
                       </span>
                     </Button>
