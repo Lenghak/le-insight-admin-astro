@@ -12,8 +12,8 @@ export default function CategoriesTable() {
       <CategoriesDataTable
         columns={categoriesColumns}
         data={res?.data.data ?? []}
-        className="mt-4 w-full"
         meta={res?.data?.meta}
+        className="mt-4 w-full"
       />
     </Fragment>
   );

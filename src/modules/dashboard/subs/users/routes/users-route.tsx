@@ -8,7 +8,7 @@ import UsersTable from "@users/presenters/users-table";
 
 export default function UsersRoute() {
   return (
-    <section className="p-6 pb-4 pr-4">
+    <section className="flex h-full w-full flex-col p-6 pb-4 pr-4">
       <div className="flex items-end justify-between">
         <DashboardTitle
           title="Users"

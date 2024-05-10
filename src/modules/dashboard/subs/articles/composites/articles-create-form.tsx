@@ -112,8 +112,8 @@ export default function ArticlesCreateForm({
   return (
     <Drawer>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-      <DrawerContent className="h-5/6 w-full bg-card px-32 pb-12">
-        <section className="mt-12 flex h-full w-full flex-col items-center justify-center gap-12 sm:flex-row">
+      <DrawerContent className="h-[90%] w-full bg-card px-32 pb-12">
+        <section className="pt-8 flex h-full w-full flex-col items-center justify-center gap-12 sm:flex-row">
           <div className="flex h-full w-full flex-col gap-4">
             <FileUploadForm
               formFieldKey={formSchema.keyof().Enum.thumbnail}

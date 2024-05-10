@@ -62,7 +62,7 @@ export default function CategoriesDataTable<TData, TValue>({
 
       <div
         className={cn(
-          "flex w-dvw flex-col justify-between rounded-2xl",
+          "flex min-h-96 h-full w-dvw flex-col justify-between rounded-2xl",
           className,
         )}
       >

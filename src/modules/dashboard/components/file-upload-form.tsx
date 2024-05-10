@@ -46,16 +46,13 @@ export default function FileUploadForm({
     },
   });
 
-  const file = useMemo(
-    () => {
-      outerForm?.clearErrors()
-      return form.getValues("file") as UploadSuccessEvent},
-    [form.getValues("file")],
-  );
+  const file = useMemo(() => {
+    return form.getValues("file") as UploadSuccessEvent;
+  }, [form.getValues("file")]);
 
   const isInputError = outerForm?.getFieldState(formFieldKey ?? "")?.error
     ?.message;
-    
+
   return (
     <Form {...form}>
       <form
@@ -73,7 +70,7 @@ export default function FileUploadForm({
 
         <div
           className={cn(
-            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
+            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border-2 border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
             dropzone.isDragAccept
               ? "border-successive hover:border-successive"
               : "",
@@ -93,12 +90,10 @@ export default function FileUploadForm({
 
             {isPending && <Skeleton className="absolute h-full w-full" />}
 
-            {!isPending &&
-            file?.clientFile?.objectUrl &&
-            file?.clientFile?.type === "image" ? (
+            {!isPending && outerForm?.getValues(formFieldKey ?? "") ? (
               <Fragment>
                 <Image
-                  src={file?.hostedFile?.url}
+                  src={(outerForm?.getValues(formFieldKey ?? "") as string) ?? file?.hostedFile?.url}
                   alt="Thumbnail"
                   className="peer h-full w-full rounded-xl object-cover group-hover:opacity-50"
                 />

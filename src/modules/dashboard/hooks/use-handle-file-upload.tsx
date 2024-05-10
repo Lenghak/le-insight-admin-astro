@@ -27,6 +27,8 @@ export default function useFileUploadHandler({ ...options }: FileUploadOptions) 
 
   const form = useForm<z.infer<typeof FileSchema>>({
     resolver : zodResolver(FileSchema),
+    shouldUnregister : false,
+    reValidateMode : "onChange"
   });
 
   return { dropzone, form };

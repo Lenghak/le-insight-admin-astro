@@ -60,11 +60,11 @@ export default memo(function UsersDataTable<TData, TValue>({
 
       <div
         className={cn(
-          "flex w-dvw flex-col justify-between rounded-3xl",
+          "flex min-h-96 h-full w-dvw flex-col justify-between rounded-3xl",
           className,
         )}
       >
-        <Table className="h-full border-separate border-spacing-y-1 [&_tr]:border-b-0">
+        <Table className="border-separate border-spacing-y-1 [&_tr]:border-b-0">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
