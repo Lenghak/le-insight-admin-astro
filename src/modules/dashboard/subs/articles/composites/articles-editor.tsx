@@ -41,7 +41,6 @@ export default function ArticlesEditor() {
               plugins={EDITOR_PLUGINS}
               initialValue={initialValue}
               normalizeInitialValue
-              onChange={(value) => $editingArticle.set(value)}
             >
               <FixedToolbar className="fixed left-auto top-4 mx-auto h-fit min-h-14 w-[calc(100%_-_6rem)] place-self-center self-center overflow-y-hidden rounded-full border bg-card p-1 px-2 shadow-sm">
                 <FixedToolbarButtons />

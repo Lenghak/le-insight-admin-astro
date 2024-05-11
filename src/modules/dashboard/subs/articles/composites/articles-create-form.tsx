@@ -1,7 +1,6 @@
-import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
-import { setDashboardDialogOpen } from "@/modules/dashboard/stores/dashboard-action-dialog-store";
-
 import FileUploadForm from "@dashboard/components/file-upload-form";
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
+import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
 
 import useCreateArticleService from "@articles/hooks/use-create-articles-service";
 
@@ -36,7 +35,6 @@ import { AsteriskIcon, CircleHelpIcon } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 import { ArticlesVisiblityEnum } from "@/common/types/articles-type";
@@ -77,7 +75,6 @@ export default function ArticlesCreateForm({
   });
 
   const { mutateAsync: uploadArticle, isSuccess } = useCreateArticleService();
-  const navigate = useNavigate();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (isEditorMounted) {
@@ -105,7 +102,6 @@ export default function ArticlesCreateForm({
         id: DASHBOARD_DIALOG_ID.articles.create,
         isOpen: false,
       });
-      navigate("/dashboard/articles");
     }
   }, [isSuccess]);
 
@@ -113,7 +109,7 @@ export default function ArticlesCreateForm({
     <Drawer>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent className="h-[90%] w-full bg-card px-32 pb-12">
-        <section className="pt-8 flex h-full w-full flex-col items-center justify-center gap-12 sm:flex-row">
+        <section className="flex h-full w-full flex-col items-center justify-center gap-12 pt-8 sm:flex-row">
           <div className="flex h-full w-full flex-col gap-4">
             <FileUploadForm
               formFieldKey={formSchema.keyof().Enum.thumbnail}
