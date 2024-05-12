@@ -1,11 +1,11 @@
 import DashboardTitle from "@dashboard/composites/dashboard-title";
 
-import ArticlesEditorSheet from "@/modules/dashboard/subs/articles/composites/articles-editor-sheet";
-import ArticlesCard from "@articles/composites/articles-card";
+import ArticlesEditorSheet from "@articles/composites/articles-editor-sheet";
+import ArticlesList from "@articles/presenters/articles-list";
 
 export default function ArticlesRoute() {
   return (
-    <section className="space-y-6 p-6 pb-4 pr-4">
+    <section className="flex h-full flex-col p-6 pb-4 pr-4">
       <div className="flex items-end justify-between">
         <DashboardTitle
           title="Articles"
@@ -18,7 +18,7 @@ export default function ArticlesRoute() {
       </div>
 
       <div className="flex flex-col space-y-4">
-        <ArticlesCard className="max-w-xl bg-transparent" />
+        <ArticlesList />
       </div>
     </section>
   );

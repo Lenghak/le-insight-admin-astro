@@ -1,3 +1,5 @@
+import type { ArticlesListDataType } from "@/modules/dashboard/subs/articles/types/articles-list-type";
+
 import { Badge } from "@ui/badge";
 import { Button, buttonVariants } from "@ui/button";
 import {
@@ -15,6 +17,7 @@ import { Image } from "@custom/image";
 import { ProfileHoverCard } from "@custom/profile";
 import ProfileBadge from "@custom/profile/profile-badge";
 
+import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
 import {
@@ -26,10 +29,16 @@ import {
 } from "lucide-react";
 import React from "react";
 
-export default React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(function ArticlesCard({ className, ...props }, ref) {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+  article: ArticlesListDataType;
+};
+
+export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
+  { className, article, ...props },
+  ref,
+) {
+  const author = article?.article_author;
+
   return (
     <Card
       ref={ref}
@@ -45,8 +54,9 @@ export default React.forwardRef<
           {/* Profile */}
           <ProfileHoverCard asChild>
             <ProfileBadge
-              firstName="Lenghak"
-              lastName="Hok"
+              firstName={author?.profile?.first_name}
+              lastName={author?.profile?.last_name}
+              imageURL={author?.profile.image_url ?? ""}
               avatarClassName="size-8"
               avatarFallBackClassName="bg-accent"
               metaClassName="text-sm"
@@ -58,12 +68,12 @@ export default React.forwardRef<
         </div>
 
         <CardTitle className="line-clamp-2 text-xl font-black">
-          Lorem ipsum dolor sit amet consectetur.
+          {article?.preview_title}
         </CardTitle>
 
         <div className="flex w-full items-center gap-8">
           <Muted className="text-xs font-semibold uppercase tracking-widest">
-            April 20, 2024
+            {article?.created_at ? formatDate(article?.created_at) : "-"}
           </Muted>
 
           <DotIcon size={16} />
@@ -76,19 +86,17 @@ export default React.forwardRef<
           </Badge>
         </div>
 
-        <CardDescription className="line-clamp-3 font-serif text-base font-medium">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident
-          soluta fugiat tempora accusamus officia pariatur harum saepe odio
-          vitae eligendi?
+        <CardDescription className="line-clamp-2 font-serif text-base font-medium">
+          {article?.preview_description}
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="flex aspect-square h-full w-fit max-w-40 items-center justify-center p-0">
+      <CardContent className="flex aspect-square h-full min-h-40 w-auto max-w-40 items-center justify-center p-0">
         {/* Thumbnail */}
         <Image
-          src="https://source.unsplash.com/user/c_v_r/800x800"
-          alt="Article Thumbnail"
-          className="aspect-square h-full max-h-40 max-w-40 rounded-xl object-cover"
+          src={article?.thumbnail ?? ""}
+          alt={article?.preview_title}
+          className="aspect-square h-full max-h-40 w-full max-w-40 rounded-xl object-cover"
         />
       </CardContent>
 

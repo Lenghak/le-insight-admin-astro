@@ -15,6 +15,7 @@ export const ArticlesSchema = z.object({
   preview_description: z.string(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
+  thumbnail: z.string().url().nullable(),
   content_html: z.string().nullable(),
   content_plain_text: z.string().nullable(),
   visibility: ArticlesVisiblityEnum,

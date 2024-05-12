@@ -28,7 +28,9 @@ export default function Image({ className, ...props }: ImageProps) {
       />
 
       {!isImageLoaded && (
-        <Skeleton className={cn("h-full w-full rounded-none", className)} />
+        <Skeleton
+          className={cn("h-full w-full", className)}
+        />
       )}
     </Fragment>
   );

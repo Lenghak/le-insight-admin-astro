@@ -7,7 +7,7 @@ import CategoriesTable from "@categories/presenters/categories-table";
 
 export default function CategoriesRoute() {
   return (
-    <section className="flex flex-col p-6 pb-4 pr-4  h-full">
+    <section className="flex h-full flex-col p-6 pb-4 pr-4">
       <div className="flex items-end justify-between">
         <DashboardTitle
           title="Categories"
