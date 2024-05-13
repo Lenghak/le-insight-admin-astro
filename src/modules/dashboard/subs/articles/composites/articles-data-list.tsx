@@ -1,9 +1,12 @@
-
 import ArticlesCard from "@/modules/dashboard/subs/articles/composites/articles-card";
+
 import type { ArticlesListDataType } from "@articles/types/articles-list-type";
 
-export default function ArticleDataList({ articles }: { articles?: ArticlesListDataType[] }) {
-  console.log(articles)
+export default function ArticleDataList({
+  articles,
+}: {
+  articles?: ArticlesListDataType[];
+}) {
   return (
     <section className="grid-rows-auto grid h-full w-full grid-cols-1 gap-x-12 divide-y lg:grid-cols-2">
       {articles?.map((article, index) => (

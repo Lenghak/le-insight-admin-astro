@@ -66,7 +66,10 @@ export default function ArticlesEditor() {
 
                 <ArticlesThumbnailForm
                   trigger={
-                    <Button size="icon" className="hover:rotate-[360deg] transition-all rotate-0">
+                    <Button
+                      size="icon"
+                      className="rotate-0 transition-all hover:rotate-[360deg]"
+                    >
                       <CheckIcon
                         className="size-4"
                         strokeWidth={3}
