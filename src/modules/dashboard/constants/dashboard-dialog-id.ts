@@ -1,7 +1,6 @@
 export const DASHBOARD_DIALOG_ID = {
   articles: {
-    create: `ARTICLES_CREATE`,
-    edit: `ARTICLES_EDIT`,
+    editor: `ARTICLES_EDITOR`,
     delete: `ARTICLES_DELETE`,
   },
   categories: {

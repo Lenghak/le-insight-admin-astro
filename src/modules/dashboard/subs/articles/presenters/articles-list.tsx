@@ -1,12 +1,16 @@
-import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 import ArticleDataList from "@articles/composites/articles-data-list";
 import ArticlesFilters from "@articles/composites/articles-filters";
 import ArticlesTabs from "@articles/composites/articles-tabs";
 import useGetArticlesListService from "@articles/hooks/use-get-articles-service";
 
-import { Fragment } from "react";
+import React, { Fragment, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
+
+const ArticleArchivesForm = React.lazy(
+  () => import("@articles/composites/articles-archives-form"),
+);
 
 type DateRange = string | Date | null | undefined;
 
@@ -32,13 +36,12 @@ export default function ArticlesList() {
   const { data: res } = useGetArticlesListService({
     page,
     q,
-    status: status === "ALL" ? undefined : status as ArticlesVisiblityEnumType,
+    status:
+      status === "ALL" ? undefined : (status as ArticlesVisiblityEnumType),
     limit,
     from: (rfrom as Date)?.toISOString(),
     to: (rto as Date)?.toISOString(),
   });
-
-  console.log(res);
 
   return (
     <Fragment>
@@ -48,6 +51,10 @@ export default function ArticlesList() {
       </div>
 
       <ArticleDataList articles={res?.data?.data} />
+
+      <Suspense>
+        <ArticleArchivesForm />
+      </Suspense>
     </Fragment>
   );
 }

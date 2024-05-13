@@ -67,7 +67,7 @@ export default function DataTableSearch({
                       "absolute left-2 flex size-9 items-center justify-center",
                     )}
                   >
-                    <SearchIcon className="h-4 w-4 stroke-[3]" />
+                    <SearchIcon className="h-4 w-4" />
                   </div>
 
                   <Input

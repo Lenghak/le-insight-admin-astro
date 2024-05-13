@@ -1,3 +1,4 @@
+import ArticlesCardMoreDropdown from "@/modules/dashboard/subs/articles/composites/articles-card-more-dropdown";
 import type { ArticlesListDataType } from "@/modules/dashboard/subs/articles/types/articles-list-type";
 
 import { Badge } from "@ui/badge";
@@ -24,7 +25,6 @@ import {
   BookmarkIcon,
   DotIcon,
   MessageCircle,
-  MoreHorizontalIcon,
   ThumbsUpIcon,
 } from "lucide-react";
 import React from "react";
@@ -37,6 +37,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
   { className, article, ...props },
   ref,
 ) {
+  // const sheetState = useStore($dashboardDialogStore);
   const author = article?.article_author;
 
   return (
@@ -151,13 +152,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
           </Button>
 
           {/* More */}
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-          >
-            <span className="sr-only">More Options</span>
-            <MoreHorizontalIcon className="size-5" />
-          </Button>
+          <ArticlesCardMoreDropdown article={article} />
         </div>
       </CardFooter>
     </Card>

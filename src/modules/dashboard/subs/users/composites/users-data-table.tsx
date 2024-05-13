@@ -1,3 +1,5 @@
+import ErrorSection from "@/modules/error/components/error-section";
+
 import UsersFilters from "@users/composites/users-filters";
 import UsersTabs from "@users/composites/users-tabs";
 
@@ -19,8 +21,9 @@ import {
   getSortedRowModel,
   useReactTable,
   type ColumnDef,
-  type SortingState
+  type SortingState,
 } from "@tanstack/react-table";
+import { BoneIcon } from "lucide-react";
 import React, { Fragment, memo } from "react";
 
 import type { PaginationMetaType } from "@/common/types/pagination-type";
@@ -60,7 +63,7 @@ export default memo(function UsersDataTable<TData, TValue>({
 
       <div
         className={cn(
-          "flex min-h-96 h-full w-dvw flex-col justify-between rounded-3xl",
+          "flex h-full min-h-96 w-dvw flex-col justify-between rounded-3xl",
           className,
         )}
       >
@@ -80,9 +83,9 @@ export default memo(function UsersDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </TableHead>
                   );
                 })}
@@ -118,7 +121,18 @@ export default memo(function UsersDataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  <ErrorSection
+                    img={
+                      <BoneIcon
+                        size={96}
+                        strokeWidth={2}
+                        className="mb-4"
+                      />
+                    }
+                    title="No users found!"
+                    className="col-span-full row-span-full h-[50vh]"
+                    description="There's no users found. Stay tune or browse more keywords for better results."
+                  />
                 </TableCell>
               </TableRow>
             )}

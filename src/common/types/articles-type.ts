@@ -18,6 +18,7 @@ export const ArticlesSchema = z.object({
   thumbnail: z.string().url().nullable(),
   content_html: z.string().nullable(),
   content_plain_text: z.string().nullable(),
+  content_editor: z.string().nullable(),
   visibility: ArticlesVisiblityEnum,
   visit_count: z.number(),
   like_count: z.number(),

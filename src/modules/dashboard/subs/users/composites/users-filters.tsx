@@ -41,7 +41,7 @@ export default function UsersFilters<TData>({
         label="Sex"
         trigger={
           <div className="flex items-center gap-4">
-            <FilterIcon className="size-4 stroke-[3]" />
+            <FilterIcon className="size-4" />
             <span className="pr-1 text-muted-foreground">Sex</span>
           </div>
         }

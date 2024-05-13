@@ -24,13 +24,13 @@ export function DateTableDatePicker({
   const [date, setDate] = React.useState<DateRange | undefined>(
     validRange === 1
       ? {
-          from: defaultFrom,
-          to: defaultTo,
-        }
+        from: defaultFrom,
+        to: defaultTo,
+      }
       : {
-          from: undefined,
-          to: undefined,
-        },
+        from: undefined,
+        to: undefined,
+      },
   );
 
   React.useEffect(() => {
@@ -64,7 +64,7 @@ export function DateTableDatePicker({
             <div
               className={cn("ml-1 flex size-9 items-center justify-between")}
             >
-              <CalendarIcon className="h-4 w-4 stroke-[3] text-foreground" />
+              <CalendarIcon className="h-4 w-4 text-foreground" />
             </div>
 
             {date?.from ? (

@@ -35,8 +35,13 @@ export default function ArticlesEditorSheet() {
   useEffect(() => {
     if (alertState.isAlertConfirm) {
       setDashboardDialogOpen({
-        id: DASHBOARD_DIALOG_ID.articles.create,
+        id: DASHBOARD_DIALOG_ID.articles.editor,
         isOpen: false,
+      });
+
+      setAlert({
+        isAlertOpen: false,
+        isAlertConfirm: false,
       });
     }
   }, [alertState]);
@@ -46,19 +51,14 @@ export default function ArticlesEditorSheet() {
       <Sheet
         modal={false}
         open={
-          sheetState.id === DASHBOARD_DIALOG_ID.articles.create &&
+          sheetState.id === DASHBOARD_DIALOG_ID.articles.editor &&
           sheetState.isOpen
         }
         onOpenChange={(open) => {
           if (open || alertState.isAlertConfirm) {
             setDashboardDialogOpen({
-              id: DASHBOARD_DIALOG_ID.articles.create,
+              id: DASHBOARD_DIALOG_ID.articles.editor,
               isOpen: open,
-            });
-
-            setAlert({
-              isAlertOpen: false,
-              isAlertConfirm: false,
             });
           }
 

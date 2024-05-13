@@ -1,10 +1,10 @@
-import { buttonVariants } from "@/common/components/ui/button";
+import { buttonVariants } from "@ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/common/components/ui/tooltip";
+} from "@ui/tooltip";
 
 import { cn } from "@/common/lib/utils";
 
@@ -62,7 +62,7 @@ export default memo(function SideNav({
                   >
                     <link.icon
                       className={cn(
-                        "size-4 group-data-[state=active]:stroke-[3]",
+                        "size-4 group-data-[state=active]:stroke-[2.5]",
                       )}
                     />
                     <span className="sr-only">{link.title}</span>

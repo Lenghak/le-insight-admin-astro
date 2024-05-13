@@ -1,5 +1,4 @@
-import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
-
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import {
   $dashboardDialogStore,
   setDashboardDialogOpen,

@@ -1,3 +1,5 @@
+import ErrorSection from "@/modules/error/components/error-section";
+
 import {
   Table,
   TableBody,
@@ -17,8 +19,9 @@ import {
   getSortedRowModel,
   useReactTable,
   type ColumnDef,
-  type SortingState
+  type SortingState,
 } from "@tanstack/react-table";
+import { FishIcon } from "lucide-react";
 import React from "react";
 import { Fragment } from "react/jsx-runtime";
 
@@ -62,7 +65,7 @@ export default function CategoriesDataTable<TData, TValue>({
 
       <div
         className={cn(
-          "flex min-h-96 h-full w-dvw flex-col justify-between rounded-2xl",
+          "flex h-full min-h-96 w-dvw flex-col justify-between rounded-2xl",
           className,
         )}
       >
@@ -82,9 +85,9 @@ export default function CategoriesDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     </TableHead>
                   );
                 })}
@@ -120,7 +123,18 @@ export default function CategoriesDataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  <ErrorSection
+                    img={
+                      <FishIcon
+                        size={96}
+                        strokeWidth={2}
+                        className="mb-4"
+                      />
+                    }
+                    title="No categories found!"
+                    className="col-span-full row-span-full h-[50vh]"
+                    description="There's no categories found. Stay tune or browse more keywords for better results."
+                  />
                 </TableCell>
               </TableRow>
             )}

@@ -44,7 +44,12 @@ import {
 import { createCodeBlockPlugin } from "@udecode/plate-code-block";
 import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createCommentsPlugin } from "@udecode/plate-comments";
-import { createPlugins, type RenderAfterEditable } from "@udecode/plate-common";
+import {
+  createDeserializeAstPlugin,
+  createDeserializeHtmlPlugin,
+  createPlugins,
+  type RenderAfterEditable,
+} from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
 import { createEmojiPlugin } from "@udecode/plate-emoji";
 import { createExcalidrawPlugin } from "@udecode/plate-excalidraw";
@@ -202,6 +207,8 @@ export const EDITOR_PLUGINS = createPlugins(
     createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),
     createDeserializeMdPlugin(),
+    createDeserializeHtmlPlugin(),
+    createDeserializeAstPlugin(),
     createJuicePlugin(),
   ],
   {

@@ -7,6 +7,7 @@ export const CreateArticleSchema = ArticlesSchema.pick({
   preview_description: true,
   content_html: true,
   content_plain_text: true,
+  content_editor: true,
   visibility: true,
 });
 

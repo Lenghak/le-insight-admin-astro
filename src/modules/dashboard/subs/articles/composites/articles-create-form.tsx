@@ -84,6 +84,7 @@ export default function ArticlesCreateForm({
       await uploadArticle({
         content_html: html,
         content_plain_text: plaintext,
+        content_editor: editorRef.children.toString(),
         preview_title: values.title,
         preview_description: values.description,
         visibility: values.visibility,
@@ -99,7 +100,7 @@ export default function ArticlesCreateForm({
       form.reset();
       closeRef.current?.click();
       setDashboardDialogOpen({
-        id: DASHBOARD_DIALOG_ID.articles.create,
+        id: DASHBOARD_DIALOG_ID.articles.editor,
         isOpen: false,
       });
     }
