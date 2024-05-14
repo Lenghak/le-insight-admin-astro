@@ -8,6 +8,10 @@ import { useSearchParams } from "react-router-dom";
 
 import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 
+const EditArticlesForm = React.lazy(
+  () => import("@articles/composites/articles-edit-form"),
+);
+
 const ArticleArchivesForm = React.lazy(
   () => import("@articles/composites/articles-archives-form"),
 );
@@ -54,6 +58,7 @@ export default function ArticlesList() {
 
       <Suspense>
         <ArticleArchivesForm />
+        <EditArticlesForm />
       </Suspense>
     </Fragment>
   );

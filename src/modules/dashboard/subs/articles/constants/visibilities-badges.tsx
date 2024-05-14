@@ -10,45 +10,45 @@ export const visibiltiesBadges: Record<
 > = {
   DRAFT: (
     <Badge
-      variant={"fair"}
+      variant={"dot"}
       colored={"yellow"}
-      className="font-bold"
+      className="font-bold text-sm"
     >
       Draft
     </Badge>
   ),
   ARCHIVED: (
     <Badge
-      variant={"fair"}
+      variant={"dot"}
       colored={"rose"}
-      className="font-bold"
+      className="font-bold text-sm"
     >
       Archived
     </Badge>
   ),
   PRIVATE: (
     <Badge
-      variant={"fair"}
+      variant={"dot"}
       colored={"purple"}
-      className="font-bold"
+      className="font-bold text-sm"
     >
       Private
     </Badge>
   ),
   PREMIUM: (
     <Badge
-      variant={"fair"}
-      colored={"emerald"}
-      className="font-bold"
+      variant={"dot"}
+      colored={"fuchsia"}
+      className="font-bold text-sm"
     >
       Premium
     </Badge>
   ),
   PUBLIC: (
     <Badge
-      variant={"fair"}
+      variant={"dot"}
       colored={"emerald"}
-      className="font-bold"
+      className="font-bold text-sm"
     >
       Public
     </Badge>

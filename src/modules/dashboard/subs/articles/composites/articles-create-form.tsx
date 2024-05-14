@@ -88,6 +88,7 @@ export default function ArticlesCreateForm({
         preview_title: values.title,
         preview_description: values.description,
         visibility: values.visibility,
+        thumbnail: values.thumbnail,
       });
     }
   };

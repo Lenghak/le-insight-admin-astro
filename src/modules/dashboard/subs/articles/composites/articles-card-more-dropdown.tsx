@@ -18,8 +18,8 @@ import { cn } from "@/common/lib/utils";
 import {
   ArchiveIcon,
   CopyIcon,
-  MoreHorizontalIcon,
-  PencilLineIcon,
+  EyeIcon,
+  MoreHorizontalIcon
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -65,14 +65,14 @@ export default function ArticlesCardMoreDropdown({
             className="items-center gap-3 px-3 py-2 font-semibold"
             onClick={() => {
               setDashboardDialogOpen({
-                id: DASHBOARD_DIALOG_ID.articles.editor,
+                id: DASHBOARD_DIALOG_ID.articles.edit,
                 isOpen: true,
-                meta: { article },
+                meta: article.id,
               });
             }}
           >
-            <PencilLineIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
-            Edit
+            <EyeIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+            Visibiltiy
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
@@ -81,13 +81,13 @@ export default function ArticlesCardMoreDropdown({
         <DropdownMenuGroup>
           <DropdownMenuItem
             className={cn(
-              "items-center gap-3 bg-destructive/15 px-3 py-2 font-bold text-destructive hover:bg-destructive/15",
+              "items-center gap-3 px-3 py-2 font-bold",
             )}
             onClick={() => {
               setDashboardDialogOpen({
                 id: DASHBOARD_DIALOG_ID.articles.delete,
                 isOpen: true,
-                meta: { article },
+                meta: article.id,
               });
             }}
           >

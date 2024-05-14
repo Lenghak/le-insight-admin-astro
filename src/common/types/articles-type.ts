@@ -9,6 +9,7 @@ export const ArticlesVisiblityEnum = z.enum([
 ]);
 
 export const ArticlesSchema = z.object({
+  type: z.literal("Articles"),
   id: z.string().uuid(),
   user_id: z.string(),
   preview_title: z.string(),

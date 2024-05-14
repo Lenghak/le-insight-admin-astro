@@ -26,8 +26,6 @@ import { Loader2Icon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import type { ArticlesType } from "@/common/types/articles-type";
-
 const formSchema = z.object({
   id: z.string().uuid(),
 });
@@ -35,10 +33,11 @@ const formSchema = z.object({
 export default function ArticleArchivesForm() {
   const dialogStore = useStore($dashboardDialogStore);
   const articleID =
-    (dialogStore.meta as { article?: ArticlesType })?.article?.id ?? "";
+    typeof dialogStore.meta === "string" ? dialogStore.meta : "";
 
   const { mutate: archiveArticle, status: archivingStatus } =
     useArchiveArticleService();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -82,7 +81,6 @@ export default function ArticleArchivesForm() {
               <Button
                 type={archivingStatus === "pending" ? "button" : "submit"}
                 disabled={archivingStatus === "pending"}
-                variant={"destructive"}
                 className={cn(
                   "gap-0 px-8 font-bold transition-all",
                   archivingStatus === "pending" ? "gap-2 pl-6" : "",
@@ -95,7 +93,7 @@ export default function ArticleArchivesForm() {
                     archivingStatus === "pending" ? "w-4" : "",
                   )}
                 />
-                Delete
+                Archive
               </Button>
             </form>
           </Form>
