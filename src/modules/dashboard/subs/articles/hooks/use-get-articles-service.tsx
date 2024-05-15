@@ -1,7 +1,6 @@
+import { articleKeys } from "@articles/constants/query-keys";
 import getArticlesListAPI from "@articles/services/get-articles-list-api";
 import type { ArticlesListRequestType } from "@articles/types/articles-list-type";
-
-import { categoriesKeys } from "@categories/constants/query-keys";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
@@ -18,7 +17,7 @@ export default function useGetArticlesListService({
   return useQuery(
     {
       queryKey: [
-        ...categoriesKeys.list(
+        ...articleKeys.list(
           ...Object.entries(params)
             .map((item) => item.toString())
             .flat(),

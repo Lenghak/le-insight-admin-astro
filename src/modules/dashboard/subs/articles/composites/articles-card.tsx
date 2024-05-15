@@ -45,7 +45,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
       ref={ref}
       className={cn(
         buttonVariants({ variant: "secondary", size: "default" }),
-        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-lg border-0 px-8 py-6 shadow-none",
+        "grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-lg border-0 px-8 py-6",
         className,
       )}
       {...props}

@@ -17,7 +17,7 @@ export default function ArticleDataList({
           <ArticlesCard
             article={article}
             key={article?.id ?? index}
-            className="w-full rounded-none bg-transparent [&:nth-of-type(2)]:!border-t-0"
+            className="w-full bg-card [&:nth-of-type(2)]:!border-t-0"
           />
         ))
         : undefined}

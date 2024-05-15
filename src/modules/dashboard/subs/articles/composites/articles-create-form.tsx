@@ -84,7 +84,7 @@ export default function ArticlesCreateForm({
       await uploadArticle({
         content_html: html,
         content_plain_text: plaintext,
-        content_editor: editorRef.children.toString(),
+        content_editor: JSON.stringify(editorRef.children),
         preview_title: values.title,
         preview_description: values.description,
         visibility: values.visibility,

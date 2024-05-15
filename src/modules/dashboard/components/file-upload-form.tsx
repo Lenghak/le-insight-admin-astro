@@ -42,7 +42,7 @@ export default function FileUploadForm({
         formFieldKey
           ? outerForm?.setValue(formFieldKey, res.hostedFile.url)
           : undefined;
-      } catch (err) {}
+      } catch (err) { }
     },
   });
 
@@ -70,7 +70,7 @@ export default function FileUploadForm({
 
         <div
           className={cn(
-            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg border-2 border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
+            "group relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border-2 border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
             dropzone.isDragAccept
               ? "border-successive hover:border-successive"
               : "",
