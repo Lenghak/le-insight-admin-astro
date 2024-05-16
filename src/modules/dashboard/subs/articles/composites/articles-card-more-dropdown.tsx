@@ -19,7 +19,7 @@ import {
   ArchiveIcon,
   CopyIcon,
   EyeIcon,
-  MoreHorizontalIcon
+  MoreHorizontalIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -72,7 +72,7 @@ export default function ArticlesCardMoreDropdown({
             }}
           >
             <EyeIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
-            Visibiltiy
+            Visibility
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
@@ -80,9 +80,7 @@ export default function ArticlesCardMoreDropdown({
 
         <DropdownMenuGroup>
           <DropdownMenuItem
-            className={cn(
-              "items-center gap-3 px-3 py-2 font-bold",
-            )}
+            className={cn("items-center gap-3 px-3 py-2 font-bold")}
             onClick={() => {
               setDashboardDialogOpen({
                 id: DASHBOARD_DIALOG_ID.articles.delete,

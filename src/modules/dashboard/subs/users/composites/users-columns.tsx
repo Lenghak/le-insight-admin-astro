@@ -41,6 +41,17 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
     enableHiding: false,
   },
   {
+    id: "no",
+    header: ({ column, }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="No"
+      />
+    ),
+    cell: ({ row }) =>
+      row.index + 1,
+  },
+  {
     accessorKey: "id",
     header: ({ column }) => (
       <DataTableColumnHeader

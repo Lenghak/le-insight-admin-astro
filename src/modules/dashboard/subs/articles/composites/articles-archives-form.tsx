@@ -23,6 +23,7 @@ import { cn } from "@/common/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
 import { Loader2Icon } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -44,6 +45,14 @@ export default function ArticleArchivesForm() {
       id: articleID,
     },
   });
+
+  useEffect(() => {
+    if (archivingStatus === "success")
+      setDashboardDialogOpen({
+        ...dialogStore,
+        isOpen: false,
+      });
+  }, [archivingStatus]);
 
   return (
     <AlertDialog

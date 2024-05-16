@@ -17,7 +17,7 @@ export default function ArticleDataList({
           <ArticlesCard
             article={article}
             key={article?.id ?? index}
-            className="w-full bg-card [&:nth-of-type(2)]:!border-t-0"
+            className="w-full bg-card transition-all hover:bg-card hover:shadow-lg dark:hover:bg-secondary/80 [&:nth-of-type(2)]:!border-t-0"
           />
         ))
         : undefined}
