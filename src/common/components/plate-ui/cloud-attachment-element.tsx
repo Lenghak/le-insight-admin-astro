@@ -1,7 +1,7 @@
 import { cn } from "@udecode/cn";
 import {
-  useCloudAttachmentElementState,
   type TCloudAttachmentElement,
+  useCloudAttachmentElementState,
 } from "@udecode/plate-cloud";
 import {
   PlateElement,
@@ -13,7 +13,7 @@ import { CloudDownloadIcon, PaperclipIcon } from "lucide-react";
 import { StatusBar } from "./cloud-status-bar";
 
 export interface CloudAttachmentElementProps
-  extends PlateElementProps<Value, TCloudAttachmentElement> { }
+  extends PlateElementProps<Value, TCloudAttachmentElement> {}
 
 export function CloudAttachmentElement({
   className,

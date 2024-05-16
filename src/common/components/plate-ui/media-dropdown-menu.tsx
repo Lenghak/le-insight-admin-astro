@@ -3,6 +3,7 @@ import {
   EDITOR_MEDIA_DIALOG_ID,
 } from "@editor/constants/dailogs-keys";
 import { setMediaDialogState } from "@editor/stores/upload-dialog-store";
+
 import { type DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { insertEmptyElement, useEditorRef } from "@udecode/plate-common";
 import { BrushIcon, ImageIcon, PaperclipIcon } from "lucide-react";

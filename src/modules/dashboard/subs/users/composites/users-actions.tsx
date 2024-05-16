@@ -2,6 +2,8 @@ import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
 import { setDashboardSheetOpen } from "@dashboard/stores/dashboard-sheet-store";
 
+import { setUserID } from "@users/stores/users-id-store";
+
 import { Button } from "@ui/button";
 import {
   DropdownMenu,
@@ -15,7 +17,6 @@ import {
 import { cn } from "@/common/lib/utils";
 
 import type { Row } from "@tanstack/react-table";
-import { setUserID } from "@users/stores/users-id-store";
 import {
   BanIcon,
   CopyIcon,

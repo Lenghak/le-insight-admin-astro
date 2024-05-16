@@ -1,3 +1,10 @@
+import URLUploadForm from "@editor/components/url-upload-form";
+import { EDITOR_MEDIA_DIALOG_ID } from "@editor/constants/dailogs-keys";
+import {
+  $mediaDialogState,
+  setMediaDialogState,
+} from "@editor/stores/upload-dialog-store";
+
 import {
   Dialog,
   DialogContent,
@@ -7,12 +14,6 @@ import {
   DialogTrigger,
 } from "@ui/dialog";
 
-import URLUploadForm from "@editor/components/url-upload-form";
-import { EDITOR_MEDIA_DIALOG_ID } from "@editor/constants/dailogs-keys";
-import {
-  $mediaDialogState,
-  setMediaDialogState,
-} from "@editor/stores/upload-dialog-store";
 import { useStore } from "@nanostores/react";
 import type { PlateEditor } from "@udecode/plate-common";
 

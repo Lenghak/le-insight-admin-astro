@@ -1,9 +1,10 @@
-import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
-
-import { $queryClient } from "@/common/stores/api-store";
 import { categoriesKeys } from "@categories/constants/query-keys";
 import createCategoriesAPI from "@categories/services/post-create-categories-api";
 import type { CategoriesCreateType } from "@categories/types/categories-create-type";
+
+import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
+
+import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -55,7 +56,7 @@ export default function useCreateCategoryService() {
           queryKey: [...categoriesKeys.all],
           exact: false,
           stale: true,
-        });   
+        });
       },
     },
     queryClient,

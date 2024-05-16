@@ -1,14 +1,20 @@
-import { cn } from "@/common/lib/utils";
 import EditorSubmitForm from "@editor/components/editor-submit-form";
 
+import { cn } from "@/common/lib/utils";
+
 type FooterToolbarProps = {
-  className?: string
-}
+  className?: string;
+};
 
 export default function SubmitToolbar({ className }: FooterToolbarProps) {
   return (
-    <footer className={cn("flex items-center overflow-y-visible px-4 pb-4", className)}>
-      <EditorSubmitForm className="w-full flex items-center overflow-visible bg-card rounded-xl p-1 shadow-sm" />
+    <footer
+      className={cn(
+        "flex items-center overflow-y-visible px-4 pb-4",
+        className,
+      )}
+    >
+      <EditorSubmitForm className="flex w-full items-center overflow-visible rounded-xl bg-card p-1 shadow-sm" />
     </footer>
   );
 }

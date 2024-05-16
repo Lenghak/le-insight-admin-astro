@@ -1,6 +1,6 @@
-import { forwardRef, type HTMLAttributes } from "react";
-
 import { cn } from "@/common/lib/utils";
+
+import { forwardRef, type HTMLAttributes } from "react";
 
 export type H3Props = HTMLAttributes<HTMLHeadingElement>;
 

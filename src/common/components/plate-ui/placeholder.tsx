@@ -2,8 +2,8 @@ import { cn } from "@udecode/cn";
 import {
   createNodeHOC,
   createNodesHOC,
-  usePlaceholderState,
   type PlaceholderProps,
+  usePlaceholderState,
 } from "@udecode/plate-common";
 import { ELEMENT_H1 } from "@udecode/plate-heading";
 import React from "react";

@@ -1,7 +1,8 @@
-import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
-
 import { writeKeys } from "@editor/constants/query-keys";
 import getCloudAuthToken from "@editor/services/cloud-auth-api";
+
+import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
+
 import { useQuery } from "@tanstack/react-query";
 
 export default function useAuthCloudService() {

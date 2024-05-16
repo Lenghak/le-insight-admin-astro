@@ -1,6 +1,6 @@
 import {
-  useEmojiDropdownMenuState,
   type EmojiDropdownMenuOptions,
+  useEmojiDropdownMenuState,
 } from "@udecode/plate-emoji";
 import { SmileIcon } from "lucide-react";
 

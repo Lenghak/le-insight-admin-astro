@@ -6,5 +6,4 @@ export const $isCollapsed = persistentAtom<boolean>("side-bar", true, {
   decode: JSON.parse,
 });
 
-export const setCollapsed = (value: boolean) => $isCollapsed.set(value)
-
+export const setCollapsed = (value: boolean) => $isCollapsed.set(value);

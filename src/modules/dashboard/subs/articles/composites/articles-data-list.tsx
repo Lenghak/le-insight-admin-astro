@@ -14,12 +14,12 @@ export default function ArticleDataList({
     <section className="grid-rows-auto grid h-full w-full grid-cols-1 gap-x-12 divide-y lg:grid-cols-2">
       {articles?.length && articles?.length > 0
         ? articles?.map((article, index) => (
-          <ArticlesCard
-            article={article}
-            key={article?.id ?? index}
-            className="w-full bg-card transition-all hover:bg-card hover:shadow-lg dark:hover:bg-secondary/80 [&:nth-of-type(2)]:!border-t-0"
-          />
-        ))
+            <ArticlesCard
+              article={article}
+              key={article?.id ?? index}
+              className="w-full bg-card transition-all hover:bg-card hover:shadow-lg dark:hover:bg-secondary/80 [&:nth-of-type(2)]:!border-t-0"
+            />
+          ))
         : undefined}
 
       {!articles?.length && (

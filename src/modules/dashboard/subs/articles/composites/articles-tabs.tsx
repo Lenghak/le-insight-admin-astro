@@ -16,7 +16,7 @@ type Props = Record<string, unknown>;
 
 const TABS = ["ALL", ...ArticlesVisiblityEnum.options];
 
-export default memo(function ArticlesTabs({ }: Props) {
+export default memo(function ArticlesTabs({}: Props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { pathname } = useLocation();
   const status = searchParams.get("status");

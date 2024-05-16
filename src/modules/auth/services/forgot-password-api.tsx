@@ -8,7 +8,7 @@ import type { AxiosInstance, AxiosResponse } from "axios";
 
 export default async function postForgotPassword(
   forgotPasswordRequest: ForgotPasswordRequestType,
-  queryInstance?: AxiosInstance
+  queryInstance?: AxiosInstance,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post<
     unknown,

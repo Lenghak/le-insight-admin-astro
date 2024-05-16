@@ -1,3 +1,11 @@
+import FileUploadForm from "@editor/components/file-upload-form";
+import URLUploadForm from "@editor/components/url-upload-form";
+import { EDITOR_IMAGE_DIALOG_ID } from "@editor/constants/dailogs-keys";
+import {
+  $mediaDialogState,
+  setMediaDialogState,
+} from "@editor/stores/upload-dialog-store";
+
 import {
   Dialog,
   DialogContent,
@@ -9,15 +17,9 @@ import {
 import { Muted } from "@/common/components/ui/muted";
 import { Separator } from "@/common/components/ui/separator";
 
-import FileUploadForm from "@editor/components/file-upload-form";
-import URLUploadForm from "@editor/components/url-upload-form";
-import { EDITOR_IMAGE_DIALOG_ID } from "@editor/constants/dailogs-keys";
-import {
-  $mediaDialogState,
-  setMediaDialogState,
-} from "@editor/stores/upload-dialog-store";
 import { useStore } from "@nanostores/react";
 import type { PlateCloudEditor } from "@udecode/plate-cloud";
+
 interface UploadMediaDialogProps {
   trigger?: React.ReactNode;
   editor: PlateCloudEditor;

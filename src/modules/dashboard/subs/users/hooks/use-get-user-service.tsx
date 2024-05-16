@@ -19,7 +19,7 @@ export default function useGetUserService({ userID }: UsersRequestType) {
       enabled: userID !== undefined,
       refetchOnReconnect: true,
       refetchOnWindowFocus: true,
-      refetchOnMount: true
+      refetchOnMount: true,
     },
     queryClient,
   );

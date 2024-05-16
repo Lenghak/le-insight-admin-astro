@@ -1,6 +1,15 @@
 import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
 import { rolesFields } from "@/modules/dashboard/subs/users/constants/roles-fields";
 
+import {
+  $dashboardDialogStore,
+  setDashboardDialogOpen,
+} from "@dashboard/stores/dashboard-action-dialog-store";
+
+import useEditUserService from "@users/hooks/use-edit-user-service";
+import useGetUserService from "@users/hooks/use-get-user-service";
+import { $userIDStore } from "@users/stores/users-id-store";
+
 import { Button, buttonVariants } from "@ui/button";
 import {
   Dialog,
@@ -31,15 +40,8 @@ import { RadioGroup, RadioGroupItem } from "@/common/components/ui/radio-group";
 
 import { cn } from "@/common/lib/utils";
 
-import {
-  $dashboardDialogStore,
-  setDashboardDialogOpen,
-} from "@dashboard/stores/dashboard-action-dialog-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
-import useEditUserService from "@users/hooks/use-edit-user-service";
-import useGetUserService from "@users/hooks/use-get-user-service";
-import { $userIDStore } from "@users/stores/users-id-store";
 import { Loader2Icon } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";

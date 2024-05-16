@@ -41,14 +41,13 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
   },
   {
     id: "no",
-    header: ({ column, }) => (
+    header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
         title="No"
       />
     ),
-    cell: ({ row }) =>
-      row.index + 1,
+    cell: ({ row }) => row.index + 1,
   },
   {
     accessorKey: "id",
@@ -84,7 +83,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           className={cn(
             "w-full text-center font-bold",
             row.original.is_archived &&
-            "font-bold italic text-muted-foreground line-through",
+              "font-bold italic text-muted-foreground line-through",
           )}
         >
           {getValue() as string}
@@ -128,7 +127,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           className={cn(
             "w-full text-center font-bold",
             row?.original?.is_archived &&
-            "font-bold uppercase text-muted-foreground line-through",
+              "font-bold uppercase text-muted-foreground line-through",
           )}
         >
           {row?.original?.assigned_count}
@@ -152,7 +151,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           className={cn(
             "w-full text-center font-bold",
             row?.original?.is_archived &&
-            "font-bold uppercase text-muted-foreground line-through",
+              "font-bold uppercase text-muted-foreground line-through",
           )}
         >
           {row?.original?.generated_count}
@@ -174,7 +173,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span
           className={cn(
             row?.original?.is_archived &&
-            "font-bold italic text-muted-foreground line-through",
+              "font-bold italic text-muted-foreground line-through",
           )}
         >
           {formatDate(getValue() as string)}
@@ -196,7 +195,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span
           className={cn(
             row?.original?.is_archived &&
-            "font-bold italic text-muted-foreground line-through",
+              "font-bold italic text-muted-foreground line-through",
           )}
         >
           {formatDate(getValue() as string)}

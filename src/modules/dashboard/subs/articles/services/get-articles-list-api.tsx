@@ -1,4 +1,7 @@
-import type { ArticlesListRequestType, ArticlesListResponseType } from "@/modules/dashboard/subs/articles/types/articles-list-type";
+import type {
+  ArticlesListRequestType,
+  ArticlesListResponseType,
+} from "@/modules/dashboard/subs/articles/types/articles-list-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";

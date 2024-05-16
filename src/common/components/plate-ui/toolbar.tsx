@@ -94,7 +94,7 @@ const ToolbarButton = withTooltip(
                 <div className="flex flex-1">{children}</div>
                 <div>
                   <ChevronDownIcon
-                    className="h-4 w-4 ml-2"
+                    className="ml-2 h-4 w-4"
                     data-icon
                   />
                 </div>

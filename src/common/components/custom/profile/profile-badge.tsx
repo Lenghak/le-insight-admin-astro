@@ -1,9 +1,5 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/common/components/ui/avatar";
-import { Muted } from "@/common/components/ui/muted";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
+import { Muted } from "@ui/muted";
 
 import { cn } from "@/common/lib/utils";
 

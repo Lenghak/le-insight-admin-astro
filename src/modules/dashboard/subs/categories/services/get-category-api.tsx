@@ -1,8 +1,9 @@
-import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type {
   CategoriesRequestType,
   CategoriesResponseType,
 } from "@categories/types/categories-ind-type";
+
+import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";
 
 export default function getCategoryAPI(

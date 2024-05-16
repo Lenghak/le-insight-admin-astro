@@ -1,9 +1,10 @@
+import archiveArticleAPI from "@articles/services/post-archived-articles-api";
+
 import { categoriesKeys } from "@categories/constants/query-keys";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { $queryClient } from "@/common/stores/api-store";
-import archiveArticleAPI from "@articles/services/post-archived-articles-api";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";

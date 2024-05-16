@@ -1,3 +1,5 @@
+import { setMediaDialogState } from "@editor/stores/upload-dialog-store";
+
 import { Button } from "@/common/components/ui/button";
 import {
   Form,
@@ -9,7 +11,6 @@ import {
 } from "@/common/components/ui/form";
 import { Input } from "@/common/components/ui/input";
 
-import { setMediaDialogState } from "@editor/stores/upload-dialog-store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { PlateEditor } from "@udecode/plate-common";
 import { insertMedia } from "@udecode/plate-media";

@@ -1,14 +1,15 @@
 import { Button } from "@/common/components/ui/button";
+
 import { resizeInWidth } from "@portive/client";
 import { type TCloudImageElement } from "@udecode/plate-cloud";
 import { findNodePath, setNodes, useEditorRef } from "@udecode/plate-common";
 import { MoveHorizontalIcon } from "lucide-react";
 import React, {
+  type Dispatch,
+  type SetStateAction,
   useCallback,
   useRef,
   useState,
-  type Dispatch,
-  type SetStateAction,
 } from "react";
 
 type ImageSize = { width: number; height: number };
@@ -81,7 +82,7 @@ function ResizeHandles({
       >
         {/* Visible Handle */}
         <Button
-          className="bg-primary cursor-col-resize"
+          className="cursor-col-resize bg-primary"
           size={"icon"}
           style={{
             position: "absolute",
@@ -93,7 +94,7 @@ function ResizeHandles({
             marginTop: -16,
           }}
         >
-          <MoveHorizontalIcon className="size-4 absolute" />
+          <MoveHorizontalIcon className="absolute size-4" />
         </Button>
       </div>
     </>

@@ -20,15 +20,13 @@ export default function useRefreshTokenService() {
         const description =
           "You will be redirecting to the sign in page. Please re-sign in";
 
-
         toast.error(title, {
           duration: 10 * 1000,
           description: description,
           closeButton: true,
         });
 
-        await signOut({ redirect: true, callbackUrl: "/auth/sign-in" })
-
+        await signOut({ redirect: true, callbackUrl: "/auth/sign-in" });
       },
       onSettled: async () => {
         await queryClient.invalidateQueries({

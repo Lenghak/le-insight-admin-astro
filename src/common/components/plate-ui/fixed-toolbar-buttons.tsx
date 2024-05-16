@@ -38,7 +38,7 @@ import {
 import { MarkToolbarButton } from "./mark-toolbar-button";
 import { ToolbarGroup } from "./toolbar";
 
-export function FixedToolbarButtons({ }: { id?: string }) {
+export function FixedToolbarButtons({}: { id?: string }) {
   const readOnly = useEditorReadOnly();
 
   return (

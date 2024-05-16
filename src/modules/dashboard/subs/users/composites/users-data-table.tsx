@@ -16,12 +16,12 @@ import {
 import { cn } from "@/common/lib/utils";
 
 import {
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
   type SortingState,
+  useReactTable,
 } from "@tanstack/react-table";
 import { BoneIcon } from "lucide-react";
 import React, { Fragment, memo } from "react";
@@ -83,9 +83,9 @@ export default memo(function UsersDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   );
                 })}

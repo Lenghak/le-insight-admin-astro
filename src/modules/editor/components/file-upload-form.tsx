@@ -1,3 +1,6 @@
+import { EDITOR_IMAGE_DIALOG_ID } from "@editor/constants/dailogs-keys";
+import useFileUploadHandler from "@editor/hooks/use-file-upload-handler";
+
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { Input } from "@ui/input";
@@ -6,8 +9,6 @@ import { Separator } from "@ui/separator";
 
 import { cn } from "@/common/lib/utils";
 
-import { EDITOR_IMAGE_DIALOG_ID } from "@editor/constants/dailogs-keys";
-import useFileUploadHandler from "@editor/hooks/use-file-upload-handler";
 import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import { ImageUpIcon } from "lucide-react";
 import type { HTMLAttributes } from "react";

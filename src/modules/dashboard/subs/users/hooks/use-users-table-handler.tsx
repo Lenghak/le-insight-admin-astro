@@ -1,4 +1,5 @@
 import useGetUsersListService from "@users/hooks/use-get-users-list-service";
+
 import { useSearchParams } from "react-router-dom";
 
 import type { ProfileSexType } from "@/common/types/profiles-type";

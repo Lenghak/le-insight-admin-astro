@@ -1,18 +1,20 @@
-import { PortiveResponseSchema } from "@/common/types/portive-type";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useDropzone, type DropzoneOptions } from "react-dropzone";
+import { type DropzoneOptions, useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-type FileUploadOptions =
-  DropzoneOptions | undefined
+import { PortiveResponseSchema } from "@/common/types/portive-type";
+
+type FileUploadOptions = DropzoneOptions | undefined;
 
 const FileSchema = z.object({
-  file : PortiveResponseSchema
-}) 
+  file: PortiveResponseSchema,
+});
 
-export default function useFileUploadHandler({ ...options }: FileUploadOptions) {
+export default function useFileUploadHandler({
+  ...options
+}: FileUploadOptions) {
   const dropzone = useDropzone({
     accept: {
       "image/*": [],
@@ -22,13 +24,13 @@ export default function useFileUploadHandler({ ...options }: FileUploadOptions) 
     onDropRejected: () => {
       toast.error("File is not supported");
     },
-    ...options
+    ...options,
   });
 
   const form = useForm<z.infer<typeof FileSchema>>({
-    resolver : zodResolver(FileSchema),
-    shouldUnregister : false,
-    reValidateMode : "onChange"
+    resolver: zodResolver(FileSchema),
+    shouldUnregister: false,
+    reValidateMode: "onChange",
   });
 
   return { dropzone, form };

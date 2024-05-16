@@ -10,6 +10,7 @@ import { cn } from "@/common/lib/utils";
 
 import { type DropdownMenuProps as PrimitiveDropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
+import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import {
   ELEMENT_CODE_BLOCK,
   insertEmptyCodeBlock,
@@ -46,7 +47,6 @@ import {
 } from "lucide-react";
 import React, { Fragment } from "react";
 
-import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import {
   DropdownMenu,
   DropdownMenuContent,

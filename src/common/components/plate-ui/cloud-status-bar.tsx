@@ -1,6 +1,6 @@
 import { cn } from "@udecode/cn";
 import { type Upload, type UploadProgress } from "@udecode/plate-cloud";
-import React, { useEffect, useRef, useState, type HTMLAttributes } from "react";
+import React, { type HTMLAttributes, useEffect, useRef, useState } from "react";
 
 export function ProgressBar({
   upload,

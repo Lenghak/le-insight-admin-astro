@@ -9,7 +9,7 @@ export default function DashboardDialogFormSkeleton() {
         <Skeleton className="h-4 w-3/4 rounded-full" />
       </DialogHeader>
 
-      <section className="w-full space-y-8 mt-8">
+      <section className="mt-8 w-full space-y-8">
         <div className="flex flex-col gap-2">
           <Skeleton className="h-4 w-24 rounded-full" />
           <Skeleton className="h-8 w-full rounded-full" />

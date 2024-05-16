@@ -10,6 +10,6 @@ export const authKeys = {
       | "forgot-password"
       | "verify-email"
       | "refresh"
-      | "session"
+      | "session",
   ) => [...authKeys.operations(), operator] as const,
 };

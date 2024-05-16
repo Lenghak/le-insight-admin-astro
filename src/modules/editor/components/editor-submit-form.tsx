@@ -1,3 +1,6 @@
+import { SERIALIZE_PLUGINS } from "@/modules/editor/constants/editor-plugins";
+import { createPlateUI } from "@/modules/editor/lib/create-plate-ui";
+
 import { serializeHtml } from "@editor/lib/serialize-html";
 
 import { Button } from "@ui/button";
@@ -5,13 +8,11 @@ import { Form } from "@ui/form";
 
 import { cn } from "@/common/lib/utils";
 
-import { SERIALIZE_PLUGINS } from "@/modules/editor/constants/editor-plugins";
-import { createPlateUI } from "@/modules/editor/lib/create-plate-ui";
 import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import {
   createPlateEditor,
   useEditorMounted,
-  useEditorRef
+  useEditorRef,
 } from "@udecode/plate-common";
 import { useForm } from "react-hook-form";
 
@@ -36,10 +37,9 @@ export default function EditorSubmitForm({ className }: EditorSubmitFormProps) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(async () => {
-          await (editor.cloud.finishUploads())
-          console.log(isEditorMounted && serializeHtml(editor))
-        }
-        )}
+          await editor.cloud.finishUploads();
+          console.log(isEditorMounted && serializeHtml(editor));
+        })}
         className={cn(className)}
       >
         <Button

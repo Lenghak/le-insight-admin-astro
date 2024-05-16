@@ -26,7 +26,6 @@ import { TableRowElement } from "@plate-ui/table-row-element";
 import { TodoListElement } from "@plate-ui/todo-list-element";
 import { ToggleElement } from "@plate-ui/toggle-element";
 
-
 import { withProps } from "@udecode/cn";
 import {
   MARK_BOLD,

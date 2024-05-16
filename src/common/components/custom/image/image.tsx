@@ -2,7 +2,7 @@ import { Skeleton } from "@/common/components/ui/skeleton";
 
 import { cn } from "@/common/lib/utils";
 
-import { Fragment, type HTMLAttributes, useState } from "react";
+import { Fragment, useState, type HTMLAttributes } from "react";
 
 type ImageProps = HTMLAttributes<HTMLImageElement> & {
   src: string;
@@ -28,9 +28,7 @@ export default function Image({ className, ...props }: ImageProps) {
       />
 
       {!isImageLoaded && (
-        <Skeleton
-          className={cn("h-full w-full", className)}
-        />
+        <Skeleton className={cn("h-full w-full", className)} />
       )}
     </Fragment>
   );

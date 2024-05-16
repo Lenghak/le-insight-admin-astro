@@ -16,7 +16,7 @@ import { cn } from "@/common/lib/utils";
 
 import type { UploadSuccessEvent } from "@portive/client";
 import { ImagesIcon } from "lucide-react";
-import { Fragment, useMemo, type HTMLAttributes } from "react";
+import { Fragment, type HTMLAttributes, useMemo } from "react";
 import type { InternalFieldName, UseFormReturn } from "react-hook-form";
 
 type FileUploadFormProps = HTMLAttributes<HTMLFormElement> & {
@@ -42,7 +42,7 @@ export default function FileUploadForm({
         formFieldKey
           ? outerForm?.setValue(formFieldKey, res.hostedFile.url)
           : undefined;
-      } catch (err) { }
+      } catch (err) {}
     },
   });
 
@@ -93,7 +93,10 @@ export default function FileUploadForm({
             {!isPending && outerForm?.getValues(formFieldKey ?? "") ? (
               <Fragment>
                 <Image
-                  src={(outerForm?.getValues(formFieldKey ?? "") as string) ?? file?.hostedFile?.url}
+                  src={
+                    (outerForm?.getValues(formFieldKey ?? "") as string) ??
+                    file?.hostedFile?.url
+                  }
                   alt="Thumbnail"
                   className="peer h-full w-full rounded-xl object-cover group-hover:opacity-50"
                 />

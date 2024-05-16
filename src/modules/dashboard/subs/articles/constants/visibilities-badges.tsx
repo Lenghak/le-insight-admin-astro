@@ -12,7 +12,7 @@ export const visibiltiesBadges: Record<
     <Badge
       variant={"dot"}
       colored={"yellow"}
-      className="font-bold text-sm"
+      className="text-sm font-bold"
     >
       Draft
     </Badge>
@@ -21,7 +21,7 @@ export const visibiltiesBadges: Record<
     <Badge
       variant={"dot"}
       colored={"rose"}
-      className="font-bold text-sm"
+      className="text-sm font-bold"
     >
       Archived
     </Badge>
@@ -30,7 +30,7 @@ export const visibiltiesBadges: Record<
     <Badge
       variant={"dot"}
       colored={"purple"}
-      className="font-bold text-sm"
+      className="text-sm font-bold"
     >
       Private
     </Badge>
@@ -39,7 +39,7 @@ export const visibiltiesBadges: Record<
     <Badge
       variant={"dot"}
       colored={"fuchsia"}
-      className="font-bold text-sm"
+      className="text-sm font-bold"
     >
       Premium
     </Badge>
@@ -48,7 +48,7 @@ export const visibiltiesBadges: Record<
     <Badge
       variant={"dot"}
       colored={"emerald"}
-      className="font-bold text-sm"
+      className="text-sm font-bold"
     >
       Public
     </Badge>

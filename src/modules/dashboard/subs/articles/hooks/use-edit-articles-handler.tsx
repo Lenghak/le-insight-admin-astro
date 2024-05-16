@@ -7,8 +7,8 @@ import {
 import useEditArticlesService from "@articles/hooks/use-edit-articles-service";
 import useGetArticleService from "@articles/hooks/use-get-article-service";
 import {
-  UpdateArticleSchema,
   type UpdateArticleRequestType,
+  UpdateArticleSchema,
 } from "@articles/types/articles-edit-type";
 
 import { zodResolver } from "@hookform/resolvers/zod";

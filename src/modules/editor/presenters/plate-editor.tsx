@@ -1,4 +1,3 @@
-
 import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
 
 import { TooltipProvider } from "@ui/tooltip";
@@ -56,7 +55,6 @@ export default function PlateEditor() {
                 <FloatingToolbarButtons />
               </FloatingToolbar>
               <CommentsPopover />
-
             </Plate>
           </CommentsProvider>
         </DndProvider>

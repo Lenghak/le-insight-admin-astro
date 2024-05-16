@@ -26,7 +26,7 @@ import { cn } from "@/common/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, PlusIcon } from "lucide-react";
-import { useEffect, useRef, type Ref } from "react";
+import { type Ref, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { type z } from "zod";
 
@@ -55,10 +55,11 @@ export default function CreateCategoriesForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          className="items-center gap-1 px-4"
-        >
-          <PlusIcon size={16} strokeWidth={3} />
+        <Button className="items-center gap-1 px-4">
+          <PlusIcon
+            size={16}
+            strokeWidth={3}
+          />
           <span className="px-2 font-bold">Add data</span>
         </Button>
       </DialogTrigger>

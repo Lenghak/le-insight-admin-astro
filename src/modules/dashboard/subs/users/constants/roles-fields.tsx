@@ -20,6 +20,7 @@ export const rolesFields = [
     value: UserRoleSchema.Values.GUEST,
     label: UserRoleSchema.Values.GUEST.toLowerCase(),
     icon: UserIcon,
-    description: "Can only read others limited data with limited actions and settings.",
+    description:
+      "Can only read others limited data with limited actions and settings.",
   },
 ];

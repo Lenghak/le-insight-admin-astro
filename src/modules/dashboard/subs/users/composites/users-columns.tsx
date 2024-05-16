@@ -42,14 +42,13 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
   },
   {
     id: "no",
-    header: ({ column, }) => (
+    header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
         title="No"
       />
     ),
-    cell: ({ row }) =>
-      row.index + 1,
+    cell: ({ row }) => row.index + 1,
   },
   {
     accessorKey: "id",

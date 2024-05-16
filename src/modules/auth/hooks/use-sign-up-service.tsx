@@ -2,10 +2,11 @@ import { authKeys } from "@/modules/auth/constants/query-keys";
 import postSignUp from "@/modules/auth/services/sign-up-api";
 import type { SignUpRequestType } from "@/modules/auth/types/sign-up-schema";
 
+import { userKeys } from "@users/constants/query-keys";
+
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import { userKeys } from "@users/constants/query-keys";
 import { AxiosError } from "axios";
 import { toast } from "sonner";
 

@@ -14,12 +14,12 @@ import { DataTablePagination } from "@custom/table";
 import { cn } from "@/common/lib/utils";
 
 import {
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  useReactTable,
-  type ColumnDef,
   type SortingState,
+  useReactTable,
 } from "@tanstack/react-table";
 import { FishIcon } from "lucide-react";
 import React from "react";
@@ -85,9 +85,9 @@ export default function CategoriesDataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   );
                 })}

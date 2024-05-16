@@ -5,10 +5,10 @@ import {
   findNode,
   focusEditor,
   isBlock,
+  type TElement,
   toggleNodeType,
   useEditorRef,
   useEditorSelector,
-  type TElement,
 } from "@udecode/plate-common";
 import {
   ELEMENT_H1,

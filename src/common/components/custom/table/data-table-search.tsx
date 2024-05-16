@@ -1,10 +1,5 @@
 import { Button } from "@ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-} from "@ui/form";
+import { Form, FormControl, FormField, FormItem } from "@ui/form";
 import { Input } from "@ui/input";
 
 import { cn } from "@/common/lib/utils";
@@ -73,7 +68,7 @@ export default function DataTableSearch({
                   <Input
                     type="text"
                     placeholder="Search"
-                    className="peer/input h-9 w-full rounded-full bg-card px-12 placeholder:ml-12 pr-20"
+                    className="peer/input h-9 w-full rounded-full bg-card px-12 pr-20 placeholder:ml-12"
                     {...field}
                   />
 

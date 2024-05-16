@@ -24,13 +24,13 @@ export function DateTableDatePicker({
   const [date, setDate] = React.useState<DateRange | undefined>(
     validRange === 1
       ? {
-        from: defaultFrom,
-        to: defaultTo,
-      }
+          from: defaultFrom,
+          to: defaultTo,
+        }
       : {
-        from: undefined,
-        to: undefined,
-      },
+          from: undefined,
+          to: undefined,
+        },
   );
 
   React.useEffect(() => {
