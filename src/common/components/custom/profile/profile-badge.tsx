@@ -49,8 +49,10 @@ export default function ProfileBadge({
       </Avatar>
 
       <div className={cn("flex flex-col justify-between", metaClassName)}>
-        <span className="line-clamp-1 font-bold">{`${firstName} ${lastName}`}</span>
-        <Muted className="line-clamp-1 font-medium">{meta}</Muted>
+        <span className="line-clamp-1 overflow-ellipsis whitespace-nowrap font-bold">{`${firstName} ${lastName}`}</span>
+        <Muted className="line-clamp-1 overflow-ellipsis whitespace-nowrap font-medium">
+          {meta}
+        </Muted>
       </div>
     </div>
   );

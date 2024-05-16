@@ -1,5 +1,5 @@
-import ArticlesCardMoreDropdown from "@/modules/dashboard/subs/articles/composites/articles-card-more-dropdown";
-import type { ArticlesListDataType } from "@/modules/dashboard/subs/articles/types/articles-list-type";
+import ArticlesCardMoreDropdown from "@articles/composites/articles-card-more-dropdown";
+import type { ArticlesListDataType } from "@articles/types/articles-list-type";
 
 import { Badge } from "@ui/badge";
 import { Button, buttonVariants } from "@ui/button";
@@ -11,12 +11,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@ui/hover-card";
 import { Muted } from "@ui/muted";
 import { Small } from "@ui/small";
 
 import { Image } from "@custom/image";
-import { ProfileHoverCard } from "@custom/profile";
 import ProfileBadge from "@custom/profile/profile-badge";
+import ProfileHoverContent from "@custom/profile/profile-hover-content";
 
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
@@ -53,16 +54,21 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
       <CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0 pt-0">
         <div className="flex w-full items-center justify-between gap-4 p-0">
           {/* Profile */}
-          <ProfileHoverCard asChild>
-            <ProfileBadge
-              firstName={author?.profile?.first_name}
-              lastName={author?.profile?.last_name}
-              imageURL={author?.profile.image_url ?? ""}
-              avatarClassName="size-8"
-              avatarFallBackClassName="bg-accent"
-              metaClassName="text-sm"
-            />
-          </ProfileHoverCard>
+          <HoverCard>
+            <HoverCardTrigger>
+              <ProfileBadge
+                firstName={author?.profile?.first_name}
+                lastName={author?.profile?.last_name}
+                imageURL={author?.profile.image_url ?? ""}
+                avatarClassName="size-8"
+                avatarFallBackClassName="bg-accent"
+                metaClassName="text-sm"
+              />
+            </HoverCardTrigger>
+            <HoverCardContent className="ml-32 w-fit max-w-80 rounded-xl">
+              <ProfileHoverContent userID={author?.id} />
+            </HoverCardContent>
+          </HoverCard>
 
           {/* Minutes Reads */}
           <Muted className="font-medium">5 minutes read</Muted>
