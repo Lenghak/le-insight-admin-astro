@@ -1,0 +1,72 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": false,
+		"ignore": [],
+		"attributePosition": "auto",
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineEnding": "lf",
+		"lineWidth": 80
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignore": [
+			"**/*.log",
+			"**/.DS_Store",
+			"*.",
+			".history",
+			".yarn",
+			"bazel-*",
+			"bazel-bin",
+			"bazel-out",
+			"bazel-qwik",
+			"bazel-testlogs",
+			"dist",
+			"dist-dev",
+			"lib",
+			"lib-types",
+			"etc",
+			"external",
+			"node_modules",
+			"temp",
+			"tsc-out",
+			"tsdoc-metadata.json",
+			"target",
+			"output",
+			"rollup.config.js",
+			"build",
+			".cache",
+			".rollup.cache",
+			"tsconfig.tsbuildinfo",
+			"vite.config.ts",
+			"*.spec.tsx",
+			"*.spec.ts",
+			".netlify",
+			"pnpm-lock.yaml",
+			"package-lock.json",
+			"yarn.lock",
+			"bun.lockb",
+			"server",
+			"postcss.config.js",
+			".husky",
+			".next",
+			".vercel",
+			".dependency-cruiser.js"
+		]
+	}
+}

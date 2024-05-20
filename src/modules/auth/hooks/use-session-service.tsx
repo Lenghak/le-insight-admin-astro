@@ -6,12 +6,12 @@ import { useStore } from "@nanostores/react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useSessionService() {
-  const queryClient = useStore($queryClient);
-  return useQuery(
-    {
-      queryKey: authKeys.operation("session"),
-      queryFn: async () => await getSession(),
-    },
-    queryClient,
-  );
+	const queryClient = useStore($queryClient);
+	return useQuery(
+		{
+			queryKey: authKeys.operation("session"),
+			queryFn: async () => await getSession(),
+		},
+		queryClient,
+	);
 }

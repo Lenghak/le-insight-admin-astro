@@ -6,14 +6,11 @@ import { RouterProvider } from "react-router-dom";
 import { dashboardRoute as router } from "./dashboard-route";
 
 export default function Routes() {
-  return (
-    <StrictMode>
-      <ThemeProvider
-        storageKey="theme"
-        defaultTheme="system"
-      >
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </StrictMode>
-  );
+	return (
+		<StrictMode>
+			<ThemeProvider storageKey="theme" defaultTheme="system">
+				<RouterProvider router={router} />
+			</ThemeProvider>
+		</StrictMode>
+	);
 }

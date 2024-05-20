@@ -9,26 +9,24 @@ import { useStore } from "@nanostores/react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetUsersListService({
-  ...params
+	...params
 }: UsersListRequestType) {
-  const instance = usePrivateQueryInstance();
-  const queryClient = useStore($queryClient);
+	const instance = usePrivateQueryInstance();
+	const queryClient = useStore($queryClient);
 
-  return useQuery(
-    {
-      queryKey: [
-        ...userKeys.list(
-          ...Object.entries(params)
-            .map((item) => item.toString())
-            .flat(),
-        ),
-        instance,
-        params,
-      ],
-      queryFn: async () => (await getUsersAPI(params, instance)) ?? null,
-      refetchOnReconnect: true,
-      refetchOnWindowFocus: true,
-    },
-    queryClient,
-  );
+	return useQuery(
+		{
+			queryKey: [
+				...userKeys.list(
+					...Object.entries(params).flatMap((item) => item.toString()),
+				),
+				instance,
+				params,
+			],
+			queryFn: async () => (await getUsersAPI(params, instance)) ?? null,
+			refetchOnReconnect: true,
+			refetchOnWindowFocus: true,
+		},
+		queryClient,
+	);
 }

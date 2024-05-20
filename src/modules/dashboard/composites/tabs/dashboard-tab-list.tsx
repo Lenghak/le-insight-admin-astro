@@ -1,22 +1,22 @@
 import { cn } from "@/common/lib/utils";
 
 type DashboardTabList = {
-  className?: string;
-  children?: React.ReactNode;
+	className?: string;
+	children?: React.ReactNode;
 };
 
 export default function DashboardTabList({
-  className,
-  children,
+	className,
+	children,
 }: DashboardTabList) {
-  return (
-    <div
-      className={cn(
-        "flex h-10 items-center justify-center rounded-md bg-muted text-muted-foreground",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
+	return (
+		<div
+			className={cn(
+				"flex h-10 items-center justify-center rounded-md bg-muted text-muted-foreground",
+				className,
+			)}
+		>
+			{children}
+		</div>
+	);
 }

@@ -5,16 +5,13 @@ import { cn } from "@/common/lib/utils";
 type InlineBannerTitleProps = MutedProps;
 
 export default function InlineBannerTitle({
-  className,
-  children,
-  ...props
+	className,
+	children,
+	...props
 }: InlineBannerTitleProps) {
-  return (
-    <Muted
-      className={cn(className)}
-      {...props}
-    >
-      {children}
-    </Muted>
-  );
+	return (
+		<Muted className={cn(className)} {...props}>
+			{children}
+		</Muted>
+	);
 }

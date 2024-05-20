@@ -1,5 +1,20 @@
 {
-  "a-file-icon-vscode.folderTheme": "specific",
-  "a-file-icon-vscode.activeIconPacks": ["nest", "react"],
-  "a-file-icon-vscode.folderColor": "#727272"
+	"workbench.iconTheme": "monospace-icons",
+	"editor.defaultFormatter": "biomejs.biome",
+	"[json]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.defaultFormatter": "biomejs.biome",
+		"editor.suggest.insertMode": "replace"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[astro]": {
+		"editor.defaultFormatter": "astro-build.astro-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+	}
 }

@@ -1,22 +1,19 @@
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
 } from "@/common/components/plate-ui/avatar";
 
 import { useUserById } from "@udecode/plate-comments";
 
 export function CommentAvatar({ userId }: { userId: string | null }) {
-  const user = useUserById(userId);
-  if (!user) return null;
+	const user = useUserById(userId);
+	if (!user) return null;
 
-  return (
-    <Avatar className="size-5">
-      <AvatarImage
-        src={user.avatarUrl}
-        alt={user.name}
-      />
-      <AvatarFallback>{user.name?.[0]}</AvatarFallback>
-    </Avatar>
-  );
+	return (
+		<Avatar className="size-5">
+			<AvatarImage src={user.avatarUrl} alt={user.name} />
+			<AvatarFallback>{user.name?.[0]}</AvatarFallback>
+		</Avatar>
+	);
 }

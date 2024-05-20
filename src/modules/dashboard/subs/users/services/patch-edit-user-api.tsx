@@ -4,12 +4,12 @@ import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance } from "axios";
 
 export default function patchEditUserAPI(
-  { id, role, banned_at, banned_until }: UserEditRequestType,
-  queryInstance?: AxiosInstance,
+	{ id, role, banned_at, banned_until }: UserEditRequestType,
+	queryInstance?: AxiosInstance,
 ) {
-  return (queryInstance ?? getPublicQueryInstance()).patch(`/users/${id}`, {
-    role: role,
-    banned_at: banned_at,
-    banned_until: banned_until,
-  });
+	return (queryInstance ?? getPublicQueryInstance()).patch(`/users/${id}`, {
+		role: role,
+		banned_at: banned_at,
+		banned_until: banned_until,
+	});
 }

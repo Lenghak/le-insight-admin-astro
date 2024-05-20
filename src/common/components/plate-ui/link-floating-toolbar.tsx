@@ -1,17 +1,17 @@
 import { cn } from "@udecode/cn";
 import {
-  flip,
-  offset,
-  type UseVirtualFloatingOptions,
+	type UseVirtualFloatingOptions,
+	flip,
+	offset,
 } from "@udecode/plate-floating";
 import {
-  FloatingLinkUrlInput,
-  type LinkFloatingToolbarState,
-  LinkOpenButton,
-  useFloatingLinkEdit,
-  useFloatingLinkEditState,
-  useFloatingLinkInsert,
-  useFloatingLinkInsertState,
+	FloatingLinkUrlInput,
+	type LinkFloatingToolbarState,
+	LinkOpenButton,
+	useFloatingLinkEdit,
+	useFloatingLinkEditState,
+	useFloatingLinkInsert,
+	useFloatingLinkInsertState,
 } from "@udecode/plate-link";
 import { ExternalLink, LinkIcon, TypeIcon, Unlink } from "lucide-react";
 
@@ -21,134 +21,134 @@ import { popoverVariants } from "./popover";
 import { Separator } from "./separator";
 
 const floatingOptions: UseVirtualFloatingOptions = {
-  placement: "bottom-start",
-  middleware: [
-    offset(12),
-    flip({
-      padding: 12,
-      fallbackPlacements: ["bottom-end", "top-start", "top-end"],
-    }),
-  ],
+	placement: "bottom-start",
+	middleware: [
+		offset(12),
+		flip({
+			padding: 12,
+			fallbackPlacements: ["bottom-end", "top-start", "top-end"],
+		}),
+	],
 };
 
 export interface LinkFloatingToolbarProps {
-  state?: LinkFloatingToolbarState;
+	state?: LinkFloatingToolbarState;
 }
 
 export function LinkFloatingToolbar({ state }: LinkFloatingToolbarProps) {
-  const insertState = useFloatingLinkInsertState({
-    ...state,
-    floatingOptions: {
-      ...floatingOptions,
-      ...state?.floatingOptions,
-    },
-  });
-  const {
-    props: insertProps,
-    ref: insertRef,
-    hidden,
-    textInputProps,
-  } = useFloatingLinkInsert(insertState);
+	const insertState = useFloatingLinkInsertState({
+		...state,
+		floatingOptions: {
+			...floatingOptions,
+			...state?.floatingOptions,
+		},
+	});
+	const {
+		props: insertProps,
+		ref: insertRef,
+		hidden,
+		textInputProps,
+	} = useFloatingLinkInsert(insertState);
 
-  const editState = useFloatingLinkEditState({
-    ...state,
-    floatingOptions: {
-      ...floatingOptions,
-      ...state?.floatingOptions,
-    },
-  });
-  const {
-    props: editProps,
-    ref: editRef,
-    editButtonProps,
-    unlinkButtonProps,
-  } = useFloatingLinkEdit(editState);
+	const editState = useFloatingLinkEditState({
+		...state,
+		floatingOptions: {
+			...floatingOptions,
+			...state?.floatingOptions,
+		},
+	});
+	const {
+		props: editProps,
+		ref: editRef,
+		editButtonProps,
+		unlinkButtonProps,
+	} = useFloatingLinkEdit(editState);
 
-  if (hidden) return null;
+	if (hidden) return null;
 
-  const input = (
-    <div className="flex w-[330px] flex-col">
-      <div className="flex items-center">
-        <div className="flex items-center pl-3 text-muted-foreground">
-          <LinkIcon className="size-4" />
-        </div>
+	const input = (
+		<div className="flex w-[330px] flex-col">
+			<div className="flex items-center">
+				<div className="flex items-center pl-3 text-muted-foreground">
+					<LinkIcon className="size-4" />
+				</div>
 
-        <FloatingLinkUrlInput
-          className={inputVariants({ variant: "ghost", h: "sm" })}
-          placeholder="Paste link"
-        />
-      </div>
+				<FloatingLinkUrlInput
+					className={inputVariants({ variant: "ghost", h: "sm" })}
+					placeholder="Paste link"
+				/>
+			</div>
 
-      <Separator />
+			<Separator />
 
-      <div className="flex items-center">
-        <div className="flex items-center pl-3 text-muted-foreground">
-          <TypeIcon className="size-4" />
-        </div>
-        <input
-          className={inputVariants({ variant: "ghost", h: "sm" })}
-          placeholder="Text to display"
-          {...textInputProps}
-        />
-      </div>
-    </div>
-  );
+			<div className="flex items-center">
+				<div className="flex items-center pl-3 text-muted-foreground">
+					<TypeIcon className="size-4" />
+				</div>
+				<input
+					className={inputVariants({ variant: "ghost", h: "sm" })}
+					placeholder="Text to display"
+					{...textInputProps}
+				/>
+			</div>
+		</div>
+	);
 
-  const editContent = editState.isEditing ? (
-    input
-  ) : (
-    <div className="box-content flex h-9 items-center gap-1">
-      <button
-        type="button"
-        className={buttonVariants({ variant: "ghost", size: "sm" })}
-        {...editButtonProps}
-      >
-        Edit link
-      </button>
+	const editContent = editState.isEditing ? (
+		input
+	) : (
+		<div className="box-content flex h-9 items-center gap-1">
+			<button
+				type="button"
+				className={buttonVariants({ variant: "ghost", size: "sm" })}
+				{...editButtonProps}
+			>
+				Edit link
+			</button>
 
-      <Separator orientation="vertical" />
+			<Separator orientation="vertical" />
 
-      <LinkOpenButton
-        className={buttonVariants({
-          variant: "ghost",
-          size: "sms",
-        })}
-      >
-        <ExternalLink width={18} />
-      </LinkOpenButton>
+			<LinkOpenButton
+				className={buttonVariants({
+					variant: "ghost",
+					size: "sms",
+				})}
+			>
+				<ExternalLink width={18} />
+			</LinkOpenButton>
 
-      <Separator orientation="vertical" />
+			<Separator orientation="vertical" />
 
-      <button
-        type="button"
-        className={buttonVariants({
-          variant: "ghost",
-          size: "sms",
-        })}
-        {...unlinkButtonProps}
-      >
-        <Unlink width={18} />
-      </button>
-    </div>
-  );
+			<button
+				type="button"
+				className={buttonVariants({
+					variant: "ghost",
+					size: "sms",
+				})}
+				{...unlinkButtonProps}
+			>
+				<Unlink width={18} />
+			</button>
+		</div>
+	);
 
-  return (
-    <>
-      <div
-        ref={insertRef}
-        className={cn(popoverVariants(), "w-auto p-1")}
-        {...insertProps}
-      >
-        {input}
-      </div>
+	return (
+		<>
+			<div
+				ref={insertRef}
+				className={cn(popoverVariants(), "w-auto p-1")}
+				{...insertProps}
+			>
+				{input}
+			</div>
 
-      <div
-        ref={editRef}
-        className={cn(popoverVariants(), "w-auto p-1")}
-        {...editProps}
-      >
-        {editContent}
-      </div>
-    </>
-  );
+			<div
+				ref={editRef}
+				className={cn(popoverVariants(), "w-auto p-1")}
+				{...editProps}
+			>
+				{editContent}
+			</div>
+		</>
+	);
 }

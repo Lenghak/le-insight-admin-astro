@@ -6,33 +6,33 @@ import auth from "auth-astro";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: vercel(),
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-    auth(),
-  ],
-  prefetch: {
-    defaultStrategy: "hover",
-  },
-  redirects: {
-    "/": {
-      status: 307,
-      destination: "/dashboard/users",
-    },
-  },
-  vite: {
-    plugins: [
-      // w
-    ],
-    ssr: {
-      noExternal: ["react-tweet"],
-    },
-  },
-  image: {
-    domains: ["source.unsplash.com"],
-  },
+	output: "server",
+	adapter: vercel(),
+	integrations: [
+		tailwind({
+			applyBaseStyles: false,
+		}),
+		react(),
+		auth(),
+	],
+	prefetch: {
+		defaultStrategy: "hover",
+	},
+	redirects: {
+		"/": {
+			status: 307,
+			destination: "/dashboard/users",
+		},
+	},
+	vite: {
+		plugins: [
+			// w
+		],
+		ssr: {
+			noExternal: ["react-tweet"],
+		},
+	},
+	image: {
+		domains: ["source.unsplash.com"],
+	},
 });

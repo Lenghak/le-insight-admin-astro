@@ -9,57 +9,57 @@ import { useSearchParams } from "react-router-dom";
 import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 
 const EditArticlesForm = React.lazy(
-  () => import("@articles/composites/articles-edit-form"),
+	() => import("@articles/composites/articles-edit-form"),
 );
 
 const ArticleArchivesForm = React.lazy(
-  () => import("@articles/composites/articles-archives-form"),
+	() => import("@articles/composites/articles-archives-form"),
 );
 
 type DateRange = string | Date | null | undefined;
 
 export default function ArticlesList() {
-  const [searchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const limit = parseInt(searchParams.get("limit") ?? "50");
-  const q = searchParams.get("q") ?? undefined;
-  const status = searchParams.get("status") ?? undefined;
+	const page = Number.parseInt(searchParams.get("page") ?? "1");
+	const limit = Number.parseInt(searchParams.get("limit") ?? "50");
+	const q = searchParams.get("q") ?? undefined;
+	const status = searchParams.get("status") ?? undefined;
 
-  let rfrom: DateRange = searchParams.get("from") ?? undefined;
-  let rto: DateRange = searchParams.get("to") ?? undefined;
+	let rfrom: DateRange = searchParams.get("from") ?? undefined;
+	let rto: DateRange = searchParams.get("to") ?? undefined;
 
-  try {
-    rfrom = rfrom ? new Date(rfrom) : undefined;
-    rto = rto ? new Date(rto) : undefined;
-  } catch (err) {
-    rfrom = undefined;
-    rto = undefined;
-  }
+	try {
+		rfrom = rfrom ? new Date(rfrom) : undefined;
+		rto = rto ? new Date(rto) : undefined;
+	} catch (err) {
+		rfrom = undefined;
+		rto = undefined;
+	}
 
-  const { data: res } = useGetArticlesListService({
-    page,
-    q,
-    status:
-      status === "ALL" ? undefined : (status as ArticlesVisiblityEnumType),
-    limit,
-    from: (rfrom as Date)?.toISOString(),
-    to: (rto as Date)?.toISOString(),
-  });
+	const { data: res } = useGetArticlesListService({
+		page,
+		q,
+		status:
+			status === "ALL" ? undefined : (status as ArticlesVisiblityEnumType),
+		limit,
+		from: (rfrom as Date)?.toISOString(),
+		to: (rto as Date)?.toISOString(),
+	});
 
-  return (
-    <Fragment>
-      <div className="mt-4 flex h-fit items-center justify-between gap-6">
-        <ArticlesTabs />
-        <ArticlesFilters />
-      </div>
+	return (
+		<Fragment>
+			<div className="mt-4 flex h-fit items-center justify-between gap-6">
+				<ArticlesTabs />
+				<ArticlesFilters />
+			</div>
 
-      <ArticleDataList articles={res?.data?.data} />
+			<ArticleDataList articles={res?.data?.data} />
 
-      <Suspense>
-        <ArticleArchivesForm />
-        <EditArticlesForm />
-      </Suspense>
-    </Fragment>
-  );
+			<Suspense>
+				<ArticleArchivesForm />
+				<EditArticlesForm />
+			</Suspense>
+		</Fragment>
+	);
 }

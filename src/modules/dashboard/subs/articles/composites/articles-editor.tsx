@@ -24,65 +24,56 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 export default function ArticlesEditor() {
-  const initialValue = useStore($editingArticle);
+	const initialValue = useStore($editingArticle);
 
-  return (
-    <TooltipProvider>
-      <PlateController>
-        <DndProvider
-          backend={HTML5Backend}
-          context={window}
-        >
-          <CommentsProvider
-            users={{}}
-            myUserId="1"
-          >
-            <Plate
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-              plugins={EDITOR_PLUGINS}
-              initialValue={initialValue}
-              normalizeInitialValue
-            >
-              <FixedToolbar className="fixed left-auto top-4 mx-auto h-fit min-h-14 w-[calc(100%_-_6rem)] place-self-center self-center overflow-y-hidden rounded-full border bg-card p-1 px-2 shadow-sm">
-                <FixedToolbarButtons />
-              </FixedToolbar>
+	return (
+		<TooltipProvider>
+			<PlateController>
+				<DndProvider backend={HTML5Backend} context={window}>
+					<CommentsProvider users={{}} myUserId="1">
+						<Plate
+							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+							plugins={EDITOR_PLUGINS}
+							initialValue={initialValue}
+							normalizeInitialValue
+						>
+							<FixedToolbar className="fixed left-auto top-4 mx-auto h-fit min-h-14 w-[calc(100%_-_6rem)] place-self-center self-center overflow-y-hidden rounded-full border bg-card p-1 px-2 shadow-sm">
+								<FixedToolbarButtons />
+							</FixedToolbar>
 
-              <Editor
-                containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full"
-                className="h-full w-full border-0 px-32 pt-24"
-                focusRing={false}
-              />
+							<Editor
+								containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full"
+								className="h-full w-full border-0 px-32 pt-24"
+								focusRing={false}
+							/>
 
-              <FloatingToolbar>
-                <FloatingToolbarButtons />
-              </FloatingToolbar>
-              <CommentsPopover />
+							<FloatingToolbar>
+								<FloatingToolbarButtons />
+							</FloatingToolbar>
+							<CommentsPopover />
 
-              <div className="group fixed bottom-6 right-0 flex flex-col items-end gap-6 pr-2">
-                <SpaModeToggle
-                  variant={"outline"}
-                  className="relative gap-4 font-bold"
-                />
+							<div className="group fixed bottom-6 right-0 flex flex-col items-end gap-6 pr-2">
+								<SpaModeToggle
+									variant={"outline"}
+									className="relative gap-4 font-bold"
+								/>
 
-                <ArticlesThumbnailForm
-                  trigger={
-                    <Button
-                      size="icon"
-                      className="rotate-0 transition-all hover:rotate-[360deg]"
-                    >
-                      <CheckIcon
-                        className="size-4"
-                        strokeWidth={3}
-                      />
-                      <span className="sr-only">Submit</span>
-                    </Button>
-                  }
-                />
-              </div>
-            </Plate>
-          </CommentsProvider>
-        </DndProvider>
-      </PlateController>
-    </TooltipProvider>
-  );
+								<ArticlesThumbnailForm
+									trigger={
+										<Button
+											size="icon"
+											className="rotate-0 transition-all hover:rotate-[360deg]"
+										>
+											<CheckIcon className="size-4" strokeWidth={3} />
+											<span className="sr-only">Submit</span>
+										</Button>
+									}
+								/>
+							</div>
+						</Plate>
+					</CommentsProvider>
+				</DndProvider>
+			</PlateController>
+		</TooltipProvider>
+	);
 }

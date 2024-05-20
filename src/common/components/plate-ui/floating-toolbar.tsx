@@ -1,63 +1,63 @@
 import { cn, withRef } from "@udecode/cn";
 import { PortalBody, useComposedRef } from "@udecode/plate-common";
 import {
-  flip,
-  type FloatingToolbarState,
-  offset,
-  useFloatingToolbar,
-  useFloatingToolbarState,
+	type FloatingToolbarState,
+	flip,
+	offset,
+	useFloatingToolbar,
+	useFloatingToolbarState,
 } from "@udecode/plate-floating";
 
 import { Toolbar } from "./toolbar";
 
 export const FloatingToolbar = withRef<
-  typeof Toolbar,
-  {
-    state?: FloatingToolbarState;
-  }
+	typeof Toolbar,
+	{
+		state?: FloatingToolbarState;
+	}
 >(({ state, children, ...props }, componentRef) => {
-  const floatingToolbarState = useFloatingToolbarState({
-    ...state,
-    floatingOptions: {
-      placement: "top",
-      middleware: [
-        offset(12),
-        flip({
-          padding: 12,
-          fallbackPlacements: [
-            "top-start",
-            "top-end",
-            "bottom-start",
-            "bottom-end",
-          ],
-        }),
-      ],
-      ...state?.floatingOptions,
-    },
-  });
+	const floatingToolbarState = useFloatingToolbarState({
+		...state,
+		floatingOptions: {
+			placement: "top",
+			middleware: [
+				offset(12),
+				flip({
+					padding: 12,
+					fallbackPlacements: [
+						"top-start",
+						"top-end",
+						"bottom-start",
+						"bottom-end",
+					],
+				}),
+			],
+			...state?.floatingOptions,
+		},
+	});
 
-  const {
-    ref: floatingRef,
-    props: rootProps,
-    hidden,
-  } = useFloatingToolbar(floatingToolbarState);
+	const {
+		ref: floatingRef,
+		props: rootProps,
+		hidden,
+	} = useFloatingToolbar(floatingToolbarState);
 
-  const ref = useComposedRef<HTMLDivElement>(componentRef, floatingRef);
+	const ref = useComposedRef<HTMLDivElement>(componentRef, floatingRef);
 
-  if (hidden) return null;
+	if (hidden) return null;
 
-  return (
-    <PortalBody>
-      <Toolbar
-        ref={ref}
-        className={cn(
-          "absolute z-[9999] whitespace-nowrap rounded-full border bg-popover px-1.5 opacity-100 shadow-md print:hidden",
-        )}
-        {...rootProps}
-        {...props}
-      >
-        {children}
-      </Toolbar>
-    </PortalBody>
-  );
+	return (
+		<PortalBody>
+			<Toolbar
+				ref={ref}
+				className={cn(
+					"absolute z-[9999] whitespace-nowrap rounded-full border bg-popover px-1.5 opacity-100 shadow-md print:hidden",
+				)}
+				{...rootProps}
+				{...props}
+			>
+				{children}
+			</Toolbar>
+		</PortalBody>
+	);
 });

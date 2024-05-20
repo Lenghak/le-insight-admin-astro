@@ -5,16 +5,16 @@ import useCategoriesListHandler from "@categories/hooks/use-get-categories-list-
 import { Fragment } from "react/jsx-runtime";
 
 export default function CategoriesTable() {
-  const { data: res } = useCategoriesListHandler();
+	const { data: res } = useCategoriesListHandler();
 
-  return (
-    <Fragment>
-      <CategoriesDataTable
-        columns={categoriesColumns}
-        data={res?.data.data ?? []}
-        meta={res?.data?.meta}
-        className="mt-4 w-full"
-      />
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<CategoriesDataTable
+				columns={categoriesColumns}
+				data={res?.data.data ?? []}
+				meta={res?.data?.meta}
+				className="mt-4 w-full"
+			/>
+		</Fragment>
+	);
 }
