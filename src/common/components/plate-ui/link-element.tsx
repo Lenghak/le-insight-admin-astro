@@ -19,7 +19,6 @@ export const LinkElement = withRef<typeof PlateElement>(
 				{...linkProps}
 				{...props}
 			>
-				{/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
 				<a>{children}</a>
 			</PlateElement>
 		);

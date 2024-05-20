@@ -97,7 +97,7 @@ export function EmojiPickerContent({
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 			return visibleCategories.has(categoryId)
 				? // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-				visibleCategories.get(categoryId)
+					visibleCategories.get(categoryId)
 				: false;
 		},
 		[visibleCategories],

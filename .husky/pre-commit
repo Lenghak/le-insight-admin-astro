@@ -6,11 +6,10 @@ LIGHT_BLUE='\033[1;34m'
 NO_COLOR='\033[0m'
 
 
-echo "${LIGHT_BLUE}!${NO_COLOR} Prettier is Formatting Staged Files"
+echo "${LIGHT_BLUE}!${NO_COLOR} Formatting Staged Files"
 pnpm format --staged --no-errors-on-unmatched
 
-echo "${GREEN} Formatted" ${staged}
-echo "${GREEN}✔${NO_COLOR} Done Running Prettier"
+echo "${GREEN}✔${NO_COLOR} Done Formatting"
 
 echo "${LIGHT_BLUE}!${NO_COLOR} Checking for Circlar Dependency"
 pnpm cruise || exit $
