@@ -1,5 +1,5 @@
 {
-	"workbench.iconTheme": "monospace-icons",
+	"workbench.iconTheme": "bearded-icons",
 	"editor.defaultFormatter": "biomejs.biome",
 	"[json]": {
 		"editor.quickSuggestions": {

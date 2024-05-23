@@ -36,7 +36,7 @@ export default function ArticleArchivesForm() {
 	const articleID =
 		typeof dialogStore.meta === "string" ? dialogStore.meta : "";
 
-	const { mutate: archiveArticle, status: archivingStatus } =
+	const { mutateAsync: archiveArticle, status: archivingStatus } =
 		useArchiveArticleService();
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -52,7 +52,7 @@ export default function ArticleArchivesForm() {
 				...dialogStore,
 				isOpen: false,
 			});
-	}, [archivingStatus, dialogStore]);
+	}, [archivingStatus]);
 
 	return (
 		<AlertDialog
@@ -84,7 +84,9 @@ export default function ArticleArchivesForm() {
 					</AlertDialogCancel>
 					<Form {...form}>
 						<form
-							onSubmit={form.handleSubmit(({ id }) => archiveArticle({ id }))}
+							onSubmit={form.handleSubmit(
+								async ({ id }) => await archiveArticle({ id }),
+							)}
 							className="space-y-8"
 						>
 							<Button
