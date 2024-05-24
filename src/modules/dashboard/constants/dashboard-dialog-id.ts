@@ -7,6 +7,7 @@ export const DASHBOARD_DIALOG_ID = {
 	categories: {
 		edit: "CATEGORIES_EDIT",
 		delete: "CATEGORIES_DELETE",
+		regenerate: "CATEGORIES_REGENERATE",
 	},
 	users: {
 		edit: "USERS_EDIT",

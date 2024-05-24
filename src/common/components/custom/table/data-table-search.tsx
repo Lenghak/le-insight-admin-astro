@@ -73,8 +73,8 @@ export default function DataTableSearch({
 									/>
 
 									<Button
-										onClick={() => form.reset({ q: "" })}
-										type="submit"
+										onClick={() => { form.reset({ q: "" }); form.trigger() }}
+										type="button"
 										variant={"ghost"}
 										size={"icon"}
 										className="peer/clear invisible absolute right-10 size-6 hover:visible focus:visible focus-visible:visible group-focus:visible peer-focus:visible peer-focus-visible/input:visible"

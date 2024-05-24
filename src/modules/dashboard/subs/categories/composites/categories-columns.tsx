@@ -76,7 +76,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
 					className={cn(
 						"w-full text-center font-bold",
 						row.original.is_archived &&
-							"font-bold italic text-muted-foreground line-through",
+						"font-bold italic text-muted-foreground line-through",
 					)}
 				>
 					{getValue() as string}
@@ -109,18 +109,18 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
 			<DataTableColumnHeader column={column} title="N. Assigned" />
 		),
 		cell: ({ row }) =>
-			row?.original?.assigned_count ? (
+			row?.original?.assigned_count >= 0 ? (
 				<span
 					className={cn(
 						"w-full text-center font-bold",
 						row?.original?.is_archived &&
-							"font-bold uppercase text-muted-foreground line-through",
+						"font-bold uppercase text-muted-foreground line-through",
 					)}
 				>
 					{row?.original?.assigned_count}
 				</span>
 			) : (
-				<span className="inline-block w-full text-center">-</span>
+				<span className="inline-block w-full">-</span>
 			),
 	},
 	{
@@ -130,18 +130,18 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
 			<DataTableColumnHeader column={column} title="N. Generated" />
 		),
 		cell: ({ row }) =>
-			row?.original?.generated_count ? (
+			row?.original?.generated_count >= 0 ? (
 				<span
 					className={cn(
 						"w-full text-center font-bold",
 						row?.original?.is_archived &&
-							"font-bold uppercase text-muted-foreground line-through",
+						"font-bold uppercase text-muted-foreground line-through",
 					)}
 				>
 					{row?.original?.generated_count}
 				</span>
 			) : (
-				<span className="inline-block w-full text-center">-</span>
+				<span className="inline-block w-full">-</span>
 			),
 	},
 	{
@@ -154,7 +154,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
 				<span
 					className={cn(
 						row?.original?.is_archived &&
-							"font-bold italic text-muted-foreground line-through",
+						"font-bold italic text-muted-foreground line-through",
 					)}
 				>
 					{formatDate(getValue() as string)}
@@ -173,7 +173,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
 				<span
 					className={cn(
 						row?.original?.is_archived &&
-							"font-bold italic text-muted-foreground line-through",
+						"font-bold italic text-muted-foreground line-through",
 					)}
 				>
 					{formatDate(getValue() as string)}

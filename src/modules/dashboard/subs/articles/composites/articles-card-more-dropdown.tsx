@@ -20,6 +20,10 @@ import {
 	CopyIcon,
 	EyeIcon,
 	MoreHorizontalIcon,
+	Settings2Icon,
+	ShapesIcon,
+	ShuffleIcon,
+	TagsIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -50,9 +54,11 @@ export default function ArticlesCardMoreDropdown({
 						}}
 					>
 						<CopyIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
-						Copy
+						Copy ID
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
+
+				<DropdownMenuSeparator />
 
 				<DropdownMenuGroup>
 					<DropdownMenuItem
@@ -65,16 +71,31 @@ export default function ArticlesCardMoreDropdown({
 							});
 						}}
 					>
-						<EyeIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
-						Visibility
+						<Settings2Icon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+						Set Visibility
+					</DropdownMenuItem>
+
+					<DropdownMenuItem
+						className="items-center gap-3 px-3 py-2 font-semibold"
+						onClick={() => {
+							setDashboardDialogOpen({
+								id: DASHBOARD_DIALOG_ID.categories.regenerate,
+								isOpen: true,
+								meta: article.id,
+							});
+						}}
+					>
+						<ShuffleIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+						Regen Categories
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
+
 
 				<DropdownMenuSeparator />
 
 				<DropdownMenuGroup>
 					<DropdownMenuItem
-						className={cn("items-center gap-3 px-3 py-2 font-bold")}
+						className={cn("items-center gap-3 bg-destructive/15 px-3 py-2 font-bold text-destructive hover:bg-destructive/15")}
 						onClick={() => {
 							setDashboardDialogOpen({
 								id: DASHBOARD_DIALOG_ID.articles.delete,
@@ -88,6 +109,6 @@ export default function ArticlesCardMoreDropdown({
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
-		</DropdownMenu>
+		</DropdownMenu >
 	);
 }

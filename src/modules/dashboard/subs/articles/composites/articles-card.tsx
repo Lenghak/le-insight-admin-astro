@@ -38,8 +38,8 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 	{ className, article, ...props },
 	ref,
 ) {
-	// const sheetState = useStore($dashboardDialogStore);
 	const author = article?.article_author;
+
 
 	return (
 		<Card

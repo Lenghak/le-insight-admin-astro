@@ -51,7 +51,11 @@
 				"noUselessTypeConstraint": "error",
 				"useArrowFunction": "off"
 			},
-			"correctness": { "noPrecisionLoss": "error", "noUnusedVariables": "off" },
+			"correctness": {
+				"noPrecisionLoss": "error",
+				"noUnusedVariables": "error",
+				"noUnusedImports": "error"
+			},
 			"style": {
 				"noNamespace": "error",
 				"noNonNullAssertion": "error",

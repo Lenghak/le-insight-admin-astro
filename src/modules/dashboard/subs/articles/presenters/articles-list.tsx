@@ -8,6 +8,8 @@ import { useSearchParams } from "react-router-dom";
 
 import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 
+const CategoriesRegenForm = React.lazy(() => import("@articles/composites/articles-re-cate-form"));
+
 const EditArticlesForm = React.lazy(
 	() => import("@articles/composites/articles-edit-form"),
 );
@@ -32,7 +34,7 @@ export default function ArticlesList() {
 	try {
 		rfrom = rfrom ? new Date(rfrom) : undefined;
 		rto = rto ? new Date(rto) : undefined;
-	} catch (err) {
+	} catch (_) {
 		rfrom = undefined;
 		rto = undefined;
 	}
@@ -59,6 +61,7 @@ export default function ArticlesList() {
 			<Suspense>
 				<ArticleArchivesForm />
 				<EditArticlesForm />
+				<CategoriesRegenForm />
 			</Suspense>
 		</Fragment>
 	);
