@@ -11,7 +11,6 @@ import {
 } from "@ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@ui/hover-card";
 import { Muted } from "@ui/muted";
-import { Small } from "@ui/small";
 
 import { Image } from "@custom/image";
 import ProfileBadge from "@custom/profile/profile-badge";
@@ -20,13 +19,8 @@ import ProfileHoverContent from "@custom/profile/profile-hover-content";
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
-import ArticleCategoryBadge from "@/modules/dashboard/subs/articles/composites/article-categories-badge";
-import {
-	BookmarkIcon,
-	DotIcon,
-	MessageCircle,
-	ThumbsUpIcon,
-} from "lucide-react";
+import ArticleCategoryBadge from "@/modules/dashboard/subs/articles/composites/articles-categories-badge";
+import { BookmarkIcon, DotIcon } from "lucide-react";
 import React, { useId } from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
@@ -70,29 +64,12 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 					</HoverCard>
 
 					{/* Minutes Reads */}
-					<Muted className="font-medium">5 minutes read</Muted>
+					<Muted className="font-medium">{}</Muted>
 				</div>
 
 				<CardTitle className="line-clamp-2 text-xl font-black">
 					{article?.preview_title}
 				</CardTitle>
-
-				<div className="flex w-full items-center gap-8">
-					<Muted className="text-xs font-semibold uppercase tracking-widest min-w-max">
-						{article?.created_at ? formatDate(article?.created_at) : "-"}
-					</Muted>
-
-					<DotIcon size={16} />
-
-					<div className="flex flex-nowrap w-full overflow-hidden items-center justify-start gap-4">
-						{articleCategory?.map((category) => (
-							<ArticleCategoryBadge
-								categoryId={category.category_id}
-								key={useId()}
-							/>
-						))}
-					</div>
-				</div>
 
 				<CardDescription className="line-clamp-2 font-serif text-base font-medium">
 					{article?.preview_description}
@@ -110,7 +87,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 
 			<CardFooter className="col-span-2 flex w-full items-center justify-between p-0">
 				<div className="flex items-center justify-end gap-4">
-					<div className="flex items-center">
+					{/* <div className="flex items-center">
 						<Button variant={"ghost"} size={"icon"} disabled>
 							<span className="sr-only">Like the Article</span>
 							<ThumbsUpIcon className="size-5" />
@@ -130,6 +107,22 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 						<Button variant={"ghost"} size={"icon"}>
 							<Small>0</Small>
 						</Button>
+					</div> */}
+					<div className="flex w-full items-center gap-8">
+						<Muted className="text-xs font-semibold uppercase tracking-widest min-w-max">
+							{article?.created_at ? formatDate(article?.created_at) : "-"}
+						</Muted>
+
+						<DotIcon size={16} />
+
+						<div className="flex flex-nowrap w-full overflow-hidden items-center justify-start gap-4">
+							{articleCategory?.map((category) => (
+								<ArticleCategoryBadge
+									categoryId={category.category_id}
+									key={useId()}
+								/>
+							))}
+						</div>
 					</div>
 				</div>
 
