@@ -7,7 +7,7 @@ import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";
 
 export default function getCategoryAPI(
-	{ categoryID }: CategoriesRequestType,
+	{ categoryId: categoryID }: CategoriesRequestType,
 	queryInstance?: AxiosInstance,
 ) {
 	return (queryInstance ?? getPublicQueryInstance()).get<

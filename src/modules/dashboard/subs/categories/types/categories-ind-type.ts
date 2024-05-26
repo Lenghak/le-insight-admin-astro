@@ -4,7 +4,7 @@ import { CategoriesSchema } from "@/common/types/categories-type";
 import { createResponseSchema } from "@/common/types/response-type";
 
 export const CategoriesRequestSchema = z.object({
-	categoryID: z.string().uuid().optional(),
+	categoryId: z.string().uuid().optional(),
 });
 
 export const CategoriesResponseSchema = createResponseSchema({

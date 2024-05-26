@@ -9,7 +9,7 @@ import { useStore } from "@nanostores/react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useGetCategoryService({
-	categoryID,
+	categoryId: categoryID,
 }: CategoriesRequestType) {
 	const instance = usePrivateQueryInstance();
 	const queryClient = useStore($queryClient);
@@ -18,7 +18,7 @@ export default function useGetCategoryService({
 		{
 			queryKey: [...categoriesKeys.detail(categoryID), instance],
 			queryFn: async () =>
-				(await getCategoryAPI({ categoryID }, instance)) ?? null,
+				(await getCategoryAPI({ categoryId: categoryID }, instance)) ?? null,
 			enabled: categoryID !== undefined,
 			refetchOnReconnect: true,
 			refetchOnWindowFocus: true,

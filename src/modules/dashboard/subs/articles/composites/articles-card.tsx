@@ -1,7 +1,5 @@
 import ArticlesCardMoreDropdown from "@articles/composites/articles-card-more-dropdown";
 import type { ArticlesListDataType } from "@articles/types/articles-list-type";
-
-import { Badge } from "@ui/badge";
 import { Button, buttonVariants } from "@ui/button";
 import {
 	Card,
@@ -22,13 +20,14 @@ import ProfileHoverContent from "@custom/profile/profile-hover-content";
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
+import ArticleCategoryBadge from "@/modules/dashboard/subs/articles/composites/article-categories-badge";
 import {
 	BookmarkIcon,
 	DotIcon,
 	MessageCircle,
 	ThumbsUpIcon,
 } from "lucide-react";
-import React from "react";
+import React, { useId } from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
 	article: ArticlesListDataType;
@@ -39,6 +38,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 	ref,
 ) {
 	const author = article?.article_author;
+	const articleCategory = article?.article_categories;
 
 	return (
 		<Card
@@ -78,15 +78,20 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 				</CardTitle>
 
 				<div className="flex w-full items-center gap-8">
-					<Muted className="text-xs font-semibold uppercase tracking-widest">
+					<Muted className="text-xs font-semibold uppercase tracking-widest min-w-max">
 						{article?.created_at ? formatDate(article?.created_at) : "-"}
 					</Muted>
 
 					<DotIcon size={16} />
 
-					<Badge variant={"fair"} className="bg-accent text-xs font-bold">
-						Category
-					</Badge>
+					<div className="flex flex-nowrap w-full overflow-hidden items-center justify-start gap-4">
+						{articleCategory?.map((category) => (
+							<ArticleCategoryBadge
+								categoryId={category.category_id}
+								key={useId()}
+							/>
+						))}
+					</div>
 				</div>
 
 				<CardDescription className="line-clamp-2 font-serif text-base font-medium">

@@ -16,7 +16,12 @@ export const ArticlesListDataSchema = ArticlesSchema.omit({
 	content_plain_text: true,
 }).extend({
 	article_author: UsersSchema.extend({ profile: ProfilesSchema }),
-	article_categories: z.array(z.unknown()),
+	article_categories: z.array(
+		z.object({
+			article_id: z.string(),
+			category_id: z.string(),
+		}),
+	),
 });
 
 export const ArticlesListRequestSchema = PaginationRequestSchema.extend({

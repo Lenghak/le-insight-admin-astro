@@ -26,7 +26,7 @@ export default function useEditCategoriesHandler() {
 		isRefetching,
 		...query
 	} = useGetCategoryService({
-		categoryID: typeof dialog.meta === "string" ? dialog.meta : undefined,
+		categoryId: typeof dialog.meta === "string" ? dialog.meta : undefined,
 	});
 	const { status: editCategoryStatus, ...mutation } = useEditCategoryService();
 

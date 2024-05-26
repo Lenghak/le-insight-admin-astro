@@ -18,12 +18,9 @@ import { cn } from "@/common/lib/utils";
 import {
 	ArchiveIcon,
 	CopyIcon,
-	EyeIcon,
 	MoreHorizontalIcon,
 	Settings2Icon,
-	ShapesIcon,
 	ShuffleIcon,
-	TagsIcon,
 } from "lucide-react";
 import { toast } from "sonner";
 
