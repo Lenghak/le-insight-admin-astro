@@ -90,12 +90,13 @@ export default function ArticlesCardMoreDropdown({
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 
-
 				<DropdownMenuSeparator />
 
 				<DropdownMenuGroup>
 					<DropdownMenuItem
-						className={cn("items-center gap-3 bg-destructive/15 px-3 py-2 font-bold text-destructive hover:bg-destructive/15")}
+						className={cn(
+							"items-center gap-3 bg-destructive/15 px-3 py-2 font-bold text-destructive hover:bg-destructive/15",
+						)}
 						onClick={() => {
 							setDashboardDialogOpen({
 								id: DASHBOARD_DIALOG_ID.articles.delete,
@@ -109,6 +110,6 @@ export default function ArticlesCardMoreDropdown({
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
-		</DropdownMenu >
+		</DropdownMenu>
 	);
 }

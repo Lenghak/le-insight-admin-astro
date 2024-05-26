@@ -8,7 +8,9 @@ import { useSearchParams } from "react-router-dom";
 
 import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 
-const CategoriesRegenForm = React.lazy(() => import("@articles/composites/articles-re-cate-form"));
+const CategoriesRegenForm = React.lazy(
+	() => import("@articles/composites/articles-re-cate-form"),
+);
 
 const EditArticlesForm = React.lazy(
 	() => import("@articles/composites/articles-edit-form"),

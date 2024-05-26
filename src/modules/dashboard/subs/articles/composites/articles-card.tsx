@@ -40,7 +40,6 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 ) {
 	const author = article?.article_author;
 
-
 	return (
 		<Card
 			ref={ref}

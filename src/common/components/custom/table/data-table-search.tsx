@@ -73,7 +73,10 @@ export default function DataTableSearch({
 									/>
 
 									<Button
-										onClick={() => { form.reset({ q: "" }); form.trigger() }}
+										onClick={() => {
+											form.reset({ q: "" });
+											form.trigger();
+										}}
 										type="button"
 										variant={"ghost"}
 										size={"icon"}
