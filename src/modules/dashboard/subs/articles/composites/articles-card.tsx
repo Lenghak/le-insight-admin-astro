@@ -1,5 +1,7 @@
 import ArticlesCardMoreDropdown from "@articles/composites/articles-card-more-dropdown";
+import ArticleCategoryBadge from "@articles/composites/articles-categories-badge";
 import type { ArticlesListDataType } from "@articles/types/articles-list-type";
+
 import { Button, buttonVariants } from "@ui/button";
 import {
 	Card,
@@ -19,7 +21,6 @@ import ProfileHoverContent from "@custom/profile/profile-hover-content";
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
-import ArticleCategoryBadge from "@/modules/dashboard/subs/articles/composites/articles-categories-badge";
 import { BookmarkIcon, DotIcon } from "lucide-react";
 import React, { useId } from "react";
 

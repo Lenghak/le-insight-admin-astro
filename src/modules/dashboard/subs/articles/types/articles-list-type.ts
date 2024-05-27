@@ -28,6 +28,7 @@ export const ArticlesListRequestSchema = PaginationRequestSchema.extend({
 	from: z.string().datetime().optional(),
 	to: z.string().datetime().optional(),
 	status: ArticlesVisiblityEnum.optional().catch(undefined),
+	category: z.string().optional(),
 });
 
 export const ArticlesListResponseSchema = z.object({

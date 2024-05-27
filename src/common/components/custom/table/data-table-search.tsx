@@ -42,6 +42,7 @@ export default function DataTableSearch({
 						setSearchParams(
 							(prev) => {
 								prev.set("q", data.q);
+								prev.set("page", "1");
 								return prev;
 							},
 							{ replace: true },

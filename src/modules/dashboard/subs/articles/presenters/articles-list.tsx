@@ -29,6 +29,7 @@ export default function ArticlesList() {
 	const limit = Number.parseInt(searchParams.get("limit") ?? "50");
 	const q = searchParams.get("q") ?? undefined;
 	const status = searchParams.get("status") ?? undefined;
+	const category = searchParams.get("category") ?? undefined;
 
 	let rfrom: DateRange = searchParams.get("from") ?? undefined;
 	let rto: DateRange = searchParams.get("to") ?? undefined;
@@ -49,6 +50,7 @@ export default function ArticlesList() {
 		limit,
 		from: (rfrom as Date)?.toISOString(),
 		to: (rto as Date)?.toISOString(),
+		category,
 	});
 
 	return (

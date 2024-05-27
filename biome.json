@@ -102,6 +102,7 @@
 			"**/pnpm-lock.yaml",
 			"**/package-lock.json",
 			"**/data",
+			"**/*.astro",
 			".dependency-cruiser.cjs"
 		]
 	},
