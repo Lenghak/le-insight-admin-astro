@@ -11,7 +11,7 @@ export default function ArticleDataList({
 	articles?: ArticlesListDataType[];
 }) {
 	return (
-		<section className="grid-rows-auto grid h-full w-full grid-cols-1 gap-x-6 gap-y-6 divide-y lg:grid-cols-2">
+		<section className="grid-rows-auto grid h-full w-full grid-cols-1 gap-x-6 gap-y-6 lg:grid-cols-2">
 			{articles?.length && articles?.length > 0
 				? articles?.map((article, index) => (
 						<ArticlesCard

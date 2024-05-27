@@ -40,20 +40,17 @@ export default function ArticleCategoriesFilters() {
 			<PopoverTrigger asChild>
 				<Button
 					variant="outline"
-					size={currentCategory ? "sm" : "icon"}
-					className={cn(
-						"bg-card",
-						currentCategory ? "h-9 px-4 font-bold" : "size-9 min-h-9 min-w-9",
-					)}
+					size={"sm"}
+					className={cn("bg-card h-9 px-4 font-bold")}
 				>
-					{currentCategory ? (
-						<div className="flex items-center gap-2">
-							<TagIcon className="size-4 min-h-4 min-w-4" />
-							<Badge>{currentCategory}</Badge>
-						</div>
-					) : (
+					<div className="flex items-center gap-4">
 						<TagIcon className="size-4 min-h-4 min-w-4" />
-					)}
+						{currentCategory ? (
+							<Badge>{currentCategory}</Badge>
+						) : (
+							<Small className="text-muted-foreground">Filter Category</Small>
+						)}
+					</div>
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="p-0" side="bottom" align="center">
@@ -95,7 +92,7 @@ export default function ArticleCategoriesFilters() {
 				<PopoverClose asChild>
 					<Button
 						variant={"outline"}
-						className="flex items-center gap-4 pl-4 font-bold text-destructive rounded-none w-full rounded-b-sm bg-card border-0"
+						className="flex items-center gap-4 pl-4 font-bold text-destructive rounded-none w-full rounded-b-sm bg-card border-0 border-t"
 						onClick={() => {
 							setSearchParams((prev) => {
 								prev.delete("category");

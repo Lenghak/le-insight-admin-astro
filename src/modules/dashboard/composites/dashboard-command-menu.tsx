@@ -1,3 +1,4 @@
+import { DASHBOARD_NAVIGATION } from "@/modules/dashboard/constants/dashboard-navigation";
 import { Button } from "@ui/button";
 import {
 	CommandDialog,
@@ -9,8 +10,9 @@ import {
 	CommandShortcut,
 } from "@ui/command";
 
-import { SearchIcon } from "lucide-react";
-import React, { Fragment } from "react";
+import { MilestoneIcon, SearchIcon } from "lucide-react";
+import React, { Fragment, useId } from "react";
+import { Link } from "react-router-dom";
 
 export function DashboardCommandMenu() {
 	const [open, setOpen] = React.useState(false);
@@ -53,12 +55,19 @@ export function DashboardCommandMenu() {
 					<CommandEmpty>No results found.</CommandEmpty>
 					<CommandGroup
 						heading={
-							<span className="font-bold text-foreground">Suggestions</span>
+							<span className="font-bold text-xs uppercase tracking-widest text-muted-foreground">
+								Essentials
+							</span>
 						}
 					>
-						<CommandItem>Calendar</CommandItem>
-						<CommandItem>Search Emoji</CommandItem>
-						<CommandItem>Calculator</CommandItem>
+						{DASHBOARD_NAVIGATION.map((nav) => (
+							<Link key={useId()} to={nav.link} onClick={() => setOpen(false)}>
+								<CommandItem className="font-semibold flex items-center gap-4">
+									<MilestoneIcon className="max-w-4 max-h-4" />
+									{nav.label}
+								</CommandItem>
+							</Link>
+						))}
 					</CommandGroup>
 				</CommandList>
 			</CommandDialog>
