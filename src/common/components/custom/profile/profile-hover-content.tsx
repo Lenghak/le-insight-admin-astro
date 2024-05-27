@@ -79,7 +79,7 @@ export default function ProfileHoverContent({
 					<div className="line-clamp-3 h-full w-full">
 						{profile?.attributes.bio ?? (
 							<Muted className="whitespace-pre-wrap text-sm italic">
-								" This author has not decided to leave some wisdom yet. "
+								" This author has not decided to leave any wisdom yet. "
 							</Muted>
 						)}
 					</div>
