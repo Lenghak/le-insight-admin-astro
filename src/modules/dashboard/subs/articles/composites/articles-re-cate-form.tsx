@@ -93,6 +93,7 @@ export default function CategoriesRegenForm() {
 										"Processing new data. You may see the result very shortly.",
 									closeButton: true,
 									icon: <Loader2Icon className="size-4 animate-spin" />,
+									id: "REGEN_CATEGORY",
 								});
 							})}
 							className="space-y-8"

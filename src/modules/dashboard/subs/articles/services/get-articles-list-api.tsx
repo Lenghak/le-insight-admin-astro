@@ -1,7 +1,7 @@
 import type {
+	ArticlesCategoriesListResponseType,
 	ArticlesListRequestType,
-	ArticlesListResponseType,
-} from "@/modules/dashboard/subs/articles/types/articles-list-type";
+} from "@articles/types/articles-list-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";
@@ -12,9 +12,9 @@ export default async function getArticlesListAPI(
 ) {
 	return (queryInstance ?? getPublicQueryInstance()).get<
 		ArticlesListRequestType,
-		AxiosResponse<ArticlesListResponseType, never>,
+		AxiosResponse<ArticlesCategoriesListResponseType, never>,
 		{ params: ArticlesListRequestType }
-	>("/articles", {
+	>("/articles-categories", {
 		params: pagination,
 	});
 }

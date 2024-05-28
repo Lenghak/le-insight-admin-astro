@@ -7,6 +7,7 @@ import type { CategoriesRegenType } from "@categories/types/categories-regen-typ
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { CheckCircleIcon, CircleXIcon } from "lucide-react";
 import { toast } from "sonner";
 
 export default function useRegenCateService({
@@ -37,17 +38,25 @@ export default function useRegenCateService({
 				}
 
 				toast.error(title, {
+					id: "REGEN_CATEGORY",
 					duration: 10 * 1000,
 					description: description,
 					closeButton: true,
+					icon: (
+						<CircleXIcon className="text-primary fill-primary-foreground size-5" />
+					),
 				});
 			},
 			onSuccess: () => {
 				toast.success("Data modified successfully", {
+					id: "REGEN_CATEGORY",
 					duration: 10 * 1000,
 					description:
 						"The new data has been successfully updated. You may see the result very shortly.",
 					closeButton: true,
+					icon: (
+						<CheckCircleIcon className="size-5 fill-primary-foreground text-primary" />
+					),
 				});
 			},
 

@@ -1,8 +1,6 @@
 import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import { setDashboardDialogOpen } from "@dashboard/stores/dashboard-action-dialog-store";
 
-import type { ArticlesListDataType } from "@articles/types/articles-list-type";
-
 import { Button } from "@ui/button";
 import {
 	DropdownMenu,
@@ -24,10 +22,11 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import type { ArticlesType } from "@/common/types/articles-type";
 export default function ArticlesCardMoreDropdown({
 	article,
 }: {
-	article: ArticlesListDataType;
+	article: Partial<ArticlesType>;
 }) {
 	return (
 		<DropdownMenu>
@@ -42,12 +41,14 @@ export default function ArticlesCardMoreDropdown({
 					<DropdownMenuItem
 						className="items-center gap-3 px-3 py-2 font-semibold"
 						onClick={async () => {
-							await navigator.clipboard.writeText(article?.id).then((res) => {
-								toast.success("ID successfully copied to clipboard", {
-									closeButton: true,
+							await navigator.clipboard
+								.writeText(article?.id ?? "")
+								.then((res) => {
+									toast.success("ID successfully copied to clipboard", {
+										closeButton: true,
+									});
+									return res;
 								});
-								return res;
-							});
 						}}
 					>
 						<CopyIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />

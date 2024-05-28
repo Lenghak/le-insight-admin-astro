@@ -1,22 +1,22 @@
 import ErrorSection from "@/modules/error/components/error-section";
 
 import ArticlesCard from "@articles/composites/articles-card";
-import type { ArticlesListDataType } from "@articles/types/articles-list-type";
+import type { ArticlesCategoriesListType } from "@articles/types/articles-list-type";
 
 import { OrigamiIcon } from "lucide-react";
 
 export default function ArticleDataList({
 	articles,
 }: {
-	articles?: ArticlesListDataType[];
+	articles?: ArticlesCategoriesListType[];
 }) {
 	return (
 		<section className="grid-rows-auto grid h-full w-full grid-cols-1 gap-x-6 gap-y-6 lg:grid-cols-2">
 			{articles?.length && articles?.length > 0
-				? articles?.map((article, index) => (
+				? articles?.map((ac, index) => (
 						<ArticlesCard
-							article={article}
-							key={article?.id ?? index}
+							ac={ac}
+							key={ac?.article_id ?? index}
 							className="w-full bg-card transition-all hover:bg-card hover:shadow-lg dark:hover:bg-secondary/80 [&:nth-of-type(2)]:!border-t-0"
 						/>
 					))

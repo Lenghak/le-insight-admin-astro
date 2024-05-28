@@ -1,6 +1,6 @@
 import ArticlesCardMoreDropdown from "@articles/composites/articles-card-more-dropdown";
 import ArticleCategoryBadge from "@articles/composites/articles-categories-badge";
-import type { ArticlesListDataType } from "@articles/types/articles-list-type";
+import type { ArticlesCategoriesListType } from "@articles/types/articles-list-type";
 
 import { Button, buttonVariants } from "@ui/button";
 import {
@@ -25,15 +25,14 @@ import { BookmarkIcon, DotIcon } from "lucide-react";
 import React, { useId } from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
-	article: ArticlesListDataType;
+	ac: ArticlesCategoriesListType;
 };
 
 export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
-	{ className, article, ...props },
+	{ className, ac, ...props },
 	ref,
 ) {
-	const author = article?.article_author;
-	const articleCategory = article?.article_categories;
+	const author = ac?.article.article_author;
 
 	return (
 		<Card
@@ -45,7 +44,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 			)}
 			{...props}
 		>
-			<CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0 pt-0">
+			<CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0 pt-0 justify-between">
 				<div className="flex w-full items-center justify-between gap-4 p-0">
 					{/* Profile */}
 					<HoverCard>
@@ -69,19 +68,19 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 				</div>
 
 				<CardTitle className="line-clamp-2 text-xl font-black">
-					{article?.preview_title}
+					{ac?.article.preview_title}
 				</CardTitle>
 
 				<CardDescription className="line-clamp-2 font-serif text-base font-medium">
-					{article?.preview_description}
+					{ac?.article.preview_description}
 				</CardDescription>
 			</CardHeader>
 
 			<CardContent className="flex aspect-square h-full min-h-40 w-auto max-w-40 items-center justify-center p-0">
 				{/* Thumbnail */}
 				<Image
-					src={article?.thumbnail ?? ""}
-					alt={article?.preview_title}
+					src={ac?.article.thumbnail ?? ""}
+					alt={ac?.article.preview_title}
 					className="aspect-square h-full max-h-40 w-full max-w-40 rounded-xl object-cover"
 				/>
 			</CardContent>
@@ -111,17 +110,18 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 					</div> */}
 					<div className="flex w-full items-center gap-8">
 						<Muted className="text-xs font-semibold uppercase tracking-widest min-w-max">
-							{article?.created_at ? formatDate(article?.created_at) : "-"}
+							{ac?.article.created_at
+								? formatDate(ac?.article.created_at)
+								: "-"}
 						</Muted>
 
 						<DotIcon size={16} />
 
 						<div className="flex flex-nowrap w-full overflow-hidden items-center justify-start gap-4">
-							{articleCategory?.map((category) => (
-								<ArticleCategoryBadge
-									categoryId={category.category_id}
-									key={useId()}
-								/>
+							{ac?.article?.article_categories?.map(({ category }) => (
+								<ArticleCategoryBadge category={category} key={useId()}>
+									{category.label}
+								</ArticleCategoryBadge>
 							))}
 						</div>
 					</div>
@@ -135,7 +135,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 					</Button>
 
 					{/* More */}
-					<ArticlesCardMoreDropdown article={article} />
+					<ArticlesCardMoreDropdown article={ac.article} />
 				</div>
 			</CardFooter>
 		</Card>

@@ -1,7 +1,10 @@
-import DashboardTitle from "@dashboard/composites/dashboard-title";
-
-import ArticlesEditorSheet from "@articles/composites/articles-editor-sheet";
 import ArticlesList from "@articles/presenters/articles-list";
+import DashboardTitle from "@dashboard/composites/dashboard-title";
+import React from "react";
+
+const ArticlesEditorSheet = React.lazy(
+	() => import("@articles/composites/articles-editor-sheet"),
+);
 
 export default function ArticlesRoute() {
 	return (

@@ -7,7 +7,6 @@ import {
 	Command,
 	CommandEmpty,
 	CommandGroup,
-	CommandInput,
 	CommandItem,
 	CommandList,
 } from "@ui/command";
@@ -15,8 +14,9 @@ import { Input } from "@ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@ui/popover";
 import { Small } from "@ui/small";
 import { useDebounce } from "@uidotdev/usehooks";
-import { FilterXIcon, TagIcon } from "lucide-react";
-import React from "react";
+import { CommandLoading } from "cmdk";
+import { FilterXIcon, SearchIcon, TagIcon } from "lucide-react";
+import React, { Fragment } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function ArticleCategoriesFilters() {
@@ -29,7 +29,7 @@ export default function ArticleCategoriesFilters() {
 
 	const currentCategory = searchParams.get("category");
 
-	const { data: res } = useGetCategoriesListService({
+	const { data: res, isPending } = useGetCategoriesListService({
 		q: debounce ?? undefined,
 	});
 
@@ -55,38 +55,55 @@ export default function ArticleCategoriesFilters() {
 			</PopoverTrigger>
 			<PopoverContent className="p-0" side="bottom" align="center">
 				<Command>
-					<CommandInput asChild>
+					<div
+						className="flex items-center border-b px-3"
+						cmdk-input-wrapper=""
+					>
+						<SearchIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
 						<Input
 							placeholder="Filter categories..."
-							className="outline-0 focus-visible:ring-0 focus-visible:shadow-none focus-visible:outline-0 focus-visible:ring-offset-0 border-0"
+							className={cn(
+								"flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 outline-0 focus-visible:ring-0 focus-visible:shadow-none focus-visible:outline-0 focus-visible:ring-offset-0 border-0",
+							)}
 							onChange={(e) => setSearchCategory(e.currentTarget.value)}
 						/>
-					</CommandInput>
+					</div>
+
 					<CommandList>
-						<CommandEmpty>No results found.</CommandEmpty>
-						<CommandGroup>
-							{categories?.map((category) => (
-								<CommandItem
-									key={category.id}
-									value={category.label}
-									data-state={
-										category.label === currentCategory ? "active" : "inactive"
-									}
-									onSelect={(value) => {
-										setSearchParams(
-											{ category: value, page: "1" },
-											{ replace: true },
-										);
-										setOpen(false);
-									}}
-									className="data-[state=active]:font-extrabold"
-								>
-									<Small className="capitalize font-semibold text-primary leading-loose">
-										{category.label}
-									</Small>
-								</CommandItem>
-							))}
-						</CommandGroup>
+						{isPending ? (
+							<CommandEmpty>
+								<CommandLoading />
+							</CommandEmpty>
+						) : (
+							<Fragment>
+								<CommandEmpty>No results found.</CommandEmpty>
+								<CommandGroup>
+									{categories?.map((category) => (
+										<CommandItem
+											key={category.id}
+											value={category.label}
+											data-state={
+												category.label === currentCategory
+													? "active"
+													: "inactive"
+											}
+											onSelect={(value) => {
+												setSearchParams(
+													{ category: value, page: "1" },
+													{ replace: true },
+												);
+												setOpen(false);
+											}}
+											className="data-[state=active]:font-extrabold"
+										>
+											<Small className="capitalize font-semibold text-primary leading-loose">
+												{category.label}
+											</Small>
+										</CommandItem>
+									))}
+								</CommandGroup>
+							</Fragment>
+						)}
 					</CommandList>
 				</Command>
 				<PopoverClose asChild>
