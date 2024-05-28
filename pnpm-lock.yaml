@@ -16,10 +16,10 @@ importers:
         version: 3.4.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.2.11(@types/node@20.12.12))
       '@astrojs/tailwind':
         specifier: ^5.1.0
-        version: 5.1.0(astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
+        version: 5.1.0(astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
       '@astrojs/vercel':
         specifier: ^7.6.0
-        version: 7.6.0(astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        version: 7.6.0(astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@auth/core':
         specifier: ^0.18.6
         version: 0.18.6
@@ -129,11 +129,11 @@ importers:
         specifier: ^0.10.1
         version: 0.10.1(typescript@5.4.5)(zod@3.23.8)
       '@tanstack/query-core':
-        specifier: ^5.38.0
-        version: 5.38.0
+        specifier: ^5.40.0
+        version: 5.40.0
       '@tanstack/react-query':
-        specifier: ^5.39.0
-        version: 5.39.0(react@18.3.1)
+        specifier: ^5.40.0
+        version: 5.40.0(react@18.3.1)
       '@tanstack/react-table':
         specifier: ^8.17.3
         version: 8.17.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -291,11 +291,11 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       astro:
-        specifier: ^4.9.1
-        version: 4.9.1(@types/node@20.12.12)(typescript@5.4.5)
+        specifier: ^4.9.2
+        version: 4.9.2(@types/node@20.12.12)(typescript@5.4.5)
       auth-astro:
         specifier: ^4.1.1
-        version: 4.1.1(@auth/core@0.18.6)(astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.1.1(@auth/core@0.18.6)(astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -318,8 +318,8 @@ importers:
         specifier: 8.0.4
         version: 8.0.4(react@18.3.1)
       jotai:
-        specifier: ^2.8.1
-        version: 2.8.1(@types/react@18.3.3)(react@18.3.1)
+        specifier: ^2.8.2
+        version: 2.8.2(@types/react@18.3.3)(react@18.3.1)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -2103,11 +2103,11 @@ packages:
       typescript:
         optional: true
 
-  '@tanstack/query-core@5.38.0':
-    resolution: {integrity: sha512-QtkoxvFcu52mNpp3+qOo9H265m3rt83Dgbw5WnNyJvr83cegrQ7zT8haHhL4Rul6ZQkeovxyWbXVW9zI0WYx6g==}
+  '@tanstack/query-core@5.40.0':
+    resolution: {integrity: sha512-eD8K8jsOIq0Z5u/QbvOmfvKKE/XC39jA7yv4hgpl/1SRiU+J8QCIwgM/mEHuunQsL87dcvnHqSVLmf9pD4CiaA==}
 
-  '@tanstack/react-query@5.39.0':
-    resolution: {integrity: sha512-zc0WnyEffyTgG+myLv8cY2tJOUT6jOprCiprpbMqylCaCFipSDUPCYCt2AC+qxgk2CFuqiI/fjb1u5/HhLkrPg==}
+  '@tanstack/react-query@5.40.0':
+    resolution: {integrity: sha512-iv/W0Axc4aXhFzkrByToE1JQqayxTPNotCoSCnarR/A1vDIHaoKpg7FTIfP3Ev2mbKn1yrxq0ZKYUdLEJxs6Tg==}
     peerDependencies:
       react: ^18.0.0
 
@@ -3000,8 +3000,8 @@ packages:
   array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
 
-  astro@4.9.1:
-    resolution: {integrity: sha512-9TsoAu0WBPiqyAIj9H0JW7R+tIjPjFsPKo70Nja6WL3imTTuUJQmnCre4ZVmoNV3oicTTlb+N4zjRYANW0Ty9A==}
+  astro@4.9.2:
+    resolution: {integrity: sha512-apzpRoISk6L8g99m3zKIW5SYxw2GhOju/1Gq0Ccf3SH+X2UcFXF+MTdxPOFl5yJUQg7X0qsVQDOIVf8zHRRKFg==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3091,8 +3091,8 @@ packages:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
     engines: {node: '>=14.16'}
 
-  caniuse-lite@1.0.30001621:
-    resolution: {integrity: sha512-+NLXZiviFFKX0fk8Piwv3PfLPGtRqJeq2TiNoUff/qB5KJgwecJTvCXDpmlyP/eCI/GUEmp/h/y5j0yckiiZrA==}
+  caniuse-lite@1.0.30001623:
+    resolution: {integrity: sha512-X/XhAVKlpIxWPpgRTnlgZssJrF0m6YtRA0QDWgsBNT12uZM6LPRydR7ip405Y3t1LamD8cP2TZFEDZFBf5ApcA==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -3865,8 +3865,8 @@ packages:
       react:
         optional: true
 
-  jotai@2.8.1:
-    resolution: {integrity: sha512-Gmk5Y3yJL/vN5S0rQ6AaWpXH5Q+HBGHThMHXfylVzXGVuO8YxPRtZf8Y9XYvl+h7ZMQXoHNdFi37vNsJFsiszQ==}
+  jotai@2.8.2:
+    resolution: {integrity: sha512-AU+EU82YqP94izfbGYQQL3oa/06gmn+Ijf/CKx0QybAURtbqh2e4N6zA2fxeIh0JEUgASF6z5IhagJ8NicR95A==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       '@types/react': '>=17.0.0'
@@ -4002,8 +4002,8 @@ packages:
   mdast-util-from-markdown@0.8.5:
     resolution: {integrity: sha512-2hkTXtYYnr+NubD/g6KGBS/0mFmBcifAsI0yIWRiRo0PjVs6SSOSOdtzbp6kSGnShDN6G5aWZpKQ2lWRy27mWQ==}
 
-  mdast-util-from-markdown@2.0.0:
-    resolution: {integrity: sha512-n7MTOr/z+8NAX/wmhhDji8O3bRvPTV/U0oTCaZJkjhPSKTPhS3xufVhKGF8s1pJ7Ox4QgoIU7KHseh09S+9rTA==}
+  mdast-util-from-markdown@2.0.1:
+    resolution: {integrity: sha512-aJEUyzZ6TzlsX2s5B4Of7lN7EQtAxvtradMMglCQDyaTFgse6CmtmdJ15ElnVRlCg1vpNyVtbem0PWzlNieZsA==}
 
   mdast-util-gfm-autolink-literal@2.0.0:
     resolution: {integrity: sha512-FyzMsduZZHSc3i0Px3PQcBT4WJY/X/RCtEJKuybiC6sjPqLv7h1yqAkmILZtuxMSsUyaLUWNp71+vQH2zqp5cg==}
@@ -5782,9 +5782,9 @@ snapshots:
       - supports-color
       - vite
 
-  '@astrojs/tailwind@5.1.0(astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))':
+  '@astrojs/tailwind@5.1.0(astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5)))(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))':
     dependencies:
-      astro: 4.9.1(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.9.2(@types/node@20.12.12)(typescript@5.4.5)
       autoprefixer: 10.4.19(postcss@8.4.38)
       postcss: 8.4.38
       postcss-load-config: 4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.4.5))
@@ -5813,13 +5813,13 @@ snapshots:
       semver: 7.6.2
       vscode-languageserver-textdocument: 1.0.11
 
-  '@astrojs/vercel@7.6.0(astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@astrojs/vercel@7.6.0(astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@astrojs/internal-helpers': 0.4.0
       '@vercel/analytics': 1.3.1(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@vercel/edge': 1.1.1
       '@vercel/nft': 0.26.5
-      astro: 4.9.1(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.9.2(@types/node@20.12.12)(typescript@5.4.5)
       esbuild: 0.21.4
       fast-glob: 3.3.2
       set-cookie-parser: 2.6.0
@@ -7329,11 +7329,11 @@ snapshots:
     optionalDependencies:
       typescript: 5.4.5
 
-  '@tanstack/query-core@5.38.0': {}
+  '@tanstack/query-core@5.40.0': {}
 
-  '@tanstack/react-query@5.39.0(react@18.3.1)':
+  '@tanstack/react-query@5.40.0(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.38.0
+      '@tanstack/query-core': 5.40.0
       react: 18.3.1
 
   '@tanstack/react-table@8.17.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
@@ -7619,9 +7619,9 @@ snapshots:
       '@udecode/utils': 31.0.0
       clsx: 1.2.1
       is-hotkey: 0.2.0
-      jotai: 2.8.1(@types/react@18.3.3)(react@18.3.1)
-      jotai-optics: 0.3.2(jotai@2.8.1(@types/react@18.3.3)(react@18.3.1))(optics-ts@2.4.1)
-      jotai-x: 1.2.3(@types/react@18.3.3)(jotai@2.8.1(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
+      jotai: 2.8.2(@types/react@18.3.3)(react@18.3.1)
+      jotai-optics: 0.3.2(jotai@2.8.2(@types/react@18.3.3)(react@18.3.1))(optics-ts@2.4.1)
+      jotai-x: 1.2.3(@types/react@18.3.3)(jotai@2.8.2(@types/react@18.3.3)(react@18.3.1))(react@18.3.1)
       lodash: 4.17.21
       nanoid: 3.3.7
       optics-ts: 2.4.1
@@ -8383,7 +8383,7 @@ snapshots:
 
   array-iterate@2.0.1: {}
 
-  astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5):
+  astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.8.0
       '@astrojs/internal-helpers': 0.4.0
@@ -8467,10 +8467,10 @@ snapshots:
 
   attr-accept@2.2.2: {}
 
-  auth-astro@4.1.1(@auth/core@0.18.6)(astro@4.9.1(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  auth-astro@4.1.1(@auth/core@0.18.6)(astro@4.9.2(@types/node@20.12.12)(typescript@5.4.5))(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@auth/core': 0.18.6
-      astro: 4.9.1(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.9.2(@types/node@20.12.12)(typescript@5.4.5)
       next-auth: 4.24.7(next@14.2.3(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       set-cookie-parser: 2.6.0
     transitivePeerDependencies:
@@ -8482,7 +8482,7 @@ snapshots:
   autoprefixer@10.4.19(postcss@8.4.38):
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001621
+      caniuse-lite: 1.0.30001623
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
@@ -8550,7 +8550,7 @@ snapshots:
 
   browserslist@4.23.0:
     dependencies:
-      caniuse-lite: 1.0.30001621
+      caniuse-lite: 1.0.30001623
       electron-to-chromium: 1.4.783
       node-releases: 2.0.14
       update-browserslist-db: 1.0.16(browserslist@4.23.0)
@@ -8563,7 +8563,7 @@ snapshots:
 
   camelcase@7.0.1: {}
 
-  caniuse-lite@1.0.30001621: {}
+  caniuse-lite@1.0.30001623: {}
 
   ccount@2.0.1: {}
 
@@ -9363,19 +9363,19 @@ snapshots:
 
   jose@5.3.0: {}
 
-  jotai-optics@0.3.2(jotai@2.8.1(@types/react@18.3.3)(react@18.3.1))(optics-ts@2.4.1):
+  jotai-optics@0.3.2(jotai@2.8.2(@types/react@18.3.3)(react@18.3.1))(optics-ts@2.4.1):
     dependencies:
-      jotai: 2.8.1(@types/react@18.3.3)(react@18.3.1)
+      jotai: 2.8.2(@types/react@18.3.3)(react@18.3.1)
       optics-ts: 2.4.1
 
-  jotai-x@1.2.3(@types/react@18.3.3)(jotai@2.8.1(@types/react@18.3.3)(react@18.3.1))(react@18.3.1):
+  jotai-x@1.2.3(@types/react@18.3.3)(jotai@2.8.2(@types/react@18.3.3)(react@18.3.1))(react@18.3.1):
     dependencies:
-      jotai: 2.8.1(@types/react@18.3.3)(react@18.3.1)
+      jotai: 2.8.2(@types/react@18.3.3)(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.3.3
       react: 18.3.1
 
-  jotai@2.8.1(@types/react@18.3.3)(react@18.3.1):
+  jotai@2.8.2(@types/react@18.3.3)(react@18.3.1):
     optionalDependencies:
       '@types/react': 18.3.3
       react: 18.3.1
@@ -9502,7 +9502,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-from-markdown@2.0.0:
+  mdast-util-from-markdown@2.0.1:
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 3.0.2
@@ -9531,7 +9531,7 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
-      mdast-util-from-markdown: 2.0.0
+      mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
       micromark-util-normalize-identifier: 2.0.0
     transitivePeerDependencies:
@@ -9540,7 +9540,7 @@ snapshots:
   mdast-util-gfm-strikethrough@2.0.0:
     dependencies:
       '@types/mdast': 4.0.4
-      mdast-util-from-markdown: 2.0.0
+      mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
       - supports-color
@@ -9550,7 +9550,7 @@ snapshots:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
       markdown-table: 3.0.3
-      mdast-util-from-markdown: 2.0.0
+      mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
       - supports-color
@@ -9559,14 +9559,14 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
-      mdast-util-from-markdown: 2.0.0
+      mdast-util-from-markdown: 2.0.1
       mdast-util-to-markdown: 2.1.0
     transitivePeerDependencies:
       - supports-color
 
   mdast-util-gfm@3.0.0:
     dependencies:
-      mdast-util-from-markdown: 2.0.0
+      mdast-util-from-markdown: 2.0.1
       mdast-util-gfm-autolink-literal: 2.0.0
       mdast-util-gfm-footnote: 2.0.0
       mdast-util-gfm-strikethrough: 2.0.0
@@ -9919,7 +9919,7 @@ snapshots:
       '@next/env': 14.2.3
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001621
+      caniuse-lite: 1.0.30001623
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.3.1
@@ -10453,7 +10453,7 @@ snapshots:
   remark-parse@11.0.0:
     dependencies:
       '@types/mdast': 4.0.4
-      mdast-util-from-markdown: 2.0.0
+      mdast-util-from-markdown: 2.0.1
       micromark-util-types: 2.0.0
       unified: 11.0.4
     transitivePeerDependencies:

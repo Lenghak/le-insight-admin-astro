@@ -43,7 +43,7 @@ export default function ArticlesEditor() {
 
 							<Editor
 								containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col max-h-full [&_.slate-SelectionArea]:h-full"
-								className="h-full w-full border-0 px-32 pt-24"
+								className="h-full w-full border-0 px-32 pt-24 *:text-lg"
 								focusRing={false}
 							/>
 
@@ -60,12 +60,9 @@ export default function ArticlesEditor() {
 
 								<ArticlesThumbnailForm
 									trigger={
-										<Button
-											size="icon"
-											className="rotate-0 transition-all hover:rotate-[360deg]"
-										>
+										<Button className="gap-4">
 											<CheckIcon className="size-4" strokeWidth={3} />
-											<span className="sr-only">Submit</span>
+											<span className="font-bold">Done</span>
 										</Button>
 									}
 								/>

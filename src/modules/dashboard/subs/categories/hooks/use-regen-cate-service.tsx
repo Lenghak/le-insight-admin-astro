@@ -53,7 +53,7 @@ export default function useRegenCateService({
 
 			onSettled: async () => {
 				await queryClient.invalidateQueries({
-					queryKey: [...articleKeys.all, ...categoriesKeys.all, instance],
+					queryKey: [...articleKeys.all, instance],
 					exact: false,
 					stale: true,
 				});

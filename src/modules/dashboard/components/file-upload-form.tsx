@@ -16,7 +16,7 @@ import { cn } from "@/common/lib/utils";
 
 import type { UploadSuccessEvent } from "@portive/client";
 import { ImagesIcon } from "lucide-react";
-import { Fragment, type HTMLAttributes, useMemo } from "react";
+import { Fragment, useMemo, type HTMLAttributes } from "react";
 import type { InternalFieldName, UseFormReturn } from "react-hook-form";
 
 type FileUploadFormProps = HTMLAttributes<HTMLFormElement> & {
@@ -43,7 +43,7 @@ export default function FileUploadForm({
 				formFieldKey
 					? outerForm?.setValue(formFieldKey, res.hostedFile.url)
 					: undefined;
-			} catch (err) {}
+			} catch (_err) {}
 		},
 	});
 
@@ -71,7 +71,7 @@ export default function FileUploadForm({
 
 				<div
 					className={cn(
-						"group relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border-2 border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
+						"group relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl border border-border border-opacity-50 bg-background hover:border-opacity-100 focus-visible:border-opacity-100 focus-visible:outline-0",
 						dropzone.isDragAccept
 							? "border-successive hover:border-successive"
 							: "",
