@@ -1,6 +1,6 @@
 import ArticlesList from "@articles/presenters/articles-list";
 import DashboardTitle from "@dashboard/composites/dashboard-title";
-import React from "react";
+import React, { Suspense } from "react";
 
 const ArticlesEditorSheet = React.lazy(
 	() => import("@articles/composites/articles-editor-sheet"),
@@ -13,7 +13,9 @@ export default function ArticlesRoute() {
 				<DashboardTitle title="Articles" spa />
 
 				<div className="flex items-center justify-center gap-4">
-					<ArticlesEditorSheet />
+					<Suspense>
+						<ArticlesEditorSheet />
+					</Suspense>
 				</div>
 			</div>
 

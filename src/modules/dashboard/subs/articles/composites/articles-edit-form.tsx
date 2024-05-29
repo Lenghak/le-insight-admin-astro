@@ -34,6 +34,7 @@ import {
 
 import { cn } from "@/common/lib/utils";
 
+import { Badge } from "@/common/components/ui/badge";
 import { Loader2Icon } from "lucide-react";
 
 export default function EditArticlesForm() {
@@ -94,7 +95,13 @@ export default function EditArticlesForm() {
 												{Object.entries(visibiltiesBadges).map(
 													([key, element]) => (
 														<SelectItem value={key} key={key} className="pl-12">
-															{element}
+															<Badge
+																variant={"dot"}
+																colored={element.color}
+																className="text-sm font-bold capitalize"
+															>
+																{key.toLowerCase()}
+															</Badge>
 														</SelectItem>
 													),
 												)}

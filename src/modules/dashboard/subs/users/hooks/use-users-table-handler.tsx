@@ -22,7 +22,7 @@ export default function useUsersTableHandler() {
 	try {
 		rfrom = rfrom ? new Date(rfrom) : undefined;
 		rto = rto ? new Date(rto) : undefined;
-	} catch (err) {
+	} catch (_err) {
 		rfrom = undefined;
 		rto = undefined;
 	}

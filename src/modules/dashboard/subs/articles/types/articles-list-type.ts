@@ -21,6 +21,7 @@ export const ArticlesListDataSchema = ArticlesSchema.omit({
 		z.object({
 			article_id: z.string(),
 			category_id: z.string(),
+			category: CategoriesSchema,
 		}),
 	),
 });

@@ -1,36 +1,43 @@
-import { Badge } from "@ui/badge";
-
-import type React from "react";
-
 import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 
 export const visibiltiesBadges: Record<
 	ArticlesVisiblityEnumType,
-	React.ReactNode
+	{
+		color:
+			| "amber"
+			| "emerald"
+			| "cyan"
+			| "pink"
+			| "rose"
+			| "purple"
+			| "red"
+			| "orange"
+			| "yellow"
+			| "lime"
+			| "green"
+			| "teal"
+			| "sky"
+			| "blue"
+			| "indigo"
+			| "violet"
+			| "fuchsia"
+			| null
+			| undefined;
+	}
 > = {
-	DRAFT: (
-		<Badge variant={"dot"} colored={"yellow"} className="text-sm font-bold">
-			Draft
-		</Badge>
-	),
-	ARCHIVED: (
-		<Badge variant={"dot"} colored={"rose"} className="text-sm font-bold">
-			Archived
-		</Badge>
-	),
-	PRIVATE: (
-		<Badge variant={"dot"} colored={"purple"} className="text-sm font-bold">
-			Private
-		</Badge>
-	),
-	PREMIUM: (
-		<Badge variant={"dot"} colored={"fuchsia"} className="text-sm font-bold">
-			Premium
-		</Badge>
-	),
-	PUBLIC: (
-		<Badge variant={"dot"} colored={"emerald"} className="text-sm font-bold">
-			Public
-		</Badge>
-	),
+	DRAFT: {
+		color: "fuchsia" as const,
+	},
+	ARCHIVED: {
+		color: "rose" as const,
+	},
+	PRIVATE: {
+		color: "purple" as const,
+	},
+	PREMIUM: {
+		color: "yellow" as const,
+	},
+	PUBLIC: {
+		color: "emerald" as const,
+	},
 };

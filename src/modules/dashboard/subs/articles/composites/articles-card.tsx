@@ -1,7 +1,14 @@
+import { Badge } from "@/common/components/ui/badge";
+import { COLOR_VARIANTS } from "@/common/constants/color-constants";
+import formatDate from "@/common/lib/date/format-date";
+import { cn } from "@/common/lib/utils";
 import ArticlesCardMoreDropdown from "@articles/composites/articles-card-more-dropdown";
 import ArticleCategoryBadge from "@articles/composites/articles-categories-badge";
-import type { ArticlesCategoriesListType } from "@articles/types/articles-list-type";
-
+import { visibiltiesBadges } from "@articles/constants/visibilities-badges";
+import type { ArticlesListDataType } from "@articles/types/articles-list-type";
+import { Image } from "@custom/image";
+import ProfileBadge from "@custom/profile/profile-badge";
+import ProfileHoverContent from "@custom/profile/profile-hover-content";
 import { Button, buttonVariants } from "@ui/button";
 import {
 	Card,
@@ -13,37 +20,37 @@ import {
 } from "@ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@ui/hover-card";
 import { Muted } from "@ui/muted";
-
-import { Image } from "@custom/image";
-import ProfileBadge from "@custom/profile/profile-badge";
-import ProfileHoverContent from "@custom/profile/profile-hover-content";
-
-import formatDate from "@/common/lib/date/format-date";
-import { cn } from "@/common/lib/utils";
-
-import { BookmarkIcon, DotIcon } from "lucide-react";
-import React, { useId } from "react";
+import { BookmarkIcon } from "lucide-react";
+import React from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
-	ac: ArticlesCategoriesListType;
+	article: ArticlesListDataType;
 };
 
 export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
-	{ className, ac, ...props },
+	{ className, article, ...props },
 	ref,
 ) {
-	const author = ac?.article.article_author;
+	const author = article?.article_author;
 
 	return (
 		<Card
 			ref={ref}
 			className={cn(
 				buttonVariants({ variant: "secondary", size: "default" }),
-				"grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-lg border-0 px-8 py-6",
+				"relative grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-lg border-0 px-8 py-6",
+				COLOR_VARIANTS[visibiltiesBadges[article?.visibility].color ?? "amber"],
+				"before:hidden text-inherit border-2 border-b-0 border-l-0",
 				className,
 			)}
 			{...props}
 		>
+			<Badge
+				variant={"default"}
+				colored={visibiltiesBadges[article?.visibility].color}
+				className="absolute top-0 right-0 p-0 size-4 rounded-none rounded-tr-md rounded-bl-md hover:bg-current/50"
+			/>
+
 			<CardHeader className="flex h-full w-full flex-col space-y-4 px-0 pb-0 pt-0 justify-between">
 				<div className="flex w-full items-center justify-between gap-4 p-0">
 					{/* Profile */}
@@ -62,25 +69,32 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 							<ProfileHoverContent userID={author?.id} />
 						</HoverCardContent>
 					</HoverCard>
-
-					{/* Minutes Reads */}
-					<Muted className="font-medium">{}</Muted>
 				</div>
 
-				<CardTitle className="line-clamp-2 text-xl font-black">
-					{ac?.article.preview_title}
-				</CardTitle>
+				<div className="space-y-2">
+					<CardTitle className="line-clamp-2 text-xl font-black">
+						{article?.preview_title}
+					</CardTitle>
 
-				<CardDescription className="line-clamp-2 font-serif text-base font-medium">
-					{ac?.article.preview_description}
-				</CardDescription>
+					<CardDescription className="line-clamp-2 font-serif text-base font-medium">
+						{article?.preview_description}
+					</CardDescription>
+				</div>
+
+				<div className="w-full gap-4 flex justify-between items-center font-semibold">
+					<Muted className="text-xs uppercase tracking-widest min-w-max py-1">
+						{article?.created_at ? formatDate(article?.created_at) : "-"}
+					</Muted>
+					{/* Minutes Reads */}
+					<Muted>{5} minutes read</Muted>
+				</div>
 			</CardHeader>
 
 			<CardContent className="flex aspect-square h-full min-h-40 w-auto max-w-40 items-center justify-center p-0">
 				{/* Thumbnail */}
 				<Image
-					src={ac?.article.thumbnail ?? ""}
-					alt={ac?.article.preview_title}
+					src={article?.thumbnail ?? ""}
+					alt={article?.preview_title}
 					className="aspect-square h-full max-h-40 w-full max-w-40 rounded-xl object-cover"
 				/>
 			</CardContent>
@@ -109,17 +123,9 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 						</Button>
 					</div> */}
 					<div className="flex w-full items-center gap-8">
-						<Muted className="text-xs font-semibold uppercase tracking-widest min-w-max">
-							{ac?.article.created_at
-								? formatDate(ac?.article.created_at)
-								: "-"}
-						</Muted>
-
-						<DotIcon size={16} />
-
 						<div className="flex flex-nowrap w-full overflow-hidden items-center justify-start gap-4">
-							{ac?.article?.article_categories?.map(({ category }) => (
-								<ArticleCategoryBadge category={category} key={useId()}>
+							{article?.article_categories?.map(({ category }) => (
+								<ArticleCategoryBadge category={category} key={category.id}>
 									{category.label}
 								</ArticleCategoryBadge>
 							))}
@@ -135,7 +141,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 					</Button>
 
 					{/* More */}
-					<ArticlesCardMoreDropdown article={ac.article} />
+					<ArticlesCardMoreDropdown article={article} />
 				</div>
 			</CardFooter>
 		</Card>

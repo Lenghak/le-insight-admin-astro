@@ -55,7 +55,7 @@ export default function ArticlesList() {
 
 	return (
 		<Fragment>
-			<div className="mt-4 flex h-fit items-center justify-between gap-6">
+			<div className="mt-2 flex h-fit items-center justify-between gap-6 overflow-scroll scrollbar-hidden py-2">
 				<ArticlesTabs />
 				<ArticlesFilters />
 			</div>

@@ -1,7 +1,8 @@
+import { COLOR_VARIANTS } from "@/common/constants/color-constants";
 import { cn } from "@/common/lib/utils";
 
 import { Slot } from "@radix-ui/react-slot";
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 const buttonVariants = cva(
@@ -20,17 +21,7 @@ const buttonVariants = cva(
 				link: "text-primary underline-offset-4 hover:underline",
 				fair: "bg-opacity-15 hover:bg-opacity-25",
 			},
-			colored: {
-				amber:
-					"border-amber-600 bg-amber-600 text-amber-600 focus-visible:ring-amber-600",
-				emerald:
-					"border-emerald-600 bg-emerald-600 text-emerald-600 focus-visible:ring-emerald-600",
-				cyan: "border-cyan-600 bg-cyan-600 text-cyan-600 focus-visible:ring-cyan-600",
-				pink: "border-pink-600 bg-pink-600 text-pink-600 focus-visible:ring-pink-600",
-				rose: "border-rose-600 bg-rose-600 text-rose-600 focus-visible:ring-rose-600",
-				purple:
-					"border-purple-600 bg-purple-600 text-purple-600 ring-purple-600",
-			},
+			colored: COLOR_VARIANTS,
 			size: {
 				default: "h-10 px-4 py-2",
 				sm: "h-9 rounded-full px-3",
