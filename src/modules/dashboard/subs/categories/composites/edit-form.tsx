@@ -108,7 +108,7 @@ export default function EditCategoriesForm() {
 										<FormLabel className="font-bold">Status</FormLabel>
 										<Select
 											onValueChange={field.onChange}
-											defaultValue={field.value}
+											defaultValue={category?.attributes?.status ?? field.value}
 										>
 											<FormControl>
 												<SelectTrigger className="rounded-full">

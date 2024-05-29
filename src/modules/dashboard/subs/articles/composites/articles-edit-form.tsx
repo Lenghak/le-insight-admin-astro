@@ -84,7 +84,9 @@ export default function EditArticlesForm() {
 										<FormLabel className="mt-2 font-bold">Visibility</FormLabel>
 										<Select
 											onValueChange={field.onChange}
-											defaultValue={field.value}
+											defaultValue={
+												article?.attributes.visibility ?? field.value
+											}
 										>
 											<FormControl>
 												<SelectTrigger className="rounded-full pl-4">

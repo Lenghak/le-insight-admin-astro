@@ -1,5 +1,5 @@
-import { DASHBOARD_DIALOG_ID } from "@/modules/dashboard/constants/dashboard-dialog-id";
-import { rolesFields } from "@/modules/dashboard/subs/users/constants/roles-fields";
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
+import { rolesFields } from "@users/constants/roles-fields";
 
 import {
 	$dashboardDialogStore,
@@ -35,18 +35,17 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle,
-} from "@/common/components/ui/card";
-import { RadioGroup, RadioGroupItem } from "@/common/components/ui/radio-group";
+} from "@ui/card";
+import { RadioGroup, RadioGroupItem } from "@ui/radio-group";
 
 import { cn } from "@/common/lib/utils";
 
+import { UserRoleSchema, UsersSchema } from "@/common/types/users-type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
 import { Loader2Icon } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-
-import { UserRoleSchema, UsersSchema } from "@/common/types/users-type";
 
 export default function UsersEditForm() {
 	const dialog = useStore($dashboardDialogStore);
@@ -110,7 +109,7 @@ export default function UsersEditForm() {
 									<FormControl>
 										<RadioGroup
 											onValueChange={field.onChange}
-											defaultValue={field.value}
+											defaultValue={user?.attributes.role ?? field.value}
 											className="flex flex-col space-y-1"
 										>
 											{rolesFields.map((role, i) => (
@@ -119,7 +118,13 @@ export default function UsersEditForm() {
 													key={i}
 												>
 													<FormControl>
-														<Card className="relative w-full overflow-hidden before:invisible before:absolute before:left-0 before:top-0 before:block before:size-4 before:rounded-ee-full before:rounded-ss-lg before:bg-primary before:content-[''] has-[:checked]:border-primary has-[:checked]:before:visible">
+														<Card
+															className={cn(
+																"relative w-full ring-0 outline-none overflow-hidden before:invisible before:absolute before:left-0 before:top-0 before:block before:size-4 before:rounded-ee-full before:rounded-ss-lg before:bg-primary before:content-['']",
+																role.className,
+																"bg-transparent border-accent has-[:checked]:before:visible has-[:checked]:border-current",
+															)}
+														>
 															<RadioGroupItem
 																value={role.value}
 																id={role.label}
@@ -130,7 +135,7 @@ export default function UsersEditForm() {
 																htmlFor={role.label}
 															>
 																<CardContent
-																	className="group flex w-full items-center rounded-lg bg-background p-2 px-4 hover:bg-accent data-[state=checked]:bg-accent"
+																	className="group flex w-full items-center rounded-lg bg-card p-2 px-4"
 																	data-state={
 																		role.value === form.getValues("role")
 																			? "checked"

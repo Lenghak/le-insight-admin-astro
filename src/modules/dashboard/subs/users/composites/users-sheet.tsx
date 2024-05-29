@@ -5,7 +5,6 @@ import {
 } from "@dashboard/stores/dashboard-sheet-store";
 
 import SheetSection from "@users/components/sheet-section";
-import { rolesBadges } from "@users/constants/roles-badges";
 import { sexesBages } from "@users/constants/sex-badges";
 import useGetUserService from "@users/hooks/use-get-user-service";
 import { $userIDStore } from "@users/stores/users-id-store";
@@ -17,6 +16,8 @@ import ProfileBadge from "@custom/profile/profile-badge";
 
 import formatDate from "@/common/lib/date/format-date";
 
+import { Badge } from "@/common/components/ui/badge";
+import { rolesBadges } from "@/modules/dashboard/subs/users/constants/roles-badges";
 import { useStore } from "@nanostores/react";
 
 // million-ignore
@@ -124,7 +125,13 @@ export default function UsersSheet() {
 						<InlineBannerContent className="w-fit font-bold">
 							{user?.attributes.role ? (
 								<div className="w-fit">
-									{rolesBadges[user?.attributes.role]}
+									<Badge
+										variant={"fair"}
+										colored={rolesBadges[user?.attributes.role].color}
+										className="font-bold uppercase"
+									>
+										{user?.attributes.role}
+									</Badge>
 								</div>
 							) : (
 								"-"

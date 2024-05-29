@@ -1,6 +1,8 @@
 import { UserCheck, UserCogIcon, UserIcon } from "lucide-react";
 
+import { COLOR_VARIANTS } from "@/common/constants/color-constants";
 import { UserRoleSchema } from "@/common/types/users-type";
+import { rolesBadges } from "@users/constants/roles-badges";
 
 export const rolesFields = [
 	{
@@ -8,6 +10,7 @@ export const rolesFields = [
 		label: UserRoleSchema.Values.ADMIN.toLowerCase(),
 		icon: UserCogIcon,
 		description: "Manage all data and settings throughout the application.",
+		className: COLOR_VARIANTS[rolesBadges["ADMIN"].color],
 	},
 	{
 		value: UserRoleSchema.Values.USER,
@@ -15,6 +18,7 @@ export const rolesFields = [
 		icon: UserCheck,
 		description:
 			"Can view, comment, post, and manage their own accounts and settings",
+		className: COLOR_VARIANTS[rolesBadges["USER"].color],
 	},
 	{
 		value: UserRoleSchema.Values.GUEST,
@@ -22,5 +26,6 @@ export const rolesFields = [
 		icon: UserIcon,
 		description:
 			"Can only read others limited data with limited actions and settings.",
+		className: COLOR_VARIANTS[rolesBadges["GUEST"].color],
 	},
 ];

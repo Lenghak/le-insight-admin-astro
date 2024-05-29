@@ -12,6 +12,7 @@ import formatDate from "@/common/lib/date/format-date";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
+import { Badge } from "@/common/components/ui/badge";
 import type { ProfileSexType } from "@/common/types/profiles-type";
 import type { UsersRoleType } from "@/common/types/users-type";
 
@@ -94,7 +95,15 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
 		header: ({ column }) => (
 			<DataTableColumnHeader column={column} title="Role" />
 		),
-		cell: ({ getValue }) => rolesBadges[getValue() as UsersRoleType],
+		cell: ({ getValue }) => (
+			<Badge
+				variant={"fair"}
+				colored={rolesBadges[getValue() as UsersRoleType].color}
+				className="text-xs font-bold"
+			>
+				{getValue() as string}
+			</Badge>
+		),
 	},
 	{
 		accessorKey: "phone",
