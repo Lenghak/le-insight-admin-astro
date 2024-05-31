@@ -1,11 +1,11 @@
 import { cn } from "@udecode/cn";
 import {
-	type Emoji,
 	EmojiSettings,
+	type Emoji,
 	type GridRow,
 	type UseEmojiPickerType,
 } from "@udecode/plate-emoji";
-import { memo, useCallback, useId } from "react";
+import { memo, useCallback } from "react";
 
 export type EmojiPickerContentProps = Pick<
 	UseEmojiPickerType,
@@ -130,7 +130,7 @@ export function EmojiPickerContent({
 									.getRows()
 									.map((row: GridRow) => (
 										<RowOfButtons
-											key={useId()}
+											key={row.id}
 											emojiLibrary={emojiLibrary}
 											row={row}
 											onSelectEmoji={onSelectEmoji}

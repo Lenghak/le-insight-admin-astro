@@ -86,7 +86,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 						{article?.created_at ? formatDate(article?.created_at) : "-"}
 					</Muted>
 					{/* Minutes Reads */}
-					<Muted className="text-xs uppercase tracking-widest">
+					<Muted className="text-xs uppercase tracking-widest py-1">
 						{5} minutes read
 					</Muted>
 				</div>

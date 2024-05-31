@@ -52,15 +52,17 @@ export default function ArticlesEditor() {
 							</FloatingToolbar>
 							<CommentsPopover />
 
-							<div className="group fixed bottom-6 right-0 flex flex-col items-end gap-6 pr-2">
+							<div className="group fixed bottom-6 right-0 flex flex-col items-end gap-6">
 								<SpaModeToggle
 									variant={"outline"}
-									className="relative gap-4 font-bold"
+									size={"default"}
+									className="gap-4 font-bold translate-x-[calc(100%-2.5rem)] hover:translate-x-0 rounded-r-none transition-transform justify-start"
+									showLabel
 								/>
 
 								<ArticlesThumbnailForm
 									trigger={
-										<Button className="gap-4">
+										<Button className="gap-4 translate-x-[calc(100%-2.5rem)] hover:translate-x-0 rounded-r-none transition-transform">
 											<CheckIcon className="size-4" strokeWidth={3} />
 											<span className="font-bold">Done</span>
 										</Button>
