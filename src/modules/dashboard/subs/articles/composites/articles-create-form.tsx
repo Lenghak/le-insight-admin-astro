@@ -31,12 +31,13 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { PlateCloudEditor } from "@udecode/plate-cloud";
 import { useEditorMounted, useEditorRef } from "@udecode/plate-common";
-import { AsteriskIcon, CircleHelpIcon } from "lucide-react";
+import { AsteriskIcon, CircleHelpIcon, Loader2Icon } from "lucide-react";
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { cn } from "@/common/lib/utils";
 import { ArticlesVisiblityEnum } from "@/common/types/articles-type";
 
 type ArticlesCreateFormProps = {
@@ -74,7 +75,11 @@ export default function ArticlesCreateForm({
 		},
 	});
 
-	const { mutateAsync: uploadArticle, isSuccess } = useCreateArticleService();
+	const {
+		mutateAsync: uploadArticle,
+		isSuccess,
+		isPending: isCreatingArticle,
+	} = useCreateArticleService();
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		if (isEditorMounted) {
@@ -196,7 +201,20 @@ export default function ArticlesCreateForm({
 											Cancel
 										</Button>
 									</DrawerClose>
-									<Button type="submit" className="px-6 font-sans font-bold">
+									<Button
+										type={isCreatingArticle ? "button" : "submit"}
+										disabled={isCreatingArticle}
+										className={cn(
+											"gap-0 px-8 font-bold transition-all",
+											isCreatingArticle ? "gap-2 pl-6" : "",
+										)}
+									>
+										<Loader2Icon
+											className={cn(
+												"h-4 w-0 animate-spin transition-all",
+												isCreatingArticle ? "w-4" : "",
+											)}
+										/>
 										Submit
 									</Button>
 								</div>

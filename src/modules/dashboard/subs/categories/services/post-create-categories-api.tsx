@@ -9,5 +9,6 @@ export default function createCategoriesAPI(
 ) {
 	return (queryInstance ?? getPublicQueryInstance()).post("/categories", {
 		label,
+		status: "ACTIVE",
 	});
 }
