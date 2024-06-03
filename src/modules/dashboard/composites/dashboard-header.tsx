@@ -1,12 +1,13 @@
-import { DashboardCommandMenu } from "@/modules/dashboard/composites/dashboard-command-menu";
+import { DashboardCommandMenu } from "@dashboard/composites/dashboard-command-menu";
 
-import ProfileDropdown from "@/common/components/custom/profile";
-import ModeToggle from "@/common/components/custom/theme";
-import { SpaModeToggle } from "@/common/components/custom/theme/spa-mode-toggle";
-import { Button } from "@/common/components/ui/button";
-import { Separator } from "@/common/components/ui/separator";
+import ProfileDropdown from "@custom/profile";
+import ModeToggle, { SpaModeToggle } from "@custom/theme";
+
+import { Button } from "@ui/button";
+import { Separator } from "@ui/separator";
 
 import { $sidebar, setCollapsed } from "@/common/stores/side-bar-store";
+
 import { useStore } from "@nanostores/react";
 import { MenuIcon } from "lucide-react";
 

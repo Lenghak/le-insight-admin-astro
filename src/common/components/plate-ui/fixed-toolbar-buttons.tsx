@@ -35,10 +35,17 @@ import {
 	UnderlineIcon,
 } from "lucide-react";
 
+import type React from "react";
 import { MarkToolbarButton } from "./mark-toolbar-button";
 import { ToolbarGroup } from "./toolbar";
 
-export function FixedToolbarButtons({ id: _ }: { id?: string }) {
+type Props = {
+	id?: string;
+	leftToolbars?: React.ReactNode;
+	rightToolBars?: React.ReactNode;
+};
+
+export function FixedToolbarButtons({ id: _, ...props }: Props) {
 	const readOnly = useEditorReadOnly();
 
 	return (
@@ -50,6 +57,9 @@ export function FixedToolbarButtons({ id: _ }: { id?: string }) {
 					transform: "translateX(calc(-1px))",
 				}}
 			>
+				<ToolbarGroup noSeparator>{props.leftToolbars}</ToolbarGroup>
+
+				<div className="grow" />
 				{!readOnly && (
 					<>
 						<ToolbarGroup noSeparator>
@@ -162,6 +172,7 @@ export function FixedToolbarButtons({ id: _ }: { id?: string }) {
 				<ToolbarGroup noSeparator>
 					<CommentToolbarButton />
 					<ModeDropdownMenu />
+					{props.rightToolBars}
 				</ToolbarGroup>
 			</div>
 		</div>

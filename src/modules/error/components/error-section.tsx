@@ -47,7 +47,7 @@ export default function ErrorSection({
 				<H2 className="text-center font-extrabold">{title}</H2>
 			)}
 
-			<Muted className="mt-4 w-80 max-w-screen-xs text-center">
+			<Muted className="mt-4 sm:max-w-80 w-full max-w-screen-xs text-center">
 				{description}
 			</Muted>
 

@@ -3,6 +3,7 @@ export const DASHBOARD_DIALOG_ID = {
 		editor: "ARTICLES_EDITOR",
 		edit: "ARTICLES_EDIT",
 		delete: "ARTICLES_DELETE",
+		ai: "ARTICLES_AI",
 	},
 	categories: {
 		edit: "CATEGORIES_EDIT",

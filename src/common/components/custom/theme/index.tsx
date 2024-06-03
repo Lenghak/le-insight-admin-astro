@@ -1,2 +1,2 @@
 export { ModeToggle as default } from "./mode-toggle";
-export { SpaModeToggle as ModeToggle } from "./spa-mode-toggle";
+export { default as SpaModeToggle } from "./spa-mode-toggle";

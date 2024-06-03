@@ -1,5 +1,5 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { withCn, withProps } from "@udecode/cn";
+import { cn, withCn, withProps } from "@udecode/cn";
 import React from "react";
 
 export const TooltipProvider = TooltipPrimitive.Provider;
@@ -61,7 +61,12 @@ export function withTooltip<
 					<TooltipTrigger asChild>{component}</TooltipTrigger>
 
 					<TooltipPortal>
-						<TooltipContent {...tooltipContentProps}>{tooltip}</TooltipContent>
+						<TooltipContent
+							{...tooltipContentProps}
+							className={cn("font-bold", tooltipContentProps?.className)}
+						>
+							{tooltip}
+						</TooltipContent>
 					</TooltipPortal>
 				</Tooltip>
 			);
