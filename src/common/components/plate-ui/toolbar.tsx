@@ -91,7 +91,7 @@ const ToolbarButton = withTooltip(
 					>
 						{isDropdown ? (
 							<>
-								<div className="flex flex-1">{children}</div>
+								<div className="flex flex-1 items-center">{children}</div>
 								<div>
 									<ChevronDownIcon className="ml-2 h-4 w-4" data-icon />
 								</div>

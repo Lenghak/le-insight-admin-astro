@@ -21,6 +21,7 @@ import {
 	UnderlineIcon,
 } from "lucide-react";
 
+import { AiDropdownMenu } from "@dashboard/composites/ai/ai-dropdown-menu";
 import { AlignDropdownMenu } from "./align-dropdown-menu";
 import { ColorDropdownMenu } from "./color-dropdown-menu";
 import { LineHeightDropdownMenu } from "./line-height-dropdown-menu";
@@ -37,6 +38,10 @@ export function FloatingToolbarButtons() {
 		<>
 			{!readOnly && (
 				<>
+					<AiDropdownMenu />
+
+					<Separator className="h-6 w-[0.5px]" />
+
 					<TurnIntoDropdownMenu />
 
 					<Separator className="h-6 w-[0.5px]" />

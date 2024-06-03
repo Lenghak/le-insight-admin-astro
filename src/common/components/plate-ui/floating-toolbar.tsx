@@ -1,11 +1,11 @@
 import { cn, withRef } from "@udecode/cn";
 import { PortalBody, useComposedRef } from "@udecode/plate-common";
 import {
-	type FloatingToolbarState,
 	flip,
 	offset,
 	useFloatingToolbar,
 	useFloatingToolbarState,
+	type FloatingToolbarState,
 } from "@udecode/plate-floating";
 
 import { Toolbar } from "./toolbar";
@@ -50,11 +50,12 @@ export const FloatingToolbar = withRef<
 		<PortalBody>
 			<Toolbar
 				ref={ref}
-				className={cn(
-					"absolute z-[9999] whitespace-nowrap rounded-full border bg-popover px-1.5 opacity-100 shadow-md print:hidden",
-				)}
 				{...rootProps}
 				{...props}
+				className={cn(
+					"absolute z-[9999] whitespace-nowrap rounded-full border bg-popover px-1.5 opacity-100 shadow-md print:hidden",
+					props.className,
+				)}
 			>
 				{children}
 			</Toolbar>

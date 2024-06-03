@@ -33,6 +33,7 @@ import { XIcon } from "lucide-react";
 import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { Link } from "react-router-dom";
 
 const ArticlesEditorRightPanel = React.lazy(
 	() => import("@articles/composites/articles-editor-right-panel"),
@@ -56,9 +57,13 @@ export default function ArticlesEditor() {
 							initialValue={initialValue}
 							normalizeInitialValue
 						>
-							<FixedToolbar className="fixed col-span-full top-0 left-0 mx-auto h-fit min-h-14 w-full place-self-center self-center overflow-y-hidden rounded-none bg-card p-1 px-2">
+							<FixedToolbar className="fixed z-[99999] col-span-full top-0 left-0 mx-auto h-fit min-h-14 w-full place-self-center self-center overflow-y-hidden rounded-none bg-card dark:bg-background p-1 px-2">
 								<FixedToolbarButtons
-									leftToolbars={<Logo className="mx-4" spa />}
+									leftToolbars={
+										<Link to={"/dashboard/users"}>
+											<Logo className="mx-4" spa />
+										</Link>
+									}
 									rightToolBars={
 										<Tooltip delayDuration={0}>
 											<TooltipTrigger asChild>
@@ -87,7 +92,7 @@ export default function ArticlesEditor() {
 									minSize={1}
 								>
 									<Editor
-										containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
+										containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
 										className="h-full w-full mx-auto border-0 px-[17.5%] pt-24 *:text-lg bg-card dark:bg-background rounded-none transition-all"
 										focusRing={false}
 									/>
@@ -101,7 +106,7 @@ export default function ArticlesEditor() {
 
 								<ResizablePanel
 									className={cn(
-										"max-w-screen-sm bg-card transition-all",
+										"max-w-screen-sm bg-background transition-all relative z-[9999]",
 										isCollapsed ? "max-w-0" : "min-w-fit",
 									)}
 									collapsible={true}
@@ -114,7 +119,7 @@ export default function ArticlesEditor() {
 									<ArticlesAssitantsSheet />
 								</ResizablePanel>
 							</ResizablePanelGroup>
-							<FloatingToolbar>
+							<FloatingToolbar className="shadow-sm">
 								<FloatingToolbarButtons />
 							</FloatingToolbar>
 
