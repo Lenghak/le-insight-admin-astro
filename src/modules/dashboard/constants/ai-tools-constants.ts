@@ -24,13 +24,48 @@ import {
 } from "lucide-react";
 
 export const AIEnhanceTools = [
-	{ icon: MergeIcon, label: "Simplify", path: "/simplify" },
-	{ icon: SpellCheckIcon, label: "Fix Spellings & Grammar", path: "/grammar" },
-	{ icon: ArrowRightFromLineIcon, label: "Lengthen", path: "/lengthen" },
-	{ icon: ArrowLeftFromLineIcon, label: "Shorten", path: "/shorten" },
-	{ icon: ScissorsLineDashedIcon, label: "TL;DR", path: "/tldr" },
-	{ icon: SmilePlusIcon, label: "Emojify", path: "/emojify" },
-	{ icon: PencilLineIcon, label: "Auto Complete", path: "/complete" },
+	{
+		icon: MergeIcon,
+		label: "Simplify",
+		path: "/simplify",
+		title: "Simplifiying Content",
+	},
+	{
+		icon: SpellCheckIcon,
+		label: "Fix Spellings & Grammar",
+		path: "/grammar",
+		title: "Grammar & Sellings Correction",
+	},
+	{
+		icon: ArrowRightFromLineIcon,
+		label: "Lengthen",
+		path: "/lengthen",
+		title: "Lengthening Content",
+	},
+	{
+		icon: ArrowLeftFromLineIcon,
+		label: "Shorten",
+		path: "/shorten",
+		title: "Shotening Content",
+	},
+	{
+		icon: ScissorsLineDashedIcon,
+		label: "TL;DR",
+		path: "/tldr",
+		title: "Summzarizing - TL;DR",
+	},
+	{
+		icon: SmilePlusIcon,
+		label: "Emojify",
+		path: "/emojify",
+		title: "Emojifying Content",
+	},
+	{
+		icon: PencilLineIcon,
+		label: "Auto Complete",
+		path: "/complete",
+		title: "Auto-completing Content",
+	},
 ];
 
 export const AiToneTools = [

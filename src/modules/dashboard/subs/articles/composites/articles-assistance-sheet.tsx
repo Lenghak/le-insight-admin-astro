@@ -1,4 +1,5 @@
 import ErrorSection from "@/modules/error/components/error-section";
+import AiMessageCard from "@articles/components/ai-message-card";
 import usePostEnhanceArticlesService from "@articles/hooks/use-post-enhance-articles-service";
 import {
 	$articleAiPanelCollapseStore,
@@ -10,14 +11,15 @@ import {
 	setAIEnhance,
 } from "@dashboard/stores/ai-enhance-store";
 
+import { Small } from "@/common/components/ui/small";
 import { cn } from "@/common/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useStore } from "@nanostores/react";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { H3 } from "@ui/h3";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useStore } from "@nanostores/react";
 import {
+	AlertTriangleIcon,
 	ChevronLeftIcon,
 	Loader2Icon,
 	RefreshCwIcon,
@@ -45,7 +47,11 @@ export default function ArticlesAssistanceSheet() {
 		},
 	});
 
-	const { mutate: enhanceArticle, isPending } = usePostEnhanceArticlesService();
+	const {
+		mutate: enhanceArticle,
+		isPending,
+		isError,
+	} = usePostEnhanceArticlesService();
 
 	const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -56,6 +62,7 @@ export default function ArticlesAssistanceSheet() {
 
 		if (enhanceObject.trigger) {
 			buttonRef.current?.click();
+			$articleAiResultStore.set({ output: "" });
 			setAIEnhance({ ...enhanceObject, trigger: false });
 		}
 	}, [enhanceObject]);
@@ -83,10 +90,47 @@ export default function ArticlesAssistanceSheet() {
 					<ChevronLeftIcon className="size-5 mr-4" />
 					<span className="font-bold">Hide Assistant</span>
 				</Button>
+				{isPending || aiProgress.output || isError ? (
+					<div
+						className={cn(
+							"transition-all text-base font-semibold w-full h-full max-w-full",
+							"flex flex-col items-center justify-start",
+						)}
+					>
+						<AiMessageCard
+							className="self-end text-end text-wrap pl-6"
+							title={enhanceObject.title}
+						>
+							<div className="p-2 px-4 bg-card rounded-3xl w-fit flex ml-auto">
+								{enhanceObject.body}
+							</div>
+						</AiMessageCard>
 
-				{aiProgress.output.length ? (
-					<div className="transition-all font-serif text-base font-semibold">
-						{aiProgress.output}
+						<AiMessageCard
+							className="self-start text-wrap pr-6"
+							title={"Assistant Response"}
+						>
+							{aiProgress.output.length && !isError ? (
+								<div className="p-2 px-4 bg-card rounded-3xl w-fit flex ml-auto">
+									{aiProgress.output}
+								</div>
+							) : (
+								isPending && (
+									<div className="p-2 px-4 bg-card rounded-3xl w-fit flex ml-auto animate-pulse">
+										Working on your request...
+									</div>
+								)
+							)}
+
+							{isError && (
+								<div className="text-destructive bg-destructive/10 p-2 px-4 rounded-full flex items-center">
+									<AlertTriangleIcon className="mr-4 size-5 min-w-5" />
+									<Small className="font-bold">
+										There was a problem getting your response!
+									</Small>
+								</div>
+							)}
+						</AiMessageCard>
 					</div>
 				) : (
 					<ErrorSection
@@ -101,31 +145,30 @@ export default function ArticlesAssistanceSheet() {
 					/>
 				)}
 
-				{form.formState.submitCount > 0 && (
-					<Button
-						ref={buttonRef}
-						type={isPending ? "button" : "submit"}
+				<Button
+					ref={buttonRef}
+					type={isPending ? "button" : "submit"}
+					className={cn(
+						"group absolute bottom-4 right-4 gap-0 px-6 font-bold transition-all",
+						isPending ? "pl-6" : "",
+						form.formState.submitCount > 0 ? "visible" : "invisible",
+					)}
+					disabled={isPending}
+				>
+					<RefreshCwIcon
 						className={cn(
-							"group absolute bottom-4 right-4 gap-0 px-6 font-bold transition-all",
-							isPending ? "pl-6" : "",
+							"h-4 w-0 group-hover:rotate-[360deg] duration-700 transition-all",
+							isPending ? "hidden" : "w-4 mr-4",
 						)}
-						disabled={isPending}
-					>
-						<RefreshCwIcon
-							className={cn(
-								"h-4 w-0 group-hover:rotate-[360deg] duration-700 transition-all",
-								isPending ? "hidden" : "w-4 mr-4",
-							)}
-						/>
-						<Loader2Icon
-							className={cn(
-								"h-4 w-0 animate-spin transition-all",
-								isPending ? "w-4 mr-4" : "hidden",
-							)}
-						/>
-						Run Again
-					</Button>
-				)}
+					/>
+					<Loader2Icon
+						className={cn(
+							"h-4 w-0 animate-spin transition-all",
+							isPending ? "w-4 mr-4" : "hidden",
+						)}
+					/>
+					Run Again
+				</Button>
 			</form>
 		</Form>
 	);

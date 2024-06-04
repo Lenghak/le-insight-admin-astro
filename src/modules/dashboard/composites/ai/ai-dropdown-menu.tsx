@@ -63,6 +63,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
 										body: getSelectionText(editor),
 										path: tool.path,
 										trigger: true,
+										title: tool.title,
 									});
 									$articleAiPanelCollapseStore.set(false);
 								}}
@@ -87,6 +88,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
 															body: getSelectionText(editor),
 															path: "/tone/" + tone.label,
 															trigger: true,
+															title: tone.label + " Toning",
 														});
 														$articleAiPanelCollapseStore.set(false);
 													}}

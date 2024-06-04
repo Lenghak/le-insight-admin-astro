@@ -109,7 +109,7 @@ export default function ArticlesEditor() {
 								<ResizablePanel
 									className={cn(
 										"max-w-screen-sm bg-background transition-all relative z-[9999]",
-										isCollapsed ? "max-w-0" : "min-w-fit",
+										isCollapsed ? "max-w-0" : "min-w-96",
 									)}
 									collapsible={true}
 									minSize={24}
