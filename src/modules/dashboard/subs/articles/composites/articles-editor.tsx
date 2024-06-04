@@ -1,3 +1,4 @@
+import { $articleAiPanelCollapseStore } from "@articles/stores/article-ai-store";
 import { $editingArticle } from "@articles/stores/article-store";
 import Logo from "@custom/logo/logo";
 import { SheetClose } from "@ui/sheet";
@@ -5,7 +6,6 @@ import { SheetClose } from "@ui/sheet";
 import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
 
 import { useStore } from "@nanostores/react";
-import { CommentsPopover } from "@plate-ui/comments-popover";
 import { Editor } from "@plate-ui/editor";
 import { FixedToolbar } from "@plate-ui/fixed-toolbar";
 import { FixedToolbarButtons } from "@plate-ui/fixed-toolbar-buttons";
@@ -18,17 +18,15 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@plate-ui/tooltip";
-import { CommentsProvider } from "@udecode/plate-comments";
 import { Plate, PlateController } from "@udecode/plate-common";
 
+import { cn } from "@/common/lib/utils";
+import { CommentsProvider } from "@udecode/plate-comments";
 import {
 	ResizableHandle,
 	ResizablePanel,
 	ResizablePanelGroup,
 } from "@ui/resizable";
-
-import { cn } from "@/common/lib/utils";
-import { $articleAiPanelCollapseStore } from "@/modules/dashboard/subs/articles/stores/article-ai-store";
 import { XIcon } from "lucide-react";
 import React from "react";
 import { DndProvider } from "react-dnd";
@@ -100,6 +98,10 @@ export default function ArticlesEditor() {
 									<React.Suspense>
 										<ArticlesEditorRightPanel />
 									</React.Suspense>
+
+									<FloatingToolbar className="shadow-sm px-1">
+										<FloatingToolbarButtons />
+									</FloatingToolbar>
 								</ResizablePanel>
 
 								<ResizableHandle />
@@ -119,11 +121,8 @@ export default function ArticlesEditor() {
 									<ArticlesAssitantsSheet />
 								</ResizablePanel>
 							</ResizablePanelGroup>
-							<FloatingToolbar className="shadow-sm">
-								<FloatingToolbarButtons />
-							</FloatingToolbar>
 
-							<CommentsPopover />
+							{/* <CommentsPopover /> */}
 						</Plate>
 					</CommentsProvider>
 				</DndProvider>

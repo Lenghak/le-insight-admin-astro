@@ -87,7 +87,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 					</Muted>
 					{/* Minutes Reads */}
 					<Muted className="text-xs uppercase tracking-widest py-1">
-						{5} minutes read
+						{/* {5} minutes read */}
 					</Muted>
 				</div>
 			</CardHeader>
@@ -127,7 +127,11 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 					<div className="flex w-full items-center gap-8">
 						<div className="flex flex-nowrap w-full overflow-hidden items-center justify-start gap-4">
 							{article?.article_categories?.map(({ category }) => (
-								<ArticleCategoryBadge category={category} key={category.id}>
+								<ArticleCategoryBadge
+									category={category}
+									key={category.id}
+									className="whitespace-nowrap"
+								>
 									{category.label}
 								</ArticleCategoryBadge>
 							))}

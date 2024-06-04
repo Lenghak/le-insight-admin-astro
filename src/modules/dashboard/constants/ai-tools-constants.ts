@@ -28,7 +28,7 @@ export const AIEnhanceTools = [
 	{ icon: SpellCheckIcon, label: "Fix Spellings & Grammar", path: "/grammar" },
 	{ icon: ArrowRightFromLineIcon, label: "Lengthen", path: "/lengthen" },
 	{ icon: ArrowLeftFromLineIcon, label: "Shorten", path: "/shorten" },
-	{ icon: ScissorsLineDashedIcon, label: "TL;DR", path: "/tl;dr" },
+	{ icon: ScissorsLineDashedIcon, label: "TL;DR", path: "/tldr" },
 	{ icon: SmilePlusIcon, label: "Emojify", path: "/emojify" },
 	{ icon: PencilLineIcon, label: "Auto Complete", path: "/complete" },
 ];

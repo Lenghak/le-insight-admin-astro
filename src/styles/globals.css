@@ -120,6 +120,10 @@
   }
 }
 
+.slate-SelectionArea div[style="height: 100px; opacity: 0; position: fixed; width: 100%; z-index: 10000; top: 0px;"] {
+  display: none !important;
+}
+
 @layer utilities {
   .step {
     counter-increment: step;

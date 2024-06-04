@@ -1,6 +1,5 @@
 import { AlignDropdownMenu } from "@plate-ui/align-dropdown-menu";
 import { ColorDropdownMenu } from "@plate-ui/color-dropdown-menu";
-import { CommentToolbarButton } from "@plate-ui/comment-toolbar-button";
 import { EmojiDropdownMenu } from "@plate-ui/emoji-dropdown-menu";
 import { IndentListToolbarButton } from "@plate-ui/indent-list-toolbar-button";
 import { IndentToolbarButton } from "@plate-ui/indent-toolbar-button";
@@ -170,7 +169,7 @@ export function FixedToolbarButtons({ id: _, ...props }: Props) {
 				<div className="grow" />
 
 				<ToolbarGroup noSeparator>
-					<CommentToolbarButton />
+					{/* <CommentToolbarButton /> */}
 					<ModeDropdownMenu />
 					{props.rightToolBars}
 				</ToolbarGroup>
