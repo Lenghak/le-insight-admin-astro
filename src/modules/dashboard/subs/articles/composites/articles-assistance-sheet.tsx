@@ -1,4 +1,5 @@
 import ErrorSection from "@/modules/error/components/error-section";
+import usePostEnhanceArticlesService from "@articles/hooks/use-post-enhance-articles-service";
 import {
 	$articleAiPanelCollapseStore,
 	$articleAiResultStore,
@@ -14,10 +15,14 @@ import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { H3 } from "@ui/h3";
 
-import usePostEnhanceArticlesService from "@/modules/dashboard/subs/articles/hooks/use-post-enhance-articles-service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
-import { Loader2Icon, RefreshCwIcon, SparklesIcon } from "lucide-react";
+import {
+	ChevronLeftIcon,
+	Loader2Icon,
+	RefreshCwIcon,
+	SparklesIcon,
+} from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -65,32 +70,18 @@ export default function ArticlesAssistanceSheet() {
 					});
 				})}
 				className={cn(
-					"bg-card h-full flex items-start justify-start p-6 relative pt-24",
+					"relative h-full flex items-start justify-start p-6 pt-32 min-w-96 overflow-y-auto",
 					isCollapsed ? "w-0 opacity-0" : "w-full opacity-100",
 				)}
 			>
 				<Button
-					ref={buttonRef}
-					type={isPending ? "button" : "submit"}
-					className={cn(
-						"group absolute bottom-4 right-4 gap-0 px-6 font-bold transition-all",
-						isPending ? "pl-6" : "",
-					)}
-					disabled={isPending}
+					type="button"
+					variant={"ghost"}
+					className="items-center absolute top-16 left-4"
+					onClick={() => $articleAiPanelCollapseStore.set(true)}
 				>
-					<RefreshCwIcon
-						className={cn(
-							"h-4 w-0 group-hover:rotate-[360deg] duration-700 transition-all",
-							isPending ? "hidden" : "w-4 mr-4",
-						)}
-					/>
-					<Loader2Icon
-						className={cn(
-							"h-4 w-0 animate-spin transition-all",
-							isPending ? "w-4 mr-4" : "hidden",
-						)}
-					/>
-					Run Again
+					<ChevronLeftIcon className="size-5 mr-4" />
+					<span className="font-bold">Hide Assistant</span>
 				</Button>
 
 				{aiProgress.output.length ? (
@@ -108,6 +99,32 @@ export default function ArticlesAssistanceSheet() {
 						className="col-span-full row-span-full h-full text-center w-full"
 						description="Select a range of text associate with our tools here, and see if it fits your satisfaction."
 					/>
+				)}
+
+				{form.formState.submitCount > 0 && (
+					<Button
+						ref={buttonRef}
+						type={isPending ? "button" : "submit"}
+						className={cn(
+							"group absolute bottom-4 right-4 gap-0 px-6 font-bold transition-all",
+							isPending ? "pl-6" : "",
+						)}
+						disabled={isPending}
+					>
+						<RefreshCwIcon
+							className={cn(
+								"h-4 w-0 group-hover:rotate-[360deg] duration-700 transition-all",
+								isPending ? "hidden" : "w-4 mr-4",
+							)}
+						/>
+						<Loader2Icon
+							className={cn(
+								"h-4 w-0 animate-spin transition-all",
+								isPending ? "w-4 mr-4" : "hidden",
+							)}
+						/>
+						Run Again
+					</Button>
 				)}
 			</form>
 		</Form>
