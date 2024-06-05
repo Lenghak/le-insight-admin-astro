@@ -22,7 +22,7 @@ export default function AiMessageCard({
 			{...props}
 		>
 			<CardHeader className="p-0 px-2 w-fit">
-				<CardTitle className="text-sm font-semibold text-muted-foreground capitalize w-fit">
+				<CardTitle className="text-sm font-semibold capitalize w-fit">
 					{title}
 				</CardTitle>
 			</CardHeader>

@@ -1,3 +1,4 @@
+import { cn } from "@/common/lib/utils";
 import ErrorSection from "@/modules/error/components/error-section";
 import AiMessageCard from "@articles/components/ai-message-card";
 import usePostEnhanceArticlesService from "@articles/hooks/use-post-enhance-articles-service";
@@ -6,15 +7,15 @@ import {
 	$articleAiResultStore,
 } from "@articles/stores/article-ai-store";
 import { ArticlesEnhanceRequestSchema } from "@articles/types/articles-enhance-type";
+import { AiDropdownMenu } from "@dashboard/composites/ai/ai-dropdown-menu";
 import {
 	$aiEnhanceStore,
 	setAIEnhance,
 } from "@dashboard/stores/ai-enhance-store";
-
-import { cn } from "@/common/lib/utils";
-import { AiDropdownMenu } from "@/modules/dashboard/composites/ai/ai-dropdown-menu";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
+import { inputVariants } from "@plate-ui/input";
+import { TextareaAutosize } from "@udecode/plate-caption";
 import {
 	insertText,
 	useEditorRef,
@@ -25,6 +26,7 @@ import { Form } from "@ui/form";
 import { H3 } from "@ui/h3";
 import { Small } from "@ui/small";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
+
 import {
 	AlertTriangleIcon,
 	BotMessageSquareIcon,
@@ -104,7 +106,7 @@ export default function ArticlesAssistanceSheet() {
 					});
 				})}
 				className={cn(
-					"bg-card dark:bg-transparent relative h-full flex items-start justify-start min-w-96 overflow-y-hidden pt-14",
+					"bg-card dark:bg-transparent relative h-full flex flex-col items-start justify-start min-w-96 overflow-y-hidden pt-14",
 					isCollapsed ? "w-0 opacity-0" : "w-full opacity-100",
 				)}
 			>
@@ -135,32 +137,6 @@ export default function ArticlesAssistanceSheet() {
 									<User2Icon className="size-4" />
 								</div>
 							}
-							actions={
-								<div className="flex items-center justify-end gap-2 w-full">
-									<Button
-										type="button"
-										variant={"outline"}
-										className="bg-transparent dark:bg-card relative"
-										size={"sm"}
-									>
-										<span className="font-bold">Edit</span>
-									</Button>
-
-									<AiDropdownMenu
-										trigger={
-											<Button
-												type="button"
-												variant={"outline"}
-												className="size-9 bg-transparent dark:bg-card relative"
-												size={"icon"}
-											>
-												<SparklesIcon className="size-4" />
-												<span className="sr-only">Change AI</span>
-											</Button>
-										}
-									/>
-								</div>
-							}
 						>
 							<div className="p-2 px-4 bg-background dark:bg-card rounded-3xl w-fit flex">
 								{form.getValues("content")}
@@ -176,11 +152,14 @@ export default function ArticlesAssistanceSheet() {
 								</div>
 							}
 							actions={
-								<div className="flex items-center justify-start w-full gap-2">
+								<div
+									className={cn("flex items-center justify-start w-full gap-2")}
+								>
 									<Button
 										type="button"
 										variant={"outline"}
-										className="bg-transparent dark:bg-card relative"
+										className={cn("bg-transparent dark:bg-card relative")}
+										disabled={isPending || aiProgress.output.length === 0}
 										size={"sm"}
 										onClick={() =>
 											insertText(editor, aiProgress.output, { at: selected })
@@ -194,7 +173,10 @@ export default function ArticlesAssistanceSheet() {
 											<Button
 												type="button"
 												variant={"outline"}
-												className="size-9 bg-transparent dark:bg-card relative"
+												className={cn(
+													"size-9 bg-transparent dark:bg-card relative",
+												)}
+												disabled={isPending || aiProgress.output.length === 0}
 												size={"icon"}
 												onClick={() => handleCopyOutput(aiProgress.output)}
 											>
@@ -265,7 +247,9 @@ export default function ArticlesAssistanceSheet() {
 								</div>
 							) : (
 								<div className="py-3 px-5 bg-background dark:bg-card rounded-3xl w-fit flex animate-pulse">
-									Working on your request...
+									{!isPending
+										? "The response is empty. Please try again."
+										: "Working on your request..."}
 								</div>
 							)}
 						</AiMessageCard>
@@ -286,6 +270,32 @@ export default function ArticlesAssistanceSheet() {
 				<Button type="submit" className="invisible absolute" ref={buttonRef}>
 					<span className="sr-only">Submit</span>
 				</Button>
+
+				<div className="flex items-end justify-end gap-6 w-full self-end p-6">
+					<TextareaAutosize
+						onChange={(e) => form.setValue("content", e.currentTarget.value)}
+						className={cn(
+							"min-h-10 h-10 max-h-48 w-full font-semibold",
+							inputVariants({ variant: "default" }),
+							"rounded-3xl px-4 resize-none",
+						)}
+						placeholder="Type some message..."
+					/>
+
+					<AiDropdownMenu
+						trigger={
+							<Button
+								type="button"
+								variant={"default"}
+								className="size-9 min-w-9 relative"
+								size={"icon"}
+							>
+								<SparklesIcon className="size-4" />
+								<span className="sr-only">Change AI</span>
+							</Button>
+						}
+					/>
+				</div>
 			</form>
 		</Form>
 	);
