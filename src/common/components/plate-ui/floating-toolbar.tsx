@@ -53,7 +53,7 @@ export const FloatingToolbar = withRef<
 				{...rootProps}
 				{...props}
 				className={cn(
-					"absolute z-[9999] whitespace-nowrap rounded-full border bg-popover px-1.5 opacity-100 shadow-md print:hidden",
+					"absolute z-[99999] whitespace-nowrap rounded-full border bg-popover px-1.5 opacity-100 shadow-md print:hidden",
 					props.className,
 				)}
 			>

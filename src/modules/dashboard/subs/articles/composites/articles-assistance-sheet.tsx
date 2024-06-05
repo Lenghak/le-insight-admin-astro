@@ -11,22 +11,34 @@ import {
 	setAIEnhance,
 } from "@dashboard/stores/ai-enhance-store";
 
-import { Small } from "@/common/components/ui/small";
 import { cn } from "@/common/lib/utils";
+import { AiDropdownMenu } from "@/modules/dashboard/composites/ai/ai-dropdown-menu";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
+import {
+	insertText,
+	useEditorRef,
+	useEditorSelection,
+} from "@udecode/plate-common";
 import { Button } from "@ui/button";
 import { Form } from "@ui/form";
 import { H3 } from "@ui/h3";
+import { Small } from "@ui/small";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
 import {
 	AlertTriangleIcon,
+	BotMessageSquareIcon,
 	ChevronLeftIcon,
+	CopyCheckIcon,
+	CopyIcon,
 	Loader2Icon,
-	RefreshCwIcon,
+	Repeat2Icon,
 	SparklesIcon,
+	User2Icon,
 } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const EnhanceSchema = z.object({
@@ -38,6 +50,8 @@ export default function ArticlesAssistanceSheet() {
 	const isCollapsed = useStore($articleAiPanelCollapseStore);
 	const enhanceObject = useStore($aiEnhanceStore);
 	const aiProgress = useStore($articleAiResultStore);
+
+	const [isCopiedToClipboard, setCopiedToClipboard] = useState(false);
 
 	const form = useForm<z.infer<typeof EnhanceSchema>>({
 		resolver: zodResolver(EnhanceSchema),
@@ -55,9 +69,22 @@ export default function ArticlesAssistanceSheet() {
 
 	const buttonRef = useRef<HTMLButtonElement>(null);
 
-	useEffect(() => {
-		form.setValue("content", enhanceObject.body);
+	const handleCopyOutput = (text: string) => {
+		navigator.clipboard.writeText(text).then(() => {
+			setCopiedToClipboard(true);
+			toast.success("Text copied to clipboard.", {
+				onAutoClose: () => {
+					setCopiedToClipboard(false);
+				},
+			});
+		});
+	};
 
+	const editor = useEditorRef();
+	const selected = useEditorSelection();
+
+	useEffect(() => {
+		if (enhanceObject.body) form.setValue("content", enhanceObject.body);
 		if (enhanceObject.path) form.setValue("path", enhanceObject.path);
 
 		if (enhanceObject.trigger) {
@@ -77,7 +104,7 @@ export default function ArticlesAssistanceSheet() {
 					});
 				})}
 				className={cn(
-					"relative h-full flex items-start justify-start p-6 pt-32 min-w-96 overflow-y-auto",
+					"bg-card dark:bg-transparent relative h-full flex items-start justify-start min-w-96 overflow-y-hidden pt-14",
 					isCollapsed ? "w-0 opacity-0" : "w-full opacity-100",
 				)}
 			>
@@ -90,44 +117,155 @@ export default function ArticlesAssistanceSheet() {
 					<ChevronLeftIcon className="size-5 mr-4" />
 					<span className="font-bold">Hide Assistant</span>
 				</Button>
-				{isPending || aiProgress.output || isError ? (
+				{isPending ||
+				aiProgress.output ||
+				isError ||
+				form.formState.submitCount ? (
 					<div
 						className={cn(
-							"transition-all text-base font-semibold w-full h-full max-w-full",
+							"transition-all text-base font-semibold w-full h-full max-w-full overflow-y-auto pt-12 pb-6 px-6 scroll-mt-32 scroll-smooth gap-6",
 							"flex flex-col items-center justify-start",
 						)}
 					>
 						<AiMessageCard
-							className="self-end text-end text-wrap pl-6"
-							title={enhanceObject.title}
+							className="self-end text-end text-wrap flex flex-col items-end"
+							title={
+								<div className="flex items-center gap-4 whitespace-nowrap">
+									<span>{enhanceObject.title ?? "User Request"}</span>
+									<User2Icon className="size-4" />
+								</div>
+							}
+							actions={
+								<div className="flex items-center justify-end gap-2 w-full">
+									<Button
+										type="button"
+										variant={"outline"}
+										className="bg-transparent dark:bg-card relative"
+										size={"sm"}
+									>
+										<span className="font-bold">Edit</span>
+									</Button>
+
+									<AiDropdownMenu
+										trigger={
+											<Button
+												type="button"
+												variant={"outline"}
+												className="size-9 bg-transparent dark:bg-card relative"
+												size={"icon"}
+											>
+												<SparklesIcon className="size-4" />
+												<span className="sr-only">Change AI</span>
+											</Button>
+										}
+									/>
+								</div>
+							}
 						>
-							<div className="p-2 px-4 bg-card rounded-3xl w-fit flex ml-auto">
-								{enhanceObject.body}
+							<div className="p-2 px-4 bg-background dark:bg-card rounded-3xl w-fit flex">
+								{form.getValues("content")}
 							</div>
 						</AiMessageCard>
 
 						<AiMessageCard
-							className="self-start text-wrap pr-6"
-							title={"Assistant Response"}
-						>
-							{aiProgress.output.length && !isError ? (
-								<div className="p-2 px-4 bg-card rounded-3xl w-fit flex ml-auto">
-									{aiProgress.output}
+							className="self-start text-wrap"
+							title={
+								<div className="flex items-center gap-4 whitespace-nowrap">
+									<BotMessageSquareIcon className="size-4" />
+									<span>Assistant Response</span>
 								</div>
-							) : (
-								isPending && (
-									<div className="p-2 px-4 bg-card rounded-3xl w-fit flex ml-auto animate-pulse">
-										Working on your request...
-									</div>
-								)
-							)}
+							}
+							actions={
+								<div className="flex items-center justify-start w-full gap-2">
+									<Button
+										type="button"
+										variant={"outline"}
+										className="bg-transparent dark:bg-card relative"
+										size={"sm"}
+										onClick={() =>
+											insertText(editor, aiProgress.output, { at: selected })
+										}
+									>
+										<span className="font-bold">Insert</span>
+									</Button>
 
-							{isError && (
-								<div className="text-destructive bg-destructive/10 p-2 px-4 rounded-full flex items-center">
-									<AlertTriangleIcon className="mr-4 size-5 min-w-5" />
+									<Tooltip>
+										<TooltipTrigger asChild>
+											<Button
+												type="button"
+												variant={"outline"}
+												className="size-9 bg-transparent dark:bg-card relative"
+												size={"icon"}
+												onClick={() => handleCopyOutput(aiProgress.output)}
+											>
+												<CopyIcon
+													className={cn(
+														"size-4 transition-all absolute",
+														isCopiedToClipboard ? "scale-0" : "scale-1",
+													)}
+												/>
+
+												<CopyCheckIcon
+													className={cn(
+														"size-4 transition-all absolute",
+														isCopiedToClipboard ? "scale-1" : "scale-0",
+													)}
+												/>
+												<span className="sr-only">Copy</span>
+											</Button>
+										</TooltipTrigger>
+										<TooltipContent>
+											<p>Copy</p>
+										</TooltipContent>
+									</Tooltip>
+
+									<Tooltip>
+										<TooltipTrigger asChild>
+											<Button
+												type={isPending ? "button" : "submit"}
+												variant={"default"}
+												size={"icon"}
+												className={cn(
+													"size-9 group gap-0 font-bold transition-all",
+												)}
+												disabled={isPending}
+											>
+												<Repeat2Icon
+													className={cn(
+														"h-4 w-0 group-hover:rotate-[360deg] duration-700 transition-all",
+														isPending ? "hidden" : "w-4",
+													)}
+												/>
+												<Loader2Icon
+													className={cn(
+														"h-4 w-0 animate-spin transition-all",
+														isPending ? "w-4" : "hidden",
+													)}
+												/>
+												<span className="sr-only">Run Again</span>
+											</Button>
+										</TooltipTrigger>
+										<TooltipContent>
+											<p>Run Again</p>
+										</TooltipContent>
+									</Tooltip>
+								</div>
+							}
+						>
+							{isError ? (
+								<div className="text-destructive bg-destructive/10 py-3 px-5 rounded-3xl flex items-center">
+									<AlertTriangleIcon className="size-5 min-w-5 mr-4" />
 									<Small className="font-bold">
 										There was a problem getting your response!
 									</Small>
+								</div>
+							) : aiProgress.output?.length ? (
+								<div className="py-3 px-5 bg-background dark:bg-card rounded-3xl w-fit flex">
+									{aiProgress.output}
+								</div>
+							) : (
+								<div className="py-3 px-5 bg-background dark:bg-card rounded-3xl w-fit flex animate-pulse">
+									Working on your request...
 								</div>
 							)}
 						</AiMessageCard>
@@ -145,29 +283,8 @@ export default function ArticlesAssistanceSheet() {
 					/>
 				)}
 
-				<Button
-					ref={buttonRef}
-					type={isPending ? "button" : "submit"}
-					className={cn(
-						"group absolute bottom-4 right-4 gap-0 px-6 font-bold transition-all",
-						isPending ? "pl-6" : "",
-						form.formState.submitCount > 0 ? "visible" : "invisible",
-					)}
-					disabled={isPending}
-				>
-					<RefreshCwIcon
-						className={cn(
-							"h-4 w-0 group-hover:rotate-[360deg] duration-700 transition-all",
-							isPending ? "hidden" : "w-4 mr-4",
-						)}
-					/>
-					<Loader2Icon
-						className={cn(
-							"h-4 w-0 animate-spin transition-all",
-							isPending ? "w-4 mr-4" : "hidden",
-						)}
-					/>
-					Run Again
+				<Button type="submit" className="invisible absolute" ref={buttonRef}>
+					<span className="sr-only">Submit</span>
 				</Button>
 			</form>
 		</Form>

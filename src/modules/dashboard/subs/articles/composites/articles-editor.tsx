@@ -55,6 +55,10 @@ export default function ArticlesEditor() {
 							initialValue={initialValue}
 							normalizeInitialValue
 						>
+							<FloatingToolbar className="shadow-sm px-1" role="dialog">
+								<FloatingToolbarButtons />
+							</FloatingToolbar>
+
 							<FixedToolbar className="fixed z-[99999] col-span-full top-0 left-0 mx-auto h-fit min-h-14 w-full place-self-center self-center overflow-y-hidden rounded-none bg-card dark:bg-background p-1 px-2">
 								<FixedToolbarButtons
 									leftToolbars={
@@ -82,7 +86,7 @@ export default function ArticlesEditor() {
 
 							<ResizablePanelGroup
 								direction="horizontal"
-								className="h-full bg-card"
+								className="h-full bg-card relative"
 							>
 								<ResizablePanel
 									className="relative flex h-full"
@@ -90,7 +94,7 @@ export default function ArticlesEditor() {
 									minSize={1}
 								>
 									<Editor
-										containerClassName="*:font-serif z-0 w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
+										containerClassName="*:font-serif -z-1 w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
 										className="h-full w-full mx-auto border-0 px-[17.5%] pt-24 *:text-lg bg-card dark:bg-background rounded-none transition-all"
 										focusRing={false}
 									/>
@@ -98,10 +102,6 @@ export default function ArticlesEditor() {
 									<React.Suspense>
 										<ArticlesEditorRightPanel />
 									</React.Suspense>
-
-									<FloatingToolbar className="shadow-sm px-1">
-										<FloatingToolbarButtons />
-									</FloatingToolbar>
 								</ResizablePanel>
 
 								<ResizableHandle />

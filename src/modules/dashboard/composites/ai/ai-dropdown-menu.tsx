@@ -3,7 +3,11 @@ import {
 	AIEnhanceTools,
 	AiToneTools,
 } from "@dashboard/constants/ai-tools-constants";
-import { setAIEnhance } from "@dashboard/stores/ai-enhance-store";
+import {
+	$aiEnhanceStore,
+	setAIEnhance,
+} from "@dashboard/stores/ai-enhance-store";
+import { useStore } from "@nanostores/react";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -20,7 +24,6 @@ import { ToolbarButton } from "@plate-ui/toolbar";
 import type { DropdownMenuProps as PrimitiveDropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import { cn } from "@udecode/cn";
 import { getSelectionText, useEditorRef } from "@udecode/plate-common";
-// import { useEditorRef } from "@udecode/plate-common";
 import { Small } from "@ui/small";
 import { SparklesIcon, SpeechIcon } from "lucide-react";
 import { Fragment, useId } from "react";
@@ -34,6 +37,7 @@ interface DropdownMenuProps extends PrimitiveDropdownMenuProps {
 export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
 	const editor = useEditorRef();
 	const openState = useOpenState();
+	const aiEnhanceObject = useStore($aiEnhanceStore);
 
 	return (
 		<DropdownMenu modal={false} {...openState} {...props}>
@@ -53,14 +57,15 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
 					</ToolbarButton>
 				)}
 			</DropdownMenuTrigger>
-			<DropdownMenuContent className="w-64 relative font-semibold">
+			<DropdownMenuContent className="w-64 relative font-semibold mx-6	">
 				<DropdownMenuGroup>
 					{AIEnhanceTools.map((tool, index) => (
 						<Fragment key={useId()}>
 							<DropdownMenuItem
 								onClick={() => {
 									setAIEnhance({
-										body: getSelectionText(editor),
+										body:
+											getSelectionText(editor).trim() ?? aiEnhanceObject.body,
 										path: tool.path,
 										trigger: true,
 										title: tool.title,
@@ -103,54 +108,6 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
 							)}
 						</Fragment>
 					))}
-					{/* <DropdownMenuItem>
-						<MergeIcon className="mr-4 h-4 w-4" />
-						<span>Simplify</span>
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<SpellCheckIcon className="mr-4 h-4 w-4" />
-						<span>Fix Spellings & Grammar</span>
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<ArrowRightFromLineIcon className="mr-4 h-4 w-4" />
-						<span>Lengthen</span>
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-						<ArrowLeftFromLineIcon className="mr-4 h-4 w-4" />
-						<span>Shorten</span>
-					</DropdownMenuItem>
-
-					<DropdownMenuSub>
-						<DropdownMenuSubTrigger>
-							<SpeechIcon className="mr-4 h-4 w-4" />
-							<span>Adjust Tones</span>
-						</DropdownMenuSubTrigger>
-						<DropdownMenuPortal>
-							<DropdownMenuSubContent className="font-semibold">
-								{AiToneTools.map((tone) => (
-									<DropdownMenuItem key={useId()}>
-										<tone.icon className="mr-4 h-4 w-4" />
-										<span className="capitalize">{tone.label}</span>
-									</DropdownMenuItem>
-								))}
-							</DropdownMenuSubContent>
-						</DropdownMenuPortal>
-					</DropdownMenuSub>
-
-					<DropdownMenuItem>
-						<ScissorsLineDashedIcon className="mr-4 h-4 w-4" />
-						<span>TL;DR</span>
-					</DropdownMenuItem>
-
-					<DropdownMenuItem>
-						<SmilePlusIcon className="mr-4 h-4 w-4" />
-						<span>Emojify</span>
-					</DropdownMenuItem>
-
-					<DropdownMenuItem>
-						<PencilLineIcon className="mr-4 h-4 w-4" />
-						<span>Auto Complete</span>
-					</DropdownMenuItem> */}
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
