@@ -6,33 +6,33 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 type useFileUPloadHandlerProps = {
-	editor?: PlateCloudEditor;
-	dialogID: string;
+  editor?: PlateCloudEditor;
+  dialogID: string;
 };
 
 export default function useFileUploadHandler({
-	editor,
-	dialogID,
+  editor,
+  dialogID,
 }: useFileUPloadHandlerProps) {
-	const dropzone = useDropzone({
-		accept: {
-			"image/*": [],
-		},
-		onDropRejected: () => {
-			toast.error("File is not supported");
-		},
-		onDropAccepted: (file: File[], _e: DropEvent) => {
-			editor ? uploadFile(editor, file[0]) : undefined;
-			setMediaDialogState({
-				id: dialogID,
-				isOpen: false,
-			});
-		},
-	});
+  const dropzone = useDropzone({
+    accept: {
+      "image/*": [],
+    },
+    onDropRejected: () => {
+      toast.error("File is not supported");
+    },
+    onDropAccepted: (file: File[], _e: DropEvent) => {
+      editor ? uploadFile(editor, file[0]) : undefined;
+      setMediaDialogState({
+        id: dialogID,
+        isOpen: false,
+      });
+    },
+  });
 
-	const form = useForm({
-		defaultValues: {},
-	});
+  const form = useForm({
+    defaultValues: {},
+  });
 
-	return { dropzone, form };
+  return { dropzone, form };
 }

@@ -1,24 +1,24 @@
 import { cn } from "@/common/lib/utils";
 
-import { type HTMLAttributes, forwardRef } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 
 export type H4Props = HTMLAttributes<HTMLHeadingElement>;
 
 export const H4 = forwardRef<HTMLHeadingElement, H4Props>(
-	({ className, children, ...props }, ref) => {
-		return (
-			<h4
-				className={cn(
-					"scroll-m-20 text-xl font-semibold tracking-tight",
-					className,
-				)}
-				{...props}
-				ref={ref}
-			>
-				{children}
-			</h4>
-		);
-	},
+  ({ className, children, ...props }, ref) => {
+    return (
+      <h4
+        className={cn(
+          "scroll-m-20 text-xl font-semibold tracking-tight",
+          className,
+        )}
+        {...props}
+        ref={ref}
+      >
+        {children}
+      </h4>
+    );
+  },
 );
 
 H4.displayName = "H4";

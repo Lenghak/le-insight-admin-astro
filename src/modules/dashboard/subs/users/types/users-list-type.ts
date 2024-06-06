@@ -1,30 +1,30 @@
 import { z } from "zod";
 
 import {
-	PaginationMetaSchema,
-	PaginationRequestSchema,
+  PaginationMetaSchema,
+  PaginationRequestSchema,
 } from "@/common/types/pagination-type";
 import { ProfileSexSchema, ProfilesSchema } from "@/common/types/profiles-type";
 import { UserRoleSchema, UsersSchema } from "@/common/types/users-type";
 
 export const UsersTableSchema = UsersSchema.omit({ type: true }).extend({
-	profile: ProfilesSchema,
-	id: UsersSchema.shape.id,
-	type: z.literal("users"),
+  profile: ProfilesSchema,
+  id: UsersSchema.shape.id,
+  type: z.literal("users"),
 });
 
 export const UsersListRequestSchema = PaginationRequestSchema.extend({
-	role: UserRoleSchema.nullable().optional(),
-	sex: z.array(ProfileSexSchema).optional(),
-	from: z.string().datetime().optional(),
-	to: z.string().datetime().optional(),
+  role: UserRoleSchema.nullable().optional(),
+  sex: z.array(ProfileSexSchema).optional(),
+  from: z.string().datetime().optional(),
+  to: z.string().datetime().optional(),
 });
 
 export const UsersListResponseSchema = z.object({
-	data: z.array(UsersTableSchema),
-	meta: z.object({
-		pagination: PaginationMetaSchema,
-	}),
+  data: z.array(UsersTableSchema),
+  meta: z.object({
+    pagination: PaginationMetaSchema,
+  }),
 });
 
 export type UsersListRequestType = z.infer<typeof UsersListRequestSchema>;

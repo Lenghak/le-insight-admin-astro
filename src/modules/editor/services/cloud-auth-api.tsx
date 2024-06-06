@@ -4,9 +4,9 @@ import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";
 
 export default async function getCloudAuthToken(queryInstance?: AxiosInstance) {
-	return (queryInstance ?? getPublicQueryInstance()).get<
-		CloudAuthResponseType,
-		AxiosResponse<CloudAuthResponseType>,
-		never
-	>("/articles/cloud");
+  return (queryInstance ?? getPublicQueryInstance()).get<
+    CloudAuthResponseType,
+    AxiosResponse<CloudAuthResponseType>,
+    never
+  >("/articles/cloud");
 }

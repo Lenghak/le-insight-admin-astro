@@ -1,8 +1,8 @@
 import { cn } from "@udecode/cn";
 import {
-	CommentNewSubmitButton,
-	CommentNewTextarea,
-	useCommentsSelectors,
+  CommentNewSubmitButton,
+  CommentNewTextarea,
+  useCommentsSelectors,
 } from "@udecode/plate-comments";
 
 import { buttonVariants } from "./button";
@@ -10,24 +10,24 @@ import { CommentAvatar } from "./comment-avatar";
 import { inputVariants } from "./input";
 
 export function CommentCreateForm() {
-	const myUserId = useCommentsSelectors().myUserId();
+  const myUserId = useCommentsSelectors().myUserId();
 
-	return (
-		<div className="flex w-full space-x-2">
-			<CommentAvatar userId={myUserId} />
+  return (
+    <div className="flex w-full space-x-2">
+      <CommentAvatar userId={myUserId} />
 
-			<div className="flex grow flex-col items-end gap-4">
-				<CommentNewTextarea className={inputVariants()} />
+      <div className="flex grow flex-col items-end gap-4">
+        <CommentNewTextarea className={inputVariants()} />
 
-				<CommentNewSubmitButton
-					className={cn(
-						buttonVariants({ size: "sm" }),
-						"w-fit rounded-full px-6",
-					)}
-				>
-					Comment
-				</CommentNewSubmitButton>
-			</div>
-		</div>
-	);
+        <CommentNewSubmitButton
+          className={cn(
+            buttonVariants({ size: "sm" }),
+            "w-fit rounded-full px-6",
+          )}
+        >
+          Comment
+        </CommentNewSubmitButton>
+      </div>
+    </div>
+  );
 }

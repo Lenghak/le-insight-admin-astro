@@ -1,26 +1,26 @@
 {
-	"extends": "./node_modules/astro/tsconfigs/strict",
-	"compilerOptions": {
-		"plugins": [
-			{
-				"name": "@astrojs/ts-plugin"
-			}
-		],
-		"allowJs": true,
-		"jsx": "react-jsx",
-		"jsxImportSource": "react",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./src/*"],
-			"@articles/*": ["./src/modules/dashboard/subs/articles/*"],
-			"@categories/*": ["./src/modules/dashboard/subs/categories/*"],
-			"@users/*": ["./src/modules/dashboard/subs/users/*"],
-			"@dashboard/*": ["./src/modules/dashboard/*"],
-			"@editor/*": ["./src/modules/editor/*"],
-			"@auth/*": ["./src/modules/auth/*"],
-			"@ui/*": ["./src/common/components/ui/*"],
-			"@custom/*": ["./src/common/components/custom/*"],
-			"@plate-ui/*": ["./src/common/components/plate-ui/*"]
-		}
-	}
+  "extends": "./node_modules/astro/tsconfigs/strict",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@articles/*": ["./src/modules/dashboard/subs/articles/*"],
+      "@categories/*": ["./src/modules/dashboard/subs/categories/*"],
+      "@users/*": ["./src/modules/dashboard/subs/users/*"],
+      "@dashboard/*": ["./src/modules/dashboard/*"],
+      "@editor/*": ["./src/modules/editor/*"],
+      "@auth/*": ["./src/modules/auth/*"],
+      "@ui/*": ["./src/common/components/ui/*"],
+      "@custom/*": ["./src/common/components/custom/*"],
+      "@plate-ui/*": ["./src/common/components/plate-ui/*"]
+    }
+  }
 }

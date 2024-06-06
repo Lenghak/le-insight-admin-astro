@@ -4,11 +4,11 @@ import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance } from "axios";
 
 export default function postCreateCategoriesAPI(
-	data: CreateArticleRequestType,
-	queryInstance?: AxiosInstance,
+  data: CreateArticleRequestType,
+  queryInstance?: AxiosInstance,
 ) {
-	return (queryInstance ?? getPublicQueryInstance()).post(
-		"/articles-categories",
-		data,
-	);
+  return (queryInstance ?? getPublicQueryInstance()).post(
+    "/articles-categories",
+    data,
+  );
 }

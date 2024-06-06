@@ -6,12 +6,17 @@ LIGHT_BLUE='\033[1;34m'
 NO_COLOR='\033[0m'
 
 
-echo "${LIGHT_BLUE}!${NO_COLOR} Formatting Staged Files"
-pnpm format --staged --no-errors-on-unmatched
+echo "${LIGHT_BLUE}!${NO_COLOR} Checking Lint"
+pnpm run lint --fix || exit $
+echo "${GREEN}✔${NO_COLOR} Done Running Lint"
 
-echo "${GREEN}✔${NO_COLOR} Done Formatting"
+echo "${LIGHT_BLUE}!${NO_COLOR} Prettier is Formatting Staged Files"
+pnpm lint-staged ${staged}
 
-echo "${LIGHT_BLUE}!${NO_COLOR} Checking for Circlar Dependency"
+echo "${GREEN} Formatted" ${staged}
+echo "${GREEN}✔${NO_COLOR} Done Running Prettier"
+
+echo "${LIGHT_BLUE}!${NO_COLOR} Checking for Circular Dependency"
 pnpm cruise || exit $
 
 echo "${GREEN}✔${NO_COLOR} Done Running Pre-commit\n"

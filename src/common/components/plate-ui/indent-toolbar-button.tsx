@@ -5,13 +5,18 @@ import { IndentIcon } from "lucide-react";
 import { ToolbarButton } from "./toolbar";
 
 export const IndentToolbarButton = withRef<typeof ToolbarButton>(
-	(rest, ref) => {
-		const { props } = useIndentButton();
+  (rest, ref) => {
+    const { props } = useIndentButton();
 
-		return (
-			<ToolbarButton ref={ref} tooltip="Indent" {...props} {...rest}>
-				<IndentIcon className="size-4" />
-			</ToolbarButton>
-		);
-	},
+    return (
+      <ToolbarButton
+        ref={ref}
+        tooltip="Indent"
+        {...props}
+        {...rest}
+      >
+        <IndentIcon className="size-4" />
+      </ToolbarButton>
+    );
+  },
 );

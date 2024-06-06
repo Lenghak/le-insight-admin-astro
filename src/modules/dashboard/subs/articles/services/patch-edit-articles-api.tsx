@@ -4,12 +4,12 @@ import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance } from "axios";
 
 export default function patchEditArticlesAPI(
-	id: string,
-	data: UpdateArticleRequestType,
-	queryInstance?: AxiosInstance,
+  id: string,
+  data: UpdateArticleRequestType,
+  queryInstance?: AxiosInstance,
 ) {
-	return (queryInstance ?? getPublicQueryInstance()).patch(
-		`/articles/${id}`,
-		data,
-	);
+  return (queryInstance ?? getPublicQueryInstance()).patch(
+    `/articles/${id}`,
+    data,
+  );
 }

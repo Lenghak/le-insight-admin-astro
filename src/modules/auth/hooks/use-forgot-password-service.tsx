@@ -9,39 +9,39 @@ import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export default function useForgotPasswordService() {
-	const queryClient = useStore($queryClient);
+  const queryClient = useStore($queryClient);
 
-	const mutation = useMutation(
-		{
-			mutationKey: authKeys.operation("forgot-password"),
-			mutationFn: async (forgotPasswordRequest: ForgotPasswordRequestType) =>
-				await postForgotPassword(forgotPasswordRequest),
-			onError: (err) => {
-				if (err instanceof AxiosError)
-					return toast.error(
-						err.response?.status === 429
-							? "Too many request"
-							: "Request Failed",
-						{
-							closeButton: true,
-							duration: 10 * 1000,
-							description:
-								err.response?.status === 429
-									? "You have sent many request recently, you need to wait for a while in order to request again."
-									: "There was a technical problem while sending the link. Please try again later.",
-						},
-					);
+  const mutation = useMutation(
+    {
+      mutationKey: authKeys.operation("forgot-password"),
+      mutationFn: async (forgotPasswordRequest: ForgotPasswordRequestType) =>
+        await postForgotPassword(forgotPasswordRequest),
+      onError: (err) => {
+        if (err instanceof AxiosError)
+          return toast.error(
+            err.response?.status === 429
+              ? "Too many request"
+              : "Request Failed",
+            {
+              closeButton: true,
+              duration: 10 * 1000,
+              description:
+                err.response?.status === 429
+                  ? "You have sent many request recently, you need to wait for a while in order to request again."
+                  : "There was a technical problem while sending the link. Please try again later.",
+            },
+          );
 
-				return toast.error("Request Failed", {
-					closeButton: true,
-					duration: 10 * 1000,
-					description:
-						"There was a technical problem while sending the link. Please try again later.",
-				});
-			},
-		},
-		queryClient,
-	);
+        return toast.error("Request Failed", {
+          closeButton: true,
+          duration: 10 * 1000,
+          description:
+            "There was a technical problem while sending the link. Please try again later.",
+        });
+      },
+    },
+    queryClient,
+  );
 
-	return { ...mutation };
+  return { ...mutation };
 }

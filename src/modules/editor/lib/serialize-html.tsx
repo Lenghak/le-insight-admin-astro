@@ -10,21 +10,25 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const serializeHtml = (editor: PlateCloudEditor) => {
-	const editorTemp = createPlateEditor({
-		components: SERIALIZE_COMPONENTS,
-		normalizeInitialValue: true,
-		disableCorePlugins: true,
-		editor: { ...editor },
-		plugins: SERIALIZE_PLUGINS,
-	});
+  const editorTemp = createPlateEditor({
+    components: SERIALIZE_COMPONENTS,
+    normalizeInitialValue: true,
+    disableCorePlugins: true,
+    editor: { ...editor },
+    plugins: SERIALIZE_PLUGINS,
+  });
 
-	return serialize(editorTemp, {
-		nodes: editorTemp?.children ?? [],
-		dndWrapper: (props) => (
-			<TooltipProvider>
-				<DndProvider backend={HTML5Backend} context={window} {...props} />
-			</TooltipProvider>
-		),
-		convertNewLinesToHtmlBr: true,
-	});
+  return serialize(editorTemp, {
+    nodes: editorTemp?.children ?? [],
+    dndWrapper: (props) => (
+      <TooltipProvider>
+        <DndProvider
+          backend={HTML5Backend}
+          context={window}
+          {...props}
+        />
+      </TooltipProvider>
+    ),
+    convertNewLinesToHtmlBr: true,
+  });
 };

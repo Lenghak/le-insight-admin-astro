@@ -4,11 +4,11 @@ import { ELEMENT_IMAGE } from "@udecode/plate-media";
 import type { SelectOnBackspacePlugin } from "@udecode/plate-select";
 
 export const selectOnBackspacePlugin: Partial<
-	PlatePlugin<SelectOnBackspacePlugin>
+  PlatePlugin<SelectOnBackspacePlugin>
 > = {
-	options: {
-		query: {
-			allow: [ELEMENT_IMAGE, ELEMENT_HR],
-		},
-	},
+  options: {
+    query: {
+      allow: [ELEMENT_IMAGE, ELEMENT_HR],
+    },
+  },
 };

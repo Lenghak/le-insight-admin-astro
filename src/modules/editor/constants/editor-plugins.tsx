@@ -22,43 +22,43 @@ import { withDraggables } from "@plate-ui/with-draggables";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import {
-	createBoldPlugin,
-	createCodePlugin,
-	createItalicPlugin,
-	createStrikethroughPlugin,
-	createSubscriptPlugin,
-	createSuperscriptPlugin,
-	createUnderlinePlugin,
+  createBoldPlugin,
+  createCodePlugin,
+  createItalicPlugin,
+  createStrikethroughPlugin,
+  createSubscriptPlugin,
+  createSuperscriptPlugin,
+  createUnderlinePlugin,
 } from "@udecode/plate-basic-marks";
 import { createBlockquotePlugin } from "@udecode/plate-block-quote";
 import {
-	createExitBreakPlugin,
-	createSoftBreakPlugin,
+  createExitBreakPlugin,
+  createSoftBreakPlugin,
 } from "@udecode/plate-break";
 import { createCaptionPlugin } from "@udecode/plate-caption";
 import {
-	createCloudAttachmentPlugin,
-	createCloudImagePlugin,
-	createCloudPlugin,
+  createCloudAttachmentPlugin,
+  createCloudImagePlugin,
+  createCloudPlugin,
 } from "@udecode/plate-cloud";
 import { createCodeBlockPlugin } from "@udecode/plate-code-block";
 import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createCommentsPlugin } from "@udecode/plate-comments";
 import {
-	type RenderAfterEditable,
-	createDeserializeAstPlugin,
-	createDeserializeHtmlPlugin,
-	createPlugins,
+  createDeserializeAstPlugin,
+  createDeserializeHtmlPlugin,
+  createPlugins,
+  type RenderAfterEditable,
 } from "@udecode/plate-common";
 import { createDndPlugin } from "@udecode/plate-dnd";
 import { createEmojiPlugin } from "@udecode/plate-emoji";
 import { createExcalidrawPlugin } from "@udecode/plate-excalidraw";
 import {
-	createFontBackgroundColorPlugin,
-	createFontColorPlugin,
-	createFontFamilyPlugin,
-	createFontSizePlugin,
-	createFontWeightPlugin,
+  createFontBackgroundColorPlugin,
+  createFontColorPlugin,
+  createFontFamilyPlugin,
+  createFontSizePlugin,
+  createFontWeightPlugin,
 } from "@udecode/plate-font";
 import { createHeadingPlugin } from "@udecode/plate-heading";
 import { createHighlightPlugin } from "@udecode/plate-highlight";
@@ -72,8 +72,8 @@ import { createLineHeightPlugin } from "@udecode/plate-line-height";
 import { createLinkPlugin } from "@udecode/plate-link";
 import { createTodoListPlugin } from "@udecode/plate-list";
 import {
-	createImagePlugin,
-	createMediaEmbedPlugin,
+  createImagePlugin,
+  createMediaEmbedPlugin,
 } from "@udecode/plate-media";
 import { createMentionPlugin } from "@udecode/plate-mention";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
@@ -81,8 +81,8 @@ import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
 import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import {
-	createDeletePlugin,
-	createSelectOnBackspacePlugin,
+  createDeletePlugin,
+  createSelectOnBackspacePlugin,
 } from "@udecode/plate-select";
 import { createBlockSelectionPlugin } from "@udecode/plate-selection";
 import { createDeserializeCsvPlugin } from "@udecode/plate-serializer-csv";
@@ -95,128 +95,128 @@ import { createTogglePlugin } from "@udecode/plate-toggle";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
 export const EDITOR_PLUGINS = createPlugins(
-	[
-		createParagraphPlugin(),
-		createHeadingPlugin(),
-		createBlockquotePlugin(),
-		createCodeBlockPlugin(),
-		createHorizontalRulePlugin(),
-		createLinkPlugin({
-			renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable,
-		}),
-		createImagePlugin(),
-		createExcalidrawPlugin(),
-		createCloudPlugin({
-			options: {
-				authToken: async () => {
-					const { data: res } = await getCloudAuthToken();
-					return res.data.attributes.token;
-				},
-			},
-		}),
-		createCloudAttachmentPlugin(),
-		createCloudImagePlugin({
-			options: {
-				maxInitialWidth: 320,
-				maxInitialHeight: 320,
-				minResizeWidth: 100,
-				maxResizeWidth: 720,
-			},
-		}),
-		createTogglePlugin(),
-		createColumnPlugin(),
-		createMediaEmbedPlugin(),
-		createCaptionPlugin({
-			...captionPlugin,
-		}),
-		createMentionPlugin(),
-		createTablePlugin(),
-		createTodoListPlugin(),
-		createBoldPlugin(),
-		createItalicPlugin(),
-		createUnderlinePlugin(),
-		createStrikethroughPlugin(),
-		createCodePlugin(),
-		createSubscriptPlugin(),
-		createSuperscriptPlugin(),
-		createFontColorPlugin(),
-		createFontBackgroundColorPlugin(),
-		createFontSizePlugin(),
-		createFontFamilyPlugin(),
-		createFontWeightPlugin(),
-		createHighlightPlugin(),
-		createKbdPlugin(),
-		createAlignPlugin({ ...alignPlugin }),
-		createIndentPlugin({ ...indentPlugin }),
-		createIndentListPlugin({
-			...indentListPlugin,
-		}),
-		createLineHeightPlugin({
-			...lineHeightPlugin,
-		}),
-		createAutoformatPlugin({
-			...autoformatPlugin,
-		}),
-		createBlockSelectionPlugin({
-			options: {
-				sizes: {
-					top: 0,
-					bottom: 0,
-				},
-			},
-		}),
-		createComboboxPlugin(),
-		createDndPlugin({
-			options: { enableScroller: true },
-		}),
-		createEmojiPlugin({
-			...emojiPlugin,
-		}),
-		createExitBreakPlugin({
-			...exitBreakPlugin,
-		}),
-		createNodeIdPlugin(),
-		createNormalizeTypesPlugin({
-			...forcedLayoutPlugin,
-		}),
-		createResetNodePlugin({
-			options: {
-				rules: [],
-			},
-		}),
-		createSelectOnBackspacePlugin({
-			...selectOnBackspacePlugin,
-		}),
-		createDeletePlugin(),
-		createSoftBreakPlugin({
-			...softBreakPlugin,
-		}),
-		createSlashPlugin({
-			options: {
-				// rules: SLASH_RULES
-			},
-		}),
-		createTabbablePlugin({
-			...tabbablePlugin,
-		}),
-		createTrailingBlockPlugin({
-			...trailingBlockPlugin,
-		}),
-		{ ...dragOverCursorPlugin },
-		createCommentsPlugin(),
-		createDeserializeDocxPlugin(),
-		createDeserializeCsvPlugin(),
-		createDeserializeMdPlugin(),
-		createDeserializeHtmlPlugin(),
-		createDeserializeAstPlugin(),
-		createJuicePlugin(),
-	],
-	{
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		components: withDraggables(withPlaceholders(EDITOR_COMPONENT)),
-	},
+  [
+    createParagraphPlugin(),
+    createHeadingPlugin(),
+    createBlockquotePlugin(),
+    createCodeBlockPlugin(),
+    createHorizontalRulePlugin(),
+    createLinkPlugin({
+      renderAfterEditable: LinkFloatingToolbar as RenderAfterEditable,
+    }),
+    createImagePlugin(),
+    createExcalidrawPlugin(),
+    createCloudPlugin({
+      options: {
+        authToken: async () => {
+          const { data: res } = await getCloudAuthToken();
+          return res.data.attributes.token;
+        },
+      },
+    }),
+    createCloudAttachmentPlugin(),
+    createCloudImagePlugin({
+      options: {
+        maxInitialWidth: 320,
+        maxInitialHeight: 320,
+        minResizeWidth: 100,
+        maxResizeWidth: 720,
+      },
+    }),
+    createTogglePlugin(),
+    createColumnPlugin(),
+    createMediaEmbedPlugin(),
+    createCaptionPlugin({
+      ...captionPlugin,
+    }),
+    createMentionPlugin(),
+    createTablePlugin(),
+    createTodoListPlugin(),
+    createBoldPlugin(),
+    createItalicPlugin(),
+    createUnderlinePlugin(),
+    createStrikethroughPlugin(),
+    createCodePlugin(),
+    createSubscriptPlugin(),
+    createSuperscriptPlugin(),
+    createFontColorPlugin(),
+    createFontBackgroundColorPlugin(),
+    createFontSizePlugin(),
+    createFontFamilyPlugin(),
+    createFontWeightPlugin(),
+    createHighlightPlugin(),
+    createKbdPlugin(),
+    createAlignPlugin({ ...alignPlugin }),
+    createIndentPlugin({ ...indentPlugin }),
+    createIndentListPlugin({
+      ...indentListPlugin,
+    }),
+    createLineHeightPlugin({
+      ...lineHeightPlugin,
+    }),
+    createAutoformatPlugin({
+      ...autoformatPlugin,
+    }),
+    createBlockSelectionPlugin({
+      options: {
+        sizes: {
+          top: 0,
+          bottom: 0,
+        },
+      },
+    }),
+    createComboboxPlugin(),
+    createDndPlugin({
+      options: { enableScroller: true },
+    }),
+    createEmojiPlugin({
+      ...emojiPlugin,
+    }),
+    createExitBreakPlugin({
+      ...exitBreakPlugin,
+    }),
+    createNodeIdPlugin(),
+    createNormalizeTypesPlugin({
+      ...forcedLayoutPlugin,
+    }),
+    createResetNodePlugin({
+      options: {
+        rules: [],
+      },
+    }),
+    createSelectOnBackspacePlugin({
+      ...selectOnBackspacePlugin,
+    }),
+    createDeletePlugin(),
+    createSoftBreakPlugin({
+      ...softBreakPlugin,
+    }),
+    createSlashPlugin({
+      options: {
+        // rules: SLASH_RULES
+      },
+    }),
+    createTabbablePlugin({
+      ...tabbablePlugin,
+    }),
+    createTrailingBlockPlugin({
+      ...trailingBlockPlugin,
+    }),
+    { ...dragOverCursorPlugin },
+    createCommentsPlugin(),
+    createDeserializeDocxPlugin(),
+    createDeserializeCsvPlugin(),
+    createDeserializeMdPlugin(),
+    createDeserializeHtmlPlugin(),
+    createDeserializeAstPlugin(),
+    createJuicePlugin(),
+  ],
+  {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    components: withDraggables(withPlaceholders(EDITOR_COMPONENT)),
+  },
 );
 
 export const SERIALIZE_PLUGINS = EDITOR_PLUGINS?.filter(
-	(plugin) => plugin?.key !== "toggle" && plugin?.key !== "blockSelection",
+  (plugin) => plugin?.key !== "toggle" && plugin?.key !== "blockSelection",
 );

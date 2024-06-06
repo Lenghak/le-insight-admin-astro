@@ -7,33 +7,33 @@ import million from "million/compiler";
 
 // https://astro.build/config
 export default defineConfig({
-	output: "server",
-	adapter: vercel(),
-	integrations: [
-		tailwind({
-			applyBaseStyles: false,
-		}),
-		react(),
-		auth(),
-	],
-	prefetch: {
-		defaultStrategy: "hover",
-	},
-	redirects: {
-		"/": {
-			status: 307,
-			destination: "/dashboard/users",
-		},
-	},
-	vite: {
-		plugins: [
-			million.vite({ auto: true, rsc: true, server: true, mode: "react" }),
-		],
-		ssr: {
-			noExternal: ["react-tweet"],
-		},
-	},
-	image: {
-		domains: ["source.unsplash.com"],
-	},
+  output: "server",
+  adapter: vercel(),
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    react(),
+    auth(),
+  ],
+  prefetch: {
+    defaultStrategy: "hover",
+  },
+  redirects: {
+    "/": {
+      status: 307,
+      destination: "/spa/dashboard/users",
+    },
+  },
+  vite: {
+    plugins: [
+      million.vite({ auto: true, rsc: true, server: true, mode: "react" }),
+    ],
+    ssr: {
+      noExternal: ["react-tweet"],
+    },
+  },
+  image: {
+    domains: ["source.unsplash.com"],
+  },
 });

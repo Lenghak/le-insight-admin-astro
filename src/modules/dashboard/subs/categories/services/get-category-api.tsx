@@ -1,18 +1,18 @@
 import type {
-	CategoriesRequestType,
-	CategoriesResponseType,
+  CategoriesRequestType,
+  CategoriesResponseType,
 } from "@categories/types/categories-ind-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosResponse } from "axios";
 
 export default function getCategoryAPI(
-	{ categoryId: categoryID }: CategoriesRequestType,
-	queryInstance?: AxiosInstance,
+  { categoryId: categoryID }: CategoriesRequestType,
+  queryInstance?: AxiosInstance,
 ) {
-	return (queryInstance ?? getPublicQueryInstance()).get<
-		CategoriesResponseType,
-		AxiosResponse<CategoriesResponseType>,
-		CategoriesRequestType
-	>(`/categories/${categoryID}`);
+  return (queryInstance ?? getPublicQueryInstance()).get<
+    CategoriesResponseType,
+    AxiosResponse<CategoriesResponseType>,
+    CategoriesRequestType
+  >(`/categories/${categoryID}`);
 }

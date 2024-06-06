@@ -9,49 +9,49 @@ import type { Table } from "@tanstack/react-table";
 import { FilterIcon } from "lucide-react";
 
 interface UsersFiltersProps<TData> {
-	table: Table<TData>;
+  table: Table<TData>;
 }
 
 const usersSexFilters = [
-	{
-		label: sexesBages.MALE,
-		value: "MALE",
-	},
-	{
-		label: sexesBages.FEMALE,
-		value: "FEMALE",
-	},
-	{
-		label: sexesBages.RNTS,
-		value: "RNTS",
-	},
+  {
+    label: sexesBages.MALE,
+    value: "MALE",
+  },
+  {
+    label: sexesBages.FEMALE,
+    value: "FEMALE",
+  },
+  {
+    label: sexesBages.RNTS,
+    value: "RNTS",
+  },
 ];
 
 export default function UsersFilters<TData>({
-	table,
+  table,
 }: UsersFiltersProps<TData>) {
-	return (
-		<div className="flex w-fit items-center gap-4">
-			{/* Search Query */}
-			<DataTableSearch />
+  return (
+    <div className="flex w-fit items-center gap-4">
+      {/* Search Query */}
+      <DataTableSearch />
 
-			<DataTableCheckboxFilter
-				queryName="sex"
-				checkboxes={usersSexFilters}
-				label="Sex"
-				trigger={
-					<div className="flex items-center gap-4">
-						<FilterIcon className="size-4" />
-						<span className="pr-1 text-muted-foreground">Sex</span>
-					</div>
-				}
-				className="w-48"
-			/>
+      <DataTableCheckboxFilter
+        queryName="sex"
+        checkboxes={usersSexFilters}
+        label="Sex"
+        trigger={
+          <div className="flex items-center gap-4">
+            <FilterIcon className="size-4" />
+            <span className="pr-1 text-muted-foreground">Sex</span>
+          </div>
+        }
+        className="w-48"
+      />
 
-			{/* Date */}
-			<DateTableDatePicker />
+      {/* Date */}
+      <DateTableDatePicker />
 
-			<DataTableViewOptions table={table} />
-		</div>
-	);
+      <DataTableViewOptions table={table} />
+    </div>
+  );
 }

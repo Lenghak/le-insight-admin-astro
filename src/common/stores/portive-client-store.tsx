@@ -4,10 +4,10 @@ import { createClient } from "@portive/client";
 import { map } from "nanostores";
 
 export const $portiveClientStore = map(
-	createClient({
-		authToken: async () => {
-			const { data: res } = await getCloudAuthToken();
-			return res.data.attributes.token;
-		},
-	}),
+  createClient({
+    authToken: async () => {
+      const { data: res } = await getCloudAuthToken();
+      return res.data.attributes.token;
+    },
+  }),
 );

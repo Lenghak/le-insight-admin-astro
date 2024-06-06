@@ -1,58 +1,65 @@
 import {
-	DEFAULT_COLORS,
-	DEFAULT_CUSTOM_COLORS,
+  DEFAULT_COLORS,
+  DEFAULT_CUSTOM_COLORS,
 } from "@/common/constants/color-constants";
 import type { DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 import {
-	useColorDropdownMenu,
-	useColorDropdownMenuState,
+  useColorDropdownMenu,
+  useColorDropdownMenuState,
 } from "@udecode/plate-font";
 
 import { ColorPicker } from "./color-picker";
 import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
 } from "./dropdown-menu";
 import { ToolbarButton } from "./toolbar";
 
 type ColorDropdownMenuProps = {
-	nodeType: string;
-	tooltip?: string;
+  nodeType: string;
+  tooltip?: string;
 } & DropdownMenuProps;
 
 export function ColorDropdownMenu({
-	nodeType,
-	tooltip,
-	children,
+  nodeType,
+  tooltip,
+  children,
 }: ColorDropdownMenuProps) {
-	const state = useColorDropdownMenuState({
-		nodeType,
-		colors: DEFAULT_COLORS,
-		customColors: DEFAULT_CUSTOM_COLORS,
-		closeOnSelect: true,
-	});
+  const state = useColorDropdownMenuState({
+    nodeType,
+    colors: DEFAULT_COLORS,
+    customColors: DEFAULT_CUSTOM_COLORS,
+    closeOnSelect: true,
+  });
 
-	const { menuProps, buttonProps } = useColorDropdownMenu(state);
+  const { menuProps, buttonProps } = useColorDropdownMenu(state);
 
-	return (
-		<DropdownMenu modal={false} {...menuProps}>
-			<DropdownMenuTrigger asChild>
-				<ToolbarButton tooltip={tooltip} {...buttonProps} size={"icon"}>
-					{children}
-				</ToolbarButton>
-			</DropdownMenuTrigger>
+  return (
+    <DropdownMenu
+      modal={false}
+      {...menuProps}
+    >
+      <DropdownMenuTrigger asChild>
+        <ToolbarButton
+          tooltip={tooltip}
+          {...buttonProps}
+          size={"icon"}
+        >
+          {children}
+        </ToolbarButton>
+      </DropdownMenuTrigger>
 
-			<DropdownMenuContent align="start">
-				<ColorPicker
-					color={state.selectedColor || state.color}
-					colors={state.colors}
-					customColors={state.customColors}
-					updateColor={state.updateColorAndClose}
-					updateCustomColor={state.updateColor}
-					clearColor={state.clearColor}
-				/>
-			</DropdownMenuContent>
-		</DropdownMenu>
-	);
+      <DropdownMenuContent align="start">
+        <ColorPicker
+          color={state.selectedColor || state.color}
+          colors={state.colors}
+          customColors={state.customColors}
+          updateColor={state.updateColorAndClose}
+          updateCustomColor={state.updateColor}
+          clearColor={state.clearColor}
+        />
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 }

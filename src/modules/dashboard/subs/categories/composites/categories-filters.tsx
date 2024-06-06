@@ -5,21 +5,21 @@ import DataTableSearch from "@custom/table/data-table-search";
 import type { Table } from "@tanstack/react-table";
 
 interface CategoriesFiltersProps<TData> {
-	table: Table<TData>;
+  table: Table<TData>;
 }
 
 export default function CategoriesFilters<TData>({
-	table,
+  table,
 }: CategoriesFiltersProps<TData>) {
-	return (
-		<div className="flex w-fit items-center gap-4">
-			{/* Search Query */}
-			<DataTableSearch />
+  return (
+    <div className="flex w-fit items-center gap-4">
+      {/* Search Query */}
+      <DataTableSearch />
 
-			{/* Date */}
-			<DateTableDatePicker />
+      {/* Date */}
+      <DateTableDatePicker />
 
-			<DataTableViewOptions table={table} />
-		</div>
-	);
+      <DataTableViewOptions table={table} />
+    </div>
+  );
 }

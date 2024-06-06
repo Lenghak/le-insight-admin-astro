@@ -1,31 +1,10 @@
 {
-	"workbench.iconTheme": "monospace-icons",
-	"[json]": {
-		"editor.quickSuggestions": {
-			"strings": true
-		},
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[jsonc]": {
-		"editor.quickSuggestions": {
-			"strings": true
-		},
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[astro]": {
-		"editor.defaultFormatter": "astro-build.astro-vscode"
-	},
-	"[css]": {
-		"editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
-	},
-	"editor.codeActionsOnSave": {
-		"source.fixAll": "always",
-		"source.organizeImports.biome": "explicit"
-	}
+  "workbench.iconTheme": "bearded-icons",
+  "astro.trace.server": "verbose",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.formatOnSave": true
 }

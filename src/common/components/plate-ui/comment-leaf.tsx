@@ -1,49 +1,49 @@
 import { cn } from "@udecode/cn";
 import {
-	type TCommentText,
-	useCommentLeaf,
-	useCommentLeafState,
+  type TCommentText,
+  useCommentLeaf,
+  useCommentLeafState,
 } from "@udecode/plate-comments";
 import {
-	PlateLeaf,
-	type PlateLeafProps,
-	type Value,
+  PlateLeaf,
+  type PlateLeafProps,
+  type Value,
 } from "@udecode/plate-common";
 
 export function CommentLeaf({
-	className,
-	...props
+  className,
+  ...props
 }: PlateLeafProps<Value, TCommentText>) {
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-	const { children, nodeProps, leaf } = props;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { children, nodeProps, leaf } = props;
 
-	const state = useCommentLeafState({ leaf });
-	const { props: rootProps } = useCommentLeaf(state);
+  const state = useCommentLeafState({ leaf });
+  const { props: rootProps } = useCommentLeaf(state);
 
-	if (!state.commentCount) return <>{children}</>;
+  if (!state.commentCount) return <>{children}</>;
 
-	let aboveChildren = <>{children}</>;
+  let aboveChildren = <>{children}</>;
 
-	if (!state.isActive) {
-		for (let i = 1; i < state.commentCount; i++) {
-			aboveChildren = <span className="bg-primary/20">{aboveChildren}</span>;
-		}
-	}
+  if (!state.isActive) {
+    for (let i = 1; i < state.commentCount; i++) {
+      aboveChildren = <span className="bg-primary/20">{aboveChildren}</span>;
+    }
+  }
 
-	return (
-		<PlateLeaf
-			{...props}
-			className={cn(
-				"border-b-2 border-b-primary/40",
-				state.isActive ? "bg-primary/40" : "bg-primary/20",
-				className,
-			)}
-			nodeProps={{
-				...rootProps,
-				...nodeProps,
-			}}
-		>
-			{aboveChildren}
-		</PlateLeaf>
-	);
+  return (
+    <PlateLeaf
+      {...props}
+      className={cn(
+        "border-b-2 border-b-primary/40",
+        state.isActive ? "bg-primary/40" : "bg-primary/20",
+        className,
+      )}
+      nodeProps={{
+        ...rootProps,
+        ...nodeProps,
+      }}
+    >
+      {aboveChildren}
+    </PlateLeaf>
+  );
 }
