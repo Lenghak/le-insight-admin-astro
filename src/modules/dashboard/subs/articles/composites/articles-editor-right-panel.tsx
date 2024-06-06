@@ -1,3 +1,6 @@
+import { setAIEnhance } from "@/modules/dashboard/stores/ai-enhance-store";
+import { serializePlainText } from "@/modules/editor/lib/serialize-plain-text";
+
 import { $articleAiPanelCollapseStore } from "@articles/stores/article-ai-store";
 
 import { Button } from "@ui/button";
@@ -5,8 +8,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
 
 import { SpaModeToggle } from "@custom/theme";
 
-import { useStore } from "@nanostores/react";
-import { WandSparklesIcon } from "lucide-react";
+import { getSelectionText, useEditorRef } from "@udecode/plate-common";
+import { TextIcon, TypeIcon, WandSparklesIcon } from "lucide-react";
 import React, { Suspense } from "react";
 
 const ArticlesThumbnailForm = React.lazy(
@@ -14,7 +17,8 @@ const ArticlesThumbnailForm = React.lazy(
 );
 
 export default function ArticlesEditorRightPanel() {
-  const isPanelCollapsed = useStore($articleAiPanelCollapseStore);
+  const editorRef = useEditorRef();
+  const selected = getSelectionText(editorRef);
   return (
     <section className="group flex h-full w-fit flex-col items-end justify-between gap-6 p-4 pt-16 dark:bg-background">
       <div className="flex h-fit w-fit flex-col items-center justify-center gap-6">
@@ -23,19 +27,76 @@ export default function ArticlesEditorRightPanel() {
             <Button
               size={"icon"}
               variant={"ghost"}
-              onClick={() =>
-                $articleAiPanelCollapseStore.set(!isPanelCollapsed)
-              }
+              className="border"
+              onClick={() => $articleAiPanelCollapseStore.set(false)}
             >
               <WandSparklesIcon className="h-4 w-4" />
-              <span className="sr-only">AI Assistant</span>
+              <span className="sr-only">Enhancements</span>
             </Button>
           </TooltipTrigger>
           <TooltipContent
             className="font-bold"
             side="left"
           >
-            AI Assistant
+            Enhancements
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size={"icon"}
+              variant={"ghost"}
+              className="border"
+              onClick={() => {
+                setAIEnhance({
+                  body: selected ?? serializePlainText(editorRef.children),
+                  path: "/title",
+                  trigger: true,
+                  title: "Suggesting Title",
+                });
+                $articleAiPanelCollapseStore.set(false);
+              }}
+            >
+              <TypeIcon className="h-4 w-4" />
+              <span className="sr-only">Suggest Title</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent
+            className="font-bold"
+            side="left"
+          >
+            Suggest Title
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size={"icon"}
+              variant={"ghost"}
+              className="border"
+              onClick={() => {
+                setAIEnhance({
+                  body:
+                    serializePlainText(
+                      editorRef.children.at(0)?.children ?? [],
+                    ) ?? selected,
+                  path: "/content",
+                  trigger: true,
+                  title: "Suggesting Content",
+                });
+                $articleAiPanelCollapseStore.set(false);
+              }}
+            >
+              <TextIcon className="h-4 w-4" />
+              <span className="sr-only">Suggest Content</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent
+            className="font-bold"
+            side="left"
+          >
+            Suggest Content
           </TooltipContent>
         </Tooltip>
       </div>
@@ -46,7 +107,7 @@ export default function ArticlesEditorRightPanel() {
             <SpaModeToggle
               variant={"ghost"}
               size={"icon"}
-              className="gap-4"
+              className="gap-4 border"
             />
           </TooltipTrigger>
           <TooltipContent

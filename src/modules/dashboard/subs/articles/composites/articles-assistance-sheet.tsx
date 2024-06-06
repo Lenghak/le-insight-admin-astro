@@ -32,6 +32,7 @@ import {
   useEditorRef,
   useEditorSelection,
 } from "@udecode/plate-common";
+import { parse } from "htmlstring-to-react";
 import {
   AlertTriangleIcon,
   BotMessageSquareIcon,
@@ -40,7 +41,6 @@ import {
   CopyIcon,
   Loader2Icon,
   Repeat2Icon,
-  SendHorizontalIcon,
   SparklesIcon,
   User2Icon,
 } from "lucide-react";
@@ -128,15 +128,17 @@ export default function ArticlesAssistanceSheet() {
           isCollapsed ? "w-0 opacity-0" : "opacity-100",
         )}
       >
-        <Button
-          type="button"
-          variant={"ghost"}
-          className="absolute left-4 top-16 items-center"
-          onClick={() => $articleAiPanelCollapseStore.set(true)}
-        >
-          <ChevronLeftIcon className="mr-4 size-5" />
-          <span className="font-bold">Hide Assistant</span>
-        </Button>
+        <div className="absolute flex h-fit w-full items-center bg-card p-2 dark:bg-background">
+          <Button
+            type="button"
+            variant={"ghost"}
+            className="items-center"
+            onClick={() => $articleAiPanelCollapseStore.set(true)}
+          >
+            <ChevronLeftIcon className="mr-4 size-5" />
+            <span className="font-bold">Hide Enhancements</span>
+          </Button>
+        </div>
 
         {isPending ||
           aiProgress.output ||
@@ -144,7 +146,7 @@ export default function ArticlesAssistanceSheet() {
           form.formState.submitCount ? (
           <div
             className={cn(
-              "h-full w-full max-w-full scroll-mt-32 gap-6 overflow-y-auto scroll-smooth px-6 pb-6 pt-12 text-base font-semibold transition-all",
+              "h-full w-full max-w-full scroll-mt-32 gap-6 overflow-y-auto scroll-smooth px-6 pb-6 pt-16 text-base font-semibold transition-all",
               "flex flex-col items-center justify-start",
             )}
           >
@@ -152,7 +154,7 @@ export default function ArticlesAssistanceSheet() {
               className="flex flex-col items-end self-end text-wrap break-words text-end"
               title={
                 <div className="flex items-center gap-4 whitespace-nowrap">
-                  <span>{enhanceObject.title ?? "User Request"}</span>
+                  <span>{enhanceObject.title ?? "User"}</span>
                   <User2Icon className="size-4" />
                 </div>
               }
@@ -171,7 +173,7 @@ export default function ArticlesAssistanceSheet() {
               title={
                 <div className="flex items-center gap-4 whitespace-nowrap">
                   <BotMessageSquareIcon className="size-4" />
-                  <span>Assistant Response</span>
+                  <span>Assistant</span>
                 </div>
               }
               actions={
@@ -185,8 +187,10 @@ export default function ArticlesAssistanceSheet() {
                     disabled={isPending || aiProgress.output?.length === 0}
                     size={"sm"}
                     onClick={() =>
-                      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                      insertText(editor, aiProgress.output, { at: selected })
+                      insertText(editor, aiProgress.output, {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        at: selected ?? [0, 0],
+                      })
                     }
                   >
                     <span className="font-bold">Insert</span>
@@ -267,7 +271,12 @@ export default function ArticlesAssistanceSheet() {
                 </div>
               ) : aiProgress.output?.length ? (
                 <div className="flex w-fit rounded-3xl bg-background px-5 py-3 dark:bg-card">
-                  {aiProgress.output}
+                  {parse(
+                    aiProgress.output.replaceAll(
+                      "\n",
+                      `<br />`,
+                    ),
+                  )}
                 </div>
               ) : (
                 <div
@@ -302,7 +311,7 @@ export default function ArticlesAssistanceSheet() {
           />
         )}
 
-        <div className="relative flex w-full items-end justify-end gap-6 self-end px-6 py-4">
+        <div className="relative flex w-full items-end justify-end gap-4 self-end px-6 py-4">
           <FormField
             control={form.control}
             name="content"
@@ -315,38 +324,38 @@ export default function ArticlesAssistanceSheet() {
                       className={cn(
                         "h-10 max-h-48 min-h-10 w-full font-serif font-semibold",
                         inputVariants({ variant: "default" }),
-                        "resize-none rounded-3xl pl-4 pr-12 text-base",
+                        "resize-none rounded-3xl px-4 text-base",
                       )}
                       placeholder="Type some message..."
                       {...field}
                     />
-
-                    <Button
-                      type="submit"
-                      variant={"ghost"}
-                      className="absolute bottom-1 right-0 size-9"
-                      size={"icon"}
-                      ref={buttonRef}
-                    >
-                      <SendHorizontalIcon className="size-4 min-w-4" />
-                      <span className="sr-only">Submit</span>
-                    </Button>
                   </div>
                 </FormControl>
               </FormItem>
             )}
           />
 
+          <Button
+            type="submit"
+            variant={"outline"}
+            size={"icon"}
+            className="size-10 min-w-10"
+            ref={buttonRef}
+          >
+            <Repeat2Icon className="size-4 min-w-4" />
+            <span className="sr-only">Submit</span>
+          </Button>
+
           <AiDropdownMenu
             trigger={
               <Button
                 type="button"
                 variant={"default"}
-                className="relative size-9 min-w-9"
+                className="relative size-10 min-w-10"
                 size={"icon"}
               >
                 <SparklesIcon className="size-4" />
-                <span className="sr-only">Change AI</span>
+                <span className="sr-only">AI Tools</span>
               </Button>
             }
           />

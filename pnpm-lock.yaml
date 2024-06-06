@@ -317,6 +317,9 @@ importers:
       embla-carousel-react:
         specifier: 8.0.4
         version: 8.0.4(react@18.3.1)
+      htmlstring-to-react:
+        specifier: ^6.0.1
+        version: 6.0.1(react@18.3.1)
       jotai:
         specifier: ^2.8.3
         version: 2.8.3(@types/react@18.3.3)(react@18.3.1)
@@ -3512,6 +3515,9 @@ packages:
     resolution: {integrity: sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==}
     engines: {node: '>= 4'}
 
+  dompurify@3.1.5:
+    resolution: {integrity: sha512-lwG+n5h8QNpxtyrJW/gJWckL+1/DQiYMX8f7t8Z2AZTPw1esVrqjI63i7Zc2Gz0aKzLVMYC1V1PL/ky+aY/NgA==}
+
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
 
@@ -3933,6 +3939,11 @@ packages:
 
   htmlparser2@6.1.0:
     resolution: {integrity: sha512-gyyPk6rgonLFEDGoeRgQNaEUvdJ4ktTmmUh/h2t7s+M8oPpIPxgNACWa+6ESR57kXstwqPiCut0V8NRpcwgU7A==}
+
+  htmlstring-to-react@6.0.1:
+    resolution: {integrity: sha512-IUT34r0PMtSL0TvklndtLuF9688M0lh9tmJFQGhq3taSG6rDGYYEX9b44BzDDpba/IlVSjNS1OGPit5jNcIm7g==}
+    peerDependencies:
+      react: ^16.2.0 || ^17.0.0 || ^18.0.0
 
   http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
@@ -9425,6 +9436,8 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
+  dompurify@3.1.5: {}
+
   domutils@2.8.0:
     dependencies:
       dom-serializer: 1.4.1
@@ -9976,6 +9989,11 @@ snapshots:
       domhandler: 4.3.1
       domutils: 2.8.0
       entities: 2.2.0
+
+  htmlstring-to-react@6.0.1(react@18.3.1):
+    dependencies:
+      dompurify: 3.1.5
+      react: 18.3.1
 
   http-cache-semantics@4.1.1: {}
 

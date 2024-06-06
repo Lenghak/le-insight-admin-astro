@@ -11,7 +11,7 @@ import { serializePlainText } from "@editor/lib/serialize-plain-text";
 
 import { Alert, AlertTitle } from "@ui/alert";
 import { Button } from "@ui/button";
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@ui/drawer";
+import { DrawerClose } from "@ui/drawer";
 import {
   Form,
   FormControl,
@@ -22,6 +22,7 @@ import {
   FormMessage,
 } from "@ui/form";
 import { Separator } from "@ui/separator";
+import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { Textarea } from "@ui/textarea";
 import {
   Tooltip,
@@ -69,6 +70,7 @@ export default forwardRef<HTMLButtonElement, ArticlesCreateFormProps>(
     const editorRef = useEditorRef();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const isEditorMounted = useEditorMounted(editorRef.id);
+
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
@@ -117,10 +119,10 @@ export default forwardRef<HTMLButtonElement, ArticlesCreateFormProps>(
     }, [isSuccess, editorRef, form]);
 
     return (
-      <Drawer>
+      <Sheet modal={true}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <DrawerTrigger
+            <SheetTrigger
               asChild
               ref={ref}
             >
@@ -136,7 +138,7 @@ export default forwardRef<HTMLButtonElement, ArticlesCreateFormProps>(
                   <span className="sr-only font-bold">Done</span>
                 </Button>
               )}
-            </DrawerTrigger>
+            </SheetTrigger>
           </TooltipTrigger>
           <TooltipContent
             className="font-bold"
@@ -145,7 +147,10 @@ export default forwardRef<HTMLButtonElement, ArticlesCreateFormProps>(
             Done
           </TooltipContent>
         </Tooltip>
-        <DrawerContent className="h-[90%] w-full bg-card px-32 pb-12">
+        <SheetContent
+          className="h-[90%] w-full bg-card px-32 pb-12"
+          side={"bottom"}
+        >
           <section className="flex h-full w-full flex-col items-center justify-center gap-12 pt-8 sm:flex-row">
             <div className="flex h-full w-full flex-col gap-4">
               <FileUploadForm
@@ -277,8 +282,8 @@ export default forwardRef<HTMLButtonElement, ArticlesCreateFormProps>(
               </form>
             </Form>
           </section>
-        </DrawerContent>
-      </Drawer>
+        </SheetContent>
+      </Sheet>
     );
   },
 );

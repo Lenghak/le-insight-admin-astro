@@ -70,7 +70,7 @@ export default function PlateEditor() {
                 <FloatingToolbarButtons />
               </FloatingToolbar>
 
-              <FixedToolbar className="fixed left-0 top-0 z-[99999] col-span-full mx-auto h-fit min-h-14 w-full place-self-center self-center overflow-y-hidden rounded-none bg-card p-1 px-2 dark:bg-background">
+              <FixedToolbar className="fixed left-0 top-0 col-span-full mx-auto h-fit min-h-14 w-full place-self-center self-center overflow-y-hidden rounded-none bg-card p-1 px-2 dark:bg-background">
                 <FixedToolbarButtons
                   leftToolbars={
                     <Link to={"/spa/dashboard/users"}>
@@ -122,9 +122,9 @@ export default function PlateEditor() {
                     focusRing={false}
                   />
 
-                  <React.Suspense>
+                  <Suspense>
                     <ArticlesEditorRightPanel />
-                  </React.Suspense>
+                  </Suspense>
                 </ResizablePanel>
 
                 <ResizableHandle />

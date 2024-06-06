@@ -9,7 +9,7 @@ const Editor = React.lazy(
 export default function EditorRoute() {
   return (
     <Fragment>
-      <section className="flex h-full items-center gap-0 rounded-none p-0">
+      <section className="flex h-full items-center gap-0 rounded-none bg-card p-0 dark:bg-background">
         <Suspense fallback={<EditorSkeleton />}>
           <Editor />
         </Suspense>

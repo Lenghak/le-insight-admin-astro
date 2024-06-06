@@ -1,4 +1,4 @@
-import { Skeleton } from "@/common/components/ui/skeleton";
+import { Skeleton } from "@ui/skeleton";
 
 import { Fragment, useId } from "react";
 
