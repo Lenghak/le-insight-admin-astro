@@ -13,11 +13,11 @@ import { ArticlesEnhanceRequestSchema } from "@articles/types/articles-enhance-t
 import { AiDropdownMenu } from "@dashboard/composites/ai/ai-dropdown-menu";
 import {
   $aiEnhanceStore,
-  setAIEnhance
+  setAIEnhance,
 } from "@dashboard/stores/ai-enhance-store";
 
 import { Button } from "@ui/button";
-import { Form, FormControl, FormField, FormItem } from "@ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@ui/form";
 import { H3 } from "@ui/h3";
 import { Small } from "@ui/small";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
@@ -50,7 +50,10 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 const EnhanceSchema = z.object({
-  content: ArticlesEnhanceRequestSchema.shape.content.min(1),
+  content: ArticlesEnhanceRequestSchema.shape.content.min(
+    1,
+    "Please do not enter emtpy content.",
+  ),
   path: z.string(),
 });
 
@@ -109,11 +112,16 @@ export default function ArticlesAssistanceSheet() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit((values) => {
-          enhanceArticle({
-            content: values.content,
-            path: values.path,
+          if (values.content?.length)
+            enhanceArticle({
+              content: values.content,
+              path: values.path,
+            });
+          setAIEnhance({
+            ...enhanceObject,
+            body: values.content,
+            trigger: false,
           });
-          setAIEnhance({ ...enhanceObject, body: values.content, trigger: false });
         })}
         className={cn(
           "relative flex h-full w-full min-w-96 flex-col items-start justify-start overflow-y-hidden bg-card pt-14 dark:bg-transparent",
@@ -141,7 +149,7 @@ export default function ArticlesAssistanceSheet() {
             )}
           >
             <AiMessageCard
-              className="flex flex-col items-end self-end text-wrap text-end break-words"
+              className="flex flex-col items-end self-end text-wrap break-words text-end"
               title={
                 <div className="flex items-center gap-4 whitespace-nowrap">
                   <span>{enhanceObject.title ?? "User Request"}</span>
@@ -150,7 +158,11 @@ export default function ArticlesAssistanceSheet() {
               }
             >
               <div className="flex w-fit rounded-3xl bg-background p-2 px-4 dark:bg-card">
-                {enhanceObject.body}
+                {enhanceObject.body?.length ? (
+                  enhanceObject.body
+                ) : (
+                  <span className="text-muted-foreground">Empty Request</span>
+                )}
               </div>
             </AiMessageCard>
 
@@ -258,7 +270,12 @@ export default function ArticlesAssistanceSheet() {
                   {aiProgress.output}
                 </div>
               ) : (
-                <div className="flex w-fit animate-pulse rounded-3xl bg-background px-5 py-3 dark:bg-card">
+                <div
+                  className={cn(
+                    "flex w-fit rounded-3xl bg-background px-5 py-3 dark:bg-card",
+                    isPending ? "animate-pulse" : "",
+                  )}
+                >
                   {!isPending
                     ? "The response is empty. Please try again."
                     : "Working on your request..."}
@@ -291,13 +308,14 @@ export default function ArticlesAssistanceSheet() {
             name="content"
             render={({ field }) => (
               <FormItem className="w-full">
+                <FormMessage className="font-bold italic" />
                 <FormControl>
                   <div className="relative flex items-end justify-start">
                     <TextareaAutosize
                       className={cn(
                         "h-10 max-h-48 min-h-10 w-full font-serif font-semibold",
                         inputVariants({ variant: "default" }),
-                        "resize-none rounded-3xl pl-4 pr-12",
+                        "resize-none rounded-3xl pl-4 pr-12 text-base",
                       )}
                       placeholder="Type some message..."
                       {...field}
@@ -306,7 +324,7 @@ export default function ArticlesAssistanceSheet() {
                     <Button
                       type="submit"
                       variant={"ghost"}
-                      className="absolute right-0 size-9 bottom-0.5"
+                      className="absolute bottom-1 right-0 size-9"
                       size={"icon"}
                       ref={buttonRef}
                     >

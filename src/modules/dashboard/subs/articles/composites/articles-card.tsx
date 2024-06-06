@@ -133,7 +133,6 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
             <div className="flex w-full flex-nowrap items-center justify-start gap-4 overflow-hidden">
               {article?.article_categories?.map(({ category }) => (
                 <ArticleCategoryBadge
-                  category={category}
                   key={category.id}
                   className="whitespace-nowrap"
                 >
