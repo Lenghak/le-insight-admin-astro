@@ -42,8 +42,6 @@ import {
   createCloudPlugin,
 } from "@udecode/plate-cloud";
 import { createCodeBlockPlugin } from "@udecode/plate-code-block";
-import { createComboboxPlugin } from "@udecode/plate-combobox";
-import { createCommentsPlugin } from "@udecode/plate-comments";
 import {
   createDeserializeAstPlugin,
   createDeserializeHtmlPlugin,
@@ -165,7 +163,6 @@ export const EDITOR_PLUGINS = createPlugins(
         },
       },
     }),
-    createComboboxPlugin(),
     createDndPlugin({
       options: { enableScroller: true },
     }),
@@ -203,7 +200,6 @@ export const EDITOR_PLUGINS = createPlugins(
       ...trailingBlockPlugin,
     }),
     { ...dragOverCursorPlugin },
-    createCommentsPlugin(),
     createDeserializeDocxPlugin(),
     createDeserializeCsvPlugin(),
     createDeserializeMdPlugin(),

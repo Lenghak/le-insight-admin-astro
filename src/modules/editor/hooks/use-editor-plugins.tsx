@@ -37,8 +37,6 @@ import {
 } from "@udecode/plate-break";
 import { createCaptionPlugin } from "@udecode/plate-caption";
 import { createCodeBlockPlugin } from "@udecode/plate-code-block";
-import { createComboboxPlugin } from "@udecode/plate-combobox";
-import { createCommentsPlugin } from "@udecode/plate-comments";
 import {
   createPlugins,
   type PlatePluginComponent,
@@ -182,7 +180,6 @@ export const useEditorPlugins = ({
           },
           enabled: id === "blockselection" || !!enabled.blockSelection,
         }),
-        createComboboxPlugin({ enabled: !!enabled.combobox }),
         createDndPlugin({
           options: { enableScroller: true },
           enabled: !!enabled.dnd,
@@ -226,7 +223,6 @@ export const useEditorPlugins = ({
         { ...dragOverCursorPlugin, enabled: !!enabled.dragOverCursor },
 
         // Collaboration
-        createCommentsPlugin({ enabled: !!enabled.comment }),
 
         // Deserialization
 
