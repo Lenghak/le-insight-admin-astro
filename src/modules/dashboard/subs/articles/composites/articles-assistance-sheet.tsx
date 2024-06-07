@@ -1,5 +1,7 @@
 import ErrorSection from "@/modules/error/components/error-section";
 
+import { P } from "@/common/components/ui/p";
+
 import { cn } from "@/common/lib/utils";
 
 import AiMessageCard from "@articles/components/ai-message-card";
@@ -44,9 +46,10 @@ import {
   SparklesIcon,
   User2Icon,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { v4 } from "uuid";
 import { z } from "zod";
 
 const EnhanceSchema = z.object({
@@ -107,6 +110,16 @@ export default function ArticlesAssistanceSheet() {
       $articleAiResultStore.set({ output: "" });
     }
   }, [enhanceObject]);
+
+  const result = useMemo(
+    () =>
+      aiProgress.output.replaceAll(
+        /\n+/gi,
+        () =>
+          `<span key={${v4()}}><br key={${v4()}}/><br key={${v4()}}/></span>`,
+      ),
+    [aiProgress],
+  );
 
   return (
     <Form {...form}>
@@ -271,12 +284,7 @@ export default function ArticlesAssistanceSheet() {
                 </div>
               ) : aiProgress.output?.length ? (
                 <div className="flex w-fit rounded-3xl bg-background px-5 py-3 dark:bg-card">
-                  {parse(
-                    aiProgress.output.replaceAll(
-                      "\n",
-                      `<br />`,
-                    ),
-                  )}
+                  <P className="space-y-2">{parse(result)}</P>
                 </div>
               ) : (
                 <div
