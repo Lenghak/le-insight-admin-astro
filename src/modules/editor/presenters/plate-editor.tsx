@@ -35,6 +35,10 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Link, useNavigate } from "react-router-dom";
 
+const ArticlesEditorLeftPanel = React.lazy(
+  () => import("@articles/composites/articles-editor-left-panel"),
+);
+
 const ArticlesEditorRightPanel = React.lazy(
   () => import("@articles/composites/articles-editor-right-panel"),
 );
@@ -116,6 +120,10 @@ export default function PlateEditor() {
                   collapsible={false}
                   minSize={1}
                 >
+                  <Suspense>
+                    <ArticlesEditorLeftPanel />
+                  </Suspense>
+
                   <Editor
                     containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
                     className="mx-auto h-full w-full rounded-none border-0 bg-card px-[17.5%] pt-24 transition-all *:text-lg dark:bg-background"
@@ -132,7 +140,7 @@ export default function PlateEditor() {
                 <ResizablePanel
                   className={cn(
                     "relative max-w-screen-sm bg-background transition-all",
-                    isCollapsed ? "max-w-0" : "min-w-96",
+                    isCollapsed ? "max-w-0" : "min-w-[40rem]",
                   )}
                   collapsible={true}
                   minSize={24}
