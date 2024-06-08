@@ -108,27 +108,6 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
 
       <CardFooter className="col-span-2 flex w-full items-center justify-between p-0">
         <div className="flex items-center justify-end gap-4">
-          {/* <div className="flex items-center">
-						<Button variant={"ghost"} size={"icon"} disabled>
-							<span className="sr-only">Like the Article</span>
-							<ThumbsUpIcon className="size-5" />
-						</Button>
-
-						<Button variant={"ghost"} size={"icon"}>
-							<Small>0</Small>
-						</Button>
-					</div>
-
-					<div className="flex items-center">
-						<Button variant={"ghost"} size={"icon"} disabled>
-							<span className="sr-only">Comment on the Article</span>
-							<MessageCircle className="size-5" />
-						</Button>
-
-						<Button variant={"ghost"} size={"icon"}>
-							<Small>0</Small>
-						</Button>
-					</div> */}
           <div className="flex w-full items-center gap-8">
             <div className="flex w-full flex-nowrap items-center justify-start gap-4 overflow-hidden">
               {article?.article_categories?.map(({ category }) => (

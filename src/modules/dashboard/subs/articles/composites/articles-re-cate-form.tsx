@@ -23,7 +23,7 @@ import { Form } from "@ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useStore } from "@nanostores/react";
 import { Loader2Icon } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -46,6 +46,11 @@ export default function CategoriesRegenForm() {
       id: articleID,
     },
   });
+
+  const abortController = useMemo(
+    () => new AbortController(),
+    [regenerateStatus],
+  );
 
   useEffect(() => {
     if (regenerateStatus === "pending" || regenerateStatus === "success") {
@@ -87,14 +92,26 @@ export default function CategoriesRegenForm() {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(async () => {
-                await regenerateCategories();
                 toast.info("Categories are generating in background", {
+                  id: "REGEN_CATEGORY_" + articleID,
                   duration: 10 * 1000,
                   description:
                     "Processing new data. You may see the result very shortly.",
                   closeButton: true,
                   icon: <Loader2Icon className="size-4 animate-spin" />,
-                  id: "REGEN_CATEGORY",
+                  action: (
+                    <Button
+                      className="font-bold text-foreground"
+                      variant={"outline"}
+                      size={"sm"}
+                      onClick={() => abortController.abort()}
+                    >
+                      Cancel
+                    </Button>
+                  ),
+                });
+                await regenerateCategories({
+                  signal: abortController.signal,
                 });
               })}
               className="space-y-8"

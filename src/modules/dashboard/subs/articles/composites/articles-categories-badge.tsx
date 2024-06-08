@@ -11,7 +11,7 @@ export default function ArticleCategoryBadge({
 }: Props) {
   return (
     <Badge
-      className={cn("bg-accent text-xs font-bold capitalize", className)}
+      className={cn("bg-accent text-xs font-bold", className)}
       variant={"fair"}
       {...props}
     >

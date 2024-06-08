@@ -71,7 +71,7 @@ export default function DataTablePagination<TData>({
               </div>
             }
             previousLinkClassName={cn(
-              buttonVariants({ variant: "outline", size: "icon" }),
+              buttonVariants({ variant: "ghost", size: "icon" }),
               "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-8",
             )}
             nextLabel={
@@ -81,7 +81,7 @@ export default function DataTablePagination<TData>({
               </div>
             }
             nextLinkClassName={cn(
-              buttonVariants({ variant: "outline", size: "icon" }),
+              buttonVariants({ variant: "ghost", size: "icon" }),
               "aria-[disabled=true]:hover:bg-inherit aria-[disabled=true]:hover:text-muted-foreground size-8",
             )}
             disabledClassName="text-muted-foreground"

@@ -1,15 +1,16 @@
+import { Button } from "@/common/components/ui/button";
+
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { articleKeys } from "@articles/constants/query-keys";
 
-import { categoriesKeys } from "@categories/constants/query-keys";
 import regenCategoriesAPI from "@categories/services/regen-categories-api";
 import type { CategoriesRegenType } from "@categories/types/categories-regen-type";
 
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
+import { AxiosError, type AxiosRequestConfig } from "axios";
 import { CheckCircleIcon, CircleXIcon } from "lucide-react";
 import { toast } from "sonner";
 
@@ -21,8 +22,9 @@ export default function useRegenCateService({
 
   return useMutation(
     {
-      mutationKey: [...categoriesKeys.detail(article_id), , instance],
-      mutationFn: async () => await regenCategoriesAPI({ article_id }),
+      mutationKey: ["regen-categories", article_id, instance],
+      mutationFn: async (config?: AxiosRequestConfig) =>
+        await regenCategoriesAPI({ article_id }, instance, config),
       onError: (error) => {
         let title = "Regenerate Failed";
         let description =
@@ -41,18 +43,19 @@ export default function useRegenCateService({
         }
 
         toast.error(title, {
-          id: "REGEN_CATEGORY",
+          id: "REGEN_CATEGORY_" + article_id,
           duration: 10 * 1000,
           description: description,
           closeButton: true,
           icon: (
             <CircleXIcon className="size-5 fill-primary-foreground text-primary" />
           ),
+          action: <></>,
         });
       },
       onSuccess: () => {
         toast.success("Data modified successfully", {
-          id: "REGEN_CATEGORY",
+          id: "REGEN_CATEGORY_" + article_id,
           duration: 10 * 1000,
           description:
             "The new data has been successfully updated. You may see the result very shortly.",
@@ -60,15 +63,30 @@ export default function useRegenCateService({
           icon: (
             <CheckCircleIcon className="size-5 fill-primary-foreground text-primary" />
           ),
+          action: (
+            <Button
+              variant={"outline"}
+              className="font-bold text-foreground"
+              size={"sm"}
+              onClick={async () => {
+                await queryClient.invalidateQueries({
+                  queryKey: [...articleKeys.all],
+                  exact: false,
+                  stale: true,
+                });
+                toast.dismiss();
+              }}
+            >
+              Reload
+            </Button>
+          ),
         });
       },
-
       onSettled: async () => {
         await queryClient.invalidateQueries({
-          queryKey: [...articleKeys.all, ...categoriesKeys.all, instance],
+          queryKey: [...articleKeys.all],
           exact: false,
           stale: true,
-          refetchType: "all",
         });
       },
     },

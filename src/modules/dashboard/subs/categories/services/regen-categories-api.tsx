@@ -1,16 +1,18 @@
 import type { CategoriesRegenType } from "@categories/types/categories-regen-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
-import type { AxiosInstance } from "axios";
+import type { AxiosInstance, AxiosRequestConfig } from "axios";
 
 export default function regenCategoriesAPI(
   { article_id }: CategoriesRegenType,
   queryInstance?: AxiosInstance,
+  config?: AxiosRequestConfig,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post(
     "/articles-categories/regenerate",
     {
       article_id,
     },
+    config,
   );
 }

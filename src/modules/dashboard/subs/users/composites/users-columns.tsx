@@ -16,6 +16,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import type { ProfileSexType } from "@/common/types/profiles-type";
 import type { UsersRoleType } from "@/common/types/users-type";
+import { useSearchParams } from "react-router-dom";
 
 export const userColumns: ColumnDef<UsersTableType>[] = [
   {
@@ -50,7 +51,12 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
         title="No"
       />
     ),
-    cell: ({ row }) => row.index + 1,
+    cell: function Cell({ row }) {
+      const [searchParams] = useSearchParams();
+      const page = parseInt(searchParams.get("page") ?? "1");
+      const limit = parseInt(searchParams.get("limit") ?? "50");
+      return (page - 1) * limit + (row.index + 1);
+    },
   },
   {
     accessorKey: "id",

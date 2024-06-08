@@ -1,3 +1,5 @@
+import { articleKeys } from "@articles/constants/query-keys";
+
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import archiveArticleAPI from "@articles/services/post-archived-articles-api";
@@ -53,7 +55,7 @@ export default function useArchiveArticleService() {
       },
       onSettled: async () => {
         await queryClient.invalidateQueries({
-          queryKey: [...categoriesKeys.all],
+          queryKey: [...articleKeys.all],
           exact: false,
           stale: true,
         });

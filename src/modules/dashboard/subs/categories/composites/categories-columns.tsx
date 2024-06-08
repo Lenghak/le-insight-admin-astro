@@ -11,6 +11,7 @@ import { Checkbox } from "@ui/checkbox";
 import { DataTableColumnHeader } from "@custom/table";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import { useSearchParams } from "react-router-dom";
 
 import type { CategoriesStatusType } from "@/common/types/categories-type";
 
@@ -47,7 +48,12 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         title="No"
       />
     ),
-    cell: ({ row }) => row.index + 1,
+    cell: function Cell({ row }) {
+      const [searchParams] = useSearchParams();
+      const page = parseInt(searchParams.get("page") ?? "1");
+      const limit = parseInt(searchParams.get("limit") ?? "50");
+      return (page - 1) * limit + (row.index + 1);
+    },
   },
   {
     accessorKey: "id",
@@ -85,7 +91,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           className={cn(
             "w-full text-center font-bold",
             row.original.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
+            "font-bold italic text-muted-foreground line-through",
           )}
         >
           {getValue() as string}
@@ -129,7 +135,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           className={cn(
             "w-full text-center font-bold",
             row?.original?.is_archived &&
-              "font-bold uppercase text-muted-foreground line-through",
+            "font-bold uppercase text-muted-foreground line-through",
           )}
         >
           {row?.original?.assigned_count}
@@ -153,7 +159,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           className={cn(
             "w-full text-center font-bold",
             row?.original?.is_archived &&
-              "font-bold uppercase text-muted-foreground line-through",
+            "font-bold uppercase text-muted-foreground line-through",
           )}
         >
           {row?.original?.generated_count}
@@ -175,7 +181,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span
           className={cn(
             row?.original?.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
+            "font-bold italic text-muted-foreground line-through",
           )}
         >
           {formatDate(getValue() as string)}
@@ -197,7 +203,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span
           className={cn(
             row?.original?.is_archived &&
-              "font-bold italic text-muted-foreground line-through",
+            "font-bold italic text-muted-foreground line-through",
           )}
         >
           {formatDate(getValue() as string)}

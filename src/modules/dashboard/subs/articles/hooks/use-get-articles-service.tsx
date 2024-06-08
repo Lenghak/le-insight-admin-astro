@@ -16,7 +16,7 @@ export default function useGetArticlesListService({
 
   return useQuery(
     {
-      queryKey: [...articleKeys.list(), instance, params],
+      queryKey: [...articleKeys.list(), params, instance],
       queryFn: async () => (await getArticlesListAPI(params, instance)) ?? null,
       refetchOnReconnect: true,
       refetchOnWindowFocus: true,
