@@ -13,10 +13,10 @@ import ProfileBadge from "@custom/profile/profile-badge";
 import { DataTableColumnHeader } from "@custom/table";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import { useSearchParams } from "react-router-dom";
 
 import type { ProfileSexType } from "@/common/types/profiles-type";
 import type { UsersRoleType } from "@/common/types/users-type";
-import { useSearchParams } from "react-router-dom";
 
 export const userColumns: ColumnDef<UsersTableType>[] = [
   {
@@ -48,7 +48,8 @@ export const userColumns: ColumnDef<UsersTableType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="No"
+        title="N.O"
+        className="text-xs font-bold uppercase tracking-widest"
       />
     ),
     cell: function Cell({ row }) {

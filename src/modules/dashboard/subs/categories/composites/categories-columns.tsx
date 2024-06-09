@@ -45,7 +45,8 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="No"
+        title="N.O"
+        className="uppercase tracking-widest text-xs font-bold"
       />
     ),
     cell: function Cell({ row }) {

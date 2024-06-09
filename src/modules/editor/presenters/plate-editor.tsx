@@ -6,6 +6,16 @@ import { $editingArticle } from "@articles/stores/article-store";
 import { EDITOR_PLUGINS } from "@editor/constants/editor-plugins";
 
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@ui/alert-dialog";
+import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
@@ -30,26 +40,27 @@ import { useStore } from "@nanostores/react";
 import { CommentsProvider } from "@udecode/plate-comments";
 import { Plate, PlateController } from "@udecode/plate-common";
 import { XIcon } from "lucide-react";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Link, useNavigate } from "react-router-dom";
-
-const ArticlesEditorLeftPanel = React.lazy(
-  () => import("@articles/composites/articles-editor-left-panel"),
-);
 
 const ArticlesEditorRightPanel = React.lazy(
   () => import("@articles/composites/articles-editor-right-panel"),
 );
 const ArticlesAssitantsSheet = React.lazy(
-  () => import("@articles/composites/articles-assistance-sheet"),
+  () => import("@articles/composites/articles-assistant-sheet"),
 );
 
 export default function PlateEditor() {
   const initialValue = useStore($editingArticle);
   const isCollapsed = useStore($articleAiPanelCollapseStore);
   const navigate = useNavigate();
+  const [alertState, setAlert] = useState({
+    isAlertOpen: false,
+    isAlertConfirm: false,
+  });
+
   return (
     <TooltipProvider>
       <PlateController>
@@ -120,10 +131,6 @@ export default function PlateEditor() {
                   collapsible={false}
                   minSize={1}
                 >
-                  <Suspense>
-                    <ArticlesEditorLeftPanel />
-                  </Suspense>
-
                   <Editor
                     containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
                     className="mx-auto h-full w-full rounded-none border-0 bg-card px-[17.5%] pt-24 transition-all *:text-lg dark:bg-background"
@@ -156,6 +163,43 @@ export default function PlateEditor() {
               </ResizablePanelGroup>
 
               {/* <CommentsPopover /> */}
+
+              <AlertDialog
+                open={alertState.isAlertOpen}
+                onOpenChange={(value) =>
+                  setAlert((s) => ({ ...s, isAlertOpen: value }))
+                }
+              >
+                <AlertDialogContent className="space-y-4">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="font-bold">
+                      Are you absolutely sure, you want to exit?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription className="font-medium">
+                      Although the data is reserved in the local-storage, it
+                      could have been damage or lost.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel
+                      onClick={() =>
+                        setAlert({ isAlertConfirm: false, isAlertOpen: false })
+                      }
+                      className="px-6 font-bold"
+                    >
+                      Cancel
+                    </AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={() =>
+                        setAlert({ isAlertConfirm: true, isAlertOpen: false })
+                      }
+                      className="px-6 font-bold"
+                    >
+                      Continue
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </Plate>
           </CommentsProvider>
         </DndProvider>

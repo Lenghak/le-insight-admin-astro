@@ -1,17 +1,21 @@
-import { EditorRoute } from "@/modules/editor/routes";
 import { BackButton } from "@/modules/error/components/back-button";
 import ErrorSection from "@/modules/error/components/error-section";
 import RootBoundary from "@/modules/error/composites/spa-error-page";
 
-import ArticlesRoute from "@articles/routes/articles-route";
-
-import UsersRoute from "@users/routes/users-route";
-
-import DashboardLayout from "@dashboard/layouts/dashboard-layout";
-import { CategoriesRoute } from "@dashboard/subs/categories/routes";
+import { DefaultSkeleton } from "@custom/skeletons/default-skeletons";
 
 import { ConstructionIcon } from "lucide-react";
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+
+const DashboardLayout = React.lazy(
+  () => import("@dashboard/layouts/dashboard-layout"),
+);
+
+const ArticlesRoute = React.lazy(() => import("@articles/routes"));
+const CategoriesRoute = React.lazy(() => import("@categories/routes"));
+const EditorRoute = React.lazy(() => import("@editor/routes"));
+const UsersRoute = React.lazy(() => import("@users/routes"));
 
 export const dashboardRoute = createBrowserRouter([
   {
@@ -21,11 +25,17 @@ export const dashboardRoute = createBrowserRouter([
       {
         path: "/spa/dashboard",
         errorElement: (
-          <DashboardLayout>
-            <RootBoundary />
-          </DashboardLayout>
+          <React.Suspense fallback={<DefaultSkeleton />}>
+            <DashboardLayout>
+              <RootBoundary />
+            </DashboardLayout>
+          </React.Suspense>
         ),
-        element: <DashboardLayout />,
+        element: (
+          <React.Suspense fallback={<DefaultSkeleton />}>
+            <DashboardLayout />
+          </React.Suspense>
+        ),
         children: [
           {
             path: "/spa/dashboard",
@@ -46,21 +56,37 @@ export const dashboardRoute = createBrowserRouter([
           },
           {
             path: "/spa/dashboard/users",
-            element: <UsersRoute />,
+            element: (
+              <React.Suspense fallback={<DefaultSkeleton />}>
+                <UsersRoute />
+              </React.Suspense>
+            ),
           },
           {
             path: "/spa/dashboard/articles",
-            element: <ArticlesRoute />,
+            element: (
+              <React.Suspense fallback={<DefaultSkeleton />}>
+                <ArticlesRoute />
+              </React.Suspense>
+            ),
           },
           {
             path: "/spa/dashboard/categories",
-            element: <CategoriesRoute />,
+            element: (
+              <React.Suspense fallback={<DefaultSkeleton />}>
+                <CategoriesRoute />
+              </React.Suspense>
+            ),
           },
         ],
       },
       {
         path: "/spa/editor",
-        element: <EditorRoute />,
+        element: (
+          <React.Suspense fallback={<DefaultSkeleton />}>
+            <EditorRoute />
+          </React.Suspense>
+        ),
       },
     ],
   },

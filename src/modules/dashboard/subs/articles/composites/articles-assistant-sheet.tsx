@@ -60,7 +60,7 @@ const EnhanceSchema = z.object({
   path: z.string(),
 });
 
-export default function ArticlesAssistanceSheet() {
+export default function ArticlesAssistantSheet() {
   const isCollapsed = useStore($articleAiPanelCollapseStore);
   const enhanceObject = useStore($aiEnhanceStore);
   const aiProgress = useStore($articleAiResultStore);
@@ -343,30 +343,44 @@ export default function ArticlesAssistanceSheet() {
             )}
           />
 
-          <Button
-            type="submit"
-            variant={"outline"}
-            size={"icon"}
-            className="size-10 min-w-10"
-            ref={buttonRef}
-          >
-            <Repeat2Icon className="size-4 min-w-4" />
-            <span className="sr-only">Submit</span>
-          </Button>
-
-          <AiDropdownMenu
-            trigger={
+          <Tooltip>
+            <TooltipTrigger asChild>
               <Button
-                type="button"
-                variant={"default"}
-                className="relative size-10 min-w-10"
+                type="submit"
+                variant={"outline"}
                 size={"icon"}
+                className="size-10 min-w-10 relative"
+                ref={buttonRef}
               >
-                <SparklesIcon className="size-4" />
-                <span className="sr-only">AI Tools</span>
+                <Repeat2Icon className="size-4 min-w-4" />
+                <span className="sr-only">Run Again</span>
               </Button>
-            }
-          />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Run Again</p>
+            </TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <AiDropdownMenu
+              trigger={
+                <TooltipTrigger asChild>
+                  <Button
+                    type="button"
+                    variant={"default"}
+                    className="relative size-10 min-w-10"
+                    size={"icon"}
+                  >
+                    <SparklesIcon className="size-4" />
+                    <span className="sr-only">AI Tools</span>
+                  </Button>
+                </TooltipTrigger>
+              }
+            />
+            <TooltipContent>
+              <p>AI Tools</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       </form>
     </Form>

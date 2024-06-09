@@ -82,7 +82,7 @@ export function DeleteCategoryForm() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="mt-4 gap-4 font-bold">
-          <AlertDialogCancel className="px-8">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="px-8 font-bold">Cancel</AlertDialogCancel>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(({ id }) => deleteCategory({ id }))}
@@ -93,7 +93,7 @@ export function DeleteCategoryForm() {
                 disabled={categoryStatus === "pending"}
                 variant={"destructive"}
                 className={cn(
-                  "gap-0 px-8 font-bold transition-all",
+                  "gap-0 px-8 font-bold transition-all focus-visible:ring-destructive",
                   categoryStatus === "pending" ? "gap-2 pl-6" : "",
                 )}
               >

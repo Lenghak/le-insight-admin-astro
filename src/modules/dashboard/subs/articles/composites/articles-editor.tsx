@@ -40,7 +40,7 @@ const ArticlesEditorRightPanel = React.lazy(
   () => import("@articles/composites/articles-editor-right-panel"),
 );
 const ArticlesAssitantsSheet = React.lazy(
-  () => import("@articles/composites/articles-assistance-sheet"),
+  () => import("@articles/composites/articles-assistant-sheet"),
 );
 
 export default function ArticlesEditor() {
@@ -112,7 +112,6 @@ export default function ArticlesEditor() {
                 <ResizablePanel
                   className="relative flex h-full"
                   collapsible={false}
-                  minSize={1}
                 >
                   <Editor
                     containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
@@ -130,10 +129,10 @@ export default function ArticlesEditor() {
                 <ResizablePanel
                   className={cn(
                     "relative z-[9999] max-w-screen-sm bg-background transition-all",
-                    isCollapsed ? "max-w-0" : "min-w-96",
+                    isCollapsed ? "max-w-0" : "",
                   )}
                   collapsible={true}
-                  minSize={24}
+                  maxSize={24}
                   defaultSize={0}
                   onResize={(size) =>
                     $articleAiPanelCollapseStore.set(size === 0)

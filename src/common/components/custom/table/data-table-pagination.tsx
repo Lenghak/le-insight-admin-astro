@@ -37,11 +37,11 @@ export default function DataTablePagination<TData>({
       className={cn("flex items-center justify-between pt-2", className)}
     >
       <div className="w-fit rounded-full border bg-card py-1 pl-1 pr-4 text-sm font-semibold text-muted-foreground">
-        <span className="mr-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-accent p-2 font-bold text-foreground">
+        <span className="mr-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-accent p-2 font-bold text-foreground">
           {table.getFilteredSelectedRowModel().rows.length}
         </span>{" "}
         of{" "}
-        <span className="mx-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full border bg-accent p-2 font-bold text-foreground">
+        <span className="mx-1 inline-flex h-8 min-w-8 items-center justify-center rounded-full bg-accent p-2 font-bold text-foreground">
           {table.getFilteredRowModel().rows.length}
         </span>{" "}
         row(s) selected.

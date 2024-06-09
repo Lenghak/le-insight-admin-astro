@@ -1,1 +1,2 @@
-export { default as EditorRoute } from "./editor-route";
+export { default } from "./editor-route";
+
