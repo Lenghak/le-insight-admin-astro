@@ -37,7 +37,7 @@ export default function ProfileDropdown() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mr-4 w-auto">
         <DropdownMenuGroup>
-          <DropdownMenuItem className="px-3 py-2">
+          <DropdownMenuItem className="px-3 py-2" disabled>
             <ProfileBadge
               meta={user?.email}
               firstName={user?.first_name}
@@ -49,17 +49,17 @@ export default function ProfileDropdown() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="space-y-1">
-          <DropdownMenuItem className="px-3 py-2">
+          <DropdownMenuItem className="px-3 py-2" disabled>
             <UserIcon className="mr-4 h-4 w-4" />
             <span className="font-semibold">Profile</span>
           </DropdownMenuItem>
 
-          <DropdownMenuItem className="px-3 py-2">
+          <DropdownMenuItem className="px-3 py-2" disabled>
             <Settings className="mr-4 h-4 w-4" />
             <span className="font-semibold">Settings</span>
           </DropdownMenuItem>
 
-          <DropdownMenuItem className="px-3 py-2">
+          <DropdownMenuItem className="px-3 py-2" disabled>
             <InfoIcon className="mr-4 h-4 w-4" />
             <span className="font-semibold">Helps & Supports</span>
           </DropdownMenuItem>

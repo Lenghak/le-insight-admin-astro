@@ -15,6 +15,7 @@ const DashboardLayout = React.lazy(
 const ArticlesRoute = React.lazy(() => import("@articles/routes"));
 const CategoriesRoute = React.lazy(() => import("@categories/routes"));
 const EditorRoute = React.lazy(() => import("@editor/routes"));
+const SensitivitiesRoute = React.lazy(() => import("@sensitivities/routes"));
 const UsersRoute = React.lazy(() => import("@users/routes"));
 
 export const dashboardRoute = createBrowserRouter([
@@ -75,6 +76,14 @@ export const dashboardRoute = createBrowserRouter([
             element: (
               <React.Suspense fallback={<DefaultSkeleton />}>
                 <CategoriesRoute />
+              </React.Suspense>
+            ),
+          },
+          {
+            path: "/spa/dashboard/sensitivities",
+            element: (
+              <React.Suspense fallback={<DefaultSkeleton />}>
+                <SensitivitiesRoute />
               </React.Suspense>
             ),
           },

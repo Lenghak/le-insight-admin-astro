@@ -1,0 +1,118 @@
+import useDeleteSensitivitiesService from "@/modules/dashboard/subs/sensitivities/hooks/use-delete-sensitivities-service";
+
+import { cn } from "@/common/lib/utils";
+
+import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
+import {
+  $dashboardDialogStore,
+  setDashboardDialogOpen,
+} from "@dashboard/stores/dashboard-action-dialog-store";
+
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@ui/alert-dialog";
+import { Button } from "@ui/button";
+import { Form } from "@ui/form";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useStore } from "@nanostores/react";
+import { Loader2Icon } from "lucide-react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const DeleteCategorySchema = z.object({
+  id: z.string().uuid(),
+});
+
+export function SensitivitiesDelete() {
+  const dialog = useStore($dashboardDialogStore);
+  const { status: sensitivitiesStatus, mutate: deleteSensitivities } =
+    useDeleteSensitivitiesService();
+
+  const form = useForm<z.infer<typeof DeleteCategorySchema>>({
+    resolver: zodResolver(DeleteCategorySchema),
+    defaultValues: {
+      id: "",
+    },
+  });
+
+  useEffect(() => {
+    if (dialog.meta && typeof dialog.meta === "string") {
+      form.setValue("id", dialog.meta);
+    }
+  }, [dialog.meta]);
+
+  useEffect(() => {
+    if (sensitivitiesStatus === "success") {
+      form.reset();
+      setDashboardDialogOpen({
+        isOpen: false,
+        id: DASHBOARD_DIALOG_ID.sensitivities.delete,
+      });
+    }
+  }, [sensitivitiesStatus]);
+
+  return (
+    <AlertDialog
+      open={
+        dialog.isOpen && dialog.id === DASHBOARD_DIALOG_ID.sensitivities.delete
+      }
+      onOpenChange={(isOpen) => {
+        setDashboardDialogOpen({
+          isOpen: isOpen,
+          id: DASHBOARD_DIALOG_ID.sensitivities.delete,
+        });
+      }}
+    >
+      <AlertDialogContent className="bg-card">
+        <AlertDialogHeader>
+          <AlertDialogTitle className="font-extrabold">
+            Are you absolutely sure?
+          </AlertDialogTitle>
+          <AlertDialogDescription className="font-medium">
+            This action cannot be undone. This will permanently delete a
+            sensitivity and remove its data from the servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter className="mt-4 gap-4 font-bold">
+          <AlertDialogCancel className="px-8 font-bold">
+            Cancel
+          </AlertDialogCancel>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(({ id }) =>
+                deleteSensitivities({ id }),
+              )}
+              className="space-y-8"
+            >
+              <Button
+                type={sensitivitiesStatus === "pending" ? "button" : "submit"}
+                disabled={sensitivitiesStatus === "pending"}
+                variant={"destructive"}
+                className={cn(
+                  "gap-0 px-8 font-bold transition-all focus-visible:ring-destructive",
+                  sensitivitiesStatus === "pending" ? "gap-2 pl-6" : "",
+                )}
+              >
+                <Loader2Icon
+                  className={cn(
+                    "h-4 w-0 animate-spin transition-all",
+                    sensitivitiesStatus === "pending" ? "w-4" : "",
+                  )}
+                />
+                Delete
+              </Button>
+            </form>
+          </Form>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}

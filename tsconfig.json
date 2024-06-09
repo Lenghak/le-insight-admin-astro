@@ -14,6 +14,7 @@
       "@/*": ["./src/*"],
       "@articles/*": ["./src/modules/dashboard/subs/articles/*"],
       "@categories/*": ["./src/modules/dashboard/subs/categories/*"],
+      "@sensitivities/*": ["./src/modules/dashboard/subs/sensitivities/*"],
       "@users/*": ["./src/modules/dashboard/subs/users/*"],
       "@dashboard/*": ["./src/modules/dashboard/*"],
       "@editor/*": ["./src/modules/editor/*"],

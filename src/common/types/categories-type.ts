@@ -14,7 +14,6 @@ export const CategoriesSchema = z.object({
   assigned_count: z.number(),
   generated_count: z.number(),
   status: CategoriesStatusEnum,
-  is_archived: z.boolean(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
 });

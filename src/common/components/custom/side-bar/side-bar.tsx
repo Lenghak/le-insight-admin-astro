@@ -8,16 +8,16 @@ import { useStore } from "@nanostores/react";
 import {
   ActivityIcon,
   AlertCircleIcon,
-  ArchiveIcon,
   BellDotIcon,
   BookIcon,
   FilesIcon,
   HandCoinsIcon,
   Layers3Icon,
+  LeafyGreenIcon,
   PieChartIcon,
   ScrollIcon,
   SwatchBookIcon,
-  UsersIcon,
+  UsersIcon
 } from "lucide-react";
 import { memo } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -81,17 +81,17 @@ export default memo(function SideBar({ className }: { className?: string }) {
             variant: "ghost",
           },
           {
-            isDisabled: true,
+            isDisabled: false,
             title: "Activities",
-            icon: ActivityIcon,
-            link: "/spa/dashboard/activities",
+            icon: LeafyGreenIcon,
+            link: "/spa/dashboard/sensitivities",
             variant: "ghost",
           },
           {
             isDisabled: true,
-            title: "Archives",
-            icon: ArchiveIcon,
-            link: "/spa/dashboard/archives",
+            title: "Activities",
+            icon: ActivityIcon,
+            link: "/spa/dashboard/activities",
             variant: "ghost",
           },
         ]}

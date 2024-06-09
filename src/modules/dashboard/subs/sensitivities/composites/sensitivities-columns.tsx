@@ -1,9 +1,11 @@
+import { sensitivitiesStatus } from "@/modules/dashboard/subs/sensitivities/constants/sensitivities-status";
+
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
 import CategoriesActions from "@categories/composites/categories-actions";
-import { categoryStatus } from "@categories/constants/category-status";
-import type { CategoriesTableType } from "@categories/types/categories-list-type";
+
+import type { SensitivitiesTableType } from "@sensitivities/types/sensitivities-list-type";
 
 import { Badge } from "@ui/badge";
 import { Checkbox } from "@ui/checkbox";
@@ -13,9 +15,9 @@ import { DataTableColumnHeader } from "@custom/table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useSearchParams } from "react-router-dom";
 
-import type { CategoriesStatusType } from "@/common/types/categories-type";
+import type { SensitivitiesStatusType } from "@/common/types/sensitivities-type";
 
-export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
+export const sensitivitiesColumns: ColumnDef<SensitivitiesTableType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -118,7 +120,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
           Archived
         </Badge>
       ) : (
-        categoryStatus[getValue() as CategoriesStatusType]
+        sensitivitiesStatus[getValue() as SensitivitiesStatusType]
       ),
   },
   {
@@ -135,7 +137,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span
           className={cn(
             "w-full text-center font-bold",
-            row?.original?.status === "REVOKED" &&
+            row?.original.status === "REVOKED" &&
             "font-bold uppercase text-muted-foreground line-through",
           )}
         >
@@ -159,7 +161,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
         <span
           className={cn(
             "w-full text-center font-bold",
-            row?.original?.status === "REVOKED" &&
+            row?.original.status === "REVOKED" &&
             "font-bold uppercase text-muted-foreground line-through",
           )}
         >
@@ -181,7 +183,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
       getValue() ? (
         <span
           className={cn(
-            row?.original?.status === "REVOKED" &&
+            row?.original.status === "REVOKED" &&
             "font-bold italic text-muted-foreground line-through",
           )}
         >
@@ -203,7 +205,7 @@ export const categoriesColumns: ColumnDef<CategoriesTableType>[] = [
       getValue() ? (
         <span
           className={cn(
-            row?.original?.status === "REVOKED" &&
+            row?.original.status === "REVOKED" &&
             "font-bold italic text-muted-foreground line-through",
           )}
         >

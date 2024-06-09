@@ -10,6 +10,11 @@ export const DASHBOARD_DIALOG_ID = {
     delete: "CATEGORIES_DELETE",
     regenerate: "CATEGORIES_REGENERATE",
   },
+  sensitivities: {
+    edit: "SENSITIVITIES_EDIT",
+    delete: "SENSITIVITIES_DELETE",
+    regenerate: "SENSITIVITIES_REGENERATE",
+  },
   users: {
     edit: "USERS_EDIT",
     ban: "USER_BAN",
