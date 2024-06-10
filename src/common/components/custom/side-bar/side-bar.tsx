@@ -82,7 +82,7 @@ export default memo(function SideBar({ className }: { className?: string }) {
           },
           {
             isDisabled: false,
-            title: "Activities",
+            title: "Sensitivities",
             icon: LeafyGreenIcon,
             link: "/spa/dashboard/sensitivities",
             variant: "ghost",

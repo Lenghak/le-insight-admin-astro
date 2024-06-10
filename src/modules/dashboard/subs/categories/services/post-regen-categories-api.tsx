@@ -3,13 +3,13 @@ import type { CategoriesRegenType } from "@categories/types/categories-regen-typ
 import { getPublicQueryInstance } from "@/common/stores/api-store";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 
-export default function regenCategoriesAPI(
+export default function postRegenCategoriesAPI(
   { article_id }: CategoriesRegenType,
   queryInstance?: AxiosInstance,
   config?: AxiosRequestConfig,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post(
-    "/articles-categories/regenerate",
+    "/articles/regenerate",
     {
       article_id,
     },

@@ -4,7 +4,7 @@ import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { articleKeys } from "@articles/constants/query-keys";
 
-import regenCategoriesAPI from "@categories/services/regen-categories-api";
+import postRegenCategoriesAPI from "@/modules/dashboard/subs/categories/services/post-regen-categories-api";
 import type { CategoriesRegenType } from "@categories/types/categories-regen-type";
 
 import { $queryClient } from "@/common/stores/api-store";
@@ -14,7 +14,7 @@ import { AxiosError, type AxiosRequestConfig } from "axios";
 import { CheckCircleIcon, CircleXIcon } from "lucide-react";
 import { toast } from "sonner";
 
-export default function useRegenCateService({
+export default function useRegenCategoriesService({
   article_id,
 }: CategoriesRegenType) {
   const instance = usePrivateQueryInstance();
@@ -24,7 +24,7 @@ export default function useRegenCateService({
     {
       mutationKey: ["regen-categories", article_id, instance],
       mutationFn: async (config?: AxiosRequestConfig) =>
-        await regenCategoriesAPI({ article_id }, instance, config),
+        await postRegenCategoriesAPI({ article_id }, instance, config),
       onError: (error) => {
         let title = "Regenerate Failed";
         let description =

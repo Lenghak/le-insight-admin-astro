@@ -8,7 +8,7 @@ export default function postCreateCategoriesAPI(
   queryInstance?: AxiosInstance,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post(
-    "/articles-categories",
+    "/articles",
     data,
   );
 }

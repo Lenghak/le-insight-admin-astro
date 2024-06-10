@@ -1,6 +1,6 @@
 import { cn } from "@/common/lib/utils";
 
-import useRegenCateService from "@categories/hooks/use-regen-cate-service";
+import useRegenCategoriesService from "@/modules/dashboard/subs/categories/hooks/use-regen-categories-service";
 
 import { DASHBOARD_DIALOG_ID } from "@dashboard/constants/dashboard-dialog-id";
 import {
@@ -38,7 +38,7 @@ export default function CategoriesRegenForm() {
     typeof dialogStore.meta === "string" ? dialogStore.meta : "";
 
   const { mutateAsync: regenerateCategories, status: regenerateStatus } =
-    useRegenCateService({ article_id: articleID });
+    useRegenCategoriesService({ article_id: articleID });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

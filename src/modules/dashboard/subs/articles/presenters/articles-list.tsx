@@ -8,16 +8,19 @@ import { useSearchParams } from "react-router-dom";
 
 import type { ArticlesVisiblityEnumType } from "@/common/types/articles-type";
 
-const CategoriesRegenForm = React.lazy(
-  () => import("@articles/composites/articles-re-cate-form"),
+const ArticleArchivesForm = React.lazy(
+  () => import("@articles/composites/articles-archives-form"),
 );
-
 const EditArticlesForm = React.lazy(
   () => import("@articles/composites/articles-edit-form"),
 );
 
-const ArticleArchivesForm = React.lazy(
-  () => import("@articles/composites/articles-archives-form"),
+const CategoriesRegenForm = React.lazy(
+  () => import("@articles/composites/articles-regen-categories-form"),
+);
+
+const SensitivitiesRegenForm = React.lazy(
+  () => import("@articles/composites/articles-regen-sensitivities-form"),
 );
 
 type DateRange = string | Date | null | undefined;
@@ -66,6 +69,7 @@ export default function ArticlesList() {
         <ArticleArchivesForm />
         <EditArticlesForm />
         <CategoriesRegenForm />
+        <SensitivitiesRegenForm />
       </Suspense>
     </Fragment>
   );

@@ -9,7 +9,7 @@ export default function postRegenSensitivitiesAPI(
   config?: AxiosRequestConfig,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post(
-    "/sensitivities/regenerate",
+    "/articles/resensitize",
     {
       article_id,
     },

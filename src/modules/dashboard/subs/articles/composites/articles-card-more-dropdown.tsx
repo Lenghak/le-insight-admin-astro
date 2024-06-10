@@ -16,9 +16,10 @@ import {
 import {
   ArchiveIcon,
   CopyIcon,
+  LeafIcon,
   MoreHorizontalIcon,
   Settings2Icon,
-  ShuffleIcon,
+  ShapesIcon
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -90,8 +91,22 @@ export default function ArticlesCardMoreDropdown({
               });
             }}
           >
-            <ShuffleIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+            <ShapesIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
             Regen Categories
+          </DropdownMenuItem>
+
+          <DropdownMenuItem
+            className="items-center gap-3 px-3 py-2 font-semibold"
+            onClick={() => {
+              setDashboardDialogOpen({
+                id: DASHBOARD_DIALOG_ID.sensitivities.regenerate,
+                isOpen: true,
+                meta: article.id,
+              });
+            }}
+          >
+            <LeafIcon className="h-4 min-h-4 w-4 min-w-4 stroke-[2.5]" />
+            Regen Sensitivities
           </DropdownMenuItem>
         </DropdownMenuGroup>
 

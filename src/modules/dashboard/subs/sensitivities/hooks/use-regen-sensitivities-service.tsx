@@ -43,7 +43,7 @@ export default function useRegenSensitivitiesService({
         }
 
         toast.error(title, {
-          id: "REGEN_CATEGORY_" + article_id,
+          id: "REGEN_SENSITIVITY_" + article_id,
           duration: 10 * 1000,
           description: description,
           closeButton: true,
@@ -55,7 +55,7 @@ export default function useRegenSensitivitiesService({
       },
       onSuccess: () => {
         toast.success("Data modified successfully", {
-          id: "REGEN_CATEGORY_" + article_id,
+          id: "REGEN_SENSITIVITY_" + article_id,
           duration: 10 * 1000,
           description:
             "The new data has been successfully updated. You may see the result very shortly.",
