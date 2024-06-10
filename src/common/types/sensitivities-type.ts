@@ -6,7 +6,12 @@ export const SensitivitiesStatusEnum = z.enum([
   "PENDING",
   "REVOKED",
 ]);
-
+export const SensitivitySentimentSchema = z.enum([
+  "POSITIVE",
+  "NEGATIVE",
+  "NEUTRAL",
+  "MIXED",
+]);
 export const SensitivitiesSchema = z.object({
   type: z.literal("sensitivity"),
   id: z.string().uuid(),

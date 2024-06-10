@@ -14,5 +14,5 @@ export default function getSensitivitiesAPI(
     SensitivitiesResponseType,
     AxiosResponse<SensitivitiesResponseType>,
     SensitivitiesRequestType
-  >(`/categories/${categoryID}`);
+  >(`/sensitivities/${categoryID}`);
 }

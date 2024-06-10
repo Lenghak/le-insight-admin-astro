@@ -1,11 +1,8 @@
-import { Badge } from "@/common/components/ui/badge";
-
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
 import ArticlesCardMoreDropdown from "@articles/composites/articles-card-more-dropdown";
 import ArticleCategoryBadge from "@articles/composites/articles-categories-badge";
-import { visibiltiesBadges } from "@articles/constants/visibilities-badges";
 import type { ArticlesListDataType } from "@articles/types/articles-list-type";
 
 import { Button, buttonVariants } from "@ui/button";
@@ -24,8 +21,7 @@ import { Image } from "@custom/image";
 import ProfileBadge from "@custom/profile/profile-badge";
 import ProfileHoverContent from "@custom/profile/profile-hover-content";
 
-import { COLOR_VARIANTS } from "@/common/constants/color-constants";
-import { BookmarkIcon } from "lucide-react";
+import { BookmarkIcon, ChevronsLeftIcon } from "lucide-react";
 import React from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
@@ -43,21 +39,19 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
       ref={ref}
       className={cn(
         buttonVariants({ variant: "secondary", size: "default" }),
-        "relative grid h-auto w-full grid-cols-[1fr,auto] grid-rows-1 items-center justify-center gap-4 whitespace-normal rounded-lg border-0 px-8 py-6",
-        COLOR_VARIANTS[visibiltiesBadges[article?.visibility].color ?? "amber"],
-        "border-2 border-b-0 border-l-0 text-inherit before:hidden",
+        "relative grid h-auto w-full grid-cols-[1fr,auto] items-center justify-center gap-4 gap-x-8 whitespace-normal rounded-lg px-8 py-6",
         className,
       )}
       {...props}
     >
-      <Badge
+      {/* <Badge
         variant={"default"}
         colored={visibiltiesBadges[article?.visibility].color}
         className="hover:bg-current/50 absolute right-0 top-0 size-4 rounded-none rounded-bl-md rounded-tr-md p-0"
-      />
+      /> */}
 
-      <CardHeader className="flex h-full w-full flex-col justify-between space-y-4 px-0 pb-0 pt-0">
-        <div className="flex w-full items-center justify-between gap-4 p-0">
+      <CardHeader className="col-span-2 flex h-full w-full flex-row items-center space-y-0 px-0 pb-0 pt-0">
+        <div className="flex h-full w-full items-center justify-between gap-4 p-0">
           {/* Profile */}
           <HoverCard>
             <HoverCardTrigger>
@@ -76,26 +70,31 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
           </HoverCard>
         </div>
 
-        <div className="space-y-2">
-          <CardTitle className="line-clamp-2 text-xl font-black">
-            {article?.preview_title}
-          </CardTitle>
+        <Button
+          variant={"outline"}
+          size={"icon"}
+          className="absolute right-0 size-9 rounded-r-none border-r-0"
+        >
+          <ChevronsLeftIcon className="ml-1 size-4" />
+          <span className="sr-only">More Info</span>
+        </Button>
+      </CardHeader>
 
-          <CardDescription className="line-clamp-2 font-serif text-base font-medium">
-            {article?.preview_description}
-          </CardDescription>
-        </div>
+      <div className="space-y-4">
+        <CardTitle className="line-clamp-2 text-xl font-black">
+          {article?.preview_title}
+        </CardTitle>
+
+        <CardDescription className="line-clamp-2 font-serif text-base font-medium">
+          {article?.preview_description}
+        </CardDescription>
 
         <div className="flex w-full items-center justify-between gap-4 font-semibold">
           <Muted className="min-w-max py-1 text-xs uppercase tracking-widest">
             {article?.created_at ? formatDate(article?.created_at) : "-"}
           </Muted>
-          {/* Minutes Reads */}
-          <Muted className="py-1 text-xs uppercase tracking-widest">
-            {/* {5} minutes read */}
-          </Muted>
         </div>
-      </CardHeader>
+      </div>
 
       <CardContent className="flex aspect-square h-full min-h-40 w-auto max-w-40 items-center justify-center p-0">
         {/* Thumbnail */}
@@ -113,8 +112,9 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
               {article?.article_categories?.map(({ category }) => (
                 <ArticleCategoryBadge
                   key={category.id}
-                  className="whitespace-nowrap"
+                  className="whitespace-nowrap px-3 py-1 shadow-inner"
                 >
+                  {/* <DotIcon className="mr-2 size-4" /> */}
                   {category.label}
                 </ArticleCategoryBadge>
               ))}

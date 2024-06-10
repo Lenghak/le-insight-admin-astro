@@ -1,10 +1,8 @@
-import { sensitivitiesStatus } from "@/modules/dashboard/subs/sensitivities/constants/sensitivities-status";
-
 import formatDate from "@/common/lib/date/format-date";
 import { cn } from "@/common/lib/utils";
 
-import CategoriesActions from "@categories/composites/categories-actions";
-
+import SensitivitiesActions from "@sensitivities/composites/sensitivities-actions";
+import { sensitivitiesStatus } from "@sensitivities/constants/sensitivities-status";
 import type { SensitivitiesTableType } from "@sensitivities/types/sensitivities-list-type";
 
 import { Badge } from "@ui/badge";
@@ -217,6 +215,6 @@ export const sensitivitiesColumns: ColumnDef<SensitivitiesTableType>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <CategoriesActions row={row} />,
+    cell: ({ row }) => <SensitivitiesActions row={row} />,
   },
 ];

@@ -10,6 +10,10 @@ import {
   PaginationRequestSchema,
 } from "@/common/types/pagination-type";
 import { ProfilesSchema } from "@/common/types/profiles-type";
+import {
+  SensitivitiesSchema,
+  SensitivitySentimentSchema,
+} from "@/common/types/sensitivities-type";
 import { UsersSchema } from "@/common/types/users-type";
 
 export const ArticlesListDataSchema = ArticlesSchema.omit({
@@ -22,6 +26,14 @@ export const ArticlesListDataSchema = ArticlesSchema.omit({
       article_id: z.string(),
       category_id: z.string(),
       category: CategoriesSchema,
+    }),
+  ),
+  article_sensitivities: z.array(
+    z.object({
+      article_id: z.string(),
+      sensitvity_id: z.string(),
+      sensitivity: SensitivitiesSchema,
+      sentiment: SensitivitySentimentSchema,
     }),
   ),
 });

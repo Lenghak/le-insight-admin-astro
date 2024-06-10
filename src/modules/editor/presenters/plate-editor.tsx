@@ -40,7 +40,7 @@ import { useStore } from "@nanostores/react";
 import { CommentsProvider } from "@udecode/plate-comments";
 import { Plate, PlateController } from "@udecode/plate-common";
 import { XIcon } from "lucide-react";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Link, useNavigate } from "react-router-dom";
@@ -60,6 +60,18 @@ export default function PlateEditor() {
     isAlertOpen: false,
     isAlertConfirm: false,
   });
+
+  useEffect(() => {
+    if (alertState.isAlertConfirm) {
+      setAlert({
+        isAlertOpen: false,
+        isAlertConfirm: false,
+      });
+      navigate("/spa/dashboard/articles", {
+        replace: true,
+      });
+    }
+  }, [alertState]);
 
   return (
     <TooltipProvider>
@@ -102,8 +114,9 @@ export default function PlateEditor() {
                           size={"icon"}
                           className="ml-8 mr-1.5"
                           onClick={() =>
-                            navigate("/spa/dashboard/articles", {
-                              replace: true,
+                            setAlert({
+                              isAlertConfirm: false,
+                              isAlertOpen: true,
                             })
                           }
                         >

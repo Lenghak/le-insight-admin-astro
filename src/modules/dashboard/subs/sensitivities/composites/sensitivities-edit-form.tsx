@@ -62,9 +62,11 @@ export default function SensitivitiesEditForm() {
       {!isGettingSensitivities ? (
         <DialogContent className="bg-card">
           <DialogHeader>
-            <DialogTitle className="font-extrabold">Edit Category</DialogTitle>
+            <DialogTitle className="font-extrabold">
+              Edit Sensitivity
+            </DialogTitle>
             <DialogDescription>
-              Make changes to the category info here. Click save when you're
+              Make changes to the sensitivity info here. Click save when you're
               done.
             </DialogDescription>
           </DialogHeader>
@@ -91,7 +93,7 @@ export default function SensitivitiesEditForm() {
                     <FormControl>
                       <Input
                         id="label-field"
-                        placeholder="e. g. Technology"
+                        placeholder="e. g. Graphical Content"
                         className="rounded-full bg-background px-5 font-semibold"
                         autoComplete="on"
                         {...field}
