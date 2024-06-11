@@ -12,6 +12,7 @@ export const SensitivitySentimentSchema = z.enum([
   "NEUTRAL",
   "MIXED",
 ]);
+
 export const SensitivitiesSchema = z.object({
   type: z.literal("sensitivity"),
   id: z.string().uuid(),
@@ -25,3 +26,6 @@ export const SensitivitiesSchema = z.object({
 
 export type SensitivitiesStatusType = z.infer<typeof SensitivitiesStatusEnum>;
 export type SensitivitiesType = z.infer<typeof SensitivitiesSchema>;
+export type SensitivitiesSentimentType = z.infer<
+  typeof SensitivitySentimentSchema
+>;

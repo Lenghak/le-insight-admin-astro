@@ -1,18 +1,22 @@
 export const DASHBOARD_NAVIGATION = [
   {
     label: "Dashboard",
-    link: "/dashboard",
+    link: "/spa/dashboard",
   },
   {
     label: "Users",
-    link: "/dashboard/users",
+    link: "/spa/dashboard/users",
   },
   {
     label: "Articles",
-    link: "/dashboard/articles",
+    link: "/spa/dashboard/articles",
   },
   {
     label: "Categories",
-    link: "/dashboard/categories",
+    link: "/spa/dashboard/categories",
+  },
+  {
+    label: "Sensitivities",
+    link: "/spa/dashboard/sensitivities",
   },
 ];

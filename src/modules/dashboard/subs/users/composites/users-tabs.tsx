@@ -14,7 +14,7 @@ type UsersTabsProps = Record<string, unknown>;
 
 const TABS = ["all", "admin", "user", "guest"];
 
-export default memo(function UsersTabs({}: UsersTabsProps) {
+export default memo(function UsersTabs({ }: UsersTabsProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const { pathname } = useLocation();
   const role = searchParams.get("role");
@@ -22,7 +22,7 @@ export default memo(function UsersTabs({}: UsersTabsProps) {
 
   return (
     <Suspense fallback={<DashboardTabsSkeletons count={TABS.length} />}>
-      <DashboardTabList className="h-fit w-fit rounded-full border bg-card p-0">
+      <DashboardTabList className="h-fit w-fit rounded-full border bg-card p-0.5">
         {TABS.map((tab) => (
           <DashboardTab
             key={tab}

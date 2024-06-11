@@ -9,7 +9,7 @@ export default function postRegenCategoriesAPI(
   config?: AxiosRequestConfig,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post(
-    "/articles/regenerate",
+    "/articles/recategorize",
     {
       article_id,
     },

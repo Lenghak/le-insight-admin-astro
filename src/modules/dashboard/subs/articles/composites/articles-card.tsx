@@ -21,8 +21,14 @@ import { Image } from "@custom/image";
 import ProfileBadge from "@custom/profile/profile-badge";
 import ProfileHoverContent from "@custom/profile/profile-hover-content";
 
-import { BookmarkIcon, ChevronsLeftIcon } from "lucide-react";
-import React from "react";
+import {
+  ArrowLeftRightIcon,
+  ArrowRightLeftIcon,
+  BookmarkIcon,
+} from "lucide-react";
+import React, { useState } from "react";
+
+import ArticleCardInfo from "./articles-card-info";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   article: ArticlesListDataType;
@@ -33,6 +39,7 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
   ref,
 ) {
   const author = article?.article_author;
+  const [isOpen, setOpen] = useState<boolean>(false);
 
   return (
     <Card
@@ -44,12 +51,6 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
       )}
       {...props}
     >
-      {/* <Badge
-        variant={"default"}
-        colored={visibiltiesBadges[article?.visibility].color}
-        className="hover:bg-current/50 absolute right-0 top-0 size-4 rounded-none rounded-bl-md rounded-tr-md p-0"
-      /> */}
-
       <CardHeader className="col-span-2 flex h-full w-full flex-row items-center space-y-0 px-0 pb-0 pt-0">
         <div className="flex h-full w-full items-center justify-between gap-4 p-0">
           {/* Profile */}
@@ -73,35 +74,62 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
         <Button
           variant={"outline"}
           size={"icon"}
-          className="absolute right-0 size-9 rounded-r-none border-r-0"
+          className="absolute right-0 top-4 size-9 rounded-r-none border-r-0 pl-1"
+          onClick={() => setOpen(!isOpen)}
         >
-          <ChevronsLeftIcon className="ml-1 size-4" />
+          <ArrowLeftRightIcon
+            className={cn("transition-all", isOpen ? "size-0" : "size-4")}
+          />
+          <ArrowRightLeftIcon
+            className={cn("transition-all", !isOpen ? "size-0" : "size-4")}
+          />
           <span className="sr-only">More Info</span>
         </Button>
       </CardHeader>
 
-      <div className="space-y-4">
-        <CardTitle className="line-clamp-2 text-xl font-black">
-          {article?.preview_title}
-        </CardTitle>
+      <section className="relative grid w-full grid-cols-1 overflow-y-hidden overflow-x-visible py-2 transition-all">
+        <div
+          className={cn(
+            "relative left-0 top-0 space-y-4 overflow-hidden transition-all duration-500",
+            isOpen ? "absolute h-0 opacity-0" : "h-full",
+          )}
+        >
+          <CardTitle className="line-clamp-2 text-xl font-black">
+            {article?.preview_title}
+          </CardTitle>
 
-        <CardDescription className="line-clamp-2 font-serif text-base font-medium">
-          {article?.preview_description}
-        </CardDescription>
+          <CardDescription className="line-clamp-2 font-serif text-base font-medium">
+            {article?.preview_description}
+          </CardDescription>
 
-        <div className="flex w-full items-center justify-between gap-4 font-semibold">
-          <Muted className="min-w-max py-1 text-xs uppercase tracking-widest">
-            {article?.created_at ? formatDate(article?.created_at) : "-"}
-          </Muted>
+          <div className="flex w-full items-center justify-between gap-4 font-semibold">
+            <Muted className="min-w-max py-1 text-xs uppercase tracking-widest">
+              {article?.created_at ? formatDate(article?.created_at) : "-"}
+            </Muted>
+          </div>
         </div>
-      </div>
 
-      <CardContent className="flex aspect-square h-full min-h-40 w-auto max-w-40 items-center justify-center p-0">
+        <ArticleCardInfo
+          article={article}
+          className={cn(
+            "relative left-0 top-0 w-full overflow-hidden transition-all duration-500",
+            isOpen ? "h-full" : "absolute h-0 opacity-0",
+          )}
+        />
+      </section>
+
+      <CardContent
+        className={cn(
+          "flex aspect-square size-full min-h-40 max-w-40 items-center justify-center p-0 transition-all",
+        )}
+      >
         {/* Thumbnail */}
         <Image
           src={article?.thumbnail ?? ""}
           alt={article?.preview_title}
-          className="aspect-square h-full max-h-40 w-full max-w-40 rounded-xl object-cover"
+          className={
+            "aspect-square h-full max-h-40 w-full max-w-40 rounded-xl object-cover"
+          }
         />
       </CardContent>
 
@@ -112,9 +140,8 @@ export default React.forwardRef<HTMLDivElement, Props>(function ArticlesCard(
               {article?.article_categories?.map(({ category }) => (
                 <ArticleCategoryBadge
                   key={category.id}
-                  className="whitespace-nowrap px-3 py-1 shadow-inner"
+                  className="whitespace-nowrap px-3 py-1"
                 >
-                  {/* <DotIcon className="mr-2 size-4" /> */}
                   {category.label}
                 </ArticleCategoryBadge>
               ))}
