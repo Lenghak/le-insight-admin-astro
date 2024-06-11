@@ -21,7 +21,6 @@ export default function ArticleCardInfo({
   className,
   ...props
 }: Props) {
-  console.log(article);
   return (
     <div
       className={cn(
@@ -58,17 +57,17 @@ export default function ArticleCardInfo({
         label={"Sensitivity"}
         className="font-bold"
       >
-        <div className="w-1/2">
-          {article?.article_sensitivities.length ? (
+        <div className="w-1/2 flex items-center flex-wrap gap-4">
+          {article?.article_sensitivities.length > 0 ? (
             article?.article_sensitivities?.map(
-              ({ article_id, sensitvity_id, sensitivity, sentiment }) => (
+              ({ article_id, sensitivity_id, sensitivity, sentiment }) => (
                 <Badge
-                  key={article_id + sensitvity_id}
+                  key={`${article_id}_${sensitivity_id}`}
                   variant={"fair"}
                   colored={sentimentalBadge[sentiment].color}
-                  className="font-bold whitespace-nowrap"
+                  className="whitespace-nowrap font-bold"
                 >
-                  {sensitivity.label}
+                  {sensitivity?.label}
                 </Badge>
               ),
             )

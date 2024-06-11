@@ -31,7 +31,7 @@ export const ArticlesListDataSchema = ArticlesSchema.omit({
   article_sensitivities: z.array(
     z.object({
       article_id: z.string(),
-      sensitvity_id: z.string(),
+      sensitivity_id: z.string(),
       sensitivity: SensitivitiesSchema,
       sentiment: SensitivitySentimentSchema,
     }),
