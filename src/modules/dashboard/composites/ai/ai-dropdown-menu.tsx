@@ -1,8 +1,9 @@
 import { serializePlainText } from "@/modules/editor/lib/serialize-plain-text";
 
-import { DropdownMenuLabel, DropdownMenuSeparator } from "@/common/components/ui/dropdown-menu";
-
-import { $articleAiPanelCollapseStore } from "@articles/stores/article-ai-store";
+import {
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@/common/components/ui/dropdown-menu";
 
 import {
   AIEnhanceTools,
@@ -12,6 +13,8 @@ import {
   $aiEnhanceStore,
   setAIEnhance,
 } from "@dashboard/stores/ai-enhance-store";
+
+import { $articleAiPanelCollapseStore } from "@articles/stores/article-ai-store";
 
 import { Small } from "@ui/small";
 
@@ -72,9 +75,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mx-6 w-64 space-y-2 font-semibold">
         <DropdownMenuGroup>
-          <DropdownMenuLabel>
-            Generative
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Generative</DropdownMenuLabel>
           <DropdownMenuItem
             onClick={() => {
               setAIEnhance({
@@ -82,6 +83,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
                 path: "/title",
                 trigger: true,
                 title: "Suggesting Title",
+                icon: TypeIcon,
               });
               $articleAiPanelCollapseStore.set(false);
             }}
@@ -99,6 +101,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
                 path: "/content",
                 trigger: true,
                 title: "Suggesting Content",
+                icon: TextIcon,
               });
               $articleAiPanelCollapseStore.set(false);
             }}
@@ -111,9 +114,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
         <DropdownMenuSeparator className="bg-transparent" />
 
         <DropdownMenuGroup>
-          <DropdownMenuLabel>
-            Enhancements
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Enhancements</DropdownMenuLabel>
           {AIEnhanceTools.map((tool, index) => (
             <Fragment key={useId()}>
               <DropdownMenuItem
@@ -124,6 +125,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
                     path: tool.path,
                     trigger: true,
                     title: tool.title,
+                    icon: tool.icon,
                   });
                   $articleAiPanelCollapseStore.set(false);
                 }}
@@ -149,6 +151,7 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
                               path: "/tone/" + tone.label,
                               trigger: true,
                               title: tone.label + " Toning",
+                              icon: tone.icon,
                             });
                             $articleAiPanelCollapseStore.set(false);
                           }}

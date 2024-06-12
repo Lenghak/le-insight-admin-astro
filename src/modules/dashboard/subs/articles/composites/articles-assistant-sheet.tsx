@@ -1,8 +1,12 @@
 import ErrorSection from "@/modules/error/components/error-section";
 
-import { P } from "@/common/components/ui/p";
-
 import { cn } from "@/common/lib/utils";
+
+import { AiDropdownMenu } from "@dashboard/composites/ai/ai-dropdown-menu";
+import {
+  $aiEnhanceStore,
+  setAIEnhance,
+} from "@dashboard/stores/ai-enhance-store";
 
 import AiMessageCard from "@articles/components/ai-message-card";
 import usePostEnhanceArticlesService from "@articles/hooks/use-post-enhance-articles-service";
@@ -12,15 +16,10 @@ import {
 } from "@articles/stores/article-ai-store";
 import { ArticlesEnhanceRequestSchema } from "@articles/types/articles-enhance-type";
 
-import { AiDropdownMenu } from "@dashboard/composites/ai/ai-dropdown-menu";
-import {
-  $aiEnhanceStore,
-  setAIEnhance,
-} from "@dashboard/stores/ai-enhance-store";
-
 import { Button } from "@ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@ui/form";
 import { H3 } from "@ui/h3";
+import { P } from "@ui/p";
 import { Small } from "@ui/small";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@ui/tooltip";
 
@@ -42,6 +41,7 @@ import {
   CopyCheckIcon,
   CopyIcon,
   Loader2Icon,
+  PlayIcon,
   Repeat2Icon,
   SparklesIcon,
   User2Icon,
@@ -137,7 +137,7 @@ export default function ArticlesAssistantSheet() {
           });
         })}
         className={cn(
-          "relative flex h-full w-full min-w-96 flex-col items-start justify-start overflow-y-hidden bg-card pt-14 dark:bg-transparent",
+          "dark/90 relative flex h-full w-full min-w-96 flex-col items-start justify-start overflow-y-hidden bg-card pt-14 dark:bg-background",
           isCollapsed ? "w-0 opacity-0" : "opacity-100",
         )}
       >
@@ -206,6 +206,7 @@ export default function ArticlesAssistantSheet() {
                       })
                     }
                   >
+                    <ChevronLeftIcon className="mr-2 size-4" />
                     <span className="font-bold">Insert</span>
                   </Button>
 
@@ -214,9 +215,7 @@ export default function ArticlesAssistantSheet() {
                       <Button
                         type="button"
                         variant={"outline"}
-                        className={cn(
-                          "relative size-9 bg-transparent dark:bg-card",
-                        )}
+                        className={cn("relative bg-transparent dark:bg-card")}
                         disabled={isPending || aiProgress.output?.length === 0}
                         size={"icon"}
                         onClick={() => handleCopyOutput(aiProgress.output)}
@@ -249,20 +248,20 @@ export default function ArticlesAssistantSheet() {
                         variant={"default"}
                         size={"icon"}
                         className={cn(
-                          "group size-9 gap-0 font-bold transition-all",
+                          "group relative gap-0 font-bold transition-all",
                         )}
                         disabled={isPending}
                       >
                         <Repeat2Icon
                           className={cn(
-                            "h-4 w-0 transition-all duration-700 group-hover:rotate-[360deg]",
-                            isPending ? "hidden" : "w-4",
+                            "size-0 transition-all",
+                            isPending ? "hidden" : "size-4",
                           )}
                         />
                         <Loader2Icon
                           className={cn(
-                            "h-4 w-0 animate-spin transition-all",
-                            isPending ? "w-4" : "hidden",
+                            "absolute bottom-2 right-2 size-0 animate-spin transition-all",
+                            isPending ? "size-4" : "hidden",
                           )}
                         />
                         <span className="sr-only">Run Again</span>
@@ -332,7 +331,7 @@ export default function ArticlesAssistantSheet() {
                       className={cn(
                         "h-10 max-h-48 min-h-10 w-full font-serif font-semibold",
                         inputVariants({ variant: "default" }),
-                        "resize-none rounded-3xl px-4 text-base",
+                        "resize-none rounded-3xl px-4 text-base dark:bg-card",
                       )}
                       placeholder="Type some message..."
                       {...field}
@@ -349,15 +348,15 @@ export default function ArticlesAssistantSheet() {
                 type="submit"
                 variant={"outline"}
                 size={"icon"}
-                className="size-10 min-w-10 relative"
+                className="relative size-10 min-w-10 bg-card dark:bg-background"
                 ref={buttonRef}
               >
-                <Repeat2Icon className="size-4 min-w-4" />
-                <span className="sr-only">Run Again</span>
+                <PlayIcon className="size-4 min-w-4 ml-0.5" />
+                <span className="sr-only">Run {enhanceObject.title}</span>
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Run Again</p>
+              <p>Run {enhanceObject.title}</p>
             </TooltipContent>
           </Tooltip>
 

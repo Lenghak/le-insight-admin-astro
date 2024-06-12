@@ -1,3 +1,4 @@
+import { TextIcon, type LucideIcon } from "lucide-react";
 import { map } from "nanostores";
 
 type AiEnhanceParams = {
@@ -5,6 +6,7 @@ type AiEnhanceParams = {
   title?: string;
   body: string;
   trigger: boolean;
+  icon: LucideIcon;
 };
 
 export const $aiEnhanceStore = map<AiEnhanceParams>({
@@ -12,6 +14,7 @@ export const $aiEnhanceStore = map<AiEnhanceParams>({
   title: undefined,
   body: "",
   trigger: false,
+  icon: TextIcon,
 });
 
 export const setAIEnhance = (params: AiEnhanceParams) =>

@@ -45,6 +45,7 @@ export default function ArticlesEditorLeftPanel() {
                   path: "/title",
                   trigger: true,
                   title: "Suggesting Title",
+                  icon: TypeIcon,
                 });
                 $articleAiPanelCollapseStore.set(false);
               }}
@@ -74,6 +75,7 @@ export default function ArticlesEditorLeftPanel() {
                   path: "/content",
                   trigger: true,
                   title: "Suggesting Content",
+                  icon: TextIcon,
                 });
                 $articleAiPanelCollapseStore.set(false);
               }}
