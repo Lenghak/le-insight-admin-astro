@@ -260,7 +260,7 @@ export default function ArticlesAssistantSheet() {
                         />
                         <Loader2Icon
                           className={cn(
-                            "absolute bottom-2 right-2 size-0 animate-spin transition-all",
+                            "size-0 animate-spin transition-all",
                             isPending ? "size-4" : "hidden",
                           )}
                         />

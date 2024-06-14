@@ -44,8 +44,8 @@ export default function ArticleCardInfo({
       <ArticleInfoItem label={"Status"}>
         <div className="w-1/2">
           <Badge
-            className="font-bold capitalize"
-            variant={"fair"}
+            className="font-bold capitalize before:hidden p-0 text-sm"
+            variant={"dot"}
             colored={visibiltiesBadges[article?.visibility].color}
           >
             {article?.visibility?.toLowerCase()}
@@ -63,9 +63,9 @@ export default function ArticleCardInfo({
               ({ article_id, sensitivity_id, sensitivity, sentiment }) => (
                 <Badge
                   key={`${article_id}_${sensitivity_id}`}
-                  variant={"fair"}
+                  variant={"dot"}
                   colored={sentimentalBadge[sentiment].color}
-                  className="whitespace-nowrap font-bold"
+                  className="whitespace-nowrap font-bold before:hidden p-0 text-sm"
                 >
                   {sensitivity?.label}
                 </Badge>
