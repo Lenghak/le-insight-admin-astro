@@ -62,14 +62,16 @@ export function AiDropdownMenu({ trigger, ...props }: DropdownMenuProps) {
           <ToolbarButton
             className={cn(
               props.triggerClassName,
-              "flex items-center gap-4 text-orange-600 hover:bg-orange-600/10 hover:text-orange-600 focus-visible:ring-orange-500",
+              "group flex items-center gap-4 from-red-600 via-orange-500 to-rose-400 hover:bg-gradient-to-r [&>div>svg.lucide.lucide-chevron-down]:text-rose-400 [&>div>svg.lucide.lucide-chevron-down]:hover:text-foreground",
             )}
             pressed={openState.open}
             tooltip="AI Tools"
             isDropdown={props.isDropdown ?? true}
           >
-            <SparklesIcon className="mr-4 size-4" />
-            <Small className="font-bold">AI Tools</Small>
+            <SparklesIcon className="mr-4 size-4 text-red-600 group-hover:text-foreground" />
+            <Small className="inline-block bg-gradient-to-r from-red-600 via-orange-500 to-rose-400 bg-clip-text font-bold text-transparent group-hover:text-foreground">
+              AI Tools
+            </Small>
           </ToolbarButton>
         )}
       </DropdownMenuTrigger>

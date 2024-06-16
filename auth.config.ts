@@ -48,6 +48,9 @@ export default defineConfig({
         id: token.id,
         type: token.type,
         ...token.attributes,
+        emailVerified: token.attributes.confirmed_at
+          ? new Date(token.attributes.confirmed_at)
+          : null,
       };
 
       session.tokens = {

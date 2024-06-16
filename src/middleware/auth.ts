@@ -1,3 +1,5 @@
+import getUserAPI from "@/modules/dashboard/subs/users/services/get-user-api";
+
 import type { APIContext, MiddlewareNext } from "astro";
 import { getSession } from "auth-astro/server";
 
@@ -6,9 +8,10 @@ export default async function auth(context: APIContext, next: MiddlewareNext) {
   const isAuthPath = currentPathname.startsWith("/auth");
 
   const session = await getSession(context.request);
-  const isUserLoggedIn = session?.user;
+  const userSession = await getUserAPI({ userID: session?.user.id });
+  const isUserLoggedIn = !!userSession?.data?.data?.id;
 
-  const isDashboardPath = currentPathname.startsWith("/dashboard");
+  const isDashboardPath = currentPathname.startsWith("/spa");
   const isAPIPath = currentPathname.startsWith("/api");
   // check if the user has already logged in
   if (isAuthPath && isUserLoggedIn) {
