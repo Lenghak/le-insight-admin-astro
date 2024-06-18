@@ -10,7 +10,7 @@ import { articleKeys } from "@articles/constants/query-keys";
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError, type AxiosRequestConfig } from "axios";
+import { AxiosError, isAxiosError, type AxiosRequestConfig } from "axios";
 import { CheckCircleIcon, CircleXIcon } from "lucide-react";
 import { toast } from "sonner";
 
@@ -26,6 +26,11 @@ export default function useRegenSensitivitiesService({
       mutationFn: async (config?: AxiosRequestConfig) =>
         await postRegenSensitivitiesAPI({ article_id }, instance, config),
       onError: (error) => {
+        if (isAxiosError(error) && error.code === AxiosError.ERR_CANCELED) {
+          toast.dismiss("REGEN_SENSITIVITY_" + article_id);
+          return;
+        }
+
         let title = "Regenerate Failed";
         let description =
           "There was a problem while processing your action. Please try again later.";

@@ -33,6 +33,7 @@ import {
   useEditorRef,
   useEditorSelection,
 } from "@udecode/plate-common";
+import { AxiosError } from "axios";
 import { parse } from "htmlstring-to-react";
 import {
   AlertTriangleIcon,
@@ -44,7 +45,8 @@ import {
   PlayIcon,
   Repeat2Icon,
   SparklesIcon,
-  User2Icon,
+  SquareIcon,
+  User2Icon
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -64,7 +66,7 @@ export default function ArticlesAssistantSheet() {
   const isCollapsed = useStore($articleAiPanelCollapseStore);
   const enhanceObject = useStore($aiEnhanceStore);
   const aiProgress = useStore($articleAiResultStore);
-
+  const [abortController, setAbortController] = useState(new AbortController());
   const [isCopiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const form = useForm<z.infer<typeof EnhanceSchema>>({
@@ -79,6 +81,8 @@ export default function ArticlesAssistantSheet() {
     mutate: enhanceArticle,
     isPending,
     isError,
+    error,
+    status,
   } = usePostEnhanceArticlesService();
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -99,6 +103,11 @@ export default function ArticlesAssistantSheet() {
   const editor = useEditorRef();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const selected = useEditorSelection();
+
+  useEffect(() => {
+    if (abortController.signal.aborted)
+      setAbortController(new AbortController());
+  }, [abortController, status]);
 
   useEffect(() => {
     if (enhanceObject.body && enhanceObject.body.length)
@@ -127,8 +136,11 @@ export default function ArticlesAssistantSheet() {
         onSubmit={form.handleSubmit((values) => {
           if (values.content?.length)
             enhanceArticle({
-              content: values.content,
-              path: values.path,
+              params: {
+                content: values.content,
+                path: values.path,
+              },
+              config: { signal: abortController.signal },
             });
           setAIEnhance({
             ...enhanceObject,
@@ -274,7 +286,8 @@ export default function ArticlesAssistantSheet() {
                 </div>
               }
             >
-              {isError ? (
+              {isError &&
+                (error as AxiosError).code !== AxiosError.ERR_CANCELED ? (
                 <div className="flex items-center rounded-3xl bg-destructive/10 px-5 py-3 text-destructive">
                   <AlertTriangleIcon className="mr-4 size-5 min-w-5" />
                   <Small className="font-bold">
@@ -345,18 +358,39 @@ export default function ArticlesAssistantSheet() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                type="submit"
+                type={isPending ? "button" : "submit"}
                 variant={"outline"}
                 size={"icon"}
-                className="relative size-10 min-w-10 bg-card dark:bg-background"
+                className={cn(
+                  "relative size-10 min-w-10",
+                  isPending
+                    ? "border-destructive text-destructive hover:text-destructive"
+                    : "",
+                )}
                 ref={buttonRef}
+                onClick={() =>
+                  isPending
+                    ? abortController.abort("Aborted by user")
+                    : undefined
+                }
               >
-                <PlayIcon className="size-4 min-w-4 ml-0.5" />
+                <PlayIcon
+                  className={cn(
+                    "size-0 rotate-0 opacity-100 transition-transform",
+                    isPending ? "-rotate-90 opacity-0" : "size-4",
+                  )}
+                />
+                <SquareIcon
+                  className={cn(
+                    "absolute size-0 rotate-0 fill-destructive opacity-100 transition-transform",
+                    isPending ? "size-3 rotate-90" : "opacity-0",
+                  )}
+                />
                 <span className="sr-only">Run {enhanceObject.title}</span>
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Run {enhanceObject.title}</p>
+              {isPending ? "Stop" : <p>Run {enhanceObject.title}</p>}
             </TooltipContent>
           </Tooltip>
 

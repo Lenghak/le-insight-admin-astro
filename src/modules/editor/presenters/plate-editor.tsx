@@ -146,7 +146,7 @@ export default function PlateEditor() {
                 >
                   <Editor
                     containerClassName="*:font-serif w-full h-full min-h-full overflow-auto flex flex-col items-center max-h-full [&_.slate-SelectionArea]:h-full"
-                    className="mx-auto h-full w-full rounded-none border-0 bg-card px-[17.5%] pt-24 transition-all *:text-lg dark:bg-background"
+                    className="mx-auto h-full w-full rounded-none border-0 bg-card px-[17.5%] py-24 transition-all *:text-lg dark:bg-background"
                     focusRing={false}
                   />
 

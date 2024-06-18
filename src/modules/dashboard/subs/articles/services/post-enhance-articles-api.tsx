@@ -3,11 +3,12 @@ import { $articleAiResultStore } from "@/modules/dashboard/subs/articles/stores/
 import type { ArticlesEnhanceRequestType } from "@articles/types/articles-enhance-type";
 
 import { getPublicQueryInstance } from "@/common/stores/api-store";
-import { AxiosError, type AxiosInstance } from "axios";
+import { AxiosError, type AxiosInstance, type AxiosRequestConfig } from "axios";
 
 export default async function postEnhanceArticleApi(
   params: ArticlesEnhanceRequestType,
   queryInstance?: AxiosInstance,
+  config?: AxiosRequestConfig,
 ) {
   return (queryInstance ?? getPublicQueryInstance()).post(
     "/enhancements" + params.path,
@@ -29,15 +30,16 @@ export default async function postEnhanceArticleApi(
           if (parsed instanceof AxiosError) {
             return;
           }
-        } catch (_) {}
+        } catch (_) { }
 
         try {
           $articleAiResultStore.set(
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             JSON.parse(resBody.slice(resBody.lastIndexOf('{"output":'))),
           );
-        } catch (_) {}
+        } catch (_) { }
       },
+      ...config,
     },
   );
 }

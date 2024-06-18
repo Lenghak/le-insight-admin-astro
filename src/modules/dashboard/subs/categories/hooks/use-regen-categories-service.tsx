@@ -1,16 +1,17 @@
+import postRegenCategoriesAPI from "@/modules/dashboard/subs/categories/services/post-regen-categories-api";
+
 import { Button } from "@/common/components/ui/button";
 
 import usePrivateQueryInstance from "@/common/hooks/use-private-query-instance";
 
 import { articleKeys } from "@articles/constants/query-keys";
 
-import postRegenCategoriesAPI from "@/modules/dashboard/subs/categories/services/post-regen-categories-api";
 import type { CategoriesRegenType } from "@categories/types/categories-regen-type";
 
 import { $queryClient } from "@/common/stores/api-store";
 import { useStore } from "@nanostores/react";
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError, type AxiosRequestConfig } from "axios";
+import { AxiosError, isAxiosError, type AxiosRequestConfig } from "axios";
 import { CheckCircleIcon, CircleXIcon } from "lucide-react";
 import { toast } from "sonner";
 
@@ -26,6 +27,11 @@ export default function useRegenCategoriesService({
       mutationFn: async (config?: AxiosRequestConfig) =>
         await postRegenCategoriesAPI({ article_id }, instance, config),
       onError: (error) => {
+        if (isAxiosError(error) && error.code === AxiosError.ERR_CANCELED) {
+          toast.dismiss("REGEN_CATEGORY_" + article_id);
+          return;
+        }
+
         let title = "Regenerate Failed";
         let description =
           "There was a problem while processing your action. Please try again later.";

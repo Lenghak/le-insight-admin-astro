@@ -8,7 +8,9 @@ export default async function auth(context: APIContext, next: MiddlewareNext) {
   const isAuthPath = currentPathname.startsWith("/auth");
 
   const session = await getSession(context.request);
-  const userSession = await getUserAPI({ userID: session?.user.id });
+  const userSession = session?.user.id
+    ? await getUserAPI({ userID: session?.user.id })
+    : undefined;
   const isUserLoggedIn = !!userSession?.data?.data?.id;
 
   const isDashboardPath = currentPathname.startsWith("/spa");
