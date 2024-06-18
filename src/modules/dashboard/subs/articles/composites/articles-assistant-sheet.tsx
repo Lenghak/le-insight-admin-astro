@@ -210,7 +210,6 @@ export default function ArticlesAssistantSheet() {
                     variant={"outline"}
                     className={cn("relative bg-transparent dark:bg-card")}
                     disabled={isPending || aiProgress.output?.length === 0}
-                    size={"sm"}
                     onClick={() =>
                       insertText(editor, aiProgress.output, {
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

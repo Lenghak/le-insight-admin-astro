@@ -135,7 +135,7 @@ export default forwardRef<HTMLButtonElement, ArticlesCreateFormProps>(
                     className="size-4"
                     strokeWidth={3}
                   />
-                  <span className="sr-only font-bold">Done</span>
+                  <span className="sr-only font-bold">Next Step</span>
                 </Button>
               )}
             </SheetTrigger>

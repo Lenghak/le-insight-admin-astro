@@ -10,11 +10,19 @@ import { BackButton } from "@/modules/error/components/back-button";
   <main class="flex h-screen flex-col items-center justify-center">
     <H1 className="text-7xl underline lg:text-9xl">403</H1>
     <P className="max-w-sm text-center">
-      Forbidden! Looks like you do not have access to the page.
+      Forbidden! Looks like you do not have access to the page. Try sign in
+      again or contact technical support.
     </P>
 
     <div class="mt-8 flex flex-row items-center justify-center gap-4">
       <BackButton client:load />
+      <BackButton
+        href="/auth/sign-in"
+        variant="outline"
+        client:load
+      >
+        <span>Sign In</span>
+      </BackButton>
     </div>
   </main>
 </RootLayout>
