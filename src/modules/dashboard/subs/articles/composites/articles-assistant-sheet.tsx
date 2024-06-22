@@ -122,7 +122,7 @@ export default function ArticlesAssistantSheet() {
 
   const result = useMemo(
     () =>
-      aiProgress.output.replaceAll(
+      aiProgress.output?.replaceAll(
         /\n+/gi,
         () =>
           `<span key={${v4()}}><br key={${v4()}}/><br key={${v4()}}/></span>`,

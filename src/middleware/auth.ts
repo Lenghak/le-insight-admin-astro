@@ -8,6 +8,8 @@ export default async function auth(context: APIContext, next: MiddlewareNext) {
   const isAuthPath = currentPathname.startsWith("/auth");
   const isErrorPath =
     currentPathname.startsWith("/4") || currentPathname.startsWith("/5");
+  const isDashboardPath = currentPathname.startsWith("/spa");
+  const isAPIPath = currentPathname.startsWith("/api");
 
   if (isErrorPath) return next();
 
@@ -18,10 +20,8 @@ export default async function auth(context: APIContext, next: MiddlewareNext) {
 
   const isUserLoggedIn = !!userSession;
 
-  if (!isUserLoggedIn && !isAuthPath) return context.redirect("/403");
-
-  const isDashboardPath = currentPathname.startsWith("/spa");
-  const isAPIPath = currentPathname.startsWith("/api");
+  if (!isUserLoggedIn && !isAuthPath && !isAPIPath)
+    return context.redirect("/auth/sign-in");
 
   // check if the user has already logged in
   if (isAuthPath && isUserLoggedIn) {
