@@ -176,7 +176,7 @@ export default function ArticlesAssistantSheet() {
             )}
           >
             <AiMessageCard
-              className="flex flex-col items-end self-end text-wrap break-words text-end"
+              className="flex flex-col items-end self-end text-wrap break-words text-justify"
               title={
                 <div className="flex items-center gap-4 whitespace-nowrap">
                   <span>{enhanceObject.title ?? "User"}</span>
@@ -194,7 +194,7 @@ export default function ArticlesAssistantSheet() {
             </AiMessageCard>
 
             <AiMessageCard
-              className="self-start text-wrap break-words"
+              className="self-start text-wrap break-words text-justify  "
               title={
                 <div className="flex items-center gap-4 whitespace-nowrap">
                   <BotMessageSquareIcon className="size-4" />
