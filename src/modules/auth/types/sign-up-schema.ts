@@ -10,6 +10,8 @@ export const SignUpRequestSchema = z.object({
   password: z.string().min(8, {
     message: "Enter at least 8 characters password",
   }),
+  provider: z.literal("credential"),
+  image_url: z.null(),
 });
 
 export const SignUpResponseSchema = SignInResponseSchema;

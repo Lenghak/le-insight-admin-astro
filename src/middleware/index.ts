@@ -1,4 +1,4 @@
-import { sequence } from "astro/virtual-modules/middleware.js";
+import { sequence } from "astro:middleware";
 
 import auth from "./auth";
 

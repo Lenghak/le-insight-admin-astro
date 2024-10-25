@@ -29,6 +29,8 @@ const SignUpFormSchema = z.object({
   password: z.string().min(8, {
     message: "Enter at least 8 characters password",
   }),
+  provider: z.literal("credential"),
+  image_url: z.null(),
 });
 
 export default function SignUpForm() {
@@ -39,6 +41,8 @@ export default function SignUpForm() {
       lastName: "",
       email: "",
       password: "",
+      provider: "credential",
+      image_url: null,
     },
   });
 
